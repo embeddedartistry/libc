@@ -1,3 +1,9 @@
+cscope*out
+
+# Generated folders
+buildresults/**
+build/gen/**
+
 # Object files
 *.o
 *.ko
