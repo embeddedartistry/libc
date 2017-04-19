@@ -12,7 +12,7 @@ local RESULTSROOT = "../buildresults/%{cfg.platform}_%{cfg.buildcfg}/"
 --------------------------------
 --  WORKSPACE CONFIGURATION   --
 --------------------------------
-workspace "EmbeddedArtistry"
+workspace "EmbeddedArtistry LibC"
   configurations { "debug", "release" }
   platforms      { "x86_64", "x86_32" }
 
