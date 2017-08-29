@@ -2,7 +2,6 @@
 #define __STDLIB_H_
 
 #include <stddef.h>
-#include <malloc/malloc.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,6 +60,16 @@ void srand (unsigned);
 void *bsearch (const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
 
 #pragma mark - memory -
+
+/**
+* Allocate memory
+*/
+void * malloc(size_t size);
+
+/**
+* Free previously allocated memory
+*/
+void free(void * ptr);
 
 void * calloc(size_t num, size_t size);
 
