@@ -7,7 +7,7 @@ all: build
 
 .PHONY: build_gen
 build_gen:
-	@bin/premake5 --file=build/premake5.lua gmake
+	@build/bin/premake5 --file=premake5.lua gmake
 
 .PHONY: build
 build: build_gen
@@ -28,6 +28,6 @@ purify: clean
 
 .PHONY: regen
 regen:
-	@bin/premake5 --file=build/premake5.lua gmake
+	@build/bin/premake5 --file=premake5.lua gmake
 
 

@@ -4,10 +4,10 @@
 -- For reference, please refer to the premake wiki:
 -- https://github.com/premake/premake-core/wiki
 
-local arch_ = require "modules/arch"
+local arch_ = require "build/modules/arch"
 
-local ROOT = "../"
-local RESULTSROOT = "../buildresults/%{cfg.platform}_%{cfg.buildcfg}/"
+local ROOT = "./"
+local RESULTSROOT = ROOT .. "buildresults/%{cfg.platform}_%{cfg.buildcfg}/"
 
 --------------------------------
 --  WORKSPACE CONFIGURATION   --
@@ -22,6 +22,8 @@ workspace "EmbeddedArtistry LibC"
 
   -- Where the project/make files are output
   location(ROOT .. "build/gen")
+
+  arch_.set_build_top(ROOT)
 
 -----------------------------------
 -- Global Compiler/Linker Config --
