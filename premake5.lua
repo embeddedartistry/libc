@@ -23,8 +23,6 @@ workspace "EmbeddedArtistry LibC"
   -- Where the project/make files are output
   location(ROOT .. "build/gen")
 
-  arch_.set_build_top(ROOT)
-
 -----------------------------------
 -- Global Compiler/Linker Config --
 -----------------------------------
