@@ -22,6 +22,7 @@
 #define NULL 0
 #endif
 
+// clang-format off
 static int maxExponent = 511;	/* Largest possible base 10 exponent.  Any
 				 * exponent larger than this will already
 				 * produce underflow or overflow, so there's
@@ -38,6 +39,7 @@ static double powersOf10[] = {	/* Table giving binary powers of 10.  Entry */
     1.0e128,
     1.0e256
 };
+// clang-format on
 
 /*
  *----------------------------------------------------------------------
@@ -60,6 +62,7 @@ static double powersOf10[] = {	/* Table giving binary powers of 10.  Entry */
  *----------------------------------------------------------------------
  */
 
+// clang-format off
 double
 strtod(string, endPtr)
     const char *string;		/* A decimal ASCII floating-point number,
@@ -76,6 +79,7 @@ strtod(string, endPtr)
 				 */
     char **endPtr;		/* If non-NULL, store terminating character's
 				 * address here. */
+// clang-format on
 {
     int sign, expSign = FALSE;
     double fraction, dblExp, *d;

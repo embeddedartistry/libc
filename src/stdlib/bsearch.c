@@ -46,6 +46,7 @@
  * have to make lim 3, then halve, obtaining 1, so that we will only
  * look at item 3.
  */
+// clang-format off
 void *
 bsearch(key, base0, nmemb, size, compar)
 	const void *key;
@@ -53,6 +54,7 @@ bsearch(key, base0, nmemb, size, compar)
 	size_t nmemb;
 	size_t size;
 	int (*compar)(const void *, const void *);
+// clang-format on
 {
 	const char *base = base0;
 	size_t lim;

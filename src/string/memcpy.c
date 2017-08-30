@@ -58,8 +58,10 @@ void * memcpy(void *dst0, const void *src0, size_t length)
 	/*
 	 * Macros: loop-t-times; and loop-t-times, t>0
 	 */
+// clang-format off
 #define	TLOOP(s) if (t) TLOOP1(s)
 #define	TLOOP1(s) do { s; } while (--t)
+// clang-format on
 
 	if ((uintptr_t)dst < (uintptr_t)src) {
 		/*
