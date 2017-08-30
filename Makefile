@@ -30,4 +30,11 @@ purify: clean
 regen:
 	@build/bin/premake5 --file=premake5.lua gmake
 
+.PHONY: format
+format:
+	@tools/format/clang-format-all.sh
+
+.PHONY : format-diff
+format-diff :
+	@tools/format/clang-format-git-diff.sh
 
