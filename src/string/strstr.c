@@ -41,21 +41,23 @@ __FBSDID("$FreeBSD: src/lib/libc/string/strstr.c,v 1.6 2009/02/03 17:58:20 dange
 /*
  * Find the first occurrence of find in s.
  */
-char *
-strstr(const char *s, const char *find)
+char* strstr(const char* s, const char* find)
 {
 	char c, sc;
 	size_t len;
 
-	if ((c = *find++) != '\0') {
+	if((c = *find++) != '\0')
+	{
 		len = strlen(find);
-		do {
-			do {
-				if ((sc = *s++) == '\0')
+		do
+		{
+			do
+			{
+				if((sc = *s++) == '\0')
 					return (NULL);
-			} while (sc != c);
-		} while (strncmp(s, find, len) != 0);
+			} while(sc != c);
+		} while(strncmp(s, find, len) != 0);
 		s--;
 	}
-	return ((char *)s);
+	return ((char*)s);
 }

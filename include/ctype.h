@@ -1,5 +1,5 @@
-#ifndef	_CTYPE_H
-#define	_CTYPE_H
+#ifndef _CTYPE_H
+#define _CTYPE_H
 
 #ifdef __cplusplus
 extern "C" {
