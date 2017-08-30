@@ -56,20 +56,22 @@ bsearch(key, base0, nmemb, size, compar)
 	int (*compar)(const void *, const void *);
 // clang-format on
 {
-	const char *base = base0;
+	const char* base = base0;
 	size_t lim;
 	int cmp;
-	const void *p;
+	const void* p;
 
-	for (lim = nmemb; lim != 0; lim >>= 1) {
+	for(lim = nmemb; lim != 0; lim >>= 1)
+	{
 		p = base + (lim >> 1) * size;
 		cmp = (*compar)(key, p);
-		if (cmp == 0)
-			return ((void *)p);
-		if (cmp > 0) {	/* key > p: move right */
-			base = (char *)p + size;
+		if(cmp == 0)
+			return ((void*)p);
+		if(cmp > 0)
+		{ /* key > p: move right */
+			base = (char*)p + size;
 			lim--;
-		}		/* else move left */
+		} /* else move left */
 	}
 	return (NULL);
 }
