@@ -19,8 +19,11 @@ help: build_gen
 
 .PHONY: clean
 clean:
+ifeq ("$(wildcard build/gen/)","")
+	@echo "No generated build files: skipping clean"
+else
 	@make -C build/gen/ clean
-	@rm -rf buildresults
+endif
 
 .PHONY: purify
 purify: clean
