@@ -13,9 +13,17 @@ git lfs pull'''
         sh 'make'
       }
     }
-    stage('Report') {
+    stage('Check Status') {
       steps {
-        slackSend(message: 'Build status?', channel: '#sw-notify', botUser: true)
+        catchError() {
+          slackSend(message: 'Build Failed!', color: 'Red', channel: '#sw-notify', botUser: true)
+        }
+        
+      }
+    }
+    stage('Report success') {
+      steps {
+        slackSend(message: 'Build success', channel: '#sw-notify', botUser: true, color: 'Green')
       }
     }
   }
