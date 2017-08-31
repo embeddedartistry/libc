@@ -1,9 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('Submodule Update') {
+    stage('Check Downstream') {
       steps {
-        sh 'git submodule update'
+        sh '''git submodule init
+git submodule update
+git lfs pull'''
       }
     }
     stage('Build') {
