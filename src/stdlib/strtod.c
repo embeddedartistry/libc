@@ -13,14 +13,8 @@
  */
 
 #include <ctype.h>
-
-#ifndef TRUE
-#define TRUE 1
-#define FALSE 0
-#endif
-#ifndef NULL
-#define NULL 0
-#endif
+#include <stdbool.h>
+#include <stddef.h>
 
 // clang-format off
 static int maxExponent = 511;	/* Largest possible base 10 exponent.  Any
@@ -81,7 +75,7 @@ strtod(string, endPtr)
 				 * address here. */
 // clang-format on
 {
-	int sign, expSign = FALSE;
+	int sign, expSign = false;
 	double fraction, dblExp, *d;
 	register const char* p;
 	register int c;
@@ -112,7 +106,7 @@ strtod(string, endPtr)
 	}
 	if(*p == '-')
 	{
-		sign = TRUE;
+		sign = true;
 		p += 1;
 	}
 	else
@@ -121,7 +115,7 @@ strtod(string, endPtr)
 		{
 			p += 1;
 		}
-		sign = FALSE;
+		sign = false;
 	}
 
 	/*
@@ -216,7 +210,7 @@ strtod(string, endPtr)
 		p += 1;
 		if(*p == '-')
 		{
-			expSign = TRUE;
+			expSign = true;
 			p += 1;
 		}
 		else
@@ -225,7 +219,7 @@ strtod(string, endPtr)
 			{
 				p += 1;
 			}
-			expSign = FALSE;
+			expSign = false;
 		}
 		if(!isdigit((unsigned char)(*p)))
 		{
@@ -256,12 +250,12 @@ strtod(string, endPtr)
 
 	if(exp < 0)
 	{
-		expSign = TRUE;
+		expSign = true;
 		exp = -exp;
 	}
 	else
 	{
-		expSign = FALSE;
+		expSign = false;
 	}
 	if(exp > maxExponent)
 	{
