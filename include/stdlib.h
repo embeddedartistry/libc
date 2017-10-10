@@ -2,6 +2,7 @@
 #define __STDLIB_H_
 
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,6 +27,12 @@ typedef struct
 	long long quot;
 	long long rem;
 } lldiv_t;
+
+typedef struct
+{
+	intmax_t quot;
+	intmax_t rem;
+} imaxdiv_t;
 
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
@@ -52,13 +59,20 @@ unsigned long long strtoull(const char* __restrict, char** __restrict, int);
 int abs(int);
 long labs(long);
 long long llabs(long long);
+intmax_t imaxabs(intmax_t j);
 
 div_t div(int, int);
 ldiv_t ldiv(long, long);
 lldiv_t lldiv(long long, long long);
+imaxdiv_t imaxdiv(intmax_t numer, intmax_t denom);
 
 int rand(void);
 void srand(unsigned);
+
+#pragma mark - random number generation -
+int rand_r(unsigned int* ctx);
+int rand(void);
+void srand(unsigned seed);
 
 #pragma mark - sorting -
 void* bsearch(const void*, const void*, size_t, size_t, int (*)(const void*, const void*));
