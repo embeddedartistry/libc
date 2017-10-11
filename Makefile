@@ -41,3 +41,12 @@ format:
 format-diff :
 	@tools/format/clang-format-git-diff.sh
 
+.PHONY: test
+test:
+ifeq ("$(wildcard buildresults/testresults/)","")
+	@mkdir -p buildresults/testresults
+else
+	@rm buildresults/testresults/*.xml
+endif
+	@CMOCKA_XML_FILE='./buildresults/testresults/libc.xml' buildresults/x86_64_debug/test/libc.bin
+

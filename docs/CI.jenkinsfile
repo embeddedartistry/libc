@@ -17,6 +17,21 @@ pipeline
         sh 'make'
       }
     }
+    stage('Test')
+    {
+      steps
+      {
+        sh 'make test'
+      }
+      post
+      {
+        always
+        {
+          // Report Tests
+          junit 'buildresults/testresults/**/*.xml'
+        }
+      }
+    }
   }
   post
   {
