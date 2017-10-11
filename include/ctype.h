@@ -7,6 +7,7 @@ extern "C" {
 
 int isalnum(int);
 int isalpha(int);
+int isascii(int);
 int isblank(int);
 int iscntrl(int);
 int isdigit(int);
