@@ -20,6 +20,7 @@ int isupper(int);
 int isxdigit(int);
 int tolower(int);
 int toupper(int);
+int toascii(int);
 
 #ifdef __cplusplus
 }
