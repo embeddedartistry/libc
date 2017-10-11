@@ -46,7 +46,7 @@ test:
 ifeq ("$(wildcard buildresults/testresults/)","")
 	@mkdir -p buildresults/testresults
 else
-	@rm -f buildresults/testresults/*.xml
+	@rm -f buildresults/testresults/*
 endif
-	@CMOCKA_XML_FILE=cm_%%g.xml buildresults/x86_64_debug/test/libc.bin
+	@CMOCKA_XML_FILE=buildresults/testresults/%g buildresults/x86_64_debug/test/libc.bin
 
