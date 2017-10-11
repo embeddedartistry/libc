@@ -82,3 +82,44 @@ workspace "EmbeddedArtistry LibC"
     {
 
     }
+
+project "libc_UnitTests"
+    kind "ConsoleApp"
+    language "C"
+    targetdir (RESULTSROOT .. "test/")
+    targetname "libc.bin"
+
+    --Temporary
+    removeplatforms { "X86_32" }
+
+    local SourceDir = ROOT .. "test/";
+
+    files
+    {
+      SourceDir .. "**.h",
+      SourceDir .. "**.c",
+    }
+
+    filter {} -- clear filter!
+
+    includedirs
+    {
+      SourceDir, -- include root source directory to allow for absolute include paths
+      arch_.include(),
+      ROOT .. "include/",
+      ROOT .. "test/cmocka/",
+      "/usr/local/opt/llvm/include",
+      "/usr/local/opt/llvm/include/c++/v1/"
+    }
+
+    -- Library Dependencies
+    libdirs
+    {
+      arch_.lib() .. "cmocka/"
+    }
+
+    links
+    {
+      "libc",
+      "cmocka"
+    }
