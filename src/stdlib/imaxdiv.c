@@ -24,7 +24,6 @@
  * SUCH DAMAGE.
  */
 
-#include <stdint.h>
 #include <stdlib.h>
 
 /* See comments in div.c for implementation details. */

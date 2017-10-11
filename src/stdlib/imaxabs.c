@@ -24,7 +24,6 @@
  * SUCH DAMAGE.
  */
 
-#include <stdint.h>
 #include <stdlib.h>
 
 intmax_t imaxabs(intmax_t j)
