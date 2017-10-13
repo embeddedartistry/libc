@@ -28,7 +28,7 @@ pipeline
         always
         {
           // Report Tests
-          junit 'buildresults/testresults/*'
+          junit 'buildresults/testresults/**/*.xml'
         }
       }
     }

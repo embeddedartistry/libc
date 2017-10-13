@@ -48,5 +48,5 @@ ifeq ("$(wildcard buildresults/testresults/)","")
 else
 	@rm -f buildresults/testresults/*
 endif
-	@CMOCKA_XML_FILE=buildresults/testresults/%g buildresults/x86_64_debug/test/libc.bin
+	@CMOCKA_XML_FILE=buildresults/testresults/%g.xml buildresults/x86_64_debug/test/libc.bin
 
