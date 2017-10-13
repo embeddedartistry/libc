@@ -44,7 +44,7 @@ static void bad_input(void** state)
 		assert_int_equal(isxdigit(i), 0);
 	}
 
-	//97 represents 'a'
+	// 97 represents 'a'
 	for(int i = 71; i < 97; i++)
 	{
 		assert_int_equal(isxdigit(i), 0);
@@ -69,8 +69,7 @@ static void bad_input(void** state)
 int isxdigit_tests(void)
 {
 	const struct CMUnitTest isxdigit_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isxdigit_tests, NULL, NULL);

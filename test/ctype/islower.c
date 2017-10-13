@@ -24,7 +24,7 @@ static void good_input(void** state)
 
 static void bad_input(void** state)
 {
-	//97 represents 'a'
+	// 97 represents 'a'
 	for(int i = 0; i < 97; i++)
 	{
 		assert_int_equal(islower(i), 0);
@@ -49,8 +49,7 @@ static void bad_input(void** state)
 int islower_tests(void)
 {
 	const struct CMUnitTest islower_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(islower_tests, NULL, NULL);

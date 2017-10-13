@@ -14,7 +14,6 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-
 static void good_input(void** state)
 {
 	for(int i = 0; i < 0x20; i++)
@@ -46,8 +45,7 @@ static void bad_input(void** state)
 int iscntrl_tests(void)
 {
 	const struct CMUnitTest iscntrl_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(iscntrl_tests, NULL, NULL);

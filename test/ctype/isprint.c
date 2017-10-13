@@ -46,8 +46,7 @@ static void bad_input(void** state)
 int isprint_tests(void)
 {
 	const struct CMUnitTest isprint_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isprint_tests, NULL, NULL);

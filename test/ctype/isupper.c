@@ -49,8 +49,7 @@ static void bad_input(void** state)
 int isupper_tests(void)
 {
 	const struct CMUnitTest isupper_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isupper_tests, NULL, NULL);

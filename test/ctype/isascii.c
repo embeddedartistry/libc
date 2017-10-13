@@ -39,8 +39,7 @@ static void bad_input(void** state)
 int isascii_tests(void)
 {
 	const struct CMUnitTest isascii_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isascii_tests, NULL, NULL);

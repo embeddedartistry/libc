@@ -22,7 +22,6 @@ static void good_input(void** state)
 	assert_int_not_equal(isspace(11), 0);
 	assert_int_not_equal(isspace(12), 0);
 	assert_int_not_equal(isspace(13), 0);
-
 }
 
 static void bad_input(void** state)
@@ -58,8 +57,7 @@ static void bad_input(void** state)
 int isspace_tests(void)
 {
 	const struct CMUnitTest isspace_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isspace_tests, NULL, NULL);

@@ -28,7 +28,7 @@ static void bad_input(void** state)
 		assert_int_equal(isblank(i), 0);
 	}
 
-	//32 represents ' '
+	// 32 represents ' '
 	for(int i = 10; i < 32; i++)
 	{
 		assert_int_equal(isblank(i), 0);
@@ -53,8 +53,7 @@ static void bad_input(void** state)
 int isblank_tests(void)
 {
 	const struct CMUnitTest isblank_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isblank_tests, NULL, NULL);

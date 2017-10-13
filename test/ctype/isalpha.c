@@ -34,7 +34,7 @@ static void bad_input(void** state)
 		assert_int_equal(isalpha(i), 0);
 	}
 
-	//97 represents 'a'
+	// 97 represents 'a'
 	for(int i = 91; i < 97; i++)
 	{
 		assert_int_equal(isalpha(i), 0);
@@ -54,8 +54,7 @@ static void bad_input(void** state)
 int isalpha_tests(void)
 {
 	const struct CMUnitTest isalpha_tests[] = {
-		cmocka_unit_test(good_input),
-		cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(isalpha_tests, NULL, NULL);
