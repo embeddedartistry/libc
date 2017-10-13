@@ -35,11 +35,15 @@ regen:
 
 .PHONY: format
 format:
-	@tools/format/clang-format-all.sh
+	@tools/clang-format-libc.sh
 
 .PHONY : format-diff
 format-diff :
 	@tools/format/clang-format-git-diff.sh
+
+.PHONY: format-check
+format-check:
+	@tools/clang-format-patch-libc.sh
 
 .PHONY: test
 test:

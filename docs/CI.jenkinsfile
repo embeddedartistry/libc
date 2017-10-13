@@ -32,6 +32,13 @@ pipeline
         }
       }
     }
+    stage('Format')
+    {
+      steps
+      {
+        clangFormat()
+      }
+    }
   }
   post
   {
