@@ -33,7 +33,11 @@ int strncmp(const char* s1, const char* s2, size_t n)
 		}
 
 		// handle case where we didn't break early - set return code.
-		if(r != 0)
+		if(n == 0)
+		{
+			r = 0;
+		}
+		else if(r != 0)
 		{
 			r = *(char*)s1 - *(char*)s2;
 		}

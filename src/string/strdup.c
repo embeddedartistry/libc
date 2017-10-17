@@ -42,11 +42,19 @@ __FBSDID("$FreeBSD: src/lib/libc/string/strdup.c,v 1.6 2009/02/03 17:58:20 dange
 char* strdup(const char* str)
 {
 	size_t len;
-	char* copy;
+	char* copy = NULL;
 
-	len = strlen(str) + 1;
-	if((copy = malloc(len)) == NULL)
-		return (NULL);
-	memcpy(copy, str, len);
+	if(str)
+	{
+		len = strlen(str) + 1;
+
+		if((copy = malloc(len)) == NULL)
+		{
+			return (NULL);
+		}
+
+		memcpy(copy, str, len);
+	}
+
 	return (copy);
 }

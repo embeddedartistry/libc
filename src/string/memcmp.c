@@ -4,6 +4,16 @@ int __attribute__((weak)) memcmp(const void* p1, const void* p2, size_t n)
 {
 	size_t i;
 
+	if(!p1)
+	{
+		return 1;
+	}
+
+	if(!p2)
+	{
+		return -1;
+	}
+
 	/**
 	* p1 and p2 are the same memory? easy peasy! bail out
 	*/

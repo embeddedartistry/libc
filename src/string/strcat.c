@@ -23,23 +23,15 @@
 
 #include <string.h>
 
-char* strncpy(char* __restrict dst, const char* __restrict src, size_t maxlen)
+char* strcat(char* __restrict dst, const char* __restrict src)
 {
-	const size_t srclen = strnlen(src, maxlen);
-	if(srclen < maxlen)
-	{
-		//  The stpncpy() and strncpy() functions copy at most maxlen
-		//  characters from src into dst.
-		memcpy(dst, src, srclen);
-		//  If src is less than maxlen characters long, the remainder
-		//  of dst is filled with '\0' characters.
-		memset(dst + srclen, 0, maxlen - srclen);
-	}
-	else
-	{
-		//  Otherwise, dst is not terminated.
-		memcpy(dst, src, maxlen);
-	}
-	//  The strcpy() and strncpy() functions return dst.
+	const size_t dstlen = strlen(dst);
+	const size_t srclen = strlen(src);
+	//  The strcat() and strncat() functions append a copy of the null-
+	//  terminated string src to the end of the null-terminated string dst,
+	//  then add a terminating '\0'.  The string dst must have sufficient
+	//  space to hold the result.
+	memcpy(dst + dstlen, src, srclen + 1);
+	//  The strcat() and strncat() functions return dst.
 	return dst;
 }

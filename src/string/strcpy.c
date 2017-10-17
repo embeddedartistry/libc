@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-char* strcpy(char* restrict dst, const char* restrict src)
+char* strcpy(char* __restrict dst, const char* __restrict src)
 {
 	const size_t length = strlen(src);
 	//  The stpcpy() and strcpy() functions copy the string src to dst
