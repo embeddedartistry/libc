@@ -12,6 +12,7 @@
 // clang-format on
 
 extern int ctype_tests(void);
+extern int string_tests(void);
 
 int main(void)
 {
@@ -21,6 +22,11 @@ int main(void)
 	cmocka_set_message_output(CM_OUTPUT_XML);
 
 	if(0 != ctype_tests())
+	{
+		overall_result = -1;
+	}
+
+	if(0 != string_tests())
 	{
 		overall_result = -1;
 	}
