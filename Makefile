@@ -46,7 +46,7 @@ format-check:
 	@tools/clang-format-patch-libc.sh
 
 .PHONY: test
-test:
+test: build
 ifeq ("$(wildcard buildresults/testresults/)","")
 	@mkdir -p buildresults/testresults
 else
