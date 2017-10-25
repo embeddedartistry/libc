@@ -8,13 +8,26 @@ pipeline
   {
     GIT_CHANGE_LOG = gitChangeLog(currentBuild.changeSets)
   }
+  parameters
+  {
+    string(defaultValue: '1', description: 'Major version number (x.0.0)', name: 'MAJOR_VERSION')
+    string(defaultValue: '1', description: 'Minor version number (0.x.0)', name: 'MINOR_VERSION')
+  }
+  triggers
+  {
+    //At 04:00 on every day-of-week from Monday through Friday.
+    pollSCM('H 4 * * 1-5')
+  }
   stages
   {
     stage('Setup')
     {
       steps
       {
+        echo 'Running make clean...'
         sh 'make clean'
+
+        gitTagPreBuild "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
       }
     }
     stage('Build')
@@ -59,7 +72,19 @@ pipeline
   {
     always
     {
+      //Scan console log for Clang warnings
+      warnings(canResolveRelativePaths: true, categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', useStableBuildAsReference: true)
+
+      // Scan workspace to check open tasks
+      openTasks(defaultEncoding: '', excludePattern: 'lib/external/**, os/**, build/gen/**, build/examples/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
+
+      // Report Status
       slackNotify(currentBuild.currentResult)
+      gitTagCleanup "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
+    }
+    success
+    {
+      gitTagSuccess "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
     }
     failure
     {
