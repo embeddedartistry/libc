@@ -106,7 +106,7 @@ static inline char* med3(char* a, char* b, char* c, cmp_t* cmp, void* thunk
 #endif /* __LP64__ */
 
 #ifdef I_AM_QSORT_R
-int __heapsort_r(void*, size_t, size_t, void*, int (*)(void*, const void*, const void*));
+int heapsort_r(void*, size_t, size_t, void*, int (*)(void*, const void*, const void*));
 #endif
 
 static void _qsort(void* a, size_t n, size_t es,
@@ -126,7 +126,7 @@ loop:
 	if(depth_limit-- <= 0)
 	{
 #ifdef I_AM_QSORT_R
-		__heapsort_r(a, n, es, thunk, cmp);
+		heapsort_r(a, n, es, thunk, cmp);
 #else
 		heapsort(a, n, es, cmp);
 #endif

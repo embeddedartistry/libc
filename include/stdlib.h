@@ -76,6 +76,8 @@ void srand(unsigned seed);
 
 #pragma mark - sorting -
 int heapsort(void* vbase, size_t nmemb, size_t size, int (*compar)(const void*, const void*));
+int heapsort_r(void* vbase, size_t nmemb, size_t size, void* thunk,
+			   int (*compar)(void*, const void*, const void*));
 void* bsearch(const void*, const void*, size_t, size_t, int (*)(const void*, const void*));
 void qsort_r(void* a, size_t n, size_t es, void* thunk,
 			 int (*cmp)(void*, const void*, const void*));
