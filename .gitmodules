@@ -4,3 +4,6 @@
 [submodule "tools/format"]
 	path = tools/format
 	url = git@github.com:embeddedartistry/format.git
+[submodule "src/gdtoa"]
+	path = src/gdtoa
+	url = git@github.com:embeddedartistry/gdtoa.git

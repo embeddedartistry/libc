@@ -58,15 +58,24 @@ workspace "EmbeddedArtistry LibC"
       SourceDir .. "**.c"
     }
 
+    removefiles { "arith_check.c", "qnan.c" }
+
     buildoptions {"-fno-builtin", "-nodefaultlibs"}
     linkoptions {"-nodefaultlibs", "-nostartfiles"}
 
     filter {} -- clear filter!
 
+    defines
+    {
+      "NO_ERRNO", --gdtoa
+      "INFNAN_CHECK", --gdtoa
+    }
+
     includedirs
     {
       arch_.include(),
       SourceDir,
+      SourceDir .. "gdtoa/include",
       SourceDir .. "../include/",
       ROOT .. "lib/",
       "/usr/local/opt/llvm/include",
