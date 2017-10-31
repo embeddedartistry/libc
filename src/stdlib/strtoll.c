@@ -49,6 +49,19 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 
 /* endptr may be NULL */
 
+	//check base
+	if(base < 0 || base > 36)
+	{
+		//errno = EINVAL
+
+		if(endptr)
+		{
+			*endptr = (char *) nptr;
+		}
+
+		return 0;
+	}
+
 #ifdef __GNUC__
 	/* This outrageous construct just to shut up a GCC warning. */
 	(void)&acc;

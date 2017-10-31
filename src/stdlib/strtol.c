@@ -84,6 +84,19 @@ register int base;
 	register unsigned long cutoff;
 	register int neg = 0, any, cutlim;
 
+	//check base
+	if(base < 0 || base > 36)
+	{
+		//errno = EINVAL
+
+		if(endptr)
+		{
+			*endptr = (char *)nptr;
+		}
+
+		return 0;
+	}
+
 	/*
 	 * Skip white space and pick up leading +/- sign if any.
 	 * If base is 0, allow 0x for hex and 0 for octal, else
