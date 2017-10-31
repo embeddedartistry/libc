@@ -32,12 +32,12 @@ static void strtoll_test(void** state)
 	}
 
 	// Run some basic checks
-		assert_int_equal(strtoll("z", 0, 36), 35);
+	assert_int_equal(strtoll("z", 0, 36), 35);
 	assert_int_equal(strtoll("00010010001101000101011001111000", 0, 2), 0x12345678);
 	assert_int_equal(strtoll(s = "0F5F", &c, 16), 0x0f5f);
 
 	assert_int_equal(strtoll(s = "0xz", &c, 16), 0);
-	assert_int_equal(c-s, 0);
+	assert_int_equal(c - s, 0);
 
 	assert_int_equal(strtoll(s = "0x1234", &c, 16), 0x1234);
 	assert_int_equal(c - s, 6);

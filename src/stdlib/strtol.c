@@ -84,14 +84,14 @@ register int base;
 	register unsigned long cutoff;
 	register int neg = 0, any, cutlim;
 
-	//check base
+	// check base
 	if(base < 0 || base > 36)
 	{
-		//errno = EINVAL
+		// errno = EINVAL
 
 		if(endptr)
 		{
-			*endptr = (char *)nptr;
+			*endptr = (char*)nptr;
 		}
 
 		return 0;

@@ -58,7 +58,7 @@ static void strtol_test(void** state)
 	assert_int_equal(strtol(s = "0F5F", &c, 16), 0x0f5f);
 
 	assert_int_equal(strtol(s = "0xz", &c, 16), 0);
-	assert_int_equal(c-s, 0);
+	assert_int_equal(c - s, 0);
 
 	assert_int_equal(strtol(s = "0x1234", &c, 16), 0x1234);
 	assert_int_equal(c - s, 6);

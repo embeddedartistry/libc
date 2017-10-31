@@ -47,16 +47,16 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 	int c;
 	int neg, any, cutlim;
 
-/* endptr may be NULL */
+	/* endptr may be NULL */
 
-	//check base
+	// check base
 	if(base < 0 || base > 36)
 	{
-		//errno = EINVAL
+		// errno = EINVAL
 
 		if(endptr)
 		{
-			*endptr = (char *) nptr;
+			*endptr = (char*)nptr;
 		}
 
 		return 0;
