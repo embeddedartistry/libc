@@ -6,6 +6,9 @@ cscope*out
 buildresults/**
 build/gen/**
 
+# Patch file
+clang_format.patch
+
 # Object files
 *.o
 *.ko
