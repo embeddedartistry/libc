@@ -3,11 +3,24 @@
 # Export all args to act as a passthrough
 export
 
-all: build
+ifeq ($(OS),Windows_NT)
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname -s 2>/dev/null || echo NotDetected')
+endif
+
+ifeq ($(detected_OS), "Windows")
+	premake_BIN := premake5.exe
+else
+	premake_BIN := premake5
+endif
+
+all: build test
 
 .PHONY: build_gen
 build_gen:
-	@build/bin/premake5 --file=premake5.lua gmake
+	@echo "Detected OS: ${detected_OS}. Using Premake binary: build/bin/${detected_OS}/${premake_BIN}"
+	@build/bin/${detected_OS}/${premake_BIN} --file=premake5.lua gmake
 
 .PHONY: build
 build: build_gen
