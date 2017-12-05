@@ -24,12 +24,8 @@
  * SUCH DAMAGE.
  */
 
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/lib/libc/string/strlen.c,v 1.7 2009/01/26 07:31:28 delphij Exp $");
-
 #include <limits.h>
 #include <string.h>
-#include <sys/types.h>
 
 /*
  * Portable strlen() for 32-bit and 64-bit systems.

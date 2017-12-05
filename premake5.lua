@@ -58,7 +58,7 @@ workspace "EmbeddedArtistry LibC"
       SourceDir .. "**.c"
     }
 
-    removefiles { "arith_check.c", "qnan.c" }
+    removefiles { "**/arithchk.c", "**/qnan.c" }
 
     buildoptions {"-fno-builtin", "-nodefaultlibs"}
     linkoptions {"-nodefaultlibs", "-nostartfiles"}
@@ -69,6 +69,9 @@ workspace "EmbeddedArtistry LibC"
     {
       "NO_ERRNO", --gdtoa
       "INFNAN_CHECK", --gdtoa
+      "GDTOA_NO_ASSERT", --gdtoa, temporary
+      "GDTOA_NO_MATH_H", --gdtoa, temporary
+      "NO_FENV_H", --gdtoa
     }
 
     includedirs
