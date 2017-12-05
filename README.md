@@ -10,13 +10,13 @@ Note that `malloc` and `free` are not included in this library. If you need dyna
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
-1. [Project Status](#project-status)
-1. [Getting Started](#getting-started)
+2. [Project Status](#project-status)
+3. [Getting Started](#getting-started)
 	1. [Requirements](#requirements)
-	1. [Building](#building)
-	1. [Installation](#installation)
-	1. [Usage](#usage)
-1. [Release Process](#release-process)
+	2. [Building](#building)
+	3. [Installation](#installation)
+	4. [Usage](#usage)
+4. [Release Process](#release-process)
 	1. [Versioning](#versioning)
 
 # About the Project
@@ -68,13 +68,13 @@ Up next:
 
 The following unit tests need to be added:
 
-	* `bsearch`
-	* `imaxdiv`
-	* `div`, `ldiv`
-	* `realloc`
-	* `rand` family
-	* `strnstr`
-	* `memmove`
+* `bsearch`
+* `imaxdiv`
+* `div`, `ldiv`
+* `realloc`
+* `rand` family
+* `strnstr`
+* `memmove`
 
 Maybe in the future:
 
@@ -195,7 +195,7 @@ I am currently working on Contributing guidelines. In the meantime, please open 
 
 # Further Reading
 
-* [`libc` Documenation][9]
+* [`libc` Documentation][9]
 
 # Authors
 
@@ -207,7 +207,25 @@ Copyright (c) 2017 Embedded Artistry LLC
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
+musl libc is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
 # Acknowledgments
+
+Many of the open-source function implementations used in this library have been pulled from two primary sources:
+
+* [Apple Open Source libc](https://opensource.apple.com/source/Libc/)
+	* abs, atof, bsearch, div family, heapsort/qsort family, abs family, imax family, strtol/ll/ull
+	* fls, flsl, flsll
+	* strstr, strtok. strnstr, strnlen, strndup, strncpy, strncat, strlen, strdup, strcpy, strcat
+	* memmem, memcpy
+* [musl libc](https://www.musl-libc.org)
+	* All ctype member functions (locale support removed)
+	* strrchr, strchrnul, strchr
+	* memset, memrchr
+
+I have also used and improved the open-source `gdtoa` library.
+
+The initial groundwork of testing was implemented by referencing the [libc-test](http://nsz.repo.hu/git/?p=libc-test) project.
 
 **[Back to top](#table-of-contents)**
 
