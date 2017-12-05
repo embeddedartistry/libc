@@ -42,6 +42,13 @@ endif
 purify: clean
 	@rm -rf build/gen
 
+.PHONY: doc
+doc:
+ifeq ("$(wildcard buildresults/doc/)","")
+	@mkdir -p buildresults/doc
+endif
+	@doxygen docs/Doxyfile
+
 .PHONY: regen
 regen:
 	@build/bin/premake5 --file=premake5.lua gmake
