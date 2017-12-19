@@ -84,7 +84,7 @@ Before you submit your issue, please [search the issue archive][6] - maybe your 
 
 If you find a bug in the source code, you can help us by [submitting an issue to our GitHub issue tracker][6]. Even better, you can submit a Pull Request with a fix!
 
-This project uses an [issue template](docs/ISSUE_TEMPLATE.md), which GitHub will auto-populate when you create a new issue. Please make sure to follow the template and provide the necessary information. This will help us track down the bug as quickly as possible.
+This project uses an [issue template](ISSUE_TEMPLATE.md), which GitHub will auto-populate when you create a new issue. Please make sure to follow the template and provide the necessary information. This will help us track down the bug as quickly as possible.
 
 ## Improving Documentation
 
@@ -240,7 +240,7 @@ Once you've committed and pushed all of your changes to GitHub:
 
 If you need to make any adjustments to your pull request, just push the updates to your branch. Your pull request will automatically track the changes on your development branch and update.
 
-Please follow the [Pull Request Template](docs/PULL_REQUEST_TEMPLATE.md) for this project. GitHub will automatically populate the pull request description with this template.
+Please follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md) for this project. GitHub will automatically populate the pull request description with this template.
 
 ### Review Process
 
@@ -283,7 +283,7 @@ Note that this will overwrite the old branch on the server, so make sure you are
 
 Anyone interested in active conversation regarding this project should [join the Embedded Artistry Slack team]https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)).
 
-[0]: docs/CODE_OF_CONDUCT.md
+[0]: CODE_OF_CONDUCT.md
 [1]: style_guidelines.md
 [2]: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
 [3]: http://makeapullrequest.com/
