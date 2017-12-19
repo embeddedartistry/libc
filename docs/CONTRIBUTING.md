@@ -21,7 +21,7 @@ This document describes the Embedded Artistry development process. Following the
 	6. [Style Guidelines](#style-guidelines)
 	7. [Code Formatting Rules](#code-formatting)
 	8. [Whitespace Cleanup](#whitespace-cleanup)
-8. [Pull Request Guidelines](#pull-request-guidelines)
+8. [Pull Request Guidelines](#pull-request-process)
 	1. [Review Process](#review-process)
 	2. [Addressing Feedback](#addressing-feedback)
 9. [Community](#community)
@@ -47,8 +47,8 @@ Useful Documentation:
 * [Library Documentation][9]
 * [cppreference (API notes)](http://en.cppreference.com)
 * [C Standard Library Header Files](http://en.cppreference.com/w/c/header)
-* [Issue Template/Checklist](docs/ISSUE_TEMPLATE.md)
-* [Pull Request template/Checklist](docs/PULL_REQUEST_TEMPLATE.md)
+* [Issue Template/Checklist](ISSUE_TEMPLATE.md)
+* [Pull Request template/Checklist](PULL_REQUEST_TEMPLATE.md)
 
 Embedded Artistry blog posts related to this project:
 
