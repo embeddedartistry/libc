@@ -29,7 +29,7 @@ This document describes the Embedded Artistry development process. Following the
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by the Embedded Artistry [Code of Conduct][0]. We expect all contributors to follow the [Code of Conduct][0] and to treat fellow humans with respect.
+By participating in this project, you agree to abide by the Embedded Artistry [Code of Conduct][CODE_OF_CONDUCT.md]. We expect all contributors to follow the [Code of Conduct][CODE_OF_CONDUCT.md] and to treat fellow humans with respect.
 
 ## Important Resources
 
