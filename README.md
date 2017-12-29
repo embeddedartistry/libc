@@ -214,6 +214,10 @@ musl libc is licensed under the MIT License - see [LICENSE](LICENSE) file for de
 
 # Acknowledgments
 
+I'd like to thank the following individuals for their direct contributions on this project:
+
+* @seekaddo (Documentation)
+
 Many of the open-source function implementations used in this library have been pulled from two primary sources:
 
 * [Apple Open Source libc](https://opensource.apple.com/source/Libc/)
