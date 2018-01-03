@@ -174,20 +174,20 @@ This project uses CMocka as the testing framework.
 
 Please follow these guidelines:
 
-* New tests should be added to the [`test/`](test/) directory tree
+* New tests should be added to the [`test/`](../test/) directory tree
 	* If you are adding a new function to an existing module, please add it in that module's tree
 		* e.g. `string/`, `stdlib/`, `ctype/`
 	* If you are adding a new module or a function in a new module, please create that directory and add the file there.
 * Each function should have its own tests in its own C file.
 * Each module should have a C file which coordinates the tests.
-	* e.g. [`string/string_tests.c`](test/string/string_tests.c)
+	* e.g. [`string/string_tests.c`](../test/string/string_tests.c)
 * When adding a new test, add the following to the relevant test coordination file:
 	* An `extern` function declaration: `extern int memcpy_tests(void);`
 	* A call to this test function: `overall_result |= memcpy_tests();`
 * When adding a new module:
 	* Please copy the test coordinator style from an existing module
-	* Add an `extern` function declaration in [main.c](test/main.c): `extern int ctype_tests(void);`
-	* Add a call to the test coordinator in [main.c](test/main.c): `overall_result |= ctype_tests();`
+	* Add an `extern` function declaration in [main.c](../test/main.c): `extern int ctype_tests(void);`
+	* Add a call to the test coordinator in [main.c](../test/main.c): `overall_result |= ctype_tests();`
 
 ### Style Guidelines
 
