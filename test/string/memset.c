@@ -1,7 +1,7 @@
 /*
-* Copyright © 2017 Embedded Artistry LLC.
-* License: MIT. See LICENSE file for details.
-*/
+ * Copyright © 2017 Embedded Artistry LLC.
+ * License: MIT. See LICENSE file for details.
+ */
 
 #include <string.h>
 
@@ -96,7 +96,8 @@ static void check_input(void** state)
 int memset_tests(void)
 {
 	const struct CMUnitTest memset_tests[] = {
-		cmocka_unit_test(memset_aligned_test), cmocka_unit_test(check_input),
+		cmocka_unit_test(memset_aligned_test),
+		cmocka_unit_test(check_input),
 	};
 
 	return cmocka_run_group_tests(memset_tests, NULL, NULL);
