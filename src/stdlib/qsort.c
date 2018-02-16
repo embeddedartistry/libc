@@ -89,11 +89,12 @@ int n, swaptype;
 #define CMP(t, x, y) (cmp((x), (y)))
 #endif
 
-static inline char* med3(char* a, char* b, char* c, cmp_t* cmp, void* thunk
+static inline char* med3(char* a, char* b, char* c, cmp_t* cmp,
+						 void* thunk
 #ifndef I_AM_QSORT_R
 						 __attribute__((unused))
 #endif
-						 )
+)
 {
 	return CMP(thunk, a, b) < 0 ? (CMP(thunk, b, c) < 0 ? b : (CMP(thunk, a, c) < 0 ? c : a))
 								: (CMP(thunk, b, c) > 0 ? b : (CMP(thunk, a, c) < 0 ? a : c));
