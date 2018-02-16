@@ -1,7 +1,7 @@
 /*
-* Copyright © 2017 Embedded Artistry LLC.
-* License: MIT. See LICENSE file for details.
-*/
+ * Copyright © 2017 Embedded Artistry LLC.
+ * License: MIT. See LICENSE file for details.
+ */
 
 #include <stdlib.h>
 
@@ -17,7 +17,7 @@
  * f = function call to test (or any expression)
  * x = expected result
  * m = message to print on failure (with formats for r & x)
-**/
+ **/
 
 #define TEST(r, f, x, m) \
 	(errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0))

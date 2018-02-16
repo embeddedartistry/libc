@@ -1,7 +1,7 @@
 /*
-* Copyright © 2017 Embedded Artistry LLC.
-* License: MIT. See LICENSE file for details.
-*/
+ * Copyright © 2017 Embedded Artistry LLC.
+ * License: MIT. See LICENSE file for details.
+ */
 
 #include <stdlib.h>
 #include <string.h>
@@ -165,8 +165,10 @@ static void qsort_uint64_test(void** state)
 int qsort_tests(void)
 {
 	const struct CMUnitTest qsort_tests[] = {
-		cmocka_unit_test(qsort_string_test), cmocka_unit_test(qsort_char_test),
-		cmocka_unit_test(qsort_int_test), cmocka_unit_test(qsort_uint64_test),
+		cmocka_unit_test(qsort_string_test),
+		cmocka_unit_test(qsort_char_test),
+		cmocka_unit_test(qsort_int_test),
+		cmocka_unit_test(qsort_uint64_test),
 	};
 
 	return cmocka_run_group_tests(qsort_tests, NULL, NULL);
