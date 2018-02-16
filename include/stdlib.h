@@ -10,24 +10,28 @@ extern "C" {
 
 #pragma mark - definitions & types -
 
+/// Division type for integers
 typedef struct
 {
     int quot; /*< The quotient */
     int rem;  /*< The remainder */
 } div_t;
 
+/// Division type for long integers
 typedef struct
 {
     long quot; /*< The quotient */
     long rem; /*< The remainder */
 } ldiv_t;
 
+/// Division type for long long integers
 typedef struct
 {
     long long quot; /*< The quotient */
     long long rem; /*< The remainder */
 } lldiv_t;
 
+/// Division type for maximal integer storage
 typedef struct
 {
     intmax_t quot; /*< The quotient */
@@ -60,8 +64,8 @@ typedef struct
  *
  * @param str pointer to the null-terminated byte string to be interpreted
  * @return Integer value corresponding to the contents of str on success.
- * If the converted value falls out of range of corresponding return type,
- * the return value is undefined. If no conversion can be performed, ​0​ is returned.
+ * 	If the converted value falls out of range of corresponding return type,
+ * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
 int atoi(const char *str);
 
@@ -78,8 +82,8 @@ int atoi(const char *str);
  *
  * @param str pointer to the null-terminated byte string to be interpreted
  * @return long value corresponding to the contents of str on success.
- * If the converted value falls out of range of corresponding return type,
- * the return value is undefined. If no conversion can be performed, ​0​ is returned.
+ * 	If the converted value falls out of range of corresponding return type,
+ * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
 long atol(const char *str);
 
@@ -96,8 +100,8 @@ long atol(const char *str);
  *
  * @param str pointer to the null-terminated byte string to be interpreted
  * @return long value corresponding to the contents of str on success.
- * If the converted value falls out of range of corresponding return type,
- * the return value is undefined. If no conversion can be performed, ​0​ is returned.
+ * 	If the converted value falls out of range of corresponding return type,
+ * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
 long long atoll(const char *str);
 
@@ -120,8 +124,8 @@ long long atoll(const char *str);
  *
  * @param str pointer to the null-terminated byte string to be interpreted
  * @return double value corresponding to the contents of str on success.
- * If the converted value falls out of range of corresponding return type,
- * the return value is undefined. If no conversion can be performed, ​0​.0 is returned.
+ * 	If the converted value falls out of range of corresponding return type,
+ * 	the return value is undefined. If no conversion can be performed, ​0​.0 is returned.
  * */
 double atof(const char *str);
 
@@ -765,13 +769,11 @@ void *calloc(size_t num, size_t size);
  * If there is not enough memory, the old memory block is not freed and null pointer is returned.
  * If ptr is NULL, the behavior is the same as calling malloc(size).
  *
- * If size is zero, the behavior is implementation defined (null pointer may be returned
- * (in which case the old memory block may or may not be freed), or some non-null pointer may
- * be returned that may not be used to access storage).
- *
  * @param ptr pointer to the memory area to be reallocated
  * @param size new size of the array
- * @return none
+ *
+ * @return pointer to new memory allocation.
+ *	If `size` is zero (e.g. `realloc(ptr,0)`) then returns NULL
  * */
 void *realloc(void *ptr, size_t size);
 
@@ -785,10 +787,13 @@ void *realloc(void *ptr, size_t size);
  * reallocf is a FreeBSD extension to realloc that frees
  * the input pointer if an error occurrs
  *
- * I do not hand the BSD case of `realloc(ptr,0)` freeing the ptr
+ * This library does not handle the BSD case where `realloc(ptr,0)` frees the ptr
  *
  * @param ptr pointer to the memory area to be reallocated
  * @param size new size of the array
+ *
+ * @return pointer to new memory allocation.
+ *	If `size` is zero (e.g. `realloc(ptr,0)`) then returns NULL
  * */
 void *reallocf(void *ptr, size_t size);
 
