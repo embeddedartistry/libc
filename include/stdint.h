@@ -319,43 +319,55 @@ typedef uint64_t uint_fast64_t;
 #define SIG_ATOMIC_MAX INT32_MAX
 
 /* 7.18.4 Macros for integer constants */
-/*! Expands to an integer constant expression having the value specified by its argument and the type int_least8_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type int_least8_t */
 #define INT8_C(v) (v)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type int_least16_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type int_least16_t */
 #define INT16_C(v) (v)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type int_least32_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type int_least32_t */
 #define INT32_C(v) (v)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type int_least64_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type int_least64_t */
 #define INT64_C(v) (v##LL)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uint_least8_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uint_least8_t */
 #define UINT8_C(v) (v##U)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uint_least16_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uint_least16_t */
 #define UINT16_C(v) (v##U)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uint_least32_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uint_least32_t */
 #define UINT32_C(v) (v##U)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uint_least64_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uint_least64_t */
 #define UINT64_C(v) (v##ULL)
 
 #ifdef __LP64__
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type intmax_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type intmax_t */
 #define INTMAX_C(v) (v##L)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uintmax_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uintmax_t */
 #define UINTMAX_C(v) (v##UL)
 #else
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type intmax_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type intmax_t */
 #define INTMAX_C(v) (v##LL)
 
-/*! Expands to an integer constant expression having the value specified by its argument and the type uintmax_t */
+/*! Expands to an integer constant expression having the value specified by its argument and the
+ * type uintmax_t */
 #define UINTMAX_C(v) (v##ULL)
 #endif
 

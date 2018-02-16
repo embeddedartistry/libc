@@ -16,8 +16,8 @@ extern "C" {
  * Compares the first n characters of the objects pointed to by s1 and s2.
  * The comparison is done lexicographically.
  *
- * The behavior is undefined if access occurs beyond the end of either object pointed to by s1 and s2.
- * The behavior is undefined if either s1 or s2 is a null pointer.
+ * The behavior is undefined if access occurs beyond the end of either object pointed to by s1 and
+ * s2. The behavior is undefined if either s1 or s2 is a null pointer.
  *
  * @param s1 pointers to the objects to compare
  * @param s2 pointers to the objects to compare
@@ -51,8 +51,8 @@ void* memset(void* dest, int c, size_t n);
  * Both objects are interpreted as arrays of unsigned char.
  *
  * The behavior is undefined if access occurs beyond the end of the dest array.
- * If the objects overlap (which is a violation of the restrict contract) (since C99), the behavior is undefined.
- * The behavior is undefined if either dest or src is a null pointer.
+ * If the objects overlap (which is a violation of the restrict contract) (since C99), the behavior
+ * is undefined. The behavior is undefined if either dest or src is a null pointer.
  *
  * @param dest pointer to the object to copy to
  * @param src pointer to the object to copy from
@@ -96,7 +96,8 @@ void* memchr(const void* s, int c, size_t n);
 /**
  * @brief Find substring s in memory area l.
  *
- * Finds the start of the first occurrence of the substring s of length s_len in the memory area l of length l_len.
+ * Finds the start of the first occurrence of the substring s of length s_len in the memory area l
+ * of length l_len.
  *
  * The behavior is undefined if access occurs beyond the end of the array (s) searched.
  * The behavior is undefined if s is a null pointer.
@@ -132,17 +133,19 @@ size_t strlen(const char* str);
  * and returns maxlen if the null character was not found in the first maxlen bytes of str.
  *
  * The behavior is undefined if str points to a character array which lacks the null character
- * and the size of that character array < maxlen; in other words, an erroneous value of maxlen does not expose
- * impending buffer overflow.
+ * and the size of that character array < maxlen; in other words, an erroneous value of maxlen does
+ * not expose impending buffer overflow.
  *
  * @param str pointer to the null-terminated byte string to be examined
  * @param maxlen maximum number of characters to examine
- * @return  The length of the null-terminated byte string str on success, zero if str is a null pointer, maxlen if the null character was not found.
+ * @return  The length of the null-terminated byte string str on success, zero if str is a null
+ * pointer, maxlen if the null character was not found.
  * */
 size_t strnlen(const char* str, size_t maxlen);
 
 /**
- * @brief Copies the null-terminated byte string pointed to by src to the character array whose first element is pointed to by dest.
+ * @brief Copies the null-terminated byte string pointed to by src to the character array whose
+ * first element is pointed to by dest.
  *
  * Copies the null-terminated byte string pointed to by src, including the null terminator,
  * to the character array whose first element is pointed to by dest. It may clobber the rest
@@ -150,8 +153,9 @@ size_t strnlen(const char* str, size_t maxlen);
  * at runtime and call the currently installed constraint handler function:
  * The behavior is undefined if the dest array is not large enough.
  * The behavior is undefined if the strings overlap.
- * The behavior is undefined if either dest is not a pointer to a character array or src is not a pointer to a null-terminated byte string.
- * The behavior is undefined if the size of the character array pointed to by dest <= strlen(src, destsz)
+ * The behavior is undefined if either dest is not a pointer to a character array or src is not a
+ * pointer to a null-terminated byte string. The behavior is undefined if the size of the character
+ * array pointed to by dest <= strlen(src, destsz)
  *
  * @param dst pointer to the character array to write to
  * @param src pointer to the null-terminated byte string to copy from
@@ -160,17 +164,20 @@ size_t strnlen(const char* str, size_t maxlen);
 char* strcpy(char* __restrict dst, const char* __restrict src);
 
 /**
- * @brief  Copies at most maxlen characters of the character array pointed to by src to character array pointed to by dest.
+ * @brief  Copies at most maxlen characters of the character array pointed to by src to character
+ * array pointed to by dest.
  *
- * Copies at most maxlen characters of the character array pointed to by src (including the terminating null character,
- * but not any of the characters that follow the null character) to character array pointed to by dest.
- * If maxlen is reached before the entire array src was copied, the resulting character array is not null-terminated.
- * If, after copying the terminating null character from src, maxlen is not reached, additional null characters are written
- * to dest until the total of maxlen characters have been written.
+ * Copies at most maxlen characters of the character array pointed to by src (including the
+ * terminating null character, but not any of the characters that follow the null character) to
+ * character array pointed to by dest. If maxlen is reached before the entire array src was copied,
+ * the resulting character array is not null-terminated. If, after copying the terminating null
+ * character from src, maxlen is not reached, additional null characters are written to dest until
+ * the total of maxlen characters have been written.
  *
- * The behavior is undefined if the character arrays overlap, if either dest or src is not a pointer to a character array
- * (including if dest or src is a null pointer), if the size of the array pointed to by dest is less than maxlen, or
- * if the size of the array pointed to by src is less than maxlen and it does not contain a null character.
+ * The behavior is undefined if the character arrays overlap, if either dest or src is not a pointer
+ * to a character array (including if dest or src is a null pointer), if the size of the array
+ * pointed to by dest is less than maxlen, or if the size of the array pointed to by src is less
+ * than maxlen and it does not contain a null character.
  *
  * @param dst pointer to the character array to copy to
  * @param src pointer to the character array to copy from
@@ -182,23 +189,27 @@ char* strncpy(char* __restrict dst, const char* __restrict src, size_t maxlen);
 /**
  * @brief Finds the first occurrence of the substring  in the string
  *
- * Finds the first occurrence of the null-terminated byte string pointed to by substring in the null-terminated byte string pointed to by string.
- * The terminating null characters are not compared.
+ * Finds the first occurrence of the null-terminated byte string pointed to by substring in the
+ * null-terminated byte string pointed to by string. The terminating null characters are not
+ * compared.
  *
- * The behavior is undefined if either stirng or substring is not a pointer to a null-terminated byte string.
+ * The behavior is undefined if either stirng or substring is not a pointer to a null-terminated
+ * byte string.
  *
  * @param string pointer to the null-terminated byte string to examine
  * @param substring pointer to the null-terminated byte string to search for
- * @return Pointer to the first character of the found substring in string, or NULL if no such substring is found.
- *         If substring points to an empty string, string is returned.
+ * @return Pointer to the first character of the found substring in string, or NULL if no such
+ * substring is found. If substring points to an empty string, string is returned.
  * */
 char* strstr(const char* string, const char* substring);
 
 /**
- * @brief Finds the first occurrence of find in the initial slen characters of the object pointed to by s
+ * @brief Finds the first occurrence of find in the initial slen characters of the object pointed to
+ * by s
  *
  * Locates the first occurrence of the null-terminated string find in the string s,
- * where not more than slen characters are searched. Characters that appear after a `\0' character are not searched.
+ * where not more than slen characters are searched. Characters that appear after a `\0' character
+ * are not searched.
  *
  * The behavior is undefined if either find or s is not a pointer to a null-terminated byte string.
  *
@@ -250,8 +261,8 @@ int strncmp(const char* s1, const char* s2, size_t n);
  * Memory for the new string is obtained with malloc(3), and can be freed with free(3).
  *
  * @param str a pointer to a string to duplicate
- * @return a pointer to the duplicated string on success. NULL if insufficient memory was available, with errno set
- *         to indicate cause of error.
+ * @return a pointer to the duplicated string on success. NULL if insufficient memory was available,
+ * with errno set to indicate cause of error.
  * */
 char* strdup(const char* str);
 
@@ -263,17 +274,18 @@ char* strdup(const char* str);
  *
  * @param str a pointer to a string to duplicate
  * @param n maximum number of bytes to copy
- * @return a pointer to the duplicated string on success. NULL if insufficient memory was available, with errno set
- *         to indicate cause of error.
+ * @return a pointer to the duplicated string on success. NULL if insufficient memory was available,
+ * with errno set to indicate cause of error.
  * */
 char* strndup(const char* str, size_t n);
 
 /**
  * @brief Finds the first occurrence of c in the null-terminated byte string pointed to by s.
  *
- * Finds the first occurrence of c (after conversion to char as if by (char)c ) in the null-terminated
- * byte string pointed to by s (each character interpreted as unsigned char). The terminating null character
- * is considered to be a part of the string and can be found when searching for '\0'.
+ * Finds the first occurrence of c (after conversion to char as if by (char)c ) in the
+ * null-terminated byte string pointed to by s (each character interpreted as unsigned char). The
+ * terminating null character is considered to be a part of the string and can be found when
+ * searching for '\0'.
  *
  * The behavior is undefined if s is not a pointer to a null-terminated byte string.
  *
@@ -286,9 +298,10 @@ char* strchr(const char* s, int c);
 /**
  * @brief Finds the last occurrence of c in the null-terminated byte string pointed to by s.
  *
- * Finds the last occurrence of c (after conversion to char as if by (char)c ) in the null-terminated
- * byte string pointed to by s (each character interpreted as unsigned char). The terminating null character
- * is considered to be a part of the string and can be found when searching for '\0'.
+ * Finds the last occurrence of c (after conversion to char as if by (char)c ) in the
+ * null-terminated byte string pointed to by s (each character interpreted as unsigned char). The
+ * terminating null character is considered to be a part of the string and can be found when
+ * searching for '\0'.
  *
  * The behavior is undefined if s is not a pointer to a null-terminated byte string.
  *
@@ -309,7 +322,8 @@ char* strrchr(const char* s, int c);
  * The behavior is undefined if the destination array is not large enough for the contents
  * of both src and dest and the terminating null character.
  * The behavior is undefined if the strings overlap.
- * The behavior is undefined if either dest or src is not a pointer to a null-terminated byte string.
+ * The behavior is undefined if either dest or src is not a pointer to a null-terminated byte
+ * string.
  *
  * @param dst pointer to the null-terminated byte string to append to
  * @param src pointer to the null-terminated byte string to copy from
@@ -322,14 +336,16 @@ char* strcat(char* __restrict dst, const char* __restrict src);
  *        to the end of the null-terminated byte string pointed to by dest.
  *
  * Appends at most count characters from the character array pointed to by src,
- * stopping if the null character is found, to the end of the null-terminated byte string pointed to by dest.
- * The character src[0] replaces the null terminator at the end of dest. The terminating null character
- * is always appended in the end (so the maximum number of bytes the function may write is maxlen+1).
+ * stopping if the null character is found, to the end of the null-terminated byte string pointed to
+ * by dest. The character src[0] replaces the null terminator at the end of dest. The terminating
+ * null character is always appended in the end (so the maximum number of bytes the function may
+ * write is maxlen+1).
  *
  * The behavior is undefined if the destination array is not large enough for the contents
  * of both src and dest and the terminating null character.
  * The behavior is undefined if the strings overlap.
- * The behavior is undefined if either dest or src is not a pointer to a null-terminated byte string.
+ * The behavior is undefined if either dest or src is not a pointer to a null-terminated byte
+ * string.
  *
  * @param dst pointer to the null-terminated byte string to append to
  * @param src pointer to the null-terminated byte string to copy from
@@ -343,12 +359,14 @@ char* strncat(char* __restrict dst, const char* __restrict src, size_t maxlen);
  *
  *  Finds the next token in a null-terminated byte string pointed to by s.
  *  The separator characters are identified by null-terminated byte string pointed to by delim.
- *  This function is designed to be called multiples times to obtain successive tokens from the same string.
+ *  This function is designed to be called multiples times to obtain successive tokens from the same
+ * string.
  *
  *  - If s != NULL, the call is treated as the first call to strtok for this particular string.
  *    The function searches for the first character which is not contained in delim.
  *
- *  The behavior is undefined if either s or delim is not a pointer to a null-terminated byte string.
+ *  The behavior is undefined if either s or delim is not a pointer to a null-terminated byte
+ * string.
  *
  * @param s pointer to the null-terminated byte string to tokenize
  * @param delim pointer to the null-terminated byte string identifying delimiters

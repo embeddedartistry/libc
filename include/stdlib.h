@@ -13,29 +13,29 @@ extern "C" {
 /// Division type for integers
 typedef struct
 {
-    int quot; /*< The quotient */
-    int rem;  /*< The remainder */
+	int quot; /*< The quotient */
+	int rem; /*< The remainder */
 } div_t;
 
 /// Division type for long integers
 typedef struct
 {
-    long quot; /*< The quotient */
-    long rem; /*< The remainder */
+	long quot; /*< The quotient */
+	long rem; /*< The remainder */
 } ldiv_t;
 
 /// Division type for long long integers
 typedef struct
 {
-    long long quot; /*< The quotient */
-    long long rem; /*< The remainder */
+	long long quot; /*< The quotient */
+	long long rem; /*< The remainder */
 } lldiv_t;
 
 /// Division type for maximal integer storage
 typedef struct
 {
-    intmax_t quot; /*< The quotient */
-    intmax_t rem;  /*< The remainder */
+	intmax_t quot; /*< The quotient */
+	intmax_t rem; /*< The remainder */
 } imaxdiv_t;
 
 /*! Expands to 1. Indicates program execution execution status. */
@@ -44,8 +44,8 @@ typedef struct
 /*! Expands to 0. indicates program execution execution status. */
 #define EXIT_SUCCESS 0
 
-/*! Expands to an integer constant expression equal to the maximum value returned by the function @see rand()
- * It's guaranteed that this value is at least 32767
+/*! Expands to an integer constant expression equal to the maximum value returned by the function
+ * @see rand() It's guaranteed that this value is at least 32767
  * */
 #define RAND_MAX (0x7fffffff)
 
@@ -67,7 +67,7 @@ typedef struct
  * 	If the converted value falls out of range of corresponding return type,
  * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
-int atoi(const char *str);
+int atoi(const char* str);
 
 /**
  * @brief Interprets a Long value in a byte string pointed to by str.
@@ -85,7 +85,7 @@ int atoi(const char *str);
  * 	If the converted value falls out of range of corresponding return type,
  * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
-long atol(const char *str);
+long atol(const char* str);
 
 /**
  * @brief Interprets a Long Long value in a byte string pointed to by str.
@@ -103,7 +103,7 @@ long atol(const char *str);
  * 	If the converted value falls out of range of corresponding return type,
  * 	the return value is undefined. If no conversion can be performed, ​0​ is returned.
  * */
-long long atoll(const char *str);
+long long atoll(const char* str);
 
 /**
  * @brief Interprets a floating-point value in a byte string pointed to by str.
@@ -127,7 +127,7 @@ long long atoll(const char *str);
  * 	If the converted value falls out of range of corresponding return type,
  * 	the return value is undefined. If no conversion can be performed, ​0​.0 is returned.
  * */
-double atof(const char *str);
+double atof(const char* str);
 
 #pragma mark - str-to-x -
 
@@ -154,13 +154,13 @@ double atof(const char *str);
  *         2) INF or INFINITY ignoring case
  *      d) not-a-number expression. It consists of the following parts:
  *         1) (optional) plus or minus sign
- *         2) NAN or NAN(char_sequence) ignoring case of the NAN part. char_sequence can only contain digits,
- *            Latin letters, and underscores. The result is a quiet NaN floating-point value.
+ *         2) NAN or NAN(char_sequence) ignoring case of the NAN part. char_sequence can only
+ * contain digits, Latin letters, and underscores. The result is a quiet NaN floating-point value.
  *
  *
  *
- * The functions sets the pointer pointed to by str_end to point to the character past the last character interpreted.
- * If str_end is NULL, it is ignored.
+ * The functions sets the pointer pointed to by str_end to point to the character past the last
+ * character interpreted. If str_end is NULL, it is ignored.
  *
  *
  * @param str a pointer to the null-terminated byte string to be interpreted
@@ -170,7 +170,7 @@ double atof(const char *str);
  * error occurs and HUGE_VAL, HUGE_VALF or HUGE_VALL is returned.
  * If no conversion can be performed, ​0​ is returned.
  * */
-float strtof(const char *__restrict str, char **__restrict str_end);
+float strtof(const char* __restrict str, char** __restrict str_end);
 
 /**
  * @brief Interprets a floating-point value in a byte string pointed to by str.
@@ -195,13 +195,13 @@ float strtof(const char *__restrict str, char **__restrict str_end);
  *         2) INF or INFINITY ignoring case
  *      d) not-a-number expression. It consists of the following parts:
  *         1) (optional) plus or minus sign
- *         2) NAN or NAN(char_sequence) ignoring case of the NAN part. char_sequence can only contain digits,
- *            Latin letters, and underscores. The result is a quiet NaN floating-point value.
+ *         2) NAN or NAN(char_sequence) ignoring case of the NAN part. char_sequence can only
+ * contain digits, Latin letters, and underscores. The result is a quiet NaN floating-point value.
  *
  *
  *
- * The functions sets the pointer pointed to by str_end to point to the character past the last character interpreted.
- * If str_end is NULL, it is ignored.
+ * The functions sets the pointer pointed to by str_end to point to the character past the last
+ * character interpreted. If str_end is NULL, it is ignored.
  *
  *
  * @param str a pointer to the null-terminated byte string to be interpreted
@@ -211,7 +211,7 @@ float strtof(const char *__restrict str, char **__restrict str_end);
  * error occurs and HUGE_VAL, HUGE_VALF or HUGE_VALL is returned.
  * If no conversion can be performed, ​0​ is returned.
  * */
-double strtod(const char *__restrict str, char **__restrict str_end);
+double strtod(const char* __restrict str, char** __restrict str_end);
 
 /**
  * @brief Interprets an long value in a byte string pointed to by str.
@@ -225,17 +225,18 @@ double strtod(const char *__restrict str, char **__restrict str_end);
  *
  *      1) (optional) plus or minus sign
  *      2) (optional) prefix (0) indicating octal base (applies only when the base is 8 or ​0​)
- *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is 16 or ​0​)
- *      4)  a sequence of digits
+ *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is
+ * 16 or ​0​) 4)  a sequence of digits
  *
  *
- * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers is {0,1},
- * for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits include alphabetic characters,
- * starting from Aa for base-11 integer, to Zz for base-36 integer. The case of the characters is ignored.
+ * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers
+ * is {0,1}, for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits
+ * include alphabetic characters, starting from Aa for base-11 integer, to Zz for base-36 integer.
+ * The case of the characters is ignored.
  *
  *
- * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base is octal,
- * if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
+ * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base
+ * is octal, if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
  *
  * If the minus sign was part of the input sequence, the numeric value calculated from
  * the sequence of digits is negated as if by unary minus in the result type.
@@ -255,7 +256,7 @@ double strtod(const char *__restrict str, char **__restrict str_end);
  *  (setting errno to ERANGE) and LONG_MAX, LONG_MIN, LLONG_MAX or LLONG_MIN is returned.
  *  If no conversion can be performed, ​0​ is returned.
  * */
-long strtol(const char *__restrict str, char **__restrict str_end, int base);
+long strtol(const char* __restrict str, char** __restrict str_end, int base);
 
 /**
  * @brief Interprets an unsigned long value in a byte string pointed to by str.
@@ -269,17 +270,18 @@ long strtol(const char *__restrict str, char **__restrict str_end, int base);
  *
  *      1) (optional) plus or minus sign
  *      2) (optional) prefix (0) indicating octal base (applies only when the base is 8 or ​0​)
- *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is 16 or ​0​)
- *      4)  a sequence of digits
+ *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is
+ * 16 or ​0​) 4)  a sequence of digits
  *
  *
- * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers is {0,1},
- * for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits include alphabetic characters,
- * starting from Aa for base-11 integer, to Zz for base-36 integer. The case of the characters is ignored.
+ * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers
+ * is {0,1}, for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits
+ * include alphabetic characters, starting from Aa for base-11 integer, to Zz for base-36 integer.
+ * The case of the characters is ignored.
  *
  *
- * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base is octal,
- * if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
+ * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base
+ * is octal, if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
  *
  * If the minus sign was part of the input sequence, the numeric value calculated from
  * the sequence of digits is negated as if by unary minus in the result type.
@@ -297,7 +299,7 @@ long strtol(const char *__restrict str, char **__restrict str_end, int base);
  *  (setting errno to ERANGE) and LONG_MAX, LONG_MIN, LLONG_MAX or LLONG_MIN is returned.
  *  If no conversion can be performed, ​0​ is returned.
  * */
-unsigned long strtoul(const char *__restrict str, char **__restrict str_end, int base);
+unsigned long strtoul(const char* __restrict str, char** __restrict str_end, int base);
 
 /**
  * @brief Interprets an long long value in a byte string pointed to by str.
@@ -311,17 +313,18 @@ unsigned long strtoul(const char *__restrict str, char **__restrict str_end, int
  *
  *      1) (optional) plus or minus sign
  *      2) (optional) prefix (0) indicating octal base (applies only when the base is 8 or ​0​)
- *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is 16 or ​0​)
- *      4)  a sequence of digits
+ *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is
+ * 16 or ​0​) 4)  a sequence of digits
  *
  *
- * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers is {0,1},
- * for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits include alphabetic characters,
- * starting from Aa for base-11 integer, to Zz for base-36 integer. The case of the characters is ignored.
+ * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers
+ * is {0,1}, for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits
+ * include alphabetic characters, starting from Aa for base-11 integer, to Zz for base-36 integer.
+ * The case of the characters is ignored.
  *
  *
- * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base is octal,
- * if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
+ * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base
+ * is octal, if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
  *
  * If the minus sign was part of the input sequence, the numeric value calculated from
  * the sequence of digits is negated as if by unary minus in the result type.
@@ -341,7 +344,7 @@ unsigned long strtoul(const char *__restrict str, char **__restrict str_end, int
  *  (setting errno to ERANGE) and LONG_MAX, LONG_MIN, LLONG_MAX or LLONG_MIN is returned.
  *  If no conversion can be performed, ​0​ is returned.
  * */
-long long strtoll(const char *__restrict str, char **__restrict str_end, int base);
+long long strtoll(const char* __restrict str, char** __restrict str_end, int base);
 
 /**
  * @brief Interprets an unsigned long long value in a byte string pointed to by str.
@@ -351,21 +354,23 @@ long long strtoll(const char *__restrict str, char **__restrict str_end, int bas
  * Discards any whitespace characters (as identified by calling @see isspace())
  * until the first non-whitespace character is found, then takes as many characters
  * as possible to form a valid base-n (where n=base) long number representation and
- * converts them to an unsigned long long value. The valid long value consists of the following parts:
+ * converts them to an unsigned long long value. The valid long value consists of the following
+ * parts:
  *
  *      1) (optional) plus or minus sign
  *      2) (optional) prefix (0) indicating octal base (applies only when the base is 8 or ​0​)
- *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is 16 or ​0​)
- *      4)  a sequence of digits
+ *      3) (optional) prefix (0x or 0X) indicating hexadecimal base (applies only when the base is
+ * 16 or ​0​) 4)  a sequence of digits
  *
  *
- * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers is {0,1},
- * for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits include alphabetic characters,
- * starting from Aa for base-11 integer, to Zz for base-36 integer. The case of the characters is ignored.
+ * The set of valid values for base is {0,2,3,...,36}. The set of valid digits for base-2 integers
+ * is {0,1}, for base-3 integers is {0,1,2}, and so on. For bases larger than 10, valid digits
+ * include alphabetic characters, starting from Aa for base-11 integer, to Zz for base-36 integer.
+ * The case of the characters is ignored.
  *
  *
- * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base is octal,
- * if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
+ * If the value of base is ​0​, the numeric base is auto-detected: if the prefix is 0, the base
+ * is octal, if the prefix is 0x or 0X, the base is hexadecimal, otherwise the base is decimal.
  *
  * If the minus sign was part of the input sequence, the numeric value calculated from
  * the sequence of digits is negated as if by unary minus in the result type.
@@ -383,7 +388,7 @@ long long strtoll(const char *__restrict str, char **__restrict str_end, int bas
  *  (setting errno to ERANGE) and LONG_MAX, LONG_MIN, LLONG_MAX or LLONG_MIN is returned.
  *  If no conversion can be performed, ​0​ is returned.
  * */
-unsigned long long strtoull(const char *__restrict str, char **__restrict str_end, int base);
+unsigned long long strtoull(const char* __restrict str, char** __restrict str_end, int base);
 
 #pragma mark - math -
 
@@ -432,94 +437,111 @@ long long llabs(long long n);
 intmax_t imaxabs(intmax_t j);
 
 /**
- * @brief Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
+ * @brief Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y.
  *
- * Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
+ * Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y.
  *
  * @param x integer values
  * @param y integer values
  *
  * @return If both the remainder and the quotient can be represented
  * as objects of the corresponding type (int, long, long long, imaxdiv_t,
- * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see imaxdiv_t.
+ * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see
+ * imaxdiv_t.
  *
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 div_t div(int x, int y);
 
 /**
- * @brief Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
+ * @brief Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y.
  *
- * Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
- * Computes quotient and remainder simultaneously. The quotient is the algebraic quotient with any
- * fractional part discarded (truncated towards zero). The remainder is such that quot * y + rem == x.
+ * Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y. Computes quotient and remainder simultaneously. The quotient is the algebraic
+ * quotient with any fractional part discarded (truncated towards zero). The remainder is such that
+ * quot * y + rem == x.
  *
- * Computes the quotient (the result of the expression x/y) and remainder (the result of the expression x%y) simultaneously.
+ * Computes the quotient (the result of the expression x/y) and remainder (the result of the
+ * expression x%y) simultaneously.
  *
  * @param x integer values
  * @param y integer values
  *
  * @return If both the remainder and the quotient can be represented
  * as objects of the corresponding type (int, long, long long, imaxdiv_t,
- * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see imaxdiv_t.
+ * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see
+ * imaxdiv_t.
  *
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 ldiv_t ldiv(long x, long y);
 
 /**
- * @brief Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
+ * @brief Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y.
  *
- * Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
- * Computes quotient and remainder simultaneously. The quotient is the algebraic quotient with any
- * fractional part discarded (truncated towards zero). The remainder is such that quot * y + rem == x.
+ * Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y. Computes quotient and remainder simultaneously. The quotient is the algebraic
+ * quotient with any fractional part discarded (truncated towards zero). The remainder is such that
+ * quot * y + rem == x.
  *
- * Computes the quotient (the result of the expression x/y) and remainder (the result of the expression x%y) simultaneously.
+ * Computes the quotient (the result of the expression x/y) and remainder (the result of the
+ * expression x%y) simultaneously.
  *
  * @param x integer values
  * @param y integer values
  *
  * @return If both the remainder and the quotient can be represented
  * as objects of the corresponding type (int, long, long long, imaxdiv_t,
- * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see imaxdiv_t.
+ * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see
+ * imaxdiv_t.
  *
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 lldiv_t lldiv(long long x, long long y);
 
 /**
- * @brief Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
+ * @brief Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y.
  *
- * Computes both the quotient and the remainder of the division of the numerator x by the denominator y.
- * Computes quotient and remainder simultaneously. The quotient is the algebraic quotient with any
- * fractional part discarded (truncated towards zero). The remainder is such that quot * y + rem == x.
+ * Computes both the quotient and the remainder of the division of the numerator x by the
+ * denominator y. Computes quotient and remainder simultaneously. The quotient is the algebraic
+ * quotient with any fractional part discarded (truncated towards zero). The remainder is such that
+ * quot * y + rem == x.
  *
- * Computes the quotient (the result of the expression x/y) and remainder (the result of the expression x%y) simultaneously.
+ * Computes the quotient (the result of the expression x/y) and remainder (the result of the
+ * expression x%y) simultaneously.
  *
  * @param numer intmax_t values (numerator)
  * @param denom intmax_t values (denominator)
  *
  * @return If both the remainder and the quotient can be represented
  * as objects of the corresponding type (int, long, long long, imaxdiv_t,
- * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see imaxdiv_t.
+ * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see
+ * imaxdiv_t.
  *
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 imaxdiv_t imaxdiv(intmax_t numer, intmax_t denom);
 
 /**
-* @brief Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX included).
-*
-* Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX included).
-*
-* @see srand() seeds the pseudo-random number generator used by rand.
-* If rand is used before any calls to @see srand, rand behaves as if it was seeded with @see srand.
-* Each time rand is seeded with srand, it must produce the same sequence of values.
-*
-* rand is not guaranteed to be thread-safe.
-*
-* @return Pseudo-random integer value between ​0​ and RAND_MAX, inclusive.
-* */
+ * @brief Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see
+ * RAND_MAX included).
+ *
+ * Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX
+ * included).
+ *
+ * @see srand() seeds the pseudo-random number generator used by rand.
+ * If rand is used before any calls to @see srand, rand behaves as if it was seeded with @see srand.
+ * Each time rand is seeded with srand, it must produce the same sequence of values.
+ *
+ * rand is not guaranteed to be thread-safe.
+ *
+ * @return Pseudo-random integer value between ​0​ and RAND_MAX, inclusive.
+ * */
 int rand(void);
 
 /**
@@ -538,21 +560,23 @@ void srand(unsigned seed);
 
 #pragma mark - random number generation -
 
-int rand_r(unsigned int *ctx);
+int rand_r(unsigned int* ctx);
 
 /**
-* @brief Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX included).
-*
-* Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX included).
-*
-* @see srand() seeds the pseudo-random number generator used by rand.
-* If rand is used before any calls to @see srand, rand behaves as if it was seeded with @see srand.
-* Each time rand is seeded with srand, it must produce the same sequence of values.
-*
-* rand is not guaranteed to be thread-safe.
-*
-* @return Pseudo-random integer value between ​0​ and RAND_MAX, inclusive.
-* */
+ * @brief Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see
+ * RAND_MAX included).
+ *
+ * Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX
+ * included).
+ *
+ * @see srand() seeds the pseudo-random number generator used by rand.
+ * If rand is used before any calls to @see srand, rand behaves as if it was seeded with @see srand.
+ * Each time rand is seeded with srand, it must produce the same sequence of values.
+ *
+ * rand is not guaranteed to be thread-safe.
+ *
+ * @return Pseudo-random integer value between ​0​ and RAND_MAX, inclusive.
+ * */
 int rand(void);
 
 /**
@@ -578,7 +602,8 @@ void srand(unsigned seed);
  * the initial member of which is pointed to by vbase. The size of each object is specified by size.
  *
  * The contents of the array base are sorted in ascending order according to a comparison
- * function pointed to by compar, which requires two arguments pointing to the objects being compared.
+ * function pointed to by compar, which requires two arguments pointing to the objects being
+ * compared.
  *
  * @param vbase a pointer to the array to sort
  * @param nmemb the number of objects to sort
@@ -594,7 +619,7 @@ void srand(unsigned seed);
  * the global variable errno is set to indicate the error.
  *
  * */
-int heapsort(void *vbase, size_t nmemb, size_t size, int (*compar)(const void *, const void *));
+int heapsort(void* vbase, size_t nmemb, size_t size, int (*compar)(const void*, const void*));
 
 /**
  * @brief Sorts the given array pointed to by vbase in ascending order.
@@ -609,7 +634,8 @@ int heapsort(void *vbase, size_t nmemb, size_t size, int (*compar)(const void *,
  * And is therefore reentrant and safe to use in threads.
  *
  * The contents of the array base are sorted in ascending order according to a comparison
- * function pointed to by compar, which requires two arguments pointing to the objects being compared.
+ * function pointed to by compar, which requires two arguments pointing to the objects being
+ * compared.
  *
  * @param vbase a pointer to the array to sort
  * @param nmemb the number of objects to sort
@@ -626,8 +652,8 @@ int heapsort(void *vbase, size_t nmemb, size_t size, int (*compar)(const void *,
  * the global variable errno is set to indicate the error.
  *
  * */
-int heapsort_r(void *vbase, size_t nmemb, size_t size, void *thunk,
-               int (*compar)(void *, const void *, const void *));
+int heapsort_r(void* vbase, size_t nmemb, size_t size, void* thunk,
+			   int (*compar)(void*, const void*, const void*));
 
 /**
  * @brief Finds an element equal to element pointed to by key in an array pointed to by ptr.
@@ -650,7 +676,8 @@ int heapsort_r(void *vbase, size_t nmemb, size_t size, void *thunk,
  * @return Pointer to an element in the array that compares equal to *key, or
  *  null pointer if such element has not been found.
  * */
-void *bsearch(const void *key, const void *ptr, size_t count, size_t size, int (*comp)(const void *, const void *));
+void* bsearch(const void* key, const void* ptr, size_t count, size_t size,
+			  int (*comp)(const void*, const void*));
 
 /**
  * @brief Sorts the given array pointed to by ptr in ascending order.
@@ -676,8 +703,8 @@ void *bsearch(const void *key, const void *ptr, size_t count, size_t size, int (
  *
  * @return (none)
  * */
-void qsort_r(void *a, size_t n, size_t es, void *thunk,
-             int (*cmp)(void *, const void *, const void *));
+void qsort_r(void* a, size_t n, size_t es, void* thunk,
+			 int (*cmp)(void*, const void*, const void*));
 
 /**
  * @brief Sorts the given array pointed to by ptr in ascending order.
@@ -699,7 +726,7 @@ void qsort_r(void *a, size_t n, size_t es, void *thunk,
  *
  * @return (none)
  * */
-void qsort(void *a, size_t n, size_t es, int (*compar)(const void *, const void *));
+void qsort(void* a, size_t n, size_t es, int (*compar)(const void*, const void*));
 
 #pragma mark - memory -
 
@@ -707,16 +734,16 @@ void qsort(void *a, size_t n, size_t es, int (*compar)(const void *, const void 
  * @brief Allocates size bytes of uninitialized storage.
  *
  * If size is zero, the behavior is implementation defined (null pointer may be returned,
- * or some non-null pointer may be returned that may not be used to access storage, but has to be passed to @see free).
- * malloc is thread-safe: it behaves as though only accessing the memory locations visible through its argument,
- * and not any static storage.
+ * or some non-null pointer may be returned that may not be used to access storage, but has to be
+ * passed to @see free). malloc is thread-safe: it behaves as though only accessing the memory
+ * locations visible through its argument, and not any static storage.
  *
  * @param size number of bytes to allocate
  * @return On success, returns the pointer to the beginning of newly allocated memory.
  * The returned pointer must be deallocated with @see free() or @see realloc().
  * On failure, returns a null pointer.
  * */
-void *malloc(size_t size);
+void* malloc(size_t size);
 
 /**
  * @brief Deallocates allocated memory space.
@@ -737,7 +764,7 @@ void *malloc(size_t size);
  * @param ptr pointer to the memory to deallocate
  * @return none
  * */
-void free(void *ptr);
+void free(void* ptr);
 
 /**
  * @brief Allocates memory for an array of given number objects of size
@@ -750,7 +777,7 @@ void free(void *ptr);
  * @param size size of the array
  * @return (None)
  * */
-void *calloc(size_t num, size_t size);
+void* calloc(size_t num, size_t size);
 
 /**
  * @brief Reallocates the given area of memory.
@@ -775,7 +802,7 @@ void *calloc(size_t num, size_t size);
  * @return pointer to new memory allocation.
  *	If `size` is zero (e.g. `realloc(ptr,0)`) then returns NULL
  * */
-void *realloc(void *ptr, size_t size);
+void* realloc(void* ptr, size_t size);
 
 /**
  * @brief Reallocates the given area of memory.
@@ -795,7 +822,7 @@ void *realloc(void *ptr, size_t size);
  * @return pointer to new memory allocation.
  *	If `size` is zero (e.g. `realloc(ptr,0)`) then returns NULL
  * */
-void *reallocf(void *ptr, size_t size);
+void* reallocf(void* ptr, size_t size);
 
 #ifdef __cplusplus
 }
