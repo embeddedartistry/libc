@@ -1,7 +1,7 @@
 /*
-* Copyright © 2017 Embedded Artistry LLC.
-* License: MIT. See LICENSE file for details.
-*/
+ * Copyright © 2017 Embedded Artistry LLC.
+ * License: MIT. See LICENSE file for details.
+ */
 
 #include <ctype.h>
 #include <limits.h>
@@ -42,7 +42,8 @@ static void bad_input(void** state)
 int toascii_tests(void)
 {
 	const struct CMUnitTest toascii_tests[] = {
-		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input),
+		cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(toascii_tests, NULL, NULL);

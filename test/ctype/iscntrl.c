@@ -1,7 +1,7 @@
 /*
-* Copyright © 2017 Embedded Artistry LLC.
-* License: MIT. See LICENSE file for details.
-*/
+ * Copyright © 2017 Embedded Artistry LLC.
+ * License: MIT. See LICENSE file for details.
+ */
 
 #include <ctype.h>
 #include <limits.h>
@@ -45,7 +45,8 @@ static void bad_input(void** state)
 int iscntrl_tests(void)
 {
 	const struct CMUnitTest iscntrl_tests[] = {
-		cmocka_unit_test(good_input), cmocka_unit_test(bad_input),
+		cmocka_unit_test(good_input),
+		cmocka_unit_test(bad_input),
 	};
 
 	return cmocka_run_group_tests(iscntrl_tests, NULL, NULL);
