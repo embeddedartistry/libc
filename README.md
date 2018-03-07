@@ -3,9 +3,9 @@ Embedded Artistry's `libc` is a C standard library implementation targeted for e
 
 In order to conserve precious memory resources, this library does not supply the complete C standard library functionality. Instead, a subset of functions which are useful on bare-metal embedded systems has been selected. If you have a bare metal system and want to use the standard set of C functions, this library is for you!
 
-Unlike many other C libraries that I've come across, this library implements unit tests and has addressed flaws in various open-source implementations of the C standard library functions.
+Unlike many other C libraries that I've come across, this library implements unit tests and has addressed flaws in open-source implementations of the C standard library functions.
 
-Note that `malloc` and `free` are not included in this library. If you need dynamic memory allocation support, you can couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
+`malloc` and `free` are not included in this library. If you need dynamic memory allocation support, you can couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
 
 If you are interested in contributing to this project, please read the [`CONTRIBUTING` guide][10].
 
@@ -41,7 +41,7 @@ In order to conserve precious memory resources, this library does not supply the
 
 The functional implementations in this library have been selected for portability and quick bringup of new systems. There may be more efficient implementations for these functions, but often they are architecture specific.
 
-Note that `malloc` and `free` are not included in this library. Because memory allocation schemes vary greatly with embedded systems (some not even allowing dynamic memory), you will need to supply your own implementations based on your system's needs. You can also couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
+`malloc` and `free` are not included in this library. Because memory allocation schemes vary greatly with embedded systems (some not even allowing dynamic memory), you will need to supply your own implementations based on your system's needs. You can also couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
 
 # Project Status
 
