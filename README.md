@@ -37,7 +37,7 @@ Embedded Artistry's `libc` is intended to provide a portable set of useful C sta
 
 Additionally, we want to ensure a high-quality `libc` implementation by ensuring that each function has unit test coverage. Many C library function implementations are untested and contain errors. We are fighting poor implementations by adding test coverage.
 
-In order to conserve precious memory resources, this library does not supply the complete C standard library functionality. Instead, a subset of functions which are useful on bare-metal embedded systems has been selected. This selection has primarily been driven by my own experience in bare-metal development. If you need additional features, please open a feature request!
+In order to conserve precious memory resources, this library does not supply the complete C standard library functionality. Instead, a subset of functions which are useful on bare-metal embedded systems has been selected. This selection has primarily been driven by my own experience in bare-metal development. If you need additional features, please open a feature request.
 
 The functional implementations in this library have been selected for portability and quick bringup of new systems. There may be more efficient implementations for these functions, but often they are architecture specific.
 
@@ -131,7 +131,7 @@ You can clean builds using:
 make clean
 ```
 
-And you can completely eliminate the generated `Makefile`s and buildresults using:
+You can eliminate the generated `Makefile`s and buildresults using:
 
 ```
 make purify
@@ -218,7 +218,7 @@ If you are intersted in contributing to this project, please read our [contribut
 
 # License
 
-Copyright (c) 2017 Embedded Artistry LLC
+Copyright © 2017 Embedded Artistry LLC
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
