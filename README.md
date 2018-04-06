@@ -105,6 +105,18 @@ Maybe in the future:
 * [`git-lfs`][7] is used to store binary files
 * `make` and `gcc` should be installed in order to compile the files
 
+### `adr-tools`
+
+This repository uses [Architecture Decision Records](https://embeddedartistry.com/blog/2018/4/5/documenting-architectural-decisions-within-our-repositories). Please install [`adr-tools`](https://github.com/npryce/adr-tools) to contribute to architecture decisions.
+
+If you are using OSX, you can install `adr-tools` through Homebrew:
+
+```
+brew install adr-tools
+```
+
+If you are using Windows or Linux, please install `adr-tools` via [GitHub](https://github.com/npryce/adr-tools).
+
 ## Getting the Source
 
 This project uses `git-lfs`, so please install it before cloning. If you cloned prior to installing `git-lfs`, simply run `git lfs pull` after installation.

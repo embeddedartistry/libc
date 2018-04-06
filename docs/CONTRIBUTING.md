@@ -141,6 +141,18 @@ git checkout newfeature
 
 For more information on the GitHub fork and pull-request processes, [please see this helpful guide][5].
 
+### `adr-tools`
+
+This repository uses [Architecture Decision Records](https://embeddedartistry.com/blog/2018/4/5/documenting-architectural-decisions-within-our-repositories). Please install [`adr-tools`](https://github.com/npryce/adr-tools) to contribute to architecture decisions.
+
+If you are using OSX, you can install `adr-tools` through Homebrew:
+
+```
+brew install adr-tools
+```
+
+If you are using Windows or Linux, please install `adr-tools` via [GitHub](https://github.com/npryce/adr-tools).
+
 ### Finding an Issue
 
 The list of outstanding feature requests and bugs can be found on our on our [GitHub issue tracker][6]. Pick an unassigned issue that you think you can accomplish and add a comment that you are attempting to do it.
