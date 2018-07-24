@@ -1,5 +1,5 @@
-#ifndef _CTYPE_H
-#define _CTYPE_H
+#ifndef CTYPE_H_
+#define CTYPE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -261,4 +261,4 @@ int toascii(int ch);
 }
 #endif
 
-#endif
+#endif //CTYPE_H_

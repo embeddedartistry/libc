@@ -1,5 +1,5 @@
-#ifndef __STDLIB_H_
-#define __STDLIB_H_
+#ifndef STDLIB_H_
+#define STDLIB_H_
 
 #include <stddef.h>
 #include <stdint.h>
@@ -828,4 +828,4 @@ void* reallocf(void* ptr, size_t size);
 }
 #endif //__cplusplus
 
-#endif // __STDLIB_H_
+#endif // STDLIB_H_

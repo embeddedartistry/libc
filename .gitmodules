@@ -4,3 +4,6 @@
 [submodule "src/gdtoa"]
 	path = src/gdtoa
 	url = git@github.com:embeddedartistry/gdtoa.git
+[submodule "meson-buildsystem"]
+	path = build
+	url = git@github.com:embeddedartistry/meson-buildsystem.git

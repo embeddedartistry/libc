@@ -1,5 +1,5 @@
-#ifndef __STDDEF_H_
-#define __STDDEF_H_
+#ifndef STDDEF_H_
+#define STDDEF_H_
 
 #include <_types/_ptrdiff_t.h>
 #include <_types/_size_t.h>
@@ -36,4 +36,4 @@
 typedef long double max_align_t;
 #endif
 
-#endif //__STDDEF_H_
+#endif //STDDEF_H_
