@@ -1,5 +1,5 @@
-#ifndef __INT16_T_H_
-#define __INT16_T_H_
+#ifndef INT16_T_H_
+#define INT16_T_H_
 
 typedef short int16_t;
 

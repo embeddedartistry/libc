@@ -1,5 +1,5 @@
-#ifndef __INTPTR_T_H_
-#define __INTPTR_T_H_
+#ifndef INTPTR_T_H_
+#define INTPTR_T_H_
 
 typedef long intptr_t;
 

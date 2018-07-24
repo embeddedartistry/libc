@@ -1,5 +1,5 @@
-#ifndef __INT64_T_H_
-#define __INT64_T_H_
+#ifndef INT64_T_H_
+#define INT64_T_H_
 
 typedef long long int64_t;
 

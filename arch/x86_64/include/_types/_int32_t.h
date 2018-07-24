@@ -1,5 +1,5 @@
-#ifndef __INT32_T_H_
-#define __INT32_T_H_
+#ifndef INT32_T_H_
+#define INT32_T_H_
 
 typedef int int32_t;
 

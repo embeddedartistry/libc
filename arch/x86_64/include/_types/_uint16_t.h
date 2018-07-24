@@ -1,5 +1,5 @@
-#ifndef __UINT16_T_H_
-#define __UINT16_T_H_
+#ifndef UINT16_T_H_
+#define UINT16_T_H_
 
 typedef unsigned short uint16_t;
 

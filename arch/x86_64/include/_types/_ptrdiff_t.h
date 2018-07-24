@@ -1,5 +1,5 @@
-#ifndef __PTRDIFF_T_H_
-#define __PTRDIFF_T_H_
+#ifndef PTRDIFF_T_H_
+#define PTRDIFF_T_H_
 
 typedef long ptrdiff_t;
 

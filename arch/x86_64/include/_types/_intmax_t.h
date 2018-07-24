@@ -1,5 +1,5 @@
-#ifndef __INTMAX_T_H_
-#define __INTMAX_T_H_
+#ifndef INTMAX_T_H_
+#define INTMAX_T_H_
 
 typedef long long int intmax_t;
 
