@@ -1,6 +1,3 @@
-[submodule "build"]
-	path = build
-	url = git@github.com:embeddedartistry/premake-buildsystem.git
 [submodule "tools/format"]
 	path = tools/format
 	url = git@github.com:embeddedartistry/format.git
