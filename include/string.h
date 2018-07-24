@@ -1,5 +1,5 @@
-#ifndef __STRING_H_
-#define __STRING_H_
+#ifndef STRING_H_
+#define STRING_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -378,4 +378,4 @@ char* strtok(char* s, const char* delim);
 }
 #endif //__cplusplus
 
-#endif /* __STRING_H_ */
+#endif /* STRING_H_ */

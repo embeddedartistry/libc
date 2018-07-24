@@ -13,29 +13,29 @@ extern "C" {
 /// Division type for integers
 typedef struct
 {
-	int quot; /*< The quotient */
-	int rem; /*< The remainder */
+	int quot; /**< The quotient */
+	int rem; /**< The remainder */
 } div_t;
 
 /// Division type for long integers
 typedef struct
 {
-	long quot; /*< The quotient */
-	long rem; /*< The remainder */
+	long quot; /**< The quotient */
+	long rem; /**< The remainder */
 } ldiv_t;
 
 /// Division type for long long integers
 typedef struct
 {
-	long long quot; /*< The quotient */
-	long long rem; /*< The remainder */
+	long long quot; /**< The quotient */
+	long long rem; /**< The remainder */
 } lldiv_t;
 
 /// Division type for maximal integer storage
 typedef struct
 {
-	intmax_t quot; /*< The quotient */
-	intmax_t rem; /*< The remainder */
+	intmax_t quot; /**< The quotient */
+	intmax_t rem; /**< The remainder */
 } imaxdiv_t;
 
 /*! Expands to 1. Indicates program execution execution status. */
@@ -554,7 +554,6 @@ int rand(void);
  * srand() is not guaranteed to be thread-safe.
  *
  * @param seed the seed value
- * @return none
  * */
 void srand(unsigned seed);
 
@@ -589,7 +588,6 @@ int rand(void);
  * srand() is not guaranteed to be thread-safe.
  *
  * @param seed the seed value
- * @return none
  * */
 void srand(unsigned seed);
 
@@ -700,8 +698,6 @@ void* bsearch(const void* key, const void* ptr, size_t count, size_t size,
  *  The signature of the comparison function should be equivalent to the following:
  *       int cmp(const void *a, const void *b);
  *  The function must not modify the objects passed to it and must return consistent
- *
- * @return (none)
  * */
 void qsort_r(void* a, size_t n, size_t es, void* thunk,
 			 int (*cmp)(void*, const void*, const void*));
@@ -723,8 +719,6 @@ void qsort_r(void* a, size_t n, size_t es, void* thunk,
  *  The signature of the comparison function should be equivalent to the following:
  *       int cmp(const void *a, const void *b);
  *  The function must not modify the objects passed to it and must return consistent
- *
- * @return (none)
  * */
 void qsort(void* a, size_t n, size_t es, int (*compar)(const void*, const void*));
 
@@ -762,7 +756,6 @@ void* malloc(size_t size);
  * (unless another allocation function happened to result in a pointer value equal to ptr)
  *
  * @param ptr pointer to the memory to deallocate
- * @return none
  * */
 void free(void* ptr);
 

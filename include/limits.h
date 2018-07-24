@@ -1,5 +1,5 @@
-#ifndef _LIMITS_H
-#define _LIMITS_H
+#ifndef LIMITS_H__
+#define LIMITS_H__
 
 // System Specific Limits
 #include <_limits.h>
@@ -66,4 +66,4 @@
 /*! Expands to (2ULL * LLONG_MAX + 1). Maximum value of unsigned long long */
 #define ULLONG_MAX (2ULL * LLONG_MAX + 1)
 
-#endif
+#endif //LIMITS_H__

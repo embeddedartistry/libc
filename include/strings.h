@@ -1,5 +1,5 @@
-#ifndef __STRINGS_H_
-#define __STRINGS_H_
+#ifndef STRINGS_H_
+#define STRINGS_H_
 
 #include <stddef.h>
 #include <stdint.h>
@@ -51,4 +51,4 @@ int flsll(long long mask);
 }
 #endif //__cplusplus
 
-#endif // __STRINGS_H_
+#endif // STRINGS_H_

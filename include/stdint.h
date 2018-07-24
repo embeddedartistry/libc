@@ -3,16 +3,14 @@
  * All rights reserved.
  */
 
-#ifndef _STDINT_H_
-#define _STDINT_H_
+#ifndef STDINT_H_
+#define STDINT_H_
 
 #include <limits.h>
 
 #if __LP64__
-
 #define __WORDSIZE 64
 #else
-
 #define __WORDSIZE 32
 #endif
 
@@ -371,4 +369,4 @@ typedef uint64_t uint_fast64_t;
 #define UINTMAX_C(v) (v##ULL)
 #endif
 
-#endif /* _STDINT_H_ */
+#endif /* STDINT_H_ */
