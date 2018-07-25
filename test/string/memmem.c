@@ -27,8 +27,15 @@
 	{                                                     \
 		char* p = s;                                      \
 		char* q = memmem(p, strlen(p), sub, strlen(sub)); \
+		assert_ptr_not_equal(q, NULL);                    \
+		assert_ptr_equal(q - p, n);                       \
+	}
+
+#define T_NULL(s, sub, n)                                 \
+	{                                                     \
+		char* p = s;                                      \
+		char* q = memmem(p, strlen(p), sub, strlen(sub)); \
 		assert_ptr_equal(q, NULL);                        \
-		assert_ptr_not_equal(q - p, n);                   \
 	}
 
 static void check_input(void** state)
@@ -47,8 +54,9 @@ static void check_input(void** state)
 	N("_ _ _\xff_ _ _", "\x7f_", "_\x7f_")
 	N("_ _ _\x7f_ _ _", "\xff_", "_\xff_")
 
-	T("", "", 0)
-	T("abcd", "", 0)
+	T_NULL("", "", 0)
+	T_NULL("abcd", "", 0)
+
 	T("abcd", "a", 0)
 	T("abcd", "b", 1)
 	T("abcd", "c", 2)
