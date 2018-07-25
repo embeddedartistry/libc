@@ -18,7 +18,6 @@ endif
 
 subdir('build/architecture')
 arch_include = include_directories('arch/' + architecture + '/include')
-arch_lib_path = '../arch/' + architecture + '/lib'
 
 ######################################
 # Import compiler flags and warnings #
