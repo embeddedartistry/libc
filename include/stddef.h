@@ -36,4 +36,4 @@
 typedef long double max_align_t;
 #endif
 
-#endif //STDDEF_H_
+#endif // STDDEF_H_

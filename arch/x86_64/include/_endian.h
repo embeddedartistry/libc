@@ -3,4 +3,4 @@
 
 #define __BYTE_ORDER __LITTLE_ENDIAN
 
-#endif //X86_64_MACHINE_ENDIAN_H_
+#endif // X86_64_MACHINE_ENDIAN_H_

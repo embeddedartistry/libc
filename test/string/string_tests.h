@@ -27,4 +27,4 @@ int strncat_tests(void);
 int strcat_tests(void);
 int strtok_tests(void);
 
-#endif //STRING_TESTS_H_
+#endif // STRING_TESTS_H_

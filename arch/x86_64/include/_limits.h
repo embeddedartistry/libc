@@ -5,4 +5,4 @@
 #define LONG_MAX 0x7fffffffffffffffL
 #define LLONG_MAX 0x7fffffffffffffffLL
 
-#endif //LIMITS_H_
+#endif // LIMITS_H_

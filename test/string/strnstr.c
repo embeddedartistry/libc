@@ -3,8 +3,8 @@
  * License: MIT. See LICENSE file for details.
  */
 
-#include <string.h>
 #include "string_tests.h"
+#include <string.h>
 
 // Cmocka needs these
 // clang-format off
@@ -16,23 +16,20 @@
 
 static void strnstr_test(void** state)
 {
+	(void)state;
+	char buf[10] = "man tees";
 
-        (void) state;
-        char buf[10] = "man tees";
-
-        char *r = strnstr(buf,"tees",10);
-        assert_string_equal(r,"tees");
+	char* r = strnstr(buf, "tees", 10);
+	assert_string_equal(r, "tees");
 }
 
-static void strnstr_test_null(void **state)
+static void strnstr_test_null(void** state)
 {
-        (void) state;
-        char buf[10] = "man tees";
+	(void)state;
+	char buf[10] = "man tees";
 
-        char *r = strnstr(buf,"te",5);
-        assert_null(r);
-
-
+	char* r = strnstr(buf, "te", 5);
+	assert_null(r);
 }
 
 #pragma mark - Public Functions -
@@ -40,7 +37,8 @@ static void strnstr_test_null(void **state)
 int strnstr_tests(void)
 {
 	const struct CMUnitTest strnstr_tests[] = {
-		cmocka_unit_test(strnstr_test),cmocka_unit_test(strnstr_test_null),
+		cmocka_unit_test(strnstr_test),
+		cmocka_unit_test(strnstr_test_null),
 	};
 
 	return cmocka_run_group_tests(strnstr_tests, NULL, NULL);

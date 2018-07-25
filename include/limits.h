@@ -66,4 +66,4 @@
 /*! Expands to (2ULL * LLONG_MAX + 1). Maximum value of unsigned long long */
 #define ULLONG_MAX (2ULL * LLONG_MAX + 1)
 
-#endif //LIMITS_H__
+#endif // LIMITS_H__

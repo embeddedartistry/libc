@@ -3,8 +3,8 @@
  * License: MIT. See LICENSE file for details.
  */
 
-#include <string.h>
 #include "string_tests.h"
+#include <string.h>
 
 // Cmocka needs these
 // clang-format off

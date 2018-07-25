@@ -3,9 +3,9 @@
  * License: MIT. See LICENSE file for details.
  */
 
+#include "stdlib_tests.h"
 #include <math.h>
 #include <stdlib.h>
-#include "stdlib_tests.h"
 #include <string.h>
 
 // Cmocka needs these

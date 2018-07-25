@@ -2,8 +2,8 @@
  * Copyright © 2017 Embedded Artistry LLC.
  * License: MIT. See LICENSE file for details.
  */
-#include <stdlib.h>
 #include "stdlib_tests.h"
+#include <stdlib.h>
 
 // Cmocka needs these
 // clang-format off

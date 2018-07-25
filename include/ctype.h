@@ -261,4 +261,4 @@ int toascii(int ch);
 }
 #endif
 
-#endif //CTYPE_H_
+#endif // CTYPE_H_

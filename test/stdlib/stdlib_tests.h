@@ -33,4 +33,4 @@ int strtoll_tests(void);
 int strtoul_tests(void);
 int strtoull_tests(void);
 
-#endif //STDLIB_TESTS_H_
+#endif // STDLIB_TESTS_H_

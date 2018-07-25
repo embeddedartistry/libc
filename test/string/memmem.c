@@ -3,8 +3,8 @@
  * License: MIT. See LICENSE file for details.
  */
 
-#include <string.h>
 #include "string_tests.h"
+#include <string.h>
 
 // Cmocka needs these
 // clang-format off
@@ -33,19 +33,19 @@
 
 static void check_input(void** state)
 {
-	N("","a", "a")
-	N("a","a", "aa")
-	N("a","b", "b")
-	N("aa","b", "ab")
-	N("aa","a", "aaa")
-	N("aba","b", "bab")
-	N("abba","b", "bab")
-	N("abba","ba", "aba")
-	N("abc abc","d", "abcd")
-	N("0-1-2-3-4-5-6-7-8-9","", "-3-4-56-7-8-")
-	N("0-1-2-3-4-5-6-7-8-9","", "-3-4-5+6-7-8-")
-	N("_ _ _\xff_ _ _","\x7f_", "_\x7f_")
-	N("_ _ _\x7f_ _ _","\xff_", "_\xff_")
+	N("", "a", "a")
+	N("a", "a", "aa")
+	N("a", "b", "b")
+	N("aa", "b", "ab")
+	N("aa", "a", "aaa")
+	N("aba", "b", "bab")
+	N("abba", "b", "bab")
+	N("abba", "ba", "aba")
+	N("abc abc", "d", "abcd")
+	N("0-1-2-3-4-5-6-7-8-9", "", "-3-4-56-7-8-")
+	N("0-1-2-3-4-5-6-7-8-9", "", "-3-4-5+6-7-8-")
+	N("_ _ _\xff_ _ _", "\x7f_", "_\x7f_")
+	N("_ _ _\x7f_ _ _", "\xff_", "_\xff_")
 
 	T("", "", 0)
 	T("abcd", "", 0)
