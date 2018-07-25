@@ -15,6 +15,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 2. [Project Status](#project-status)
 3. [Getting Started](#getting-started)
 	1. [Requirements](#requirements)
+		1. [Meson Build System](#meson-build-system)
 	2. [Getting the Source](#getting-the-source)
 	3. [Building](#building)
 		1. [Cross-compiling](#cross-compiling)
@@ -99,11 +100,37 @@ Maybe in the future:
 ## Requirements
 
 * [Doxygen][0] must be installed to generate documentation
-* [Premake][4] is used as the buildsystem
-	* Binaries are included for Windows, Linux, and OSX
-	* If yours is not natively supported please download a binary from the website or file a GitHub issue so I can help
+* [Meson](#meson-build-system) is used as the buildsystem
 * [`git-lfs`][7] is used to store binary files
 * `make` and `gcc` should be installed in order to compile the files
+
+### Meson Build System
+
+The [Meson][meson] build system depends on `python3` and `ninja-build`.
+
+To install on Linux:
+
+```
+sudo apt-get install python3 python3-pip ninja-build
+```
+
+To install on OSX:
+
+```
+brew install python3 ninja
+```
+
+Meson can be installed through `pip3`:
+
+```
+pip3 install meson
+```
+
+If you want to install Meson globally on Linux, use:
+
+```
+sudo -H pip3 install meson
+```
 
 ### `adr-tools`
 
@@ -159,7 +186,7 @@ Currently the best method to use this project is to build it separately and copy
 
 Copy the `include/` directory contents into your source tree.
 
-Build artifacts are stored in the `buildresults` folder. There is a sub-folder for the target architecture (e.g. `x86_64`). Inside of this architecture folder you will find a `libc` folder which contains the compiled static library: `libc.a`
+Build artifacts are stored in the `buildresults` folder. You will find a `libc` folder which contains the compiled static library: `libc.a`
 
 Copy the desired library to your project and add the library to your link step.
 
@@ -264,7 +291,7 @@ The initial groundwork of testing was implemented by referencing the [libc-test]
 [1]: https://github.com/embeddedartistry/libmemory
 [2]: https://clang.llvm.org/docs/ClangFormat.html
 [3]: https://cmocka.org
-[4]: https://github.com/premake/premake-core/wiki
+[meson]: http://mesonbuild.com/index.html
 [5]: http://embeddedartistry.com/contact
 [6]: https://github.com/embeddedartistry/libc/issues/new
 [7]: https://git-lfs.github.com
