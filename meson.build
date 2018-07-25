@@ -1,4 +1,4 @@
-project('Framework',
+project('libc',
 	'c',
 	default_options : ['c_std=c11'])
 
