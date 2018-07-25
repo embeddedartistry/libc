@@ -4,6 +4,14 @@ int __attribute__((weak)) memcmp(const void* p1, const void* p2, size_t n)
 {
 	size_t i;
 
+	/**
+	 * p1 and p2 are the same memory? easy peasy! bail out
+	 */
+	if(p1 == p2)
+	{
+		return 0;
+	}
+
 	if(!p1)
 	{
 		return 1;
@@ -12,14 +20,6 @@ int __attribute__((weak)) memcmp(const void* p1, const void* p2, size_t n)
 	if(!p2)
 	{
 		return -1;
-	}
-
-	/**
-	 * p1 and p2 are the same memory? easy peasy! bail out
-	 */
-	if(p1 == p2)
-	{
-		return 0;
 	}
 
 	// This for loop does the comparing and pointer moving...
