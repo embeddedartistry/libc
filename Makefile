@@ -48,5 +48,5 @@ clean:
 
 .PHONY: test
 test: libc
-	$(Q)cd $(BUILDRESULTS); ./libc_test
+	$(Q)cd $(BUILDRESULTS); ./test/libc_test
 
