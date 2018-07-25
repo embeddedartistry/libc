@@ -3,6 +3,7 @@
  * License: MIT. See LICENSE file for details.
  */
 #include <stdlib.h>
+#include "stdlib_tests.h"
 
 // Cmocka needs these
 // clang-format off

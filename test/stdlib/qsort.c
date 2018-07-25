@@ -4,6 +4,7 @@
  */
 
 #include <stdlib.h>
+#include "stdlib_tests.h"
 #include <string.h>
 #include <test/test.h>
 
@@ -39,17 +40,17 @@ static int n_sorted[] = {22,	233,	324,	343,	343,	 394,	 454,	 3434,
 
 static int scmp(const void* a, const void* b)
 {
-	return strcmp(*(char**)a, *(char**)b);
+	return strcmp(*(const char**)a, *(const char**)b);
 }
 
 static int icmp(const void* a, const void* b)
 {
-	return *(int*)a - *(int*)b;
+	return *(const int*)a - *(const int*)b;
 }
 
 static int ccmp(const void* a, const void* b)
 {
-	return *(char*)a - *(char*)b;
+	return *(const char*)a - *(const char*)b;
 }
 
 static int cmp64(const void* a, const void* b)

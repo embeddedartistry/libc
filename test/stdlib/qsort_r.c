@@ -4,6 +4,7 @@
  */
 
 #include <stdlib.h>
+#include "stdlib_tests.h"
 #include <string.h>
 #include <test/test.h>
 
