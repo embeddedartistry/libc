@@ -1,6 +1,6 @@
 project('Framework',
 	'c',
-	default_options : ['cpp_std=c11'])
+	default_options : ['c_std=c11'])
 
 ########################
 # Identify Compiler(s) #
