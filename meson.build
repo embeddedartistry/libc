@@ -1,6 +1,6 @@
 project('libc',
-	'c',
-	default_options : ['c_std=c11'])
+	['c', 'cpp'],
+	default_options : ['c_std=c11','cpp_std=c++17'])
 
 ########################
 # Identify Compiler(s) #
