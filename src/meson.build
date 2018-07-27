@@ -47,7 +47,8 @@ gdtoa_files = [
 	'gdtoa/src/strtod.c',
 	'gdtoa/src/strtodg.c',
 	'gdtoa/src/strtodI.c',
-	'gdtoa/src/strtodnrp.c',
+	# Below is an alternative, we are not using it
+	#'gdtoa/src/strtodnrp.c',
 	'gdtoa/src/strtof.c',
 	'gdtoa/src/strtoId.c',
 	'gdtoa/src/strtoIdd.c',
