@@ -40,7 +40,7 @@ endif
 
 # compiler_args is defined in build/compiler/<target>/meson.build
 # We are the standard library, don't complain about __
-add_project_arguments([compiler_args, '-Wno-reserved-id-macro'], language: 'c')
+add_project_arguments([compiler_args, '-Wno-reserved-id-macro'], language: ['c', 'cpp'])
 
 subdir('build/ea-stdlib')
 
@@ -49,11 +49,11 @@ subdir('build/ea-stdlib')
 #########################
 
 if get_option('enable-werror') == true
-	add_project_arguments('-Werror', language : 'c')
+	add_project_arguments('-Werror', language : ['c', 'cpp'])
 endif
 
 if get_option('enable-pedantic-error') == true
-	add_project_arguments('-pedantic-error', language : 'c')
+	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
 endif
 
 #######################

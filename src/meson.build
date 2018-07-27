@@ -135,3 +135,9 @@ libc = static_library(
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, arch_include]
 )
+
+libc_dep = declare_dependency(
+	link_with: libc,
+	include_directories: [libc_includes, arch_include],
+	compile_args: stdlib_compiler_flags,
+)
