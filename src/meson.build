@@ -161,3 +161,9 @@ libc_dep = declare_dependency(
 	include_directories: [libc_includes, arch_include],
 	compile_args: stdlib_compiler_flags,
 )
+
+libc_native_dep = declare_dependency(
+	link_with: libc_native,
+	include_directories: [libc_includes, arch_include],
+	compile_args: stdlib_compiler_flags,
+)
