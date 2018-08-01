@@ -1,8 +1,9 @@
 #include <stdint.h>
 #include <stdlib.h>
+#include "test.h"
 
 // TODO: use large period prng
-static uint64_t seed = -1;
+static uint64_t seed = UINT64_MAX;
 static uint32_t rand32(void)
 {
 	seed = 6364136223846793005ULL * seed + 1;
@@ -15,6 +16,8 @@ static uint64_t rand64(void)
 	return u << 32 | rand32();
 }
 
+#if 0
+//TODO: are these needed?
 static double frand()
 {
 	return rand64() * 0x1p-64;
@@ -33,6 +36,7 @@ static long double frandl()
 #endif
 		;
 }
+#endif
 
 void test_randseed(uint64_t s)
 {
@@ -42,10 +46,9 @@ void test_randseed(uint64_t s)
 /* uniform random in [0,n), n > 0 must hold */
 uint64_t test_randn(uint64_t n)
 {
-	uint64_t r, m;
+	uint64_t r, m = UINT64_MAX;
 
 	/* m is the largest multiple of n */
-	m = -1;
 	m -= m % n;
 	while((r = rand64()) >= m)
 		;
