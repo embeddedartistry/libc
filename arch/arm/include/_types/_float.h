@@ -18,4 +18,4 @@
 
 #define DECIMAL_DIG 17
 
-#endif //ARM_FLOAT_H_
+#endif // ARM_FLOAT_H_

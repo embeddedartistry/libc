@@ -18,4 +18,4 @@
 
 #define DECIMAL_DIG 36
 
-#endif //AARCH64_FLOAT_H__
+#endif // AARCH64_FLOAT_H__
