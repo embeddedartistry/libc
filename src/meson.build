@@ -73,6 +73,11 @@ gdtoa_files = [
 	'gdtoa/src/ulp.c'
 ]
 
+math_files = [
+	'math/fabs.c',
+	'math/fabsf.c',
+]
+
 stdlib_files = [
 	'stdlib/abs.c',
 	'stdlib/atof.c',
@@ -136,7 +141,7 @@ support_files = [
 
 libc = static_library(
 	'c',
-	[ctype_files, gdtoa_files, stdlib_files, string_files, support_files],
+	[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files],
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, arch_include]
 )
@@ -145,7 +150,7 @@ libc = static_library(
 # System library to do the heavy lifting for missing symbols
 libc_native = static_library(
 		'c_native',
-		[ctype_files, gdtoa_files, stdlib_files, string_files, support_files],
+		[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files],
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 		include_directories: [libc_includes, arch_include],
 		native: true
