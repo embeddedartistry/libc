@@ -141,6 +141,8 @@ libc = static_library(
 	include_directories: [libc_includes, arch_include]
 )
 
+# We don't build the stdio files for the native variant, as we rely on the
+# System library to do the heavy lifting for missing symbols
 libc_native = static_library(
 		'c_native',
 		[ctype_files, gdtoa_files, stdlib_files, string_files, support_files],
