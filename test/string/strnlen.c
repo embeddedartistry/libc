@@ -20,8 +20,8 @@ static void strnlen_test(void** state)
 	assert_int_equal(strnlen("a", 1), 1);
 	assert_int_equal(strnlen("a", 2), 1);
 	assert_int_equal(strnlen("ab", 1), 1);
-	assert_int_equal(strnlen("ab", -1), 2);
-	assert_int_equal(strnlen("ab", -2), 2);
+	assert_int_equal(strnlen("ab", SIZE_MAX), 2);
+	assert_int_equal(strnlen("ab", (size_t)-2), 2);
 	assert_int_equal(strnlen("ab", 0), 0);
 }
 

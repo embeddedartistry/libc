@@ -14,7 +14,7 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-#warning div is not being properly tested
+// TODO: div is not being properly tested
 
 static struct
 {

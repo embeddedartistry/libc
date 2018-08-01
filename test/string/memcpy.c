@@ -26,16 +26,16 @@ static char buf[512];
 
 static void* aligned(void* p)
 {
-	return (void*)(((uintptr_t)p + 63) & -64);
+	return (void*)(((intptr_t)p + 63) & -64);
 }
 
-static void test_align(int dalign, int salign, int len)
+static void test_align(unsigned dalign, unsigned salign, size_t len)
 {
 	char* src = aligned(buf);
 	char* dst = aligned(buf + 128);
 	char* want = aligned(buf + 256);
 	char* p;
-	int i;
+	unsigned i;
 
 	assert_false(salign + len > N);
 	assert_false(dalign + len > N);
@@ -48,7 +48,7 @@ static void test_align(int dalign, int salign, int len)
 
 	for(i = 0; i < len; i++)
 	{
-		src[salign + i] = want[dalign + i] = '0' + i;
+		src[salign + i] = want[dalign + i] = '0' + (char)i;
 	}
 
 	p = memcpy(dst + dalign, src + salign, len);
@@ -63,11 +63,11 @@ static void test_align(int dalign, int salign, int len)
 
 static void memcpy_aligned_test(void** state)
 {
-	for(int i = 0; i < 16; i++)
+	for(unsigned i = 0; i < 16; i++)
 	{
-		for(int j = 0; j < 16; j++)
+		for(unsigned j = 0; j < 16; j++)
 		{
-			for(int k = 0; k < 64; k++)
+			for(size_t k = 0; k < 64; k++)
 			{
 				test_align(i, j, k);
 			}

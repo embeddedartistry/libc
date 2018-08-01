@@ -4,6 +4,7 @@
  */
 #include "stdlib_tests.h"
 #include <stdlib.h>
+#include <tests.h>
 
 // Cmocka needs these
 // clang-format off

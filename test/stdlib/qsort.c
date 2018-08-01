@@ -40,7 +40,7 @@ static int n_sorted[] = {22,	233,	324,	343,	343,	 394,	 454,	 3434,
 
 static int scmp(const void* a, const void* b)
 {
-	return strcmp(*(const char**)a, *(const char**)b);
+	return strcmp(*(char* const*)a, *(char* const*)b);
 }
 
 static int icmp(const void* a, const void* b)
@@ -62,11 +62,11 @@ static int cmp64(const void* a, const void* b)
 #pragma mark - Private Test Functions -
 static void qsort_string_test(void** state)
 {
-	int len = sizeof(s) / sizeof(*s);
+	size_t len = sizeof(s) / sizeof(*s);
 
 	qsort(s, len, sizeof(*s), scmp);
 
-	for(int i = 0; i < len; i++)
+	for(size_t i = 0; i < len; i++)
 	{
 		assert_int_equal(strcmp(s[i], s_sorted[i]), 0);
 	}
@@ -74,10 +74,10 @@ static void qsort_string_test(void** state)
 
 static void qsort_int_test(void** state)
 {
-	int len = sizeof(n) / sizeof(*n);
+	size_t len = sizeof(n) / sizeof(*n);
 	qsort(n, len, sizeof(*n), icmp);
 
-	for(int i = 0; i < len; i++)
+	for(size_t i = 0; i < len; i++)
 	{
 		assert_int_equal(n[i], n_sorted[i]);
 	}
@@ -85,7 +85,7 @@ static void qsort_int_test(void** state)
 
 static void char_test(const char* a, const char* a_sorted, void** state)
 {
-	int len = strlen(a);
+	size_t len = strlen(a);
 	char* p = malloc(len + 1);
 	strcpy(p, a);
 
@@ -126,23 +126,23 @@ static void qsort_char_test(void** state)
 	char_test("49735862185236174", "11223344556677889", state);
 }
 
-static void uint64_gen(uint64_t* p, uint64_t* p_sorted, int n)
+static void uint64_gen(uint64_t* p, uint64_t* p_sorted, size_t num)
 {
 	uint64_t r = 0;
-	test_randseed(n);
-	for(int i = 0; i < n; i++)
+	test_randseed(num);
+	for(size_t i = 0; i < num; i++)
 	{
 		r += test_randn(20);
 		p[i] = r;
 	}
-	memcpy(p_sorted, p, n * sizeof *p);
-	test_shuffle(p, n);
+	memcpy(p_sorted, p, num * sizeof *p);
+	test_shuffle(p, num);
 }
 
-static void uint64_test(uint64_t* a, uint64_t* a_sorted, int len, void** state)
+static void uint64_test(uint64_t* a, uint64_t* a_sorted, size_t len, void** state)
 {
 	qsort(a, len, sizeof(*a), cmp64);
-	for(int i = 0; i < len; i++)
+	for(size_t i = 0; i < len; i++)
 	{
 		assert_int_equal(a[i], a_sorted[i]);
 	}
@@ -150,10 +150,10 @@ static void uint64_test(uint64_t* a, uint64_t* a_sorted, int len, void** state)
 
 static void qsort_uint64_test(void** state)
 {
-	int start = 1023;
-	int end = 1027;
+	size_t start = 1023;
+	size_t end = 1027;
 
-	for(int i = start; i < end; i++)
+	for(size_t i = start; i < end; i++)
 	{
 		uint64_t p[end], p_sorted[end];
 		uint64_gen(p, p_sorted, i);

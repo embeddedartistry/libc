@@ -41,7 +41,7 @@ static void strndup_test(void** state)
 	dup = strndup(NULL, 10);
 	assert_ptr_equal(dup, NULL);
 
-	dup = strndup(base, -1);
+	dup = strndup(base, SIZE_MAX);
 	assert_ptr_not_equal(dup, NULL);
 	assert_int_equal(strlen(dup), 26);
 	assert_int_equal(strncmp(dup, base, strlen(base)), 0);

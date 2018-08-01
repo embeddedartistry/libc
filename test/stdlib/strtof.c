@@ -4,6 +4,7 @@
  */
 
 #include "stdlib_tests.h"
+#include <float.h>
 #include <math.h>
 #include <stdlib.h>
 
@@ -15,7 +16,7 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-#warning "strtof INFINITY tests are not enabled"
+// TODO "strtof INFINITY tests are not enabled"
 
 #pragma mark - Definitions -
 
@@ -49,10 +50,6 @@ static struct
 	/*TODO: Enable {"340282356779733661637539395458142568448", INFINITY},*/
 };
 
-#pragma mark - Declarations -
-
-static const double epsilon = (double)0.000000001;
-
 #pragma mark - Private Functions -
 
 static void strtof_test(void** state)
@@ -60,11 +57,11 @@ static void strtof_test(void** state)
 	float x;
 	char* p;
 
-	for(int i = 0; i < length(t); i++)
+	for(unsigned long i = 0; i < length(t); i++)
 	{
 		x = strtof(t[i].s, &p);
 		// printf("%d: %1.30f == %1.30f\n", i, x, t[i].f);
-		assert_true(fabs(x - t[i].f) < epsilon);
+		assert_true(fabsf(x - t[i].f) < FLT_EPSILON);
 	}
 }
 

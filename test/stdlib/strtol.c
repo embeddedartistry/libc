@@ -20,11 +20,6 @@
  * m = message to print on failure (with formats for r & x)
  **/
 
-#define TEST(r, f, x, m) \
-	(errno = 0, msg = #f, ((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", #f, r, x), 0))
-
-#define TEST2(r, f, x, m) (((r) = (f)) == (x) || (t_error("%s failed (" m ")\n", msg, r, x), 0))
-
 #pragma mark - Private Functions -
 
 static void strtol_test(void** state)

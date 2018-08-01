@@ -18,7 +18,7 @@
 
 static void imaxdiv_test(void** state)
 {
-#warning imaxdiv not being tested
+	// TODO imaxdiv not being tested
 }
 
 #pragma mark - Public Functions -

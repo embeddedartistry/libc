@@ -16,7 +16,7 @@
 
 static void memmove_test(void** state)
 {
-#warning "Memmove tests need to be implemented"
+	// TODO: "Memmove tests need to be implemented"
 	return;
 }
 

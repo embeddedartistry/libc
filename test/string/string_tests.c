@@ -4,6 +4,9 @@
  */
 #include <stdlib.h>
 
+#include "string_tests.h"
+#include <tests.h>
+
 // Cmocka needs these
 // clang-format off
 #include <setjmp.h>
@@ -11,27 +14,6 @@
 #include <stddef.h>
 #include <cmocka/cmocka.h>
 // clang-format on
-
-extern int memcpy_tests(void);
-extern int memset_tests(void);
-extern int memmem_tests(void);
-extern int memmove_tests(void);
-extern int memcmp_tests(void);
-extern int strcmp_tests(void);
-extern int strcpy_tests(void);
-extern int strdup_tests(void);
-extern int strlen_tests(void);
-extern int strncmp_tests(void);
-extern int strncpy_tests(void);
-extern int strndup_tests(void);
-extern int strnlen_tests(void);
-extern int strnstr_tests(void);
-extern int strstr_tests(void);
-extern int strchr_tests(void);
-extern int strrchr_tests(void);
-extern int strncat_tests(void);
-extern int strcat_tests(void);
-extern int strtok_tests(void);
 
 int string_tests(void)
 {

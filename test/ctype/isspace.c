@@ -3,6 +3,7 @@
  * License: MIT. See LICENSE file for details.
  */
 
+#include "ctype_tests.h"
 #include <ctype.h>
 #include <limits.h>
 

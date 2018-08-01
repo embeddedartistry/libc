@@ -16,7 +16,7 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-#warning "strtod INFINITY tests are not enabled"
+// TODO: "strtod INFINITY tests are not enabled"
 
 #pragma mark - Defintions -
 
@@ -94,7 +94,7 @@ static void strtod_test(void** state)
 	double x;
 	char* p;
 
-	for(int i = 0; i < length(t); i++)
+	for(unsigned long i = 0; i < length(t); i++)
 	{
 		x = strtod(t[i].s, &p);
 		// printf("%d: %1.30f == %1.30f\n", i, x, t[i].f);

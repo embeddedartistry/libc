@@ -18,7 +18,7 @@
 
 static void ldiv_test(void** state)
 {
-#warning ldiv tests not implemented
+	// TODO ldiv tests not implemented
 }
 
 #pragma mark - Public Functions -

@@ -27,25 +27,25 @@ static char buf2[N];
 
 static char* aligned(void* p)
 {
-	return (char*)(((uintptr_t)p + 63) & -64);
+	return (char*)(((intptr_t)p + 63) & -64);
 }
 
-static void test_align(int align, int len)
+static void test_align(int align, size_t len)
 {
 	char* s = aligned(buf + 64) + align;
 	char* want = aligned(buf2 + 64) + align;
 	char* p;
 	int i;
 
-	assert_false(len + 64 > buf + N - s);
-	assert_false(len + 64 > buf2 + N - want);
+	assert_false(len + 64 > (size_t)(buf + N - s));
+	assert_false(len + 64 > (size_t)(buf2 + N - want));
 
 	for(i = 0; i < N; i++)
 	{
 		buf[i] = buf2[i] = ' ';
 	}
 
-	for(i = 0; i < len; i++)
+	for(i = 0; i < (int)len; i++)
 	{
 		want[i] = '#';
 	}
@@ -54,7 +54,7 @@ static void test_align(int align, int len)
 
 	assert_ptr_equal(p, s);
 
-	for(i = -64; i < len + 64; i++)
+	for(i = -64; i < (int)len + 64; i++)
 	{
 		assert_int_equal(s[i], want[i]);
 	}
@@ -64,7 +64,7 @@ static void memset_aligned_test(void** state)
 {
 	for(int i = 0; i < 16; i++)
 	{
-		for(int j = 0; j < 200; j++)
+		for(size_t j = 0; j < 200; j++)
 		{
 			test_align(i, j);
 		}
@@ -82,14 +82,12 @@ static void check_input_(char c, void** state)
 
 static void check_input(void** state)
 {
-	int i;
-
 	check_input_('c', state);
 	check_input_(0, state);
 	check_input_(-1, state);
 	check_input_((char)INT_MAX, state);
 	check_input_((char)-INT_MAX, state);
-	check_input_(0xab, state);
+	check_input_((char)0xab, state);
 }
 
 #pragma mark - Public Functions -

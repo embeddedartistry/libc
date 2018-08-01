@@ -2,7 +2,9 @@
  * Copyright © 2017 Embedded Artistry LLC.
  * License: MIT. See LICENSE file for details.
  */
+#include "ctype_tests.h"
 #include <stdlib.h>
+#include <tests.h>
 
 // Cmocka needs these
 // clang-format off
@@ -11,23 +13,6 @@
 #include <stddef.h>
 #include <cmocka/cmocka.h>
 // clang-format on
-
-extern int isalnum_tests(void);
-extern int isalpha_tests(void);
-extern int isascii_tests(void);
-extern int isblank_tests(void);
-extern int isdigit_tests(void);
-extern int isgraph_tests(void);
-extern int iscntrl_tests(void);
-extern int islower_tests(void);
-extern int ispunct_tests(void);
-extern int isspace_tests(void);
-extern int isupper_tests(void);
-extern int isxdigit_tests(void);
-extern int toascii_tests(void);
-extern int tolower_tests(void);
-extern int toupper_tests(void);
-extern int isprint_tests(void);
 
 int ctype_tests(void)
 {

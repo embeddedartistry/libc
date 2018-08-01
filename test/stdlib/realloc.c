@@ -18,7 +18,7 @@
 
 static void realloc_test(void** state)
 {
-#warning realloc tests not implemented
+	// TODO: realloc tests not implemented
 }
 
 #pragma mark - Public Functions -

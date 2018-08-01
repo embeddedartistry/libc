@@ -18,7 +18,7 @@
 
 static void rand_test(void** state)
 {
-#warning rand tests not implemented
+	// TODO: rand tests not implemented
 }
 
 #pragma mark - Public Functions -

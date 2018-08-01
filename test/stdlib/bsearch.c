@@ -18,7 +18,7 @@
 
 static void bsearch_test(void** state)
 {
-#warning bsearch test not implemented!
+	// TODO bsearch test not implemented!
 }
 
 #pragma mark - Public Functions -

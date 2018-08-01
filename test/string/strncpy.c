@@ -17,7 +17,6 @@
 static void strncpy_test(void** state)
 {
 	char b[32];
-	int i;
 	b[16] = 'a';
 	b[17] = 'b';
 	b[18] = 'c';

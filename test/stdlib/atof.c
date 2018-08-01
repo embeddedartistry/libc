@@ -15,7 +15,7 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-#warning "atof INFINITY tests are not enabled"
+// TODO "atof INFINITY tests are not enabled"
 
 #pragma mark - Defintions -
 
@@ -92,7 +92,7 @@ static void atof_test(void** state)
 {
 	double x;
 
-	for(int i = 0; i < length(t); i++)
+	for(size_t i = 0; i < length(t); i++)
 	{
 		x = atof(t[i].s);
 		// printf("%d: %1.30f == %1.30f\n", i, x, t[i].f);

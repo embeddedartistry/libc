@@ -11,16 +11,14 @@
 #include <cmocka/cmocka.h>
 // clang-format on
 
-extern int ctype_tests(void);
-extern int string_tests(void);
-extern int stdlib_tests(void);
+#include <tests.h>
 
 int main(void)
 {
 	int overall_result = 0;
 
 	// Generate JUnit results
-	cmocka_set_message_output(CM_OUTPUT_XML);
+	// cmocka_set_message_output(CM_OUTPUT_XML);
 
 	overall_result |= ctype_tests();
 	overall_result |= string_tests();
