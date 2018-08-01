@@ -99,6 +99,10 @@ stdlib_files = [
 	'stdlib/strtoull.c',
 ]
 
+stdio_lite_files = [
+	'stdio_lite/printf.c',
+]
+
 string_files = [
 	'string/memcmp.c',
 	'string/memcpy.c',
