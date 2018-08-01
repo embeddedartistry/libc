@@ -18,7 +18,7 @@ int __flt_rounds(void);
 #define FLT_MAX 3.40282346638528859812e+38F
 
 #define FLT_EPSILON 1.1920928955078125e-07F
-//TODO: is this correct? I see this other value... #define FLT_EPSILON 1.19209290E-07F
+// TODO: is this correct? I see this other value... #define FLT_EPSILON 1.19209290E-07F
 // ARM also says this: 1.19209290e-7F
 // Check against http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0491f/Babbfeda.html
 
@@ -57,4 +57,4 @@ int __flt_rounds(void);
 }
 #endif
 
-#endif //FLOAT_H__
+#endif // FLOAT_H__
