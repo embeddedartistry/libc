@@ -70,17 +70,11 @@ libc_test_files = [
 	'test/rand.c'
 ]
 
-if meson.is_cross_build()
-	test_libc_to_link = libc_native
-else
-	test_libc_to_link = libc
-endif
-
 libc_tests = executable('libc_test',
 	libc_test_files,
 	c_args: [stdlib_compiler_flags, '-Wno-vla', '-Wno-unused-parameter'],
 	link_args: [stdlib_link_flags, '-lcmocka'],
 	include_directories: [libc_includes, arch_include],
-	link_with: test_libc_to_link,
+	link_with: libc_native,
 	native: true
 )

@@ -99,8 +99,8 @@ stdlib_files = [
 	'stdlib/strtoull.c',
 ]
 
-stdio_lite_files = [
-	'stdio_lite/printf.c',
+stdio_files = [
+	'stdio/printf.c',
 ]
 
 string_files = [
@@ -141,15 +141,13 @@ libc = static_library(
 	include_directories: [libc_includes, arch_include]
 )
 
-if meson.is_cross_build()
-	libc_native = static_library(
+libc_native = static_library(
 		'c_native',
 		[ctype_files, gdtoa_files, stdlib_files, string_files, support_files],
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 		include_directories: [libc_includes, arch_include],
 		native: true
-	)
-endif
+)
 
 libc_dep = declare_dependency(
 	link_with: libc,
