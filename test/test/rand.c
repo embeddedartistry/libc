@@ -1,6 +1,4 @@
 #include "test.h"
-#include <stdint.h>
-#include <stdlib.h>
 
 // TODO: use large period prng
 static uint64_t seed = UINT64_MAX;

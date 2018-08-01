@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdlib.h>
 
 void test_randseed(uint64_t s);
 uint64_t test_randn(uint64_t n);
