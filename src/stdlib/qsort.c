@@ -37,7 +37,7 @@ typedef int cmp_t(void*, const void*, const void*);
 typedef int cmp_t(const void*, const void*);
 #endif
 static inline char* med3(char*, char*, char*, cmp_t*, void*) __attribute__((always_inline));
-static inline void swapfunc(char*, char*, int, int) __attribute__((always_inline));
+static inline void swapfunc(char*, char*, size_t, size_t) __attribute__((always_inline));
 
 #define min(a, b) (a) < (b) ? a : b
 
@@ -46,7 +46,7 @@ static inline void swapfunc(char*, char*, int, int) __attribute__((always_inline
  */
 #define swapcode(TYPE, parmi, parmj, n) \
 	{                                   \
-		long i = (n) / sizeof(TYPE);    \
+		size_t i = (n) / sizeof(TYPE);    \
 		TYPE* pi = (TYPE*)(parmi);      \
 		TYPE* pj = (TYPE*)(parmj);      \
 		do                              \
@@ -58,30 +58,36 @@ static inline void swapfunc(char*, char*, int, int) __attribute__((always_inline
 	}
 
 #define SWAPINIT(a, es)                                                  \
-	swaptype = ((char*)a - (char*)0) % sizeof(long) || es % sizeof(long) \
+	swaptype = (uintptr_t)a % sizeof(long) || es % sizeof(long) \
 				   ? 2                                                   \
 				   : es == sizeof(long) ? 0 : 1;
 
-static inline void swapfunc(a, b, n, swaptype) char *a, *b;
-int n, swaptype;
+static inline void swapfunc(char* a, char* b, size_t n, size_t swaptype)
 {
-	if(swaptype <= 1)
-		swapcode(long, a, b, n) else swapcode(char, a, b, n)
+	if(swaptype == 0)
+	{
+		long t = *(long*)(void*)(a);
+		*(long*)(void*)(a) = *(long*)(void*)(b);
+		*(long*)(void*)(b) = t;
+	}
+	else if(swaptype == 1)
+	{
+		swapcode(long, (void*)a, (void*)b, n)
+	}
+	else
+	{
+		swapcode(char, a, b, n)
+	}
 }
 
-#define swap(a, b)                 \
-	if(swaptype == 0)              \
-	{                              \
-		long t = *(long*)(a);      \
-		*(long*)(a) = *(long*)(b); \
-		*(long*)(b) = t;           \
-	}                              \
-	else                           \
-		swapfunc(a, b, es, swaptype)
+#define swap(a, b) swapfunc(a, b, (size_t)es, (size_t)swaptype)
 
+// this switch exists because we needed to clean up
+// the swap() macro, and vecswap has a different 0 meaning.
+// To force the right swapfunc behavior we force it to 1 if it's
 #define vecswap(a, b, n) \
 	if((n) > 0)          \
-	swapfunc(a, b, n, swaptype)
+	swapfunc(a, b, n, swaptype ? (size_t)swaptype : 1)
 
 #ifdef I_AM_QSORT_R
 #define CMP(t, x, y) (cmp((t), (x), (y)))
@@ -119,9 +125,9 @@ static void _qsort(void* a, size_t n, size_t es,
 				   cmp_t* cmp, int depth_limit)
 {
 	char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
-	size_t d, r;
+	size_t d, r, swap_cnt;
 	int cmp_result;
-	int swaptype, swap_cnt;
+	int swaptype;
 
 loop:
 	if(depth_limit-- <= 0)
@@ -156,7 +162,7 @@ loop:
 		}
 		pm = med3(pl, pm, pn, cmp, thunk);
 	}
-	swap(a, pm);
+	swap(a, (void*)pm);
 	pa = pb = (char*)a + es;
 
 	pc = pd = (char*)a + (n - 1) * es;
@@ -191,9 +197,9 @@ loop:
 	}
 
 	pn = (char*)a + n * es;
-	r = min(pa - (char*)a, pb - pa);
+	r = min((uintptr_t)pa - (uintptr_t)a, (uintptr_t)pb - (uintptr_t)pa);
 	vecswap(a, pb - r, r);
-	r = min(pd - pc, pn - pd - es);
+	r = min((uintptr_t)pd - (uintptr_t)pc, (uintptr_t)pn - (uintptr_t)pd - (uintptr_t)es);
 	vecswap(pb, pn - r, r);
 
 	if(swap_cnt == 0)
@@ -204,19 +210,21 @@ loop:
 			{
 				swap(pl, pl - es);
 				if(++swap_cnt > r)
+				{
 					goto nevermind;
+				}
 			}
 		return;
 	}
 
 nevermind:
-	if((r = pb - pa) > es)
+	if((r = (uintptr_t)pb - (uintptr_t)pa) > es)
 #ifdef I_AM_QSORT_R
 		_qsort(a, r / es, es, thunk, cmp, depth_limit);
 #else
 		_qsort(a, r / es, es, cmp, depth_limit);
 #endif
-	if((r = pd - pc) > es)
+	if((r = (uintptr_t)pd - (uintptr_t)pc) > es)
 	{
 		/* Iterate rather than recurse to save stack space */
 		a = pn - r;
