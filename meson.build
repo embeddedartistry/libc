@@ -61,6 +61,7 @@ endif
 #######################
 
 libc_includes = include_directories('include', 'src/gdtoa/include')
+libc_system_includes = include_directories('include', 'src/gdtoa/include', is_system: true)
 
 # Library build definition
 subdir('src/')

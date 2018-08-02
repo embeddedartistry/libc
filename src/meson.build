@@ -100,6 +100,7 @@ stdlib_files = [
 	'stdlib/rand.c',
 	'stdlib/realloc.c',
 	'stdlib/strtol.c',
+	'stdlib/strtoul.c',
 	'stdlib/strtoll.c',
 	'stdlib/strtoull.c',
 ]
@@ -139,6 +140,11 @@ support_files = [
 	'support/flsll.c'
 ]
 
+##
+# For local builds, we use libc_includes to generate our own warnings
+# For dependencies, we use libc_system_includes to add -isystem
+##
+
 libc = static_library(
 	'c',
 	[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files],
@@ -158,12 +164,12 @@ libc_native = static_library(
 
 libc_dep = declare_dependency(
 	link_with: libc,
-	include_directories: [libc_includes, arch_include],
+	include_directories: [libc_system_includes, arch_include],
 	compile_args: stdlib_compiler_flags,
 )
 
 libc_native_dep = declare_dependency(
 	link_with: libc_native,
-	include_directories: [libc_includes, arch_include],
+	include_directories: [libc_system_includes, arch_include],
 	compile_args: stdlib_compiler_flags,
 )
