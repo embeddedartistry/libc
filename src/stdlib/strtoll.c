@@ -32,6 +32,7 @@
 
 #include <ctype.h>
 #include <limits.h>
+#include <stdlib.h>
 
 /*
  * Convert a string to a long long integer.
@@ -56,7 +57,7 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 
 		if(endptr)
 		{
-			*endptr = (char*)nptr;
+			*endptr = (char*)(uintptr_t)nptr;
 		}
 
 		return 0;
@@ -172,7 +173,9 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 		}
 	}
 	if(endptr != 0)
+	{
 		/* LINTED interface specification */
-		*endptr = (char*)(any ? s - 1 : nptr);
+		*endptr = (char*)(uintptr_t)(any ? s - 1 : nptr);
+	}
 	return (acc);
 }

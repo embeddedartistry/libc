@@ -46,7 +46,7 @@ static inline void swapfunc(char*, char*, size_t, size_t) __attribute__((always_
  */
 #define swapcode(TYPE, parmi, parmj, n) \
 	{                                   \
-		size_t i = (n) / sizeof(TYPE);    \
+		size_t i = (n) / sizeof(TYPE);  \
 		TYPE* pi = (TYPE*)(parmi);      \
 		TYPE* pj = (TYPE*)(parmj);      \
 		do                              \
@@ -57,10 +57,8 @@ static inline void swapfunc(char*, char*, size_t, size_t) __attribute__((always_
 		} while(--i > 0);               \
 	}
 
-#define SWAPINIT(a, es)                                                  \
-	swaptype = (uintptr_t)a % sizeof(long) || es % sizeof(long) \
-				   ? 2                                                   \
-				   : es == sizeof(long) ? 0 : 1;
+#define SWAPINIT(a, es) \
+	swaptype = (uintptr_t)a % sizeof(long) || es % sizeof(long) ? 2 : es == sizeof(long) ? 0 : 1;
 
 static inline void swapfunc(char* a, char* b, size_t n, size_t swaptype)
 {

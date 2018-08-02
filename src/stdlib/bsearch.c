@@ -66,10 +66,12 @@ bsearch(key, base0, nmemb, size, compar)
 		p = base + (lim >> 1) * size;
 		cmp = (*compar)(key, p);
 		if(cmp == 0)
-			return ((void*)p);
+		{
+			return ((void*)(uintptr_t)p);
+		}
 		if(cmp > 0)
 		{ /* key > p: move right */
-			base = (char*)p + size;
+			base = (const char*)p + size;
 			lim--;
 		} /* else move left */
 	}

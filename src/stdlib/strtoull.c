@@ -80,8 +80,8 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	if(base < 2 || base > 36)
 		goto noconv;
 
-	cutoff = ULLONG_MAX / base;
-	cutlim = ULLONG_MAX % base;
+	cutoff = ULLONG_MAX / (unsigned long long)base;
+	cutlim = (int)(ULLONG_MAX % (unsigned long long)base);
 	for(;; c = *s++)
 	{
 		if(c >= '0' && c <= '9')
@@ -99,8 +99,8 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 		else
 		{
 			any = 1;
-			acc *= base;
-			acc += c;
+			acc *= (unsigned long)base;
+			acc += (unsigned long)c;
 		}
 	}
 	if(any < 0)
@@ -116,8 +116,12 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 		// errno = EINVAL;
 	}
 	else if(neg)
+	{
 		acc = -acc;
+	}
 	if(endptr != NULL)
-		*endptr = (char*)(any ? s - 1 : nptr);
+	{
+		*endptr = (char*)(uintptr_t)(any ? s - 1 : nptr);
+	}
 	return (acc);
 }
