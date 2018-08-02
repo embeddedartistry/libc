@@ -39,7 +39,7 @@ int strncmp(const char* s1, const char* s2, size_t n)
 		}
 		else if(r != 0)
 		{
-			r = *(char*)s1 - *(char*)s2;
+			r = *s1 - *s2;
 		}
 	}
 
