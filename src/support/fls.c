@@ -40,7 +40,7 @@ int fls(int mask)
 	if(mask == 0)
 		return (0);
 
-	return (sizeof(mask) << 3) - __builtin_clz(mask);
+	return ((int)sizeof(mask) << 3) - __builtin_clz((unsigned)mask);
 #else
 	int bit;
 

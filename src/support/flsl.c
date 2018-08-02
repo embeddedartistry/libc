@@ -40,7 +40,7 @@ int flsl(long mask)
 	if(mask == 0)
 		return (0);
 
-	return (sizeof(mask) << 3) - __builtin_clzl(mask);
+	return ((int)sizeof(mask) << 3) - __builtin_clzl((unsigned long)mask);
 #else
 	int bit;
 
