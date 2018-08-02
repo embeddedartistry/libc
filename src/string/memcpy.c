@@ -86,7 +86,8 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 		 * Copy whole words, then mop up any trailing bytes.
 		 */
 		t = length / wsize;
-		TLOOP(*(word*)dst = *(word*)src; src += wsize; dst += wsize);
+		// Silence warning for alignment change by casting to void*
+		TLOOP(*(word*)(void*)dst = *(const word*)(const void*)src; src += wsize; dst += wsize);
 		t = length & wmask;
 		TLOOP(*dst++ = *src++);
 	}
@@ -110,7 +111,8 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 			TLOOP1(*--dst = *--src);
 		}
 		t = length / wsize;
-		TLOOP(src -= wsize; dst -= wsize; *(word*)dst = *(word*)src);
+		// Silence warning for alignment change by casting to void*
+		TLOOP(src -= wsize; dst -= wsize; *(word*)(void*)dst = *(const word*)(const void*)src);
 		t = length & wmask;
 		TLOOP(*--dst = *--src);
 	}

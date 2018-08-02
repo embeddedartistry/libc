@@ -2,6 +2,8 @@
 
 #include <string.h>
 
+void* __memrchr(const void*, int, size_t);
+
 void* __memrchr(const void* m, int c, size_t n)
 {
 	const unsigned char* s = m;
@@ -11,7 +13,7 @@ void* __memrchr(const void* m, int c, size_t n)
 	{
 		if(s[n] == c)
 		{
-			return (void*)(s + n);
+			return (void*)(uintptr_t)(s + n);
 		}
 	}
 

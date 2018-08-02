@@ -67,11 +67,11 @@ static const unsigned long mask80 = 0x8080808080808080;
  * Helper macro to return string length if we caught the zero
  * byte.
  */
-#define testbyte(x)               \
-	do                            \
-	{                             \
-		if(p[x] == '\0')          \
-			return (p - str + x); \
+#define testbyte(x)                                     \
+	do                                                  \
+	{                                                   \
+		if(p[x] == '\0')                                \
+			return ((uintptr_t)p - (uintptr_t)str + x); \
 	} while(0)
 
 size_t strlen(const char* str)
@@ -81,11 +81,17 @@ size_t strlen(const char* str)
 
 	/* Skip the first few bytes until we have an aligned p */
 	for(p = str; (uintptr_t)p & LONGPTR_MASK; p++)
+	{
 		if(*p == '\0')
-			return (p - str);
+		{
+			return ((uintptr_t)p - (uintptr_t)str);
+		}
+	}
 
 	/* Scan the rest of the string using word sized operation */
-	for(lp = (const unsigned long*)p;; lp++)
+	// Cast to void to prevent alignment warning
+	for(lp = (const unsigned long*)(const void*)p;; lp++)
+	{
 		if((*lp - mask01) & mask80)
 		{
 			p = (const char*)(lp);
@@ -100,7 +106,8 @@ size_t strlen(const char* str)
 			testbyte(7);
 #endif
 		}
+	}
 
 	/* NOTREACHED */
-	return (0);
+	// return (0);
 }

@@ -35,7 +35,7 @@ int strcmp(const char* s1, const char* s2)
 		// handle case where we didn't break early - set return code.
 		if(r != 0)
 		{
-			r = *(char*)s1 - *(char*)s2;
+			r = *(const char*)s1 - *(const char*)s2;
 		}
 	}
 

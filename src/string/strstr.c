@@ -48,7 +48,7 @@ char* strstr(const char* string, const char* substring)
 
 	if(*b == 0)
 	{
-		return (char*)string;
+		return (char*)(uintptr_t)string;
 	}
 
 	for(; *string != 0; string += 1)
@@ -64,7 +64,7 @@ char* strstr(const char* string, const char* substring)
 		{
 			if(*b == 0)
 			{
-				return (char*)string;
+				return (char*)(uintptr_t)string;
 			}
 			if(*a++ != *b++)
 			{
