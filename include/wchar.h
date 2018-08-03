@@ -16,6 +16,11 @@ typedef struct
 	unsigned __opaque1, __opaque2;
 } mbstate_t;
 
+#pragma mark - Supported APIs -
+
+int wcwidth(wchar_t);
+int wcswidth(const wchar_t*, size_t);
+
 #pragma mark - Unspported API -
 
 wint_t btowc(int);
@@ -83,9 +88,6 @@ wchar_t* wcpncpy(wchar_t* __restrict, const wchar_t* __restrict, size_t);
 
 int wcscasecmp(const wchar_t*, const wchar_t*);
 int wcsncasecmp(const wchar_t*, const wchar_t*, size_t);
-
-int wcwidth(wchar_t);
-int wcswidth(const wchar_t*, size_t);
 
 struct tm;
 size_t wcsftime(wchar_t* __restrict, size_t, const wchar_t* __restrict,
