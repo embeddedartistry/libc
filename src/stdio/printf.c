@@ -68,7 +68,6 @@
 #define FLAGS_LONG (1U << 8U)
 #define FLAGS_LONG_LONG (1U << 9U)
 #define FLAGS_PRECISION (1U << 10U)
-#define FLAGS_WIDTH (1U << 11U)
 
 // output function type
 typedef void (*out_fct_type)(char character, char* buffer, size_t idx, size_t maxlen);
@@ -116,7 +115,7 @@ static inline void _out_fct(char character, char* buffer, size_t idx, size_t max
 	(void)idx;
 	(void)maxlen;
 	// buffer is the output fct pointer
-	((out_fct_wrap_type*)buffer)->fct(character, ((out_fct_wrap_type*)buffer)->arg);
+	((out_fct_wrap_type*)(uintptr_t)buffer)->fct(character, ((out_fct_wrap_type*)(uintptr_t)buffer)->arg);
 }
 
 // internal strlen
@@ -847,7 +846,7 @@ int fctprintf(void (*out)(char character, void* arg), void* arg, const char* for
 	va_list va;
 	va_start(va, format);
 	const out_fct_wrap_type out_fct_wrap = {out, arg};
-	const int ret = _vsnprintf(_out_fct, (char*)&out_fct_wrap, (size_t)-1, format, va);
+	const int ret = _vsnprintf(_out_fct, (char*)(uintptr_t)&out_fct_wrap, (size_t)-1, format, va);
 	va_end(va);
 	return ret;
 }
