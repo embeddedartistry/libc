@@ -5,18 +5,21 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
 #include <stdint.h>
-#include <stdlib.h>
 #include <wctype.h>
 
 #pragma mark - Definitions -
 
-typedef struct __mbstate_t
+typedef struct
 {
 	unsigned __opaque1, __opaque2;
 } mbstate_t;
 
-#pragma mark - APIs -
+#pragma mark - Unspported API -
+
+wint_t btowc(int);
+int wctob(wint_t);
 
 wchar_t* wcscpy(wchar_t* __restrict, const wchar_t* __restrict);
 wchar_t* wcsncpy(wchar_t* __restrict, const wchar_t* __restrict, size_t);
@@ -83,6 +86,10 @@ int wcsncasecmp(const wchar_t*, const wchar_t*, size_t);
 
 int wcwidth(wchar_t);
 int wcswidth(const wchar_t*, size_t);
+
+struct tm;
+size_t wcsftime(wchar_t* __restrict, size_t, const wchar_t* __restrict,
+				const struct tm* __restrict);
 
 #ifdef __cplusplus
 }
