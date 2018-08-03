@@ -8,6 +8,10 @@ gdtoa_compiler_flags = [
 	'-DNO_FENV_H'
 ]
 
+assert_files = [
+	'assert/assert.c',
+]
+
 ctype_files = [
 	'ctype/isalnum.c',
 	'ctype/isalpha.c',
@@ -25,6 +29,10 @@ ctype_files = [
 	'ctype/toascii.c',
 	'ctype/tolower.c',
 	'ctype/toupper.c'
+]
+
+errno_files = [
+	'errno/strerror.c',
 ]
 
 gdtoa_files = [
@@ -100,6 +108,7 @@ stdlib_files = [
 	'stdlib/rand.c',
 	'stdlib/realloc.c',
 	'stdlib/strtol.c',
+	'stdlib/strtold.c',
 	'stdlib/strtoul.c',
 	'stdlib/strtoll.c',
 	'stdlib/strtoull.c',
@@ -107,6 +116,8 @@ stdlib_files = [
 
 stdio_files = [
 	'stdio/printf.c',
+	'stdio/putchar.c',
+	'stdio/puts.c'
 ]
 
 string_files = [
@@ -120,7 +131,9 @@ string_files = [
 	'string/strchr.c',
 	'string/strchrnul.c',
 	'string/strcmp.c',
+	'string/strcoll.c',
 	'string/strcpy.c',
+	'string/strcspn.c',
 	'string/strdup.c',
 	'string/strlen.c',
 	'string/strncat.c',
@@ -129,9 +142,12 @@ string_files = [
 	'string/strndup.c',
 	'string/strnlen.c',
 	'string/strnstr.c',
+	'string/strpbrk.c',
 	'string/strrchr.c',
+	'string/strspn.c',
 	'string/strstr.c',
-	'string/strtok.c'
+	'string/strtok.c',
+	'string/strxfrm.c'
 ]
 
 support_files = [
@@ -168,6 +184,22 @@ wchar_files = [
 	'wchar/wcwidth.c',
 ]
 
+libc_native_files = [
+	assert_files,
+	ctype_files,
+	gdtoa_files,
+	errno_files,
+	math_files,
+	stdlib_files,
+	string_files,
+	support_files,
+	wchar_files
+]
+
+libc_standalone_files = libc_native_files + [
+	stdio_files,
+]
+
 ##
 # For local builds, we use libc_includes to generate our own warnings
 # For dependencies, we use libc_system_includes to add -isystem
@@ -175,7 +207,7 @@ wchar_files = [
 
 libc = static_library(
 	'c',
-	[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files, wchar_files],
+	libc_standalone_files,
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, arch_include]
 )
@@ -184,7 +216,7 @@ libc = static_library(
 # System library to do the heavy lifting for missing symbols
 libc_native = static_library(
 		'c_native',
-		[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files, wchar_files],
+		libc_native_files,
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 		include_directories: [libc_includes, arch_include],
 		native: true
