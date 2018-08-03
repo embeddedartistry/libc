@@ -374,6 +374,14 @@ char* strncat(char* __restrict dst, const char* __restrict src, size_t maxlen);
  * */
 char* strtok(char* s, const char* delim);
 
+// TODO: documentation
+size_t strxfrm(char* __restrict, const char* __restrict, size_t);
+size_t strcspn(const char*, const char*);
+size_t strspn(const char*, const char*);
+char* strpbrk(const char*, const char*);
+int strcoll(const char*, const char*);
+char* strerror(int);
+
 #ifdef __cplusplus
 }
 #endif //__cplusplus
