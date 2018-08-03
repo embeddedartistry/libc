@@ -34,5 +34,5 @@ char* strerror(int e)
 	for(s = errmsg; i; s++, i--)
 		for(; *s; s++)
 			;
-	return (char*)s;
+	return (char*)(uintptr_t)s;
 }
