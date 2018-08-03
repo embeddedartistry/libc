@@ -1,4 +1,5 @@
 #include "strchrnul.h"
+#include <stdint.h>
 #include <string.h>
 
 #define BITOP(a, b, op) \
@@ -11,13 +12,13 @@ size_t strcspn(const char* s, const char* c)
 
 	if(!c[0] || !c[1])
 	{
-		return __strchrnul(s, *c) - a;
+		return (uintptr_t)(__strchrnul(s, *c) - (uintptr_t)a);
 	}
 
 	memset(byteset, 0, sizeof byteset);
-	for(; *c && BITOP(byteset, *(unsigned char*)c, |=); c++)
+	for(; *c && BITOP(byteset, *(const unsigned char*)c, |=); c++)
 		;
-	for(; *s && !BITOP(byteset, *(unsigned char*)s, &); s++)
+	for(; *s && !BITOP(byteset, *(const unsigned char*)s, &); s++)
 		;
-	return s - a;
+	return (uintptr_t)s - (uintptr_t)a;
 }

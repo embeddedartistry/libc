@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <string.h>
 
 #define BITOP(a, b, op) \
@@ -9,17 +10,21 @@ size_t strspn(const char* s, const char* c)
 	size_t byteset[32 / sizeof(size_t)] = {0};
 
 	if(!c[0])
+	{
 		return 0;
+	}
+
 	if(!c[1])
 	{
 		for(; *s == *c; s++)
 			;
-		return s - a;
+		return (uintptr_t)s - (uintptr_t)a;
 	}
 
-	for(; *c && BITOP(byteset, *(unsigned char*)c, |=); c++)
+	for(; *c && BITOP(byteset, *(const unsigned char*)c, |=); c++)
 		;
-	for(; *s && BITOP(byteset, *(unsigned char*)s, &); s++)
+	for(; *s && BITOP(byteset, *(const unsigned char*)s, &); s++)
 		;
-	return s - a;
+
+	return (uintptr_t)s - (uintptr_t)a;
 }
