@@ -58,7 +58,14 @@ void abort(void) __attribute__((noreturn));
 // TODO: specifier int atexit(void (* _Nonnull)(void));
 int atexit(void (*)(void));
 void exit(int) __attribute__((noreturn));
+
+/** TODO: CLEANUP DOC
+ * Terminates the process normally by returning control to the host environment,
+ * but without performing any of the regular cleanup tasks for terminating processes (as function
+ * exit does). No object destructors, nor functions registered by atexit or at_quick_exit are called
+ */
 void _Exit(int) __attribute__((noreturn));
+
 int at_quick_exit(void (*)(void));
 _Noreturn void quick_exit(int);
 
