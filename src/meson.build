@@ -140,6 +140,34 @@ support_files = [
 	'support/flsll.c'
 ]
 
+wchar_files = [
+	'wchar/iswalnum.c',
+	'wchar/iswalpha.c',
+	'wchar/iswblank.c',
+	'wchar/iswcntrl.c',
+	'wchar/iswalnum.c',
+	'wchar/iswalpha.c',
+	'wchar/iswblank.c',
+	'wchar/iswcntrl.c',
+	'wchar/iswctype.c',
+	'wchar/iswdigit.c',
+	'wchar/iswgraph.c',
+	'wchar/iswlower.c',
+	'wchar/iswprint.c',
+	'wchar/iswpunct.c',
+	'wchar/iswspace.c',
+	'wchar/iswupper.c',
+	'wchar/iswxdigit.c',
+	'wchar/towccase.c',
+	'wchar/towctrans.c',
+	'wchar/towlower.c',
+	'wchar/towupper.c',
+	'wchar/wcswidth.c',
+	'wchar/wctrans.c',
+	'wchar/wctype.c',
+	'wchar/wcwidth.c',
+]
+
 ##
 # For local builds, we use libc_includes to generate our own warnings
 # For dependencies, we use libc_system_includes to add -isystem
@@ -147,7 +175,7 @@ support_files = [
 
 libc = static_library(
 	'c',
-	[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files],
+	[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files, wchar_files],
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, arch_include]
 )
@@ -156,7 +184,7 @@ libc = static_library(
 # System library to do the heavy lifting for missing symbols
 libc_native = static_library(
 		'c_native',
-		[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files],
+		[ctype_files, gdtoa_files, math_files, stdlib_files, string_files, support_files, wchar_files],
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 		include_directories: [libc_includes, arch_include],
 		native: true
