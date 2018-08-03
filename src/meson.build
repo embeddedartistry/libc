@@ -12,6 +12,15 @@ assert_files = [
 	'assert/assert.c',
 ]
 
+exit_files = [
+	'exit/_Exit.c',
+	'exit/abort.c',
+	'exit/at_quick_exit.c',
+	#'exit/atexit.c',
+	#'exit/exit.c',
+	'exit/quick_exit.c'
+]
+
 ctype_files = [
 	'ctype/isalnum.c',
 	'ctype/isalpha.c',
@@ -185,7 +194,6 @@ wchar_files = [
 ]
 
 libc_native_files = [
-	assert_files,
 	ctype_files,
 	gdtoa_files,
 	errno_files,
@@ -197,6 +205,8 @@ libc_native_files = [
 ]
 
 libc_standalone_files = libc_native_files + [
+	assert_files,
+	exit_files,
 	stdio_files,
 ]
 
