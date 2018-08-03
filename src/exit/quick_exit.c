@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "exit.h"
+#include <stdlib.h>
 
 __attribute__((weak, noreturn)) void quick_exit(int code)
 {

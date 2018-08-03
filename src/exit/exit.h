@@ -3,4 +3,4 @@
 
 void __funcs_on_quick_exit(void);
 
-#endif //EXIT_H__
+#endif // EXIT_H__
