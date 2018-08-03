@@ -3,5 +3,5 @@
 
 int iswblank(wint_t wc)
 {
-	return isblank(wc);
+	return isblank((int)wc);
 }

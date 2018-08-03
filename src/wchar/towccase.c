@@ -221,49 +221,93 @@ wchar_t __towcase(wchar_t wc, int lower)
 	int lmul = 2 * lower - 1;
 	int lmask = lower - 1;
 	/* no letters with case in these large ranges */
-	if(!iswalpha(wc) || (unsigned)wc - 0x0600 <= 0x0fff - 0x0600 ||
+	if(!iswalpha((wint_t)wc) || (unsigned)wc - 0x0600 <= 0x0fff - 0x0600 ||
 	   (unsigned)wc - 0x2e00 <= 0xa63f - 0x2e00 || (unsigned)wc - 0xa800 <= 0xab52 - 0xa800 ||
 	   (unsigned)wc - 0xabc0 <= 0xfeff - 0xabc0)
+	{
 		return wc;
+	}
+
 	/* special case because the diff between upper/lower is too big */
 	if(lower && (unsigned)wc - 0x10a0 < 0x2e)
+	{
 		if(wc > 0x10c5 && wc != 0x10c7 && wc != 0x10cd)
+		{
 			return wc;
+		}
 		else
+		{
 			return wc + 0x2d00 - 0x10a0;
+		}
+	}
+
 	if(!lower && (unsigned)wc - 0x2d00 < 0x26)
+	{
 		if(wc > 0x2d25 && wc != 0x2d27 && wc != 0x2d2d)
+		{
 			return wc;
+		}
 		else
+		{
 			return wc + 0x10a0 - 0x2d00;
+		}
+	}
+
 	if(lower && (unsigned)wc - 0x13a0 < 0x50)
+	{
 		return wc + 0xab70 - 0x13a0;
+	}
+
 	if(!lower && (unsigned)wc - 0xab70 < 0x50)
+	{
 		return wc + 0x13a0 - 0xab70;
+	}
+
 	for(i = 0; casemaps[i].len; i++)
 	{
 		int base = casemaps[i].upper + (lmask & casemaps[i].lower);
-		if((unsigned)wc - base < casemaps[i].len)
+		if(wc - base < casemaps[i].len)
 		{
 			if(casemaps[i].lower == 1)
+			{
 				return wc + lower - ((wc - casemaps[i].upper) & 1);
+			}
 			return wc + lmul * casemaps[i].lower;
 		}
 	}
+
 	for(i = 0; pairs[i][1 - lower]; i++)
 	{
 		if(pairs[i][1 - lower] == wc)
+		{
 			return pairs[i][lower];
+		}
 	}
-	if((unsigned)wc - (0x10428 - 0x28 * lower) < 0x28)
+
+	if(wc - (0x10428 - 0x28 * lower) < 0x28)
+	{
 		return wc - 0x28 + 0x50 * lower;
-	if((unsigned)wc - (0x104d8 - 0x28 * lower) < 0x24)
+	}
+
+	if(wc - (0x104d8 - 0x28 * lower) < 0x24)
+	{
 		return wc - 0x28 + 0x50 * lower;
-	if((unsigned)wc - (0x10cc0 - 0x40 * lower) < 0x33)
+	}
+
+	if(wc - (0x10cc0 - 0x40 * lower) < 0x33)
+	{
 		return wc - 0x40 + 0x80 * lower;
-	if((unsigned)wc - (0x118c0 - 0x20 * lower) < 0x20)
+	}
+
+	if(wc - (0x118c0 - 0x20 * lower) < 0x20)
+	{
 		return wc - 0x20 + 0x40 * lower;
-	if((unsigned)wc - (0x1e922 - 0x22 * lower) < 0x22)
+	}
+
+	if(wc - (0x1e922 - 0x22 * lower) < 0x22)
+	{
 		return wc - 0x22 + 0x44 * lower;
+	}
+
 	return wc;
 }

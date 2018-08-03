@@ -1,6 +1,7 @@
 #include "_towcase.h"
+#include <ctype.h>
 
 wint_t towlower(wint_t wc)
 {
-	return (unsigned)wc < 128 ? tolower(wc) : __towcase(wc, 1);
+	return (wint_t)(wc < 128 ? tolower((int)wc) : __towcase((wchar_t)wc, 1));
 }

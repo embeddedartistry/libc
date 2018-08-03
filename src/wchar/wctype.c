@@ -3,7 +3,7 @@
 
 wctype_t wctype(const char* s)
 {
-	int i;
+	wctype_t i;
 	const char* p;
 	/* order must match! */
 	static const char names[] = "alnum\0"
