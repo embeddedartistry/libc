@@ -1,5 +1,6 @@
 // Imported from musl Libc
 
+#include "strchrnul.h"
 #include <limits.h>
 #include <stdint.h>
 #include <string.h>
@@ -8,8 +9,6 @@
 #define ONES ((size_t)-1 / UCHAR_MAX)
 #define HIGHS (ONES * (UCHAR_MAX / 2 + 1))
 #define HASZERO(x) ((x)-ONES & ~(x)&HIGHS)
-
-char* __strchrnul(const char* s, int c);
 
 char* __strchrnul(const char* s, int c)
 {

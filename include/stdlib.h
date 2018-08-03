@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <wctype.h> //TODO: remove need for this? due to wchar_t
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,6 +49,32 @@ typedef struct
  * @see rand() It's guaranteed that this value is at least 32767
  * */
 #define RAND_MAX (0x7fffffff)
+
+#pragma mark - runtime -
+
+// TODO
+
+void abort(void) __attribute__((noreturn));
+// TODO: specifier int atexit(void (* _Nonnull)(void));
+int atexit(void (*)(void));
+void exit(int) __attribute__((noreturn));
+void _Exit(int) __attribute__((noreturn));
+int at_quick_exit(void (*)(void));
+_Noreturn void quick_exit(int);
+
+// Unsupported in bare metal environments:
+char* getenv(const char*);
+
+// Unsupported in bare metal environments:
+int system(const char*);
+
+#pragma mark - Multibyte APIs -
+
+int mblen(const char*, size_t);
+int mbtowc(wchar_t* __restrict, const char* __restrict, size_t);
+int wctomb(char*, wchar_t);
+size_t mbstowcs(wchar_t* __restrict, const char* __restrict, size_t);
+size_t wcstombs(char* __restrict, const wchar_t* __restrict, size_t);
 
 #pragma mark - ascii-to-x -
 
@@ -389,6 +416,9 @@ long long strtoll(const char* __restrict str, char** __restrict str_end, int bas
  *  If no conversion can be performed, ​0​ is returned.
  * */
 unsigned long long strtoull(const char* __restrict str, char** __restrict str_end, int base);
+
+// TODO:
+long double strtold(const char* __restrict, char** __restrict);
 
 #pragma mark - math -
 
