@@ -32,7 +32,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 10. [License](#license)
 11. [Acknowledgements](#acknowledgements)
 
-# About the Project
+## About the Project
 
 Embedded Artistry's `libc` is intended to provide a portable set of useful C standard library functions that allows quick bringup of new bare-metal embedded systems.
 
@@ -44,7 +44,7 @@ The functional implementations in this library have been selected for portabilit
 
 `malloc` and `free` are not included in this library. Because memory allocation schemes vary greatly with embedded systems (some not even allowing dynamic memory), you will need to supply your own implementations based on your system's needs. You can also couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
 
-# Project Status
+## Project Status
 
 This library does not supply `errno` support at this time.
 
@@ -95,16 +95,16 @@ Maybe in the future:
 * `errno` support (enabled as a compile-time switch)
 * `getopt` support
 
-# Getting Started
+## Getting Started
 
-## Requirements
+### Requirements
 
 * [Doxygen][0] must be installed to generate documentation
 * [Meson](#meson-build-system) is used as the buildsystem
 * [`git-lfs`][7] is used to store binary files
 * `make` and `gcc` should be installed in order to compile the files
 
-### Meson Build System
+#### Meson Build System
 
 The [Meson][meson] build system depends on `python3` and `ninja-build`.
 
@@ -132,7 +132,7 @@ If you want to install Meson globally on Linux, use:
 sudo -H pip3 install meson
 ```
 
-### `adr-tools`
+#### `adr-tools`
 
 This repository uses [Architecture Decision Records](https://embeddedartistry.com/blog/2018/4/5/documenting-architectural-decisions-within-our-repositories). Please install [`adr-tools`](https://github.com/npryce/adr-tools) to contribute to architecture decisions.
 
@@ -144,7 +144,7 @@ brew install adr-tools
 
 If you are using Windows or Linux, please install `adr-tools` via [GitHub](https://github.com/npryce/adr-tools).
 
-## Getting the Source
+### Getting the Source
 
 This project uses `git-lfs`, so please install it before cloning. If you cloned prior to installing `git-lfs`, simply run `git lfs pull` after installation.
 
@@ -154,7 +154,7 @@ This project is [hosted on GitHub][8]. You can clone the project directly using 
 git clone --recursive git@github.com:embeddedartistry/libc.git
 ```
 
-## Building
+### Building
 
 The library can be built by issuing the following command:
 
@@ -176,11 +176,11 @@ You can eliminate the generated `Makefile`s and buildresults using:
 make purify
 ```
 
-### Cross-compiling
+#### Cross-compiling
 
 Output is currently limited to `x86_64`, but cross-compiling for ARM will be implemented in the near future.
 
-## Installation
+### Installation
 
 Currently the best method to use this project is to build it separately and copy the contents into your tree. I will improve this method to allow easier usage as a submodule.
 
@@ -196,7 +196,7 @@ Example linker flags:
 -lc -Lpath/to/libc.a
 ```
 
-## Testing
+### Testing
 
 The tests for this library are written with [CMocka][3]. You can run the tests by issuing the following command:
 
@@ -212,7 +212,7 @@ If you would prefer to see the test result summary printed to `stdout` instead, 
 CMOCKA_MESSAGE_OUTPUT=stdout make test
 ```
 
-# Formatting
+## Formatting
 
 This repository enforces formatting using [`clang-format`][2].
 
@@ -224,7 +224,7 @@ make format
 
 Formatting is enforced by the Jenkins build server which runs continuous integration for this project. Your pull request will not be accepted if the formatting check fails.
 
-# Documentation
+## Documentation
 
 [Documentation for the latest release can always be found here][9].
 
@@ -236,26 +236,26 @@ make doc
 
 Documentation can be found in `buildresults/doc`, and the root page is `index.html`.
 
-# Need help?
+## Need help?
 
 If you need further assistance or have any questions, please [file a GitHub Issue][6] or send us an email using the [Embedded Artistry Contact Form][5].
 
-You can also reach out on Twitter: [@mbeddedartistry](https://twitter.com/mbeddedartistry/).
+You can also [reach out on Twitter: mbeddedartistry](https://twitter.com/mbeddedartistry/).
 
-# Contributing
+## Contributing
 
 If you are intersted in contributing to this project, please read our [contributing guidelines](docs/CONTRIBUTING.md).
 
-# Further Reading
+## Further Reading
 
 * [`libc` Documentation][9]
 * [`CONTRIBUTING` Guide][10]
 
-# Authors
+## Authors
 
 * **[Phillip Johnston](https://github.com/phillipjohnston)** - original library author - [Embedded Artistry](https://github.com/embeddedartistry)
 
-# License
+## License
 
 Copyright © 2017 Embedded Artistry LLC
 
@@ -263,11 +263,11 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 musl libc is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-# Acknowledgments
+## Acknowledgments
 
 I'd like to thank the following individuals for their direct contributions on this project:
 
-* @seekaddo (Documentation)
+* \@seekaddo (Documentation)
 
 Many of the open-source function implementations used in this library have been pulled from two primary sources:
 

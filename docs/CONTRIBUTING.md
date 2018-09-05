@@ -67,7 +67,7 @@ Please submit your questions in the following ways:
 * Filing a new [GitHub Issue][6]
 * [Joining the Embedded Artistry Slack team](https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)
 * [Submitting a question on the Embedded Artistry website](https://embeddedartistry.com/contact)
-* Asking a question on Twitter: [@mbeddedartistry](https://twitter.com/mbeddedartistry/).
+* Asking a question [on Twitter: (mbeddedartistry)](https://twitter.com/mbeddedartistry/).
 
 ## Feature Requests
 
@@ -296,7 +296,7 @@ Note that this will overwrite the old branch on the server, so make sure you are
 
 Anyone interested in active conversation regarding this project should [join the Embedded Artistry Slack team]https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)).
 
-You can also reach out on Twitter: [@mbeddedartistry](https://twitter.com/mbeddedartistry/).
+You can also [reach out on Twitter: mbeddedartistry](https://twitter.com/mbeddedartistry/).
 
 [0]: CODE_OF_CONDUCT.md
 [1]: style_guidelines.md
