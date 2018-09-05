@@ -68,3 +68,13 @@ subdir('src/')
 
 # Test build definition
 subdir('test/')
+
+############################
+# Supporting Build Targets #
+############################
+
+run_target('complexity',
+	command: ['tools/complexity_check.sh', '-w'])
+
+run_target('complexity-list',
+	command: ['tools/complexity_check.sh'])
