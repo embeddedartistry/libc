@@ -52,6 +52,13 @@ pipeline
         }
       }
     }
+    stage('Documentation')
+    {
+      steps
+      {
+        sh 'make doc'
+      }
+    }
     stage('Archive')
     {
       steps
