@@ -24,8 +24,8 @@ pipeline
     {
       steps
       {
-        echo 'Running make clean...'
-        sh 'make clean'
+        echo 'Removing existing build results'
+        sh 'make purify'
 
         gitTagPreBuild "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
       }
