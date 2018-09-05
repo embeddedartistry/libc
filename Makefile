@@ -65,7 +65,12 @@ ccc:
 
 .PHONY: test
 test: libc
-	$(Q)cd $(BUILDRESULTS); ./test/libc_test
+ifeq ("$(wildcard $(BUILDRESULTS)/testresults/)","")
+	$(Q)mkdir -p $(BUILDRESULTS)/testresults
+else
+	$(Q)rm -f $(BUILDRESULTS)/testresults/*
+endif
+	$(Q)CMOCKA_XML_FILE=$(BUILDRESULTS)/testresults/%g.xml ./$(BUILDRESULTS)/test/libc_test
 
 ### Help Rule ###
 .PHONY : help
