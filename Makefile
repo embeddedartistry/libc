@@ -64,13 +64,11 @@ ccc:
 	$(Q)cd $(BUILDRESULTS); ninja complexity
 
 .PHONY: test
-test: libc
-ifeq ("$(wildcard $(BUILDRESULTS)/testresults/)","")
-	$(Q)mkdir -p $(BUILDRESULTS)/testresults
-else
-	$(Q)rm -f $(BUILDRESULTS)/testresults/*
+test: groundwork
+ifneq ("$(wildcard $(BUILDRESULTS)/test/)","")
+	$(Q)rm -f $(BUILDRESULTS)/test/*.xml
 endif
-	$(Q)CMOCKA_XML_FILE=$(BUILDRESULTS)/testresults/%g.xml ./$(BUILDRESULTS)/test/libc_test
+	$(Q) cd $(BUILDRESULTS); ninja test
 
 ### Help Rule ###
 .PHONY : help
