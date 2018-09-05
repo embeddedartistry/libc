@@ -32,6 +32,13 @@ pipeline
         }
       }
     }
+    stage('Documentation')
+    {
+      steps
+      {
+        sh 'make docs'
+      }
+    }
     stage('Format')
     {
       steps
