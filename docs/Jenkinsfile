@@ -56,7 +56,7 @@ pipeline
     {
       steps
       {
-        sh 'make doc'
+        sh 'make docs'
       }
     }
     stage('Archive')
