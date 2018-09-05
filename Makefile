@@ -52,7 +52,7 @@ analyze: groundwork
 .PHONY: clean
 clean:
 	$(Q)echo Cleaning build artifacts
-	$(Q)if [ -d "$(BUILDRESULTS)" ]; then $(Q)cd $(BUILDRESULTS); ninja -t clean; fi
+	$(Q)if [ -d "$(BUILDRESULTS)" ]; then cd $(BUILDRESULTS); ninja -t clean; fi
 
 .PHONY: purify
 purify:
