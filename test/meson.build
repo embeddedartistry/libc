@@ -78,3 +78,5 @@ libc_tests = executable('libc_test',
 	link_with: libc_native,
 	native: true
 )
+
+test('libc_tests', libc_tests)
