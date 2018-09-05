@@ -68,7 +68,7 @@ test: groundwork
 ifneq ("$(wildcard $(BUILDRESULTS)/test/)","")
 	$(Q)rm -f $(BUILDRESULTS)/test/*.xml
 endif
-	$(Q) cd $(BUILDRESULTS); ninja test
+	$(Q) cd $(BUILDRESULTS); meson test
 
 ### Help Rule ###
 .PHONY : help
