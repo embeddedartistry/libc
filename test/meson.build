@@ -70,7 +70,7 @@ libc_test_files = [
 	'test/rand.c'
 ]
 
-libcmocka = meson.get_compiler('c', cross : false).find_library('cmocka', dirs: meson.source_root() + '/test')
+libcmocka = meson.get_compiler('c').find_library('cmocka', dirs: meson.source_root() + '/test')
 
 libc_tests = executable('libc_test',
 	libc_test_files,
