@@ -50,6 +50,7 @@ uint64_t test_randn(uint64_t n)
 	m -= m % n;
 	while((r = rand64()) >= m)
 		;
+
 	return r % n;
 }
 
@@ -58,20 +59,21 @@ uint64_t test_randint(uint64_t a, uint64_t b)
 {
 	uint64_t n = b - a + 1;
 	if(n)
+	{
 		return a + test_randn(n);
+	}
+
 	return rand64();
 }
 
 /* shuffle the elements of p and q until the elements in p are well shuffled */
 static void shuffle2(uint64_t* p, uint64_t* q, size_t np, size_t nq)
 {
-	size_t r;
-	uint64_t t;
-
 	while(np)
 	{
-		r = test_randn(nq + np--);
-		t = p[np];
+		size_t r = test_randn(nq + np--);
+		uint64_t t = p[np];
+
 		if(r < nq)
 		{
 			p[np] = q[r];
@@ -108,11 +110,16 @@ static int insert(uint64_t* tab, size_t len, uint64_t v)
 	while(tab[i])
 	{
 		if(tab[i] == v)
+		{
 			return -1;
+		}
+
 		i += j++;
 		i &= len - 1;
 	}
+
 	tab[i] = v;
+
 	return 0;
 }
 
@@ -120,17 +127,24 @@ static int insert(uint64_t* tab, size_t len, uint64_t v)
 int t_choose(uint64_t n, size_t k, uint64_t* p)
 {
 	uint64_t* tab;
-	size_t i, j, len;
+	size_t i, len;
 
 	if(n < k)
+	{
 		return -1;
+	}
 
 	if(n < 16)
 	{
 		/* no alloc */
 		while(k)
+		{
 			if(test_randn(n--) < k)
+			{
 				p[--k] = n;
+			}
+		}
+
 		return 0;
 	}
 
@@ -139,11 +153,15 @@ int t_choose(uint64_t n, size_t k, uint64_t* p)
 		/* no alloc, n > 15 > 2*k */
 		for(i = 0; i < k;)
 		{
+			size_t j;
 			p[i] = test_randn(n);
 			for(j = 0; p[j] != p[i]; j++)
 				;
+
 			if(j == i)
+			{
 				i++;
+			}
 		}
 		return 0;
 	}
@@ -154,32 +172,62 @@ int t_choose(uint64_t n, size_t k, uint64_t* p)
 	{
 		/* allocation is n-k < 4*k */
 		tab = malloc((n - k) * sizeof *tab);
+
 		if(!tab)
+		{
 			return -1;
+		}
+
 		for(i = 0; i < k; i++)
+		{
 			p[i] = i;
+		}
+
 		for(; i < n; i++)
+		{
 			tab[i - k] = i;
+		}
+
 		if(k < n - k)
+		{
 			shuffle2(p, tab, k, n - k);
+		}
 		else
+		{
 			shuffle2(tab, p, n - k, k);
+		}
+
 		free(tab);
+
 		return 0;
 	}
 
 	/* allocation is 2*k <= len < 4*k */
 	for(len = 16; len < 2 * k; len *= 2)
 		;
+
 	tab = calloc(len, sizeof *tab);
+
 	if(!tab)
+	{
 		return -1;
+	}
+
 	for(i = 0; i < k; i++)
+	{
 		while(insert(tab, len, test_randn(n) + 1))
 			;
+	}
+
 	for(i = 0; i < len; i++)
+	{
 		if(tab[i])
+		{
 			*p++ = tab[i] - 1;
+		}
+	}
+
 	free(tab);
+
 	return 0;
 }
