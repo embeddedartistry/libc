@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="1.84"/>
+    <errors>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;func&apos; can be reduced." verbose="The scope of the variable &apos;func&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/exit/at_quick_exit.c" line="11"/>
+            <symbol>func</symbol>
+        </error>
+        <error id="resourceLeak" severity="error" msg="Resource leak: f" verbose="Resource leak: f" cwe="775">
+            <location file="src/gdtoa/src/arithchk.c" line="177"/>
+            <symbol>f</symbol>
+        </error>
+        <error id="resourceLeak" severity="error" msg="Resource leak: f" verbose="Resource leak: f" cwe="775">
+            <location file="src/gdtoa/src/arithchk.c" line="180"/>
+            <symbol>f</symbol>
+        </error>
+        <error id="unusedLabel" severity="style" msg="Label &apos;trimzeros&apos; is not used." verbose="Label &apos;trimzeros&apos; is not used." cwe="398">
+            <location file="src/gdtoa/src/dtoa.c" line="797"/>
+            <symbol>trimzeros</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;i&apos; can be reduced." verbose="The scope of the variable &apos;i&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/g__fmt.c" line="45"/>
+            <symbol>i</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;j&apos; can be reduced." verbose="The scope of the variable &apos;j&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/g__fmt.c" line="45"/>
+            <symbol>j</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;k&apos; can be reduced." verbose="The scope of the variable &apos;k&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/g__fmt.c" line="45"/>
+            <symbol>k</symbol>
+        </error>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;k&gt;0&apos; is always false" verbose="Condition &apos;k&gt;0&apos; is always false" cwe="570">
+            <location file="src/gdtoa/src/gdtoa.c" line="333" info="Condition &apos;k&gt;0&apos; is always false"/>
+            <location file="src/gdtoa/src/gdtoa.c" line="322" info="Assuming that condition &apos;k==0&apos; is not redundant"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;xe&apos; can be reduced." verbose="The scope of the variable &apos;xe&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/gmisc.c" line="41"/>
+            <symbol>xe</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/misc.c" line="51"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;len&apos; can be reduced." verbose="The scope of the variable &apos;len&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/misc.c" line="54"/>
+            <symbol>len</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;p05&apos; can be reduced." verbose="The scope of the variable &apos;p05&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/misc.c" line="376"/>
+            <symbol>p05</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;c&apos; can be reduced." verbose="The scope of the variable &apos;c&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/gdtoa/src/smisc.c" line="119"/>
+            <symbol>c</symbol>
+        </error>
+        <error id="clarifyCalculation" severity="style" msg="Clarify calculation precedence for &apos;&amp;&apos; and &apos;?&apos;." verbose="Suspicious calculation. Please use parentheses to clarify the code. The code &apos;&apos;a&amp;b?c:d&apos;&apos; should be written as either &apos;&apos;(a&amp;b)?c:d&apos;&apos; or &apos;&apos;a&amp;(b?c:d)&apos;&apos;." cwe="783">
+            <location file="src/gdtoa/src/strtodI.c" line="70"/>
+        </error>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;is_ll&apos; is always true" verbose="Condition &apos;is_ll&apos; is always true" cwe="571">
+            <location file="src/stdio/printf.c" line="773" info="Condition &apos;is_ll&apos; is always true"/>
+            <location file="src/stdio/printf.c" line="772" info="Assignment &apos;is_ll=sizeof(unsigned long)==sizeof(long long)&apos;, assigned value is 1"/>
+        </error>
+        <error id="clarifyCalculation" severity="style" msg="Clarify calculation precedence for &apos;&amp;&apos; and &apos;?&apos;." verbose="Suspicious calculation. Please use parentheses to clarify the code. The code &apos;&apos;a&amp;b?c:d&apos;&apos; should be written as either &apos;&apos;(a&amp;b)?c:d&apos;&apos; or &apos;&apos;a&amp;(b?c:d)&apos;&apos;." cwe="783">
+            <location file="src/stdio/printf.c" line="254"/>
+        </error>
+        <error id="clarifyCalculation" severity="style" msg="Clarify calculation precedence for &apos;&amp;&apos; and &apos;?&apos;." verbose="Suspicious calculation. Please use parentheses to clarify the code. The code &apos;&apos;a&amp;b?c:d&apos;&apos; should be written as either &apos;&apos;(a&amp;b)?c:d&apos;&apos; or &apos;&apos;a&amp;(b?c:d)&apos;&apos;." cwe="783">
+            <location file="src/stdio/printf.c" line="279"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;len&apos; can be reduced." verbose="The scope of the variable &apos;len&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/string/strdup.c" line="44"/>
+            <symbol>len</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;len&apos; can be reduced." verbose="The scope of the variable &apos;len&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/string/strndup.c" line="43"/>
+            <symbol>len</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;sc&apos; can be reduced." verbose="The scope of the variable &apos;sc&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/string/strnstr.c" line="50"/>
+            <symbol>sc</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;len&apos; can be reduced." verbose="The scope of the variable &apos;len&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="src/string/strnstr.c" line="51"/>
+            <symbol>len</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="56" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="57" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="58" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="59" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="60" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="61" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalnum() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isalnum() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalnum.c" line="62" info="Invalid argument"/>
+            <symbol>isalnum</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="46" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="47" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="48" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="49" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="50" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="51" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isalpha() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isalpha() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isalpha.c" line="52" info="Invalid argument"/>
+            <symbol>isalpha</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="45" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="46" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="47" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="48" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="49" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="50" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isblank() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isblank() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isblank.c" line="51" info="Invalid argument"/>
+            <symbol>isblank</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="37" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="38" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="39" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="40" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="41" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="42" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid iscntrl() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid iscntrl() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/iscntrl.c" line="43" info="Invalid argument"/>
+            <symbol>iscntrl</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="41" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="42" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="43" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="44" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="45" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="46" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isdigit() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isdigit() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isdigit.c" line="47" info="Invalid argument"/>
+            <symbol>isdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="36" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="37" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="38" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="39" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="40" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="41" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isgraph() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isgraph() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isgraph.c" line="42" info="Invalid argument"/>
+            <symbol>isgraph</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="41" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="42" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="43" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="44" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="45" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="46" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid islower() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid islower() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/islower.c" line="47" info="Invalid argument"/>
+            <symbol>islower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="38" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="39" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="40" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="41" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="42" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="43" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isprint() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isprint() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isprint.c" line="44" info="Invalid argument"/>
+            <symbol>isprint</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="67" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="68" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="69" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="70" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="71" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="72" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid ispunct() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid ispunct() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/ispunct.c" line="73" info="Invalid argument"/>
+            <symbol>ispunct</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="49" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="50" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="51" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="52" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="53" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="54" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isspace() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isspace() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isspace.c" line="55" info="Invalid argument"/>
+            <symbol>isspace</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="41" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="42" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="43" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="44" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="45" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="46" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isupper() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isupper() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isupper.c" line="47" info="Invalid argument"/>
+            <symbol>isupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="61" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="62" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="63" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="64" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="65" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="66" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid isxdigit() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid isxdigit() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/isxdigit.c" line="67" info="Invalid argument"/>
+            <symbol>isxdigit</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="39" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="40" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="41" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="42" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="43" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="44" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid tolower() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid tolower() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/tolower.c" line="45" info="Invalid argument"/>
+            <symbol>tolower</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is 1024 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="39" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is 15185 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="40" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is 1808303 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="41" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is 2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="42" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is -1 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="43" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is -100 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="44" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid toupper() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." verbose="Invalid toupper() argument nr 1. The value is -2147483647 but the valid values are &apos;0:255&apos;." cwe="628">
+            <location file="test/ctype/toupper.c" line="45" info="Invalid argument"/>
+            <symbol>toupper</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/atof.c" line="93"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/div.c" line="150"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;y&apos; can be reduced." verbose="The scope of the variable &apos;y&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/div.c" line="150"/>
+            <symbol>y</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;div&apos; can be reduced." verbose="The scope of the variable &apos;div&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/div.c" line="150"/>
+            <symbol>div</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;mod&apos; can be reduced." verbose="The scope of the variable &apos;mod&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/div.c" line="150"/>
+            <symbol>mod</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/lldiv.c" line="150"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;y&apos; can be reduced." verbose="The scope of the variable &apos;y&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/lldiv.c" line="150"/>
+            <symbol>y</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;div&apos; can be reduced." verbose="The scope of the variable &apos;div&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/lldiv.c" line="150"/>
+            <symbol>div</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;mod&apos; can be reduced." verbose="The scope of the variable &apos;mod&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/lldiv.c" line="150"/>
+            <symbol>mod</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/strtod.c" line="94"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;x&apos; can be reduced." verbose="The scope of the variable &apos;x&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/strtof.c" line="57"/>
+            <symbol>x</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid strtol() argument nr 3. The value is 37 but the valid values are &apos;0,2:36&apos;." verbose="Invalid strtol() argument nr 3. The value is 37 but the valid values are &apos;0,2:36&apos;." cwe="628">
+            <location file="test/stdlib/strtol.c" line="63" info="Invalid argument"/>
+            <symbol>strtol</symbol>
+        </error>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid strtoll() argument nr 3. The value is 37 but the valid values are &apos;0,2:36&apos;." verbose="Invalid strtoll() argument nr 3. The value is 37 but the valid values are &apos;0,2:36&apos;." cwe="628">
+            <location file="test/stdlib/strtoll.c" line="47" info="Invalid argument"/>
+            <symbol>strtoll</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;s&apos; can be reduced." verbose="The scope of the variable &apos;s&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file="test/stdlib/strtoull.c" line="21"/>
+            <symbol>s</symbol>
+        </error>
+        <error id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds." verbose="Buffer is accessed out of bounds." cwe="788">
+            <location file="test/string/memcmp.c" line="24"/>
+        </error>
+        <error id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds." verbose="Buffer is accessed out of bounds." cwe="788">
+            <location file="test/string/memcmp.c" line="25"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/memcmp.c" line="26" info="Null pointer dereference"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/memcmp.c" line="27" info="Null pointer dereference"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/memcmp.c" line="30" info="Null pointer dereference"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc&quot;&apos; and &apos;&quot;abc&quot;&apos;, are always identical. Therefore the comparison is unnecessary and looks suspicious." cwe="571">
+            <location file="test/string/memcmp.c" line="21"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/strcmp.c" line="24" info="Null pointer dereference"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/strcmp.c" line="25" info="Null pointer dereference"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476">
+            <location file="test/string/strcmp.c" line="28" info="Null pointer dereference"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc&quot;&apos; and &apos;&quot;abc&quot;&apos;, are always identical. Therefore the comparison is unnecessary and looks suspicious." cwe="571">
+            <location file="test/string/strcmp.c" line="21"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc 123&quot;&apos; and &apos;&quot;abc&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strcmp.c" line="22"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc&quot;&apos; and &apos;&quot;abc 123&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strcmp.c" line="23"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc 123&quot;&apos; and &apos;&quot;abc&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strcmp.c" line="31"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc&quot;&apos; and &apos;&quot;abc 123&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strcmp.c" line="32"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abcd&quot;&apos; and &apos;&quot;abce&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strncmp.c" line="20"/>
+        </error>
+        <error id="staticStringCompare" severity="warning" msg="Unnecessary comparison of static strings." verbose="The compared strings, &apos;&quot;abc&quot;&apos; and &apos;&quot;abd&quot;&apos;, are always unequal. Therefore the comparison is unnecessary and looks suspicious." cwe="570">
+            <location file="test/string/strncmp.c" line="23"/>
+        </error>
+    </errors>
+</results>

@@ -91,3 +91,18 @@ run_target('cppcheck',
 	# Source Directories
 	'src', 'test']
 )
+
+run_target('cppcheck-xml',
+	command: ['tools/cppcheck_xml.sh',
+		# Options
+		'--quiet', '--enable=style', '--force',
+		# XML Options
+		'--xml', '--xml-version=2',
+		# Include Directories
+		'-I', meson.current_source_dir() + '/include',
+		# Source Directories
+		'src', 'test',
+		# Redirect Output
+		'1>' + meson.build_root() + '/cppcheck.xml'
+	]
+)
