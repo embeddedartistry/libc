@@ -69,7 +69,7 @@ pipeline
       {
         always
         {
-          publishCppcheck failureThreshold: '50', healthy: '5', newFailureThreshold: '5', newThreshold: '1', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '10'
+          publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '50', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '100'
         }
       }
     }
