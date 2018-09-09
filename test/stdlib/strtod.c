@@ -13,7 +13,7 @@
 #include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <cmocka/cmocka.h>
+#include <cmocka.h>
 // clang-format on
 
 // TODO: "strtod INFINITY tests are not enabled"

@@ -12,7 +12,7 @@
 #include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <cmocka/cmocka.h>
+#include <cmocka.h>
 // clang-format on
 
 static void strdup_test(void** state)

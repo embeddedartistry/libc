@@ -11,7 +11,7 @@
 #include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <cmocka/cmocka.h>
+#include <cmocka.h>
 // clang-format on
 
 #pragma mark - Definitions -

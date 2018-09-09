@@ -99,6 +99,7 @@ Maybe in the future:
 
 ### Requirements
 
+* [CMocka][3] must be installed on your system to compile the unit tests
 * [Doxygen][0] must be installed to generate documentation
 * [Meson](#meson-build-system) is used as the buildsystem
 * [`git-lfs`][7] is used to store binary files
