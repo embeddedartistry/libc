@@ -59,7 +59,7 @@ pipeline
         sh 'make docs'
       }
     }
-    stage('Static Analysis')
+    stage('CppCheck')
     {
       steps
       {
@@ -71,6 +71,23 @@ pipeline
         {
           publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '50', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '100'
         }
+      }
+    }
+    stage('Clang Analyzer')
+    {
+      steps
+      {
+        sh 'make analyze'
+      }
+    }
+    stage('ScanWorkspace')
+    {
+      steps
+      {
+        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '1', unstableTotalAll: '15', useStableBuildAsReference: true
+
+        // Scan workspace to check open tasks
+        openTasks(defaultEncoding: '', excludePattern: 'lib/external/**, os/**, build/gen/**, build/examples/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
       }
     }
     stage('Archive')
@@ -93,12 +110,6 @@ pipeline
   {
     always
     {
-      //Scan console log for Clang warnings
-      warnings(canResolveRelativePaths: true, categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', useStableBuildAsReference: true)
-
-      // Scan workspace to check open tasks
-      openTasks(defaultEncoding: '', excludePattern: 'lib/external/**, os/**, build/gen/**, build/examples/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
-
       // Report Status
       slackNotify(currentBuild.currentResult)
       gitTagCleanup "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"

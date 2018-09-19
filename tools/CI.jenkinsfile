@@ -10,6 +10,33 @@ pipeline
   }
   stages
   {
+    stage('Setup')
+    {
+      steps
+      {
+        setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Started', 'PENDING')
+      }
+    }
+    stage('Clean')
+    {
+      when
+      {
+        expression
+        {
+          /*
+          * If the previous build suceeeded (unstable means test failed but build passed)
+          * then we continue on in CI mode. If the previous build failed we want to
+          * start with a clean environment. This is done to reduce manual user interation.
+          */
+          return !(didLastBuildSucceed())
+        }
+      }
+      steps
+      {
+        echo('Previous build failed: Running a clean build.')
+        sh 'make purify'
+      }
+    }
     stage('Build')
     {
       steps
@@ -32,7 +59,7 @@ pipeline
         }
       }
     }
-    stage('Static Analysis')
+    stage('CppCheck')
     {
       steps
       {
@@ -42,8 +69,15 @@ pipeline
       {
         always
         {
-          publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '50', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '100'
+          publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '1', pattern: '**/cppcheck.xml', threshold: '150', unHealthy: '200'
         }
+      }
+    }
+    stage('Clang Analyzer')
+    {
+      steps
+      {
+        sh 'make analyze'
       }
     }
     stage('Documentation')
@@ -60,9 +94,38 @@ pipeline
         clangFormat()
       }
     }
+    stage('ScanWorkspace')
+    {
+      steps
+      {
+        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '1', unstableTotalAll: '15', useStableBuildAsReference: true
+
+        // Scan workspace to check open tasks
+        openTasks(defaultEncoding: '', excludePattern: 'lib/external/**, os/**, build/gen/**, build/examples/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
+      }
+    }
   }
   post
   {
+    success
+    {
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Successful', 'SUCCESS')
+    }
+    failure
+    {
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Failed', 'FAILURE')
+    }
+    unstable
+    {
+      // Unstable occurs when there are failing tests
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI build has test or warning failures', 'FAILURE')
+    }
+    aborted
+    {
+      echo "Build manually aborted on Jenkins"
+      slackNotify('ABORTED')
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Aborted', 'ERROR')
+    }
     always
     {
       slackNotify(currentBuild.currentResult)
