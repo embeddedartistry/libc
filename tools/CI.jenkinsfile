@@ -105,6 +105,11 @@ pipeline
     {
       setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Failed', 'FAILURE')
     }
+    unstable
+    {
+      // Unstable occurs when there are failing tests
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI build has test failures', 'FAILURE')
+    }
     aborted
     {
       echo "Build manually aborted on Jenkins"
