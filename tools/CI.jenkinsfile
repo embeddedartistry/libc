@@ -10,7 +10,7 @@ pipeline
   }
   stages
   {
-    state('Setup')
+    stage('Setup')
     {
       steps
       {
