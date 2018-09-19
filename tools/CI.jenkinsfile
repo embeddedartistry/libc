@@ -79,7 +79,7 @@ pipeline
       {
         sh 'make analyze'
 
-        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '0', useStableBuildAsReference: true
+        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '1', unstableTotalAll: '15', useStableBuildAsReference: true
       }
       post
       {
