@@ -79,13 +79,13 @@ pipeline
       {
         sh 'make analyze'
 
-        warnings canResolveRelativePaths: false, categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '1', useStableBuildAsReference: true
+        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '0', useStableBuildAsReference: true
       }
       post
       {
         success
         {
-          setGithubStatus('continuous-integration/jenkins/clang-analyze', 'Libc CI Build Started', 'SUCCESS')
+          setGithubStatus('continuous-integration/jenkins/clang-analyze', 'clang-analyzer successful', 'SUCCESS')
         }
         unstable
         {
