@@ -76,7 +76,10 @@ libc_tests = executable('libc_test',
 	libc_test_files,
 	c_args: [stdlib_compiler_flags, '-Wno-vla', '-Wno-unused-parameter'],
 	link_args: [stdlib_link_flags],
-	include_directories: [libc_includes, arch_include],
+	include_directories:
+		[libc_includes,
+		arch_include,
+		include_directories('/usr/local/include/')],
 	link_with: [libc_native],
 	dependencies: [libcmocka],
 	native: true
