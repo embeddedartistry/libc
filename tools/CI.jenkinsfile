@@ -78,6 +78,23 @@ pipeline
       steps
       {
         sh 'make analyze'
+
+        warnings canResolveRelativePaths: false, categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '', failedNewAll: '5', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '1', useStableBuildAsReference: true
+      }
+      post
+      {
+        success
+        {
+          setGithubStatus('continuous-integration/jenkins/clang-analyze', 'Libc CI Build Started', 'SUCCESS')
+        }
+        unstable
+        {
+          setGithubStatus('continuous-integration/jenkins/clang-analyze', 'New clang-analyzer warnings introduced, please review and address.', 'FAILURE')
+        }
+        failure
+        {
+          setGithubStatus('continuous-integration/jenkins/clang-analyze', 'New clang-analyzer warnings exceed threshold', 'ERROR')
+        }
       }
     }
     stage('Documentation')
