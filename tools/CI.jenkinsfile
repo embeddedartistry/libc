@@ -10,6 +10,33 @@ pipeline
   }
   stages
   {
+    state('Setup')
+    {
+      steps
+      {
+        setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Started', 'PENDING')
+      }
+    }
+    stage('Clean')
+    {
+      when
+      {
+        expression
+        {
+          /*
+          * If the previous build suceeeded (unstable means test failed but build passed)
+          * then we continue on in CI mode. If the previous build failed we want to
+          * start with a clean environment. This is done to reduce manual user interation.
+          */
+          return !(didLastBuildSucceed())
+        }
+      }
+      steps
+      {
+        echo('Previous build failed: Running a clean build.')
+        sh 'make purify'
+      }
+    }
     stage('Build')
     {
       steps
@@ -70,6 +97,20 @@ pipeline
   }
   post
   {
+    success
+    {
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Successful', 'SUCCESS')
+    }
+    failure
+    {
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Failed', 'FAILURE')
+    }
+    aborted
+    {
+      echo "Build manually aborted on Jenkins"
+      slackNotify('ABORTED')
+      setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Aborted', 'ERROR')
+    }
     always
     {
       slackNotify(currentBuild.currentResult)
