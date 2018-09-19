@@ -59,7 +59,7 @@ pipeline
         sh 'make docs'
       }
     }
-    stage('Static Analysis')
+    stage('CppCheck')
     {
       steps
       {
@@ -71,6 +71,13 @@ pipeline
         {
           publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '50', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '100'
         }
+      }
+    }
+    stage('Clang Analyzer')
+    {
+      steps
+      {
+        sh 'make analyze'
       }
     }
     stage('Archive')
