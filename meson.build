@@ -64,7 +64,7 @@ printf_files = files('printf/printf.c')
 
 printf_tests = executable('printf_test',
 	['printf/test/test_suite.cpp'],
-	cpp_args: ['-Wno-format', '-Wnoformat-invalid-specifier', '-Wnoold-style-cast'],
+	cpp_args: ['-Wno-format', '-Wno-format-invalid-specifier', '-Wno-old-style-cast', '-Wno-missing-prototypes'],
 	include_directories: [include_directories('printf/test', is_system: true)],
 	native: true
 )
