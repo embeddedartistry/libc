@@ -194,6 +194,7 @@ wchar_files = [
 ]
 
 libc_native_files = [
+	assert_files,
 	ctype_files,
 	gdtoa_files,
 	errno_files,
@@ -205,7 +206,6 @@ libc_native_files = [
 ]
 
 libc_standalone_files = libc_native_files + [
-	assert_files,
 	exit_files,
 	stdio_files,
 ]
