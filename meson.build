@@ -56,6 +56,13 @@ if get_option('enable-pedantic-error') == true
 	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
 endif
 
+############################
+# Process external modules #
+############################
+
+printf_files = files('printf/printf.c')
+printf_include = include_directories('printf')
+
 #######################
 # Process source tree #
 #######################
