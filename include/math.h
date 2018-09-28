@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <openlibm.h>
+
 double fabs(double);
 float fabsf(float);
 // long double fabsl(long double);

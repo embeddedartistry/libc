@@ -219,7 +219,7 @@ libc = static_library(
 	'c',
 	libc_standalone_files,
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
-	include_directories: [libc_includes, arch_include, printf_include]
+	include_directories: [libc_includes, libc_system_includes, arch_include, printf_include]
 )
 
 # We don't build the stdio files for the native variant, as we rely on the
@@ -228,7 +228,7 @@ libc_native = static_library(
 		'c_native',
 		libc_native_files,
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
-		include_directories: [libc_includes, arch_include],
+		include_directories: [libc_includes, libc_system_includes, arch_include],
 		native: true
 )
 

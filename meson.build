@@ -68,7 +68,12 @@ printf_include = include_directories('printf')
 #######################
 
 libc_includes = include_directories('include', 'src/gdtoa/include')
-libc_system_includes = include_directories('include', 'src/gdtoa/include', is_system: true)
+libc_system_includes = include_directories(
+	'include',
+	'openlibm/include',
+	'openlibm/src',
+	'src/gdtoa/include',
+	is_system: true)
 
 # Library build definition
 subdir('src/')
