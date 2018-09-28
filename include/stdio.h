@@ -1,11 +1,10 @@
 #ifndef STDIO_H__
 #define STDIO_H__
 
+#include <printf.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <wctype.h> //TODO: eliminate need for this header here (refactor types?)
-
-#include "printf.h"
 
 /// NOTE: The files included here are primarily stubs to get C++ compiling.
 /// If you are linking on a host machine, these functions will need to be

@@ -61,7 +61,6 @@ endif
 ############################
 
 printf_files = files('printf/printf.c')
-printf_include = include_directories('printf')
 
 #######################
 # Process source tree #
@@ -73,6 +72,7 @@ libc_system_includes = include_directories(
 	'openlibm/include',
 	'openlibm/src',
 	'src/gdtoa/include',
+	'printf',
 	is_system: true)
 
 # Library build definition
