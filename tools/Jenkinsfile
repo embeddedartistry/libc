@@ -85,10 +85,10 @@ pipeline
     {
       steps
       {
-        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '**/buildresults/**, ', failedNewAll: '15', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '15', unstableTotalAll: '15', useStableBuildAsReference: true
+        warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '**/buildresults/**, **/printf/**, **/openlibm/**', failedNewAll: '15', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '15', unstableTotalAll: '15', useStableBuildAsReference: true
 
         // Scan workspace to check open tasks
-        openTasks(defaultEncoding: '', excludePattern: 'buildresults/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
+        openTasks(defaultEncoding: '', excludePattern: 'buildresults/**, printf/**, openlibm/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
       }
     }
     stage('Archive')
