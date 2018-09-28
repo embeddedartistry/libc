@@ -62,6 +62,23 @@ endif
 
 printf_files = files('printf/printf.c')
 
+printf_tests = executable('printf_test',
+	['printf/test/test_suite.cpp'],
+	cpp_args: ['-Wno-format', '-Wnoformat-invalid-specifier', '-Wnoold-style-cast'],
+	include_directories: [include_directories('printf/test', is_system: true)],
+	native: true
+)
+
+test('printf_tests',
+	printf_tests,
+	args: ['-r', 'junit', '-o', meson.build_root() + '/printf_tests.xml'])
+
+run_target('printf-tests',
+	command: [printf_tests])
+
+run_target('printf-tests-xml',
+	command: [printf_tests, '-r', 'junit', '-o', meson.build_root() + '/framework_tests.xml'])
+
 #######################
 # Process source tree #
 #######################

@@ -49,6 +49,7 @@ pipeline
         {
           // Report Tests
           junit 'buildresults/test/*.xml'
+          junit 'buildresults/printf_tests.xml'
         }
       }
     }
