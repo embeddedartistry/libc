@@ -78,6 +78,7 @@ libc_tests = executable('libc_test',
 	link_args: [stdlib_link_flags],
 	include_directories:
 		[libc_includes,
+		libc_system_includes,
 		arch_include,
 		include_directories('/usr/local/include/')],
 	link_with: [libc_native],

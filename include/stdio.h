@@ -1,8 +1,8 @@
 #ifndef STDIO_H__
 #define STDIO_H__
 
+#include <stdarg.h>
 #include <stddef.h>
-
 #include <wctype.h> //TODO: eliminate need for this header here (refactor types?)
 
 #include "printf.h"

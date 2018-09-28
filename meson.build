@@ -56,12 +56,24 @@ if get_option('enable-pedantic-error') == true
 	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
 endif
 
+############################
+# Process external modules #
+############################
+
+printf_files = files('printf/printf.c')
+printf_include = include_directories('printf')
+
 #######################
 # Process source tree #
 #######################
 
 libc_includes = include_directories('include', 'src/gdtoa/include')
-libc_system_includes = include_directories('include', 'src/gdtoa/include', is_system: true)
+libc_system_includes = include_directories(
+	'include',
+	'openlibm/include',
+	'openlibm/src',
+	'src/gdtoa/include',
+	is_system: true)
 
 # Library build definition
 subdir('src/')

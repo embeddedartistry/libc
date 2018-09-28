@@ -7,3 +7,9 @@
 [submodule "meson-buildsystem"]
 	path = build
 	url = git@github.com:embeddedartistry/meson-buildsystem.git
+[submodule "printf"]
+	path = printf
+	url = git@github.com:embeddedartistry/printf.git
+[submodule "openlibm"]
+	path = openlibm
+	url = git@github.com:JuliaMath/openlibm.git
