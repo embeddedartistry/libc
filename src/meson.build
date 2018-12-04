@@ -206,7 +206,7 @@ libc_native_files = [
 
 libc_standalone_files = [exit_files, stdio_files, printf_files]
 
-libc_lint_files = files(libc_native_files, exit_files, stdio_files) + printf_files
+libc_lint_files = files(libc_native_files, exit_files, stdio_files)
 
 ##
 # For local builds, we use libc_includes to generate our own warnings
