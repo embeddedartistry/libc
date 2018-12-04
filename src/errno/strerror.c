@@ -30,9 +30,21 @@ char* strerror(int e)
 		}
 	}
 	for(i = 0; errid[i] && errid[i] != e; i++)
-		;
-	for(s = errmsg; i; s++, i--)
-		for(; *s; s++)
+	{
+		{
 			;
+		}
+	}
+	for(s = errmsg; i; s++, i--)
+	{
+		{
+			for(; *s; s++)
+			{
+				{
+					;
+				}
+			}
+		}
+	}
 	return (char*)(uintptr_t)s;
 }

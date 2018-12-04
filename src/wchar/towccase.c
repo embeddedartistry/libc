@@ -235,10 +235,8 @@ wchar_t __towcase(wchar_t wc, int lower)
 		{
 			return wc;
 		}
-		else
-		{
-			return wc + 0x2d00 - 0x10a0;
-		}
+
+		return wc + 0x2d00 - 0x10a0;
 	}
 
 	if(!lower && (unsigned)wc - 0x2d00 < 0x26)
@@ -247,10 +245,8 @@ wchar_t __towcase(wchar_t wc, int lower)
 		{
 			return wc;
 		}
-		else
-		{
-			return wc + 0x10a0 - 0x2d00;
-		}
+
+		return wc + 0x10a0 - 0x2d00;
 	}
 
 	if(lower && (unsigned)wc - 0x13a0 < 0x50)

@@ -47,7 +47,6 @@ char* strndup(const char* str, size_t n)
 	{
 		for(len = 0; len < n && str[len]; len++)
 		{
-			continue;
 		}
 
 		if((copy = malloc(len + 1)) == NULL)

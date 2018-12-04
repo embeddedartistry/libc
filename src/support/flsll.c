@@ -38,7 +38,11 @@ int flsll(long long mask)
 	return __builtin_flsll(mask);
 #elif __has_builtin(__builtin_clzll)
 	if(mask == 0)
-		return (0);
+	{
+		{
+			return (0);
+		}
+	}
 
 	return ((int)sizeof(mask) << 3) - __builtin_clzll((unsigned long long)mask);
 #else

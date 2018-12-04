@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-void* __memrchr(const void*, int, size_t);
+void* __memrchr(const void* /*m*/ /*m*/, int /*c*/ /*c*/, size_t /*n*/ /*n*/);
 
 void* __memrchr(const void* m, int c, size_t n)
 {

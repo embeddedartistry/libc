@@ -52,8 +52,12 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 	const char* src = src0;
 	size_t t;
 
-	if(length == 0 || dst == src) /* nothing to do */
-		goto done;
+	if(length == 0 || dst == src)
+	{
+		{ /* nothing to do */
+			goto done;
+		}
+	}
 
 /*
  * Macros: loop-t-times; and loop-t-times, t>0
@@ -76,9 +80,17 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 			 * unless the low bits match.
 			 */
 			if((t ^ (uintptr_t)dst) & wmask || length < wsize)
-				t = length;
+			{
+				{
+					t = length;
+				}
+			}
 			else
-				t = wsize - (t & wmask);
+			{
+				{
+					t = wsize - (t & wmask);
+				}
+			}
 			length -= t;
 			TLOOP1(*dst++ = *src++);
 		}
@@ -104,9 +116,17 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 		if((t | (uintptr_t)dst) & wmask)
 		{
 			if((t ^ (uintptr_t)dst) & wmask || length <= wsize)
-				t = length;
+			{
+				{
+					t = length;
+				}
+			}
 			else
-				t &= wmask;
+			{
+				{
+					t &= wmask;
+				}
+			}
 			length -= t;
 			TLOOP1(*--dst = *--src);
 		}

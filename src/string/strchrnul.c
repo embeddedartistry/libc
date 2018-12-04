@@ -32,9 +32,17 @@ char* __strchrnul(const char* s, int c)
 	k = ONES * (unsigned long)c;
 
 	for(w = (const void*)s; !HASZERO(*w) && !HASZERO(*w ^ k); w++)
-		;
+	{
+		{
+			;
+		}
+	}
 	for(s = (const void*)w; *s && *(const unsigned char*)s != c; s++)
-		;
+	{
+		{
+			;
+		}
+	}
 
 	return (char*)(uintptr_t)s;
 }

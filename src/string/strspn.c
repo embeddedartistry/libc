@@ -17,14 +17,26 @@ size_t strspn(const char* s, const char* c)
 	if(!c[1])
 	{
 		for(; *s == *c; s++)
-			;
+		{
+			{
+				;
+			}
+		}
 		return (uintptr_t)s - (uintptr_t)a;
 	}
 
 	for(; *c && BITOP(byteset, *(const unsigned char*)c, |=); c++)
-		;
+	{
+		{
+			;
+		}
+	}
 	for(; *s && BITOP(byteset, *(const unsigned char*)s, &); s++)
-		;
+	{
+		{
+			;
+		}
+	}
 
 	return (uintptr_t)s - (uintptr_t)a;
 }

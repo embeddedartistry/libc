@@ -36,8 +36,10 @@ typedef int cmp_t(void*, const void*, const void*);
 #else
 typedef int cmp_t(const void*, const void*);
 #endif
-static inline char* med3(char*, char*, char*, cmp_t*, void*) __attribute__((always_inline));
-static inline void swapfunc(char*, char*, size_t, size_t) __attribute__((always_inline));
+static inline char* med3(char* a, char* b, char* c, cmp_t* cmd, void* thunk)
+	__attribute__((always_inline));
+static inline void swapfunc(char* a, char* b, size_t n, size_t swaptype)
+	__attribute__((always_inline));
 
 #define min(a, b) (a) < (b) ? a : b
 
@@ -142,8 +144,12 @@ loop:
 	if(n < 7)
 	{
 		for(pm = (char*)a + es; pm < (char*)a + n * es; pm += es)
+		{
 			for(pl = pm; pl > (char*)a && CMP(thunk, pl - es, pl) > 0; pl -= es)
+			{
 				swap(pl, pl - es);
+			}
+		}
 		return;
 	}
 	pm = (char*)a + (n / 2) * es;
@@ -187,7 +193,9 @@ loop:
 			pc -= es;
 		}
 		if(pb > pc)
+		{
 			break;
+		}
 		swap(pb, pc);
 		swap_cnt = 1;
 		pb += es;
@@ -204,6 +212,7 @@ loop:
 	{ /* Switch to insertion sort */
 		r = 1 + n / 4; /* n >= 7, so r >= 2 */
 		for(pm = (char*)a + es; pm < (char*)a + n * es; pm += es)
+		{
 			for(pl = pm; pl > (char*)a && CMP(thunk, pl - es, pl) > 0; pl -= es)
 			{
 				swap(pl, pl - es);
@@ -212,16 +221,19 @@ loop:
 					goto nevermind;
 				}
 			}
+		}
 		return;
 	}
 
 nevermind:
 	if((r = (uintptr_t)pb - (uintptr_t)pa) > es)
+	{
 #ifdef I_AM_QSORT_R
 		_qsort(a, r / es, es, thunk, cmp, depth_limit);
 #else
 		_qsort(a, r / es, es, cmp, depth_limit);
 #endif
+	}
 	if((r = (uintptr_t)pd - (uintptr_t)pc) > es)
 	{
 		/* Iterate rather than recurse to save stack space */

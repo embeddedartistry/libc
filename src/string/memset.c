@@ -52,7 +52,11 @@ void* __attribute__((weak)) memset(void* dest, int c, size_t n)
 
 	/* Pure C fallback with no aliasing violations. */
 	for(; n; n--, ws++)
-		*ws = wc;
+	{
+		{
+			*ws = wc;
+		}
+	}
 
 	return dest;
 }

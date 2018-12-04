@@ -148,7 +148,11 @@ int (*compar)(const void*, const void*);
 	char *base, *k, *p, *t;
 
 	if(nmemb <= 1)
-		return (0);
+	{
+		{
+			return (0);
+		}
+	}
 
 	if(!size)
 	{
@@ -157,7 +161,11 @@ int (*compar)(const void*, const void*);
 	}
 
 	if((k = malloc(size)) == NULL)
-		return (-1);
+	{
+		{
+			return (-1);
+		}
+	}
 
 	/*
 	 * Items are numbered from 1 to nmemb, so offset from size bytes

@@ -38,7 +38,7 @@
 #endif
 #include <string.h>
 
-char* __strtok_r(char*, const char*, char**);
+char* __strtok_r(char* /*s*/ /*s*/, const char* /*delim*/ /*delim*/, char** /*last*/ /*last*/);
 
 char* __strtok_r(char* s, const char* delim, char** last)
 {
@@ -46,7 +46,11 @@ char* __strtok_r(char* s, const char* delim, char** last)
 	int c, sc;
 
 	if(s == NULL && (s = *last) == NULL)
-		return (NULL);
+	{
+		{
+			return (NULL);
+		}
+	}
 
 /*
  * Skip (span) leading delimiters (s += strspn(s, delim), sort of).
@@ -56,7 +60,11 @@ cont:
 	for(spanp = (char*)(uintptr_t)delim; (sc = *spanp++) != 0;)
 	{
 		if(c == sc)
-			goto cont;
+		{
+			{
+				goto cont;
+			}
+		}
 	}
 
 	if(c == 0)
@@ -79,9 +87,17 @@ cont:
 			if((sc = *spanp++) == c)
 			{
 				if(c == 0)
-					s = NULL;
+				{
+					{
+						s = NULL;
+					}
+				}
 				else
-					s[-1] = '\0';
+				{
+					{
+						s[-1] = '\0';
+					}
+				}
 				*last = s;
 				return (tok);
 			}

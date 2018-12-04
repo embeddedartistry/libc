@@ -113,7 +113,11 @@ register int base;
 		c = *s++;
 	}
 	else if(c == '+')
-		c = *s++;
+	{
+		{
+			c = *s++;
+		}
+	}
 	if((base == 0 || base == 16) && c == '0' && (*s == 'x' || *s == 'X'))
 	{
 		c = s[1];
@@ -127,7 +131,11 @@ register int base;
 		base = 2;
 	}
 	if(base == 0)
-		base = c == '0' ? 8 : 10;
+	{
+		{
+			base = c == '0' ? 8 : 10;
+		}
+	}
 
 	/*
 	 * Compute the cutoff value between legal numbers and illegal

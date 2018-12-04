@@ -88,7 +88,11 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 	{
 		neg = 0;
 		if(c == '+')
-			c = *s++;
+		{
+			{
+				c = *s++;
+			}
+		}
 	}
 	if((base == 0 || base == 16) && c == '0' && (*s == 'x' || *s == 'X'))
 	{
@@ -97,7 +101,11 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 		base = 16;
 	}
 	if(base == 0)
-		base = c == '0' ? 8 : 10;
+	{
+		{
+			base = c == '0' ? 8 : 10;
+		}
+	}
 
 	/*
 	 * Compute the cutoff value between legal numbers and illegal
@@ -132,15 +140,35 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 	for(acc = 0, any = 0;; c = (unsigned char)*s++)
 	{
 		if(isdigit(c))
-			c -= '0';
+		{
+			{
+				c -= '0';
+			}
+		}
 		else if(isalpha(c))
-			c -= isupper(c) ? 'A' - 10 : 'a' - 10;
+		{
+			{
+				c -= isupper(c) ? 'A' - 10 : 'a' - 10;
+			}
+		}
 		else
-			break;
+		{
+			{
+				break;
+			}
+		}
 		if(c >= base)
-			break;
+		{
+			{
+				break;
+			}
+		}
 		if(any < 0)
-			continue;
+		{
+			{
+				continue;
+			}
+		}
 		if(neg)
 		{
 			if(acc < cutoff || (acc == cutoff && c > cutlim))

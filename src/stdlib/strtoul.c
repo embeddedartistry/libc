@@ -114,7 +114,11 @@ register int base;
 		base = 2;
 	}
 	if(base == 0)
-		base = c == '0' ? 8 : 10;
+	{
+		{
+			base = c == '0' ? 8 : 10;
+		}
+	}
 	cutoff = (unsigned long)ULONG_MAX / (unsigned long)base;
 	cutlim = (int)((unsigned long)ULONG_MAX % (unsigned long)base);
 	for(acc = 0, any = 0;; c = *s++)

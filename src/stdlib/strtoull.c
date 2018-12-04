@@ -66,7 +66,11 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	{
 		neg = 0;
 		if(c == '+')
-			c = *s++;
+		{
+			{
+				c = *s++;
+			}
+		}
 	}
 	if((base == 0 || base == 16) && c == '0' && (*s == 'x' || *s == 'X'))
 	{
@@ -75,27 +79,59 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 		base = 16;
 	}
 	if(base == 0)
-		base = c == '0' ? 8 : 10;
+	{
+		{
+			base = c == '0' ? 8 : 10;
+		}
+	}
 	acc = any = 0;
 	if(base < 2 || base > 36)
-		goto noconv;
+	{
+		{
+			goto noconv;
+		}
+	}
 
 	cutoff = ULLONG_MAX / (unsigned long long)base;
 	cutlim = (int)(ULLONG_MAX % (unsigned long long)base);
 	for(;; c = *s++)
 	{
 		if(c >= '0' && c <= '9')
-			c -= '0';
+		{
+			{
+				c -= '0';
+			}
+		}
 		else if(c >= 'A' && c <= 'Z')
-			c -= 'A' - 10;
+		{
+			{
+				c -= 'A' - 10;
+			}
+		}
 		else if(c >= 'a' && c <= 'z')
-			c -= 'a' - 10;
+		{
+			{
+				c -= 'a' - 10;
+			}
+		}
 		else
-			break;
+		{
+			{
+				break;
+			}
+		}
 		if(c >= base)
-			break;
+		{
+			{
+				break;
+			}
+		}
 		if(any < 0 || acc > cutoff || (acc == cutoff && c > cutlim))
-			any = -1;
+		{
+			{
+				any = -1;
+			}
+		}
 		else
 		{
 			any = 1;
