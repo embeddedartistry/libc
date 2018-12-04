@@ -87,6 +87,10 @@ coverage:
 	$(Q)if [ ! -e "buildresults-coverage/build.ninja" ]; then meson --buildtype plain buildresults-coverage -Db_coverage=true; fi
 	$(Q)cd buildresults-coverage; ninja; ninja test; ninja coverage-html; ninja coverage-xml
 
+.PHONY: tidy
+tidy: groundwork
+	$(Q) cd $(BUILDRESULTS); ninja tidy
+
 ### Help Rule ###
 .PHONY : help
 help :
@@ -114,3 +118,4 @@ help :
 	@echo "    cppcheck: runs cppcheck"
 	@echo "    cppcheck-xml: runs cppcheck and generates an XML report (for build servers)"
 	@echo "    coverage: runs code coverage analysis and generates an HTML report and XML report"
+	@echo "    tidy: runs clang-tidy linter"

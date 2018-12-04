@@ -124,7 +124,6 @@ stdlib_files = [
 ]
 
 stdio_files = [
-	printf_files,
 	'stdio/putchar.c',
 	'stdio/puts.c'
 ]
@@ -205,10 +204,9 @@ libc_native_files = [
 	wchar_files
 ]
 
-libc_standalone_files = libc_native_files + [
-	exit_files,
-	stdio_files,
-]
+libc_standalone_files = [exit_files, stdio_files, printf_files]
+
+libc_lint_files = files(libc_native_files, exit_files, stdio_files) + printf_files
 
 ##
 # For local builds, we use libc_includes to generate our own warnings
@@ -217,7 +215,7 @@ libc_standalone_files = libc_native_files + [
 
 libc = static_library(
 	'c',
-	libc_standalone_files,
+	libc_standalone_files + libc_native_files,
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, libc_system_includes, arch_include]
 )
