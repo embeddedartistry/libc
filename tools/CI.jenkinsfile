@@ -74,6 +74,13 @@ pipeline
         }
       }
     }
+    stage('Clang Tidy')
+    {
+      steps
+      {
+        sh 'make tidy'
+      }
+    }
     stage('Coverage')
     {
       steps
