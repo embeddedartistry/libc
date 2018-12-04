@@ -54,11 +54,13 @@ analyze: groundwork
 clean:
 	$(Q)echo Cleaning build artifacts
 	$(Q)if [ -d "$(BUILDRESULTS)" ]; then cd $(BUILDRESULTS); ninja -t clean; fi
+	$(Q)if [ -d "buildresults-coverage" ]; then cd buildresults-coverage; ninja -t clean; fi
 
 .PHONY: purify
 purify:
 	$(Q)echo Removing Build Output
 	$(Q)rm -rf $(BUILDRESULTS)/
+	$(Q)rm -rf buildresults-coverage
 
 .PHONY: ccc
 ccc: groundwork
@@ -78,6 +80,12 @@ ifneq ("$(wildcard $(BUILDRESULTS)/test/)","")
 	$(Q)rm -f $(BUILDRESULTS)/test/*.xml
 endif
 	$(Q) cd $(BUILDRESULTS); meson test
+
+.PHONY: coverage
+coverage:
+	$(Q)if [ -d "buildresults-coverage" ]; then mkdir -p buildresults-coverage; fi
+	$(Q)if [ ! -e "buildresults-coverage/build.ninja" ]; then meson --buildtype plain buildresults-coverage -Db_coverage=true; fi
+	$(Q)cd buildresults-coverage; ninja; ninja test; ninja coverage-html; ninja coverage-xml
 
 ### Help Rule ###
 .PHONY : help
@@ -105,3 +113,4 @@ help :
 	@echo "	   ccc: runs complexity analysis with lizard"
 	@echo "    cppcheck: runs cppcheck"
 	@echo "    cppcheck-xml: runs cppcheck and generates an XML report (for build servers)"
+	@echo "    coverage: runs code coverage analysis and generates an HTML report and XML report"

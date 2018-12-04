@@ -3,7 +3,7 @@ cscope*out
 .DS_Store
 
 # Generated folders
-buildresults/**
+buildresults*
 build/gen/**
 
 # Patch file
