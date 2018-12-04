@@ -74,6 +74,20 @@ pipeline
         }
       }
     }
+    stage('Coverage')
+    {
+      steps
+      {
+        sh 'make coverage'
+      }
+      post
+      {
+        success
+        {
+          cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: 'buildresults-coverage/meson-logs/coverage.xml', onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false
+        }
+      }
+    }
     stage('Documentation')
     {
       steps
