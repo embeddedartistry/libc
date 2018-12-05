@@ -121,7 +121,7 @@ if cppcheck.found()
 		# Include Directories
 		'-I', meson.current_source_dir() + '/include',
 		# Source Directories
-		'src', 'test']
+		'src']
 	)
 
 	run_target('cppcheck-xml',
