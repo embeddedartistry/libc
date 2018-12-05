@@ -47,14 +47,14 @@ __FBSDID("$FreeBSD: src/lib/libc/string/strnstr.c,v 1.5 2009/02/03 17:58:20 dang
  */
 char* strnstr(const char* s, const char* find, size_t slen)
 {
-	char c, sc;
-	size_t len;
+	char c;
 
 	if((c = *find++) != '\0')
 	{
-		len = strlen(find);
+		size_t len = strlen(find);
 		do
 		{
+			char sc;
 			do
 			{
 				if(slen-- < 1 || (sc = *s++) == '\0')

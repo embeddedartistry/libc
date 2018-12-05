@@ -40,11 +40,12 @@ __FBSDID("$FreeBSD: src/lib/libc/string/strndup.c,v 1.1 2008/12/06 09:37:54 kib 
 
 char* strndup(const char* str, size_t n)
 {
-	size_t len;
 	char* copy = NULL;
 
 	if(str && n)
 	{
+		size_t len;
+
 		for(len = 0; len < n && str[len]; len++)
 		{
 		}
