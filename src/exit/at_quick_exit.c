@@ -8,11 +8,9 @@ static int count = 0;
 
 void __funcs_on_quick_exit()
 {
-	void (*func)(void);
 	while(count > 0)
 	{
-		func = funcs[--count];
-		func();
+		funcs[--count]();
 	}
 }
 
