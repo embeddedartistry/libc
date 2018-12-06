@@ -242,6 +242,4 @@ libc_native_dep = declare_dependency(
 	compile_args: stdlib_compiler_flags,
 )
 
-libc_header_include_dep = declare_dependency(
-	include_directories: [libc_system_includes, arch_include],
-)
+libc_header_include = [libc_system_includes, arch_include]
