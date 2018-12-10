@@ -7,8 +7,6 @@ Unlike many other C libraries that I've come across, this library implements uni
 
 `malloc` and `free` are not included in this library. If you need dynamic memory allocation support, you can couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
 
-If you are interested in contributing to this project, please read the [`CONTRIBUTING` guide][10].
-
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
