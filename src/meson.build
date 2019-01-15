@@ -193,6 +193,10 @@ wchar_files = [
 ]
 
 libc_native_files = [
+	files('stdio/putchar_native.c')
+]
+
+libc_common_files = [
 	assert_files,
 	ctype_files,
 	gdtoa_files,
@@ -201,12 +205,25 @@ libc_native_files = [
 	stdlib_files,
 	string_files,
 	support_files,
-	wchar_files
+	wchar_files,
+	printf_files,
 ]
 
-libc_standalone_files = [exit_files, stdio_files, printf_files]
+libc_standalone_files = [exit_files, stdio_files]
 
-libc_lint_files = files(libc_native_files, exit_files, stdio_files)
+libc_lint_files = files(
+	assert_files,
+	ctype_files,
+	gdtoa_files,
+	errno_files,
+	math_files,
+	stdlib_files,
+	string_files,
+	support_files,
+	wchar_files,
+	exit_files,
+	stdio_files,
+)
 
 ##
 # For local builds, we use libc_includes to generate our own warnings
@@ -215,7 +232,7 @@ libc_lint_files = files(libc_native_files, exit_files, stdio_files)
 
 libc = static_library(
 	'c',
-	libc_standalone_files + libc_native_files,
+	libc_standalone_files + libc_common_files,
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 	include_directories: [libc_includes, libc_system_includes, arch_include]
 )
@@ -224,7 +241,7 @@ libc = static_library(
 # System library to do the heavy lifting for missing symbols
 libc_native = static_library(
 		'c_native',
-		libc_native_files,
+		[libc_common_files + libc_native_files],
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
 		include_directories: [libc_includes, libc_system_includes, arch_include],
 		native: true
