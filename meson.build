@@ -62,6 +62,11 @@ endif
 
 printf_files = files('printf/printf.c')
 
+libc_printf_dep = declare_dependency(
+	include_directories: include_directories('printf', is_system: true),
+	sources: printf_files,
+)
+
 printf_tests = executable('printf_test',
 	['printf/test/test_suite.cpp'],
 	cpp_args: ['-Wno-format', '-Wno-format-invalid-specifier', '-Wno-old-style-cast', '-Wno-missing-prototypes'],
