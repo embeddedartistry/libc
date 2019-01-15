@@ -1,7 +1,9 @@
 #include <printf.h>
 #include <stdio.h>
 
-void _putchar(char c)
+extern long write(int, const char *, unsigned long);
+
+void _putchar(char ch)
 {
-	putchar((int)c);
+  (void) write(1, &ch, 1);
 }
