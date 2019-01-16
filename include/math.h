@@ -5,7 +5,8 @@
 extern "C" {
 #endif
 
-#include <openlibm.h>
+#include <openlibm_fenv.h>
+#include <openlibm_math.h>
 
 #ifdef FLT_EVAL_METHOD
 #if FLT_EVAL_METHOD == 0
