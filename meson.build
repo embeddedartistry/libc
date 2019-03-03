@@ -76,13 +76,13 @@ printf_tests = executable('printf_test',
 
 test('printf_tests',
 	printf_tests,
-	args: ['-r', 'junit', '-o', meson.build_root() + '/printf_tests.xml'])
+	args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml'])
 
 run_target('printf-tests',
 	command: [printf_tests])
 
 run_target('printf-tests-xml',
-	command: [printf_tests, '-r', 'junit', '-o', meson.build_root() + '/framework_tests.xml'])
+	command: [printf_tests, '-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml'])
 
 #######################
 # Process source tree #
