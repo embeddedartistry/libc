@@ -12,13 +12,16 @@ assert_files = [
 	'assert/assert.c',
 ]
 
-exit_files = [
-	'exit/_Exit.c',
-	'exit/abort.c',
-	'exit/at_quick_exit.c',
-	#'exit/atexit.c',
-	#'exit/exit.c',
-	'exit/quick_exit.c'
+crt_files = [
+	'crt/crt.c',
+	'crt/crtbegin.c',
+	'crt/crtend.c',
+	'crt/_Exit.c',
+	'crt/abort.c',
+	'crt/at_quick_exit.c',
+	#'crt/atexit.c',
+	#'crt/exit.c',
+	'crt/quick_exit.c'
 ]
 
 ctype_files = [
@@ -135,6 +138,7 @@ string_files = [
 	'string/memcpy.c',
 	'string/memmem.c',
 	'string/memmove.c',
+	'string/memchr.c',
 	'string/memrchr.c',
 	'string/memset.c',
 	'string/strcat.c',
@@ -220,12 +224,14 @@ libc_common_files = [
 	wchar_files,
 ]
 
-libc_standalone_files = [exit_files, stdio_files]
+libc_standalone_files = [
+	crt_files,
+]
 
 libc_lint_files = files(
 	assert_files,
+	crt_files,
 	ctype_files,
-	exit_files,
 	gdtoa_files,
 	locale_files,
 	math_files,
@@ -246,8 +252,9 @@ libc_lint_files = files(
 libc = static_library(
 	'c',
 	libc_standalone_files + libc_common_files,
-	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
-	include_directories: [libc_includes, libc_system_includes, arch_include]
+	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+	include_directories: [libc_includes, libc_system_includes],
+	dependencies: target_arch_deps,
 )
 
 # We don't build the stdio files for the native variant, as we rely on the
@@ -255,21 +262,43 @@ libc = static_library(
 libc_native = static_library(
 		'c_native',
 		libc_common_files + libc_native_files,
-		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags],
-		include_directories: [libc_includes, libc_system_includes, arch_include],
+		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+		include_directories: [libc_includes, libc_system_includes],
+		dependencies: host_arch_deps,
 		native: true
+)
+
+# We don't build the stdio files for the native variant, as we rely on the
+# System library to do the heavy lifting for missing symbols
+libc_hosted = static_library(
+		'c_hosted',
+		libc_common_files + libc_native_files,
+		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+		include_directories: [libc_includes, libc_system_includes],
+		dependencies: host_arch_deps,
 )
 
 libc_dep = declare_dependency(
 	link_with: libc,
-	include_directories: [libc_system_includes, arch_include],
+	include_directories: [libc_system_includes],
 	compile_args: stdlib_compiler_flags,
+	dependencies: target_arch_deps,
 )
 
 libc_native_dep = declare_dependency(
 	link_with: libc_native,
-	include_directories: [libc_system_includes, arch_include],
-	compile_args: stdlib_compiler_flags,
+	include_directories: [libc_system_includes],
+	compile_args: stdlib_compiler_flags + host_stdlib_compiler_flags,
+	link_args: host_stdlib_link_flags,
+	dependencies: host_arch_deps,
 )
 
-libc_header_include = [libc_system_includes, arch_include]
+libc_hosted_dep = declare_dependency(
+	link_with: libc_hosted,
+	include_directories: [libc_system_includes],
+	compile_args: stdlib_compiler_flags + host_stdlib_compiler_flags,
+	link_args: host_stdlib_link_flags,
+	dependencies: host_arch_deps,
+)
+
+libc_header_include = [libc_system_includes, target_arch_include]

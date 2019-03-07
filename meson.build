@@ -6,43 +6,43 @@ project('libc',
 # Identify Compiler(s) #
 ########################
 
-native_compiler_id = meson.get_compiler('c', native : true).get_id()
+# Identify compilers & get flags
+subdir('build/compiler')
 
-if meson.is_cross_build()
-	host_compiler_id = meson.get_compiler('c', native : false).get_id()
-endif
+# compiler_args is defined in build/compiler/<target>/meson.build
+# We are the standard library, don't complain about __ prefixes
+add_project_arguments([compiler_args, '-Wno-reserved-id-macro'], language: ['c', 'cpp'])
+
+subdir('build/ea-stdlib')
+
+#######################
+# Include Directories #
+#######################
+
+libc_includes = include_directories('include', 'src/gdtoa/include')
+libc_system_includes = include_directories(
+	'include',
+	'openlibm/include',
+	'openlibm/src',
+	'src/gdtoa/include',
+	'printf',
+	is_system: true)
 
 ##########################
 # Determine Architecture #
 ##########################
 
 subdir('build/architecture')
-arch_include = include_directories('arch/' + architecture + '/include')
 
-######################################
-# Import compiler flags and warnings #
-######################################
+target_arch_include = []
+target_arch_deps = []
+host_arch_deps = []
 
-# Get compiler flags, and handle host vs cross builds
-if meson.is_cross_build()
-	if host_compiler_id == 'clang'
-		subdir('build/compiler/clang')
-	elif host_compiler_id == 'gcc'
-		subdir('build/compiler/gcc')
-	endif
-else
-	if native_compiler_id == 'clang'
-		subdir('build/compiler/clang')
-	elif native_compiler_id == 'gcc'
-		subdir('build/compiler/gcc')
-	endif
+subdir('arch/' + target_architecture)
+
+if target_architecture != host_architecture
+	subdir('arch/' + host_architecture)
 endif
-
-# compiler_args is defined in build/compiler/<target>/meson.build
-# We are the standard library, don't complain about __
-add_project_arguments([compiler_args, '-Wno-reserved-id-macro'], language: ['c', 'cpp'])
-
-subdir('build/ea-stdlib')
 
 #########################
 # Process Build Options #
@@ -87,15 +87,6 @@ run_target('printf-tests-xml',
 #######################
 # Process source tree #
 #######################
-
-libc_includes = include_directories('include', 'src/gdtoa/include')
-libc_system_includes = include_directories(
-	'include',
-	'openlibm/include',
-	'openlibm/src',
-	'src/gdtoa/include',
-	'printf',
-	is_system: true)
 
 # Library build definition
 subdir('src/')

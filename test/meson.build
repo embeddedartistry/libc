@@ -70,19 +70,17 @@ libc_test_files = [
 	'test/rand.c'
 ]
 
-libcmocka = meson.get_compiler('c').find_library('cmocka')
+libcmocka = meson.get_compiler('c', native: true).find_library('cmocka', required: false, disabler: true)
 
+# Tests will only be compiled if libcmocka is found
 libc_tests = executable('libc_test',
 	libc_test_files,
 	c_args: [stdlib_compiler_flags, '-Wno-vla', '-Wno-unused-parameter'],
-	link_args: [stdlib_link_flags],
-	include_directories:
-		[libc_includes,
-		libc_system_includes,
-		arch_include,
-		include_directories('/usr/local/include/')],
-	link_with: [libc_native],
-	dependencies: [libcmocka],
+	link_args: [stdlib_link_flags, host_stdlib_link_flags],
+	include_directories: [
+		include_directories('/usr/local/include/', is_system: true)
+	],
+	dependencies: [libcmocka, libc_native_dep],
 	native: true
 )
 
