@@ -56,7 +56,7 @@ typedef uint64_t uint_least64_t;
 typedef int8_t int_fast8_t;
 
 /*! fastest signed integer type with width of at least 16 */
-typedef int16_t int_fast16_t;
+typedef int32_t int_fast16_t;
 
 /*! fastest signed integer type with width of at least 32 */
 typedef int32_t int_fast32_t;
@@ -68,7 +68,7 @@ typedef int64_t int_fast64_t;
 typedef uint8_t uint_fast8_t;
 
 /*! fastest unsigned integer type with width of at least 16 */
-typedef uint16_t uint_fast16_t;
+typedef uint32_t uint_fast16_t;
 
 /*! fastest unsigned integer type with width of at least 32 */
 typedef uint32_t uint_fast32_t;
@@ -144,7 +144,19 @@ typedef uint64_t uint_fast64_t;
 /*! Minimum value of an object of type int_least64_t */
 #define INT_LEAST64_MIN INT64_MIN
 
-/*! Maximum value of an object of type int_least8_t */
+/*! Minimum value of an object of type uint_least8_t */
+#define UINT_LEAST8_MIN UINT8_MIN
+
+/*! Minimum value of an object of type uint_least16_t */
+#define UINT_LEAST16_MIN UINT16_MIN
+
+/*! Minimum value of an object of type uint_least32_t */
+#define UINT_LEAST32_MIN UINT32_MIN
+
+/*! Minimum value of an object of type uint_least64_t */
+#define UINT_LEAST64_MIN UINT64_MIN
+
+/*! Maximum value of an object of type uint_least8_t */
 #define INT_LEAST8_MAX INT8_MAX
 
 /*! Maximum value of an object of type int_least16_t */
@@ -173,7 +185,7 @@ typedef uint64_t uint_fast64_t;
 #define INT_FAST8_MIN INT8_MIN
 
 /*! Minimum value of an object of type int_fast16_t */
-#define INT_FAST16_MIN INT16_MIN
+#define INT_FAST16_MIN INT32_MIN
 
 /*! Minimum value of an object of type int_fast32_t */
 #define INT_FAST32_MIN INT32_MIN
@@ -185,7 +197,7 @@ typedef uint64_t uint_fast64_t;
 #define INT_FAST8_MAX INT8_MAX
 
 /*! Maximum value of an object of type int_fast16_t */
-#define INT_FAST16_MAX INT16_MAX
+#define INT_FAST16_MAX INT32_MAX
 
 /*! Maximum value of an object of type int_fast32_t */
 #define INT_FAST32_MAX INT32_MAX
@@ -193,11 +205,23 @@ typedef uint64_t uint_fast64_t;
 /*! Maximum value of an object of type int_fast64_t */
 #define INT_FAST64_MAX INT64_MAX
 
+/*! Minimum value of an object of type uint_fast8_t */
+#define UINT_FAST8_MIN UINT8_MIN
+
+/*! Minimum value of an object of type uint_fast16_t */
+#define UINT_FAST16_MIN UINT32_MIN
+
+/*! Minimum value of an object of type uint_fast32_t */
+#define UINT_FAST32_MIN UINT32_MIN
+
+/*! Minimum value of an object of type uint_fast64_t */
+#define UINT_FAST64_MIN UINT64_MIN
+
 /*! Maximum value of an object of type uint_fast8_t */
 #define UINT_FAST8_MAX UINT8_MAX
 
 /*! Maximum value of an object of type uint_fast16_t */
-#define UINT_FAST16_MAX UINT16_MAX
+#define UINT_FAST16_MAX UINT32_MAX
 
 /*! Maximum value of an object of type uint_fast32_t */
 #define UINT_FAST32_MAX UINT32_MAX
@@ -205,32 +229,43 @@ typedef uint64_t uint_fast64_t;
 /*! Maximum value of an object of type uint_fast64_t */
 #define UINT_FAST64_MAX UINT64_MAX
 
-/* 7.18.2.4 Limits of integer types capable of holding object pointers */
-
 #if __WORDSIZE == 64
-
 /*! Minimum value of an object of type intptr_t */
 #define INTPTR_MIN INT64_MIN
 
 /*! Maximum value of an object of type intptr_t */
 #define INTPTR_MAX INT64_MAX
-#else
+
+/*! Maximum value of an object of type uintptr_t  */
+#define UINTPTR_MAX UINT64_MAX
+
+/*! Minimum value of an object of type ptrdiff_t */
+#define PTRDIFF_MIN INT64_MIN
+
+/*! Maximum value of an object of type ptrdiff_t */
+#define PTRDIFF_MAX INT64_MAX
+
+/*! Maximum value of object of size_t type */
+#define SIZE_MAX UINT64_MAX
+
+#else // __WORDSIZE is 32 bits
+
 /*! Minimum value of an object of type intptr_t */
 #define INTPTR_MIN INT32_MIN
 
 /*! Maximum value of an object of type intptr_t */
 #define INTPTR_MAX INT32_MAX
-#endif
 
-#if __WORDSIZE == 64
-/*! Maximum value of an object of type uintptr_t  */
-#define UINTPTR_MAX UINT64_MAX
-#else
 /*! Maximum value of an object of type uintptr_t  */
 #define UINTPTR_MAX UINT32_MAX
+
+/*! Minimum value of an object of type ptrdiff_t */
+#define PTRDIFF_MIN INT32_MIN
+
+/*! Maximum value of an object of type ptrdiff_t */
+#define PTRDIFF_MAX INT32_MAX
 #endif
 
-/* 7.18.2.5 Limits of greatest-width integer types */
 /*! Minimum value of an object of type intmax_t */
 #define INTMAX_MIN INT64_MIN
 
@@ -240,32 +275,8 @@ typedef uint64_t uint_fast64_t;
 /*! Maximum value of an object of type uintmax_t  */
 #define UINTMAX_MAX UINT64_MAX
 
-/* 7.18.3 "Other" */
-#if __WORDSIZE == 64
-
-/*! Minimum value of an object of type ptrdiff_t */
-#define PTRDIFF_MIN INT64_MIN
-
-/*! Maximum value of an object of type ptrdiff_t */
-#define PTRDIFF_MAX INT64_MAX
-#else
-
-/*! Minimum value of an object of type ptrdiff_t */
-#define PTRDIFF_MIN INT32_MIN
-
-/*! Maximum value of an object of type ptrdiff_t */
-#define PTRDIFF_MAX INT32_MAX
-#endif
-
-#if __WORDSIZE == 64
-
-/*! Maximum value of object of size_t type */
-#define SIZE_MAX UINT64_MAX
-#else
-
 /*! Maximum value of object of size_t type */
 #define SIZE_MAX UINT32_MAX
-#endif
 
 #if defined(__STDC_WANT_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__ >= 1
 
