@@ -29,6 +29,7 @@
 
 #include <strings.h>
 
+#if defined(__clang__)
 /*
  * Find Last Set bit
  */
@@ -55,3 +56,19 @@ int flsl(long mask)
 	return (bit);
 #endif
 }
+
+#else // not __clang__
+
+int flsl(long mask)
+{
+	if(mask == 0)
+	{
+		{
+			return (0);
+		}
+	}
+
+	return ((int)sizeof(mask) << 3) - __builtin_clzl((unsigned long)mask);
+}
+
+#endif // clang

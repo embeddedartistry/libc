@@ -32,6 +32,7 @@
 /*
  * Find Last Set bit
  */
+#if defined(__clang__)
 int fls(int mask)
 {
 #if __has_builtin(__builtin_fls)
@@ -49,9 +50,31 @@ int fls(int mask)
 	int bit;
 
 	if(mask == 0)
+	{
 		return (0);
+	}
+
 	for(bit = 1; mask != 1; bit++)
+	{
 		mask = (unsigned)mask >> 1;
+	}
+
 	return (bit);
 #endif
 }
+
+#else // Not clang
+
+int fls(int mask)
+{
+	if(mask == 0)
+	{
+		{
+			return (0);
+		}
+	}
+
+	return ((int)sizeof(mask) << 3) - __builtin_clz((unsigned)mask);
+}
+
+#endif // if clang

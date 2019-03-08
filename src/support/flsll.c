@@ -32,6 +32,7 @@
 /*
  * Find Last Set bit
  */
+#if defined(__clang__)
 int flsll(long long mask)
 {
 #if __has_builtin(__builtin_flsll)
@@ -55,3 +56,19 @@ int flsll(long long mask)
 	return (bit);
 #endif
 }
+
+#else // not __clang__
+
+int flsll(long long mask)
+{
+	if(mask == 0)
+	{
+		{
+			return (0);
+		}
+	}
+
+	return ((int)sizeof(mask) << 3) - __builtin_clzll((unsigned long long)mask);
+}
+
+#endif // if __clang__
