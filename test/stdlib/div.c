@@ -145,7 +145,7 @@ static struct
 
 #pragma mark - Private Functions -
 
-static void div_test(void** __unused state)
+static void div_test(void** __attribute__((unused)) state)
 {
 	uint64_t x, y, div, mod;
 	size_t i;
