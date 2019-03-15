@@ -1,3 +1,5 @@
+// Pulled from musl
+
 /* This file is sorted such that 'errors' which represent exceptional
  * conditions under which a correct program may fail come first, followed
  * by messages that indicate an incorrect program or system failure. The
@@ -100,5 +102,6 @@ E(EREMOTEIO, "Remote I/O error")
 E(EDQUOT, "Quota exceeded")
 E(ENOMEDIUM, "No medium found")
 E(EMEDIUMTYPE, "Wrong medium type")
+E(EMULTIHOP, "Multihop attempted")
 
 E(0, "No error information")

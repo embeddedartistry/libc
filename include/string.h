@@ -381,6 +381,7 @@ size_t strspn(const char*, const char*);
 char* strpbrk(const char*, const char*);
 int strcoll(const char*, const char*);
 char* strerror(int);
+int strerror_r(int, char*, size_t);
 
 #ifdef __cplusplus
 }
