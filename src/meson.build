@@ -40,10 +40,6 @@ ctype_files = [
 	'ctype/toupper.c'
 ]
 
-errno_files = [
-	'errno/strerror.c',
-]
-
 gdtoa_files = [
 	'gdtoa/src/dmisc.c',
 	'gdtoa/src/dtoa.c',
@@ -124,8 +120,10 @@ stdlib_files = [
 ]
 
 stdio_files = [
+	'stdio/asprintf.c',
 	'stdio/putchar.c',
-	'stdio/puts.c'
+	'stdio/puts.c',
+	'stdio/vasprintf.c',
 ]
 
 string_files = [
@@ -143,6 +141,8 @@ string_files = [
 	'string/strcpy.c',
 	'string/strcspn.c',
 	'string/strdup.c',
+	'string/strerror.c',
+	'string/strerror_r.c',
 	'string/strlen.c',
 	'string/strncat.c',
 	'string/strncmp.c',
@@ -199,7 +199,6 @@ libc_native_files = [
 libc_common_files = [
 	assert_files,
 	ctype_files,
-	errno_files,
 	gdtoa_files,
 	math_files,
 	printf_files,
@@ -215,7 +214,6 @@ libc_standalone_files = [exit_files, stdio_files]
 libc_lint_files = files(
 	assert_files,
 	ctype_files,
-	errno_files,
 	exit_files,
 	gdtoa_files,
 	math_files,
