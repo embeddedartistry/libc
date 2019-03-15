@@ -50,6 +50,10 @@ typedef struct
  * */
 #define RAND_MAX (0x7fffffff)
 
+/// Length of the current locale's multi-byte character.
+/// We are faking this for now, since we don't provide locale support.
+#define MB_CUR_MAX sizeof(wchar_t)
+
 #pragma mark - runtime -
 
 // TODO
@@ -853,6 +857,25 @@ void* realloc(void* ptr, size_t size);
  *	If `size` is zero (e.g. `realloc(ptr,0)`) then returns NULL
  * */
 void* reallocf(void* ptr, size_t size);
+
+#ifdef _POSIX_MEMALIGN_VISIBLE
+/** Posix Memory Alignment Extension
+ *
+ * Generated aligned memory. This function forwards the request to aligned malloc.
+ * Allocated memory must be freed with aligned_free().
+ *
+ * @param memptr A pointer to the pointer which will store the aligned memory. The
+ *	memory must be freed with aligned_free(). memptr must not be NULL.
+ * @param alignment The target alignment for the memory. Must be a power of 2.
+ * @param size The size of the allocation. Must be > 0.
+ *
+ * @pre `memptr` is not NULL. `alignment` is power-of-2. `size` > 0.
+ *
+ * @returns ENOMEM if memory could not be allocated, EINVAL if alignment is not a power-of-2, and
+ *	0 on successful allocation.
+ */
+int posix_memalign(void** memptr, size_t alignment, size_t size);
+#endif
 
 #ifdef __cplusplus
 }
