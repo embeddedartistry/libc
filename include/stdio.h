@@ -150,4 +150,9 @@ int vwprintf(const wchar_t* __restrict, __isoc_va_list);
 int vfwprintf(FILE* __restrict, const wchar_t* __restrict, __isoc_va_list);
 int vswprintf(wchar_t* __restrict, size_t, const wchar_t* __restrict, __isoc_va_list);
 
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+int asprintf(char**, const char*, ...);
+int vasprintf(char**, const char*, __isoc_va_list);
+#endif
+
 #endif // STDIO_H__
