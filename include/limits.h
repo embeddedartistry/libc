@@ -66,4 +66,7 @@
 /*! Expands to (2ULL * LLONG_MAX + 1). Maximum value of unsigned long long */
 #define ULLONG_MAX (2ULL * LLONG_MAX + 1)
 
+/*! Maximum multibyte length of a character across all locales */
+#define MB_LEN_MAX 4
+
 #endif // LIMITS_H__
