@@ -6,6 +6,10 @@
 #include <stddef.h>
 #include <wctype.h> //TODO: eliminate need for this header here (refactor types?)
 
+#ifdef __cplusplus
+extern "C" {
+#endif //__cplusplus
+
 /// NOTE: The files included here are primarily stubs to get C++ compiling.
 /// If you are linking on a host machine, these functions will need to be
 ///	 supplied by the system library
@@ -154,5 +158,9 @@ int vswprintf(wchar_t* __restrict, size_t, const wchar_t* __restrict, __isoc_va_
 int asprintf(char**, const char*, ...);
 int vasprintf(char**, const char*, __isoc_va_list);
 #endif
+
+#ifdef __cplusplus
+}
+#endif //__cplusplus
 
 #endif // STDIO_H__
