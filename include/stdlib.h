@@ -71,7 +71,7 @@ void exit(int) __attribute__((noreturn));
 void _Exit(int) __attribute__((noreturn));
 
 int at_quick_exit(void (*)(void));
-_Noreturn void quick_exit(int);
+void quick_exit(int) __attribute__((noreturn));
 
 // Unsupported in bare metal environments:
 char* getenv(const char*);
@@ -567,36 +567,6 @@ lldiv_t lldiv(long long x, long long y);
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 imaxdiv_t imaxdiv(intmax_t numer, intmax_t denom);
-
-/**
- * @brief Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see
- * RAND_MAX included).
- *
- * Returns a pseudo-random integer value between ​0​ and @see RAND_MAX (0 and @see RAND_MAX
- * included).
- *
- * @see srand() seeds the pseudo-random number generator used by rand.
- * If rand is used before any calls to @see srand, rand behaves as if it was seeded with @see srand.
- * Each time rand is seeded with srand, it must produce the same sequence of values.
- *
- * rand is not guaranteed to be thread-safe.
- *
- * @return Pseudo-random integer value between ​0​ and RAND_MAX, inclusive.
- * */
-int rand(void);
-
-/**
- * @brief Seeds the pseudo-random number generator used by @see rand with the value seed.
- *
- * Seeds the pseudo-random number generator used by @see rand with the value seed.
- * If rand() is used before any calls to srand, @see rand behaves as if it was seeded with srand.
- * Each time rand is seeded with the same seed, it must produce the same sequence of values.
- *
- * srand() is not guaranteed to be thread-safe.
- *
- * @param seed the seed value
- * */
-void srand(unsigned seed);
 
 #pragma mark - random number generation -
 
