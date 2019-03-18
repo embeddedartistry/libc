@@ -86,6 +86,10 @@ gdtoa_files = [
 	'gdtoa/src/ulp.c'
 ]
 
+locale_files = [
+	'locale/langinfo.c',
+]
+
 math_files = [
 	'math/fabs.c',
 	'math/fabsf.c',
@@ -164,6 +168,11 @@ support_files = [
 	'support/flsll.c'
 ]
 
+time_files = [
+	'time/asctime.c',
+	'time/asctime_r.c',
+]
+
 wchar_files = [
 	'wchar/iswalnum.c',
 	'wchar/iswalpha.c',
@@ -200,12 +209,14 @@ libc_common_files = [
 	assert_files,
 	ctype_files,
 	gdtoa_files,
+	locale_files,
 	math_files,
 	printf_files,
 	stdio_files,
 	stdlib_files,
 	string_files,
 	support_files,
+	time_files,
 	wchar_files,
 ]
 
@@ -216,12 +227,14 @@ libc_lint_files = files(
 	ctype_files,
 	exit_files,
 	gdtoa_files,
+	locale_files,
 	math_files,
 	stdio_files,
 	stdio_files,
 	stdlib_files,
 	string_files,
 	support_files,
+	time_files,
 	wchar_files,
 )
 
