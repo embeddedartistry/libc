@@ -146,6 +146,9 @@ extern int errno;
 #define ERFKILL 132
 #define EHWPOISON 133
 
+/// Users can add errors starting here
+#define ELAST 256
+
 #ifdef __cplusplus
 }
 #endif
