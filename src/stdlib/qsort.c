@@ -112,10 +112,6 @@ static inline char* med3(char* a, char* b, char* c, cmp_t* cmp,
 #define DEPTH(x) (2 * (fls((int)(x)) - 1))
 #endif /* __LP64__ */
 
-#ifdef I_AM_QSORT_R
-int heapsort_r(void*, size_t, size_t, void*, int (*)(void*, const void*, const void*));
-#endif
-
 static void _qsort(void* a, size_t n, size_t es,
 #ifdef I_AM_QSORT_R
 				   void* thunk,
