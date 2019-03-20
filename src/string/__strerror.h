@@ -1,5 +1,7 @@
 // Pulled from musl
 
+// TODO: Update this file so that all errnos are supported
+
 /* This file is sorted such that 'errors' which represent exceptional
  * conditions under which a correct program may fail come first, followed
  * by messages that indicate an incorrect program or system failure. The
@@ -75,7 +77,6 @@ E(ENOSR, "Out of streams resources")
 E(ENOLINK, "Link has been severed")
 E(EPROTO, "Protocol error")
 E(EBADMSG, "Bad message")
-E(EBADFD, "File descriptor in bad state")
 E(ENOTSOCK, "Not a socket")
 E(EDESTADDRREQ, "Destination address required")
 E(EMSGSIZE, "Message too large")
@@ -98,10 +99,7 @@ E(ESHUTDOWN, "Cannot send after socket shutdown")
 E(EALREADY, "Operation already in progress")
 E(EINPROGRESS, "Operation in progress")
 E(ESTALE, "Stale file handle")
-E(EREMOTEIO, "Remote I/O error")
 E(EDQUOT, "Quota exceeded")
-E(ENOMEDIUM, "No medium found")
-E(EMEDIUMTYPE, "Wrong medium type")
 E(EMULTIHOP, "Multihop attempted")
 
 E(0, "No error information")
