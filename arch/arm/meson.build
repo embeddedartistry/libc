@@ -1,0 +1,25 @@
+# ARM architecture meson build
+
+libruntime_arm = static_library('runtime_arm',
+    sources: files(
+		'src/crti.s',
+		'src/crtn.s',
+		'src/crt0.S',
+		'src/__aeabi_atexit.c',
+	),
+	include_directories: [libc_includes, include_directories('include')]
+)
+
+arm_arch_dep = declare_dependency(
+	include_directories: include_directories('include'),
+	link_with: libruntime_arm,
+)
+
+if target_architecture == 'arm'
+	target_arch_deps += [arm_arch_dep]
+	target_arch_include += include_directories('include')
+endif
+
+if host_architecture == 'arm'
+	host_arch_deps += [arm_arch_dep]
+endif
