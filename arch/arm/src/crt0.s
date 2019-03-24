@@ -210,8 +210,13 @@ __change_mode:
 	// Jumping to main would skip CRT startup and system initialization
 	bl	FUNCTION (entry)
 
-	bl	FUNCTION (exit)		/* Should not return.  */
+	// We allow exit to be weakly defined, since we might be compiling without exit support
+	ldr	r3, .Lexit
+	cmp	r3, #0
+	beq	.Done
+	indirect_call r3
 
+.Done:
 #if __thumb__ && !defined(PREFER_THUMB)
 	/* Come out of Thumb mode.  This code should be redundant.  */
 	mov	a4, pc
@@ -245,6 +250,9 @@ change_back:
 .Lstack:
 	.word	__stack
 
+.Lexit:
+	.word FUNCTION (exit)
+
 	/* Set up defaults for the above variables in the form of weak symbols
 	   - so that application will link correctly, and get value 0 in
 	   runtime (meaning "ignore setting") for the variables, when the user
@@ -253,8 +261,7 @@ change_back:
 	   e.g. by a linker script or another object file).  */
 
 	.weak __stack
-	.weak FUNCTION (hardware_init_hook)
-	.weak FUNCTION (software_init_hook)
+	.weak FUNCTION (exit)
 
 #if defined(__ELF__) && !defined(__USING_SJLJ_EXCEPTIONS__)
 	/* Protect against unhandled exceptions.  */
