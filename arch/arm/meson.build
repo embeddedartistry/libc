@@ -20,6 +20,7 @@ if target_architecture == 'arm'
 	target_arch_include += include_directories('include')
 endif
 
-if host_architecture == 'arm'
-	host_arch_deps += [arm_arch_dep]
+if native_architecture == 'arm'
+	native_arch_deps += [arm_arch_dep]
+	native_arch_include += include_directories('include')
 endif

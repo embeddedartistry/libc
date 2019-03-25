@@ -9,6 +9,7 @@ if target_architecture == 'aarch64'
 	target_arch_include += include_directories('include')
 endif
 
-if host_architecture == 'aarch64'
-	host_arch_deps += [arm64_arch_dep]
+if native_architecture == 'aarch64'
+	native_arch_deps += [arm64_arch_dep]
+	native_arch_include += include_directories('include')
 endif

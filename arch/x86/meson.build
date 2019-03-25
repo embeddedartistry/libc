@@ -9,6 +9,7 @@ if target_architecture == 'x86'
 	target_arch_include += include_directories('include')
 endif
 
-if host_architecture == 'x86'
-	host_arch_deps += [x86_arch_dep]
+if native_architecture == 'x86'
+	native_arch_deps += [x86_arch_dep]
+	native_arch_include += include_directories('include')
 endif

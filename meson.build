@@ -47,13 +47,14 @@ libc_system_includes = include_directories(
 subdir('build/architecture')
 
 target_arch_include = []
+native_arch_include = []
 target_arch_deps = []
-host_arch_deps = []
+native_arch_deps = []
 
 subdir('arch/' + target_architecture)
 
-if target_architecture != host_architecture
-	subdir('arch/' + host_architecture)
+if target_architecture != native_architecture
+	subdir('arch/' + native_architecture)
 endif
 
 #########################
@@ -82,7 +83,7 @@ libc_printf_dep = declare_dependency(
 printf_tests = executable('printf_test',
 	['printf/test/test_suite.cpp'],
 	cpp_args: ['-Wno-format', '-Wno-format-invalid-specifier', '-Wno-old-style-cast', '-Wno-missing-prototypes'],
-	include_directories: [include_directories('printf/test', is_system: true)],
+	include_directories: [include_directories('printf/test')],
 	native: true
 )
 
