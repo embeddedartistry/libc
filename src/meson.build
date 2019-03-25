@@ -13,15 +13,19 @@ assert_files = [
 ]
 
 crt_files = [
-	'crt/crt.c',
-	'crt/crtbegin.c',
-	'crt/crtend.c',
 	'crt/_Exit.c',
 	'crt/abort.c',
+	'crt/at_exit.c',
 	'crt/at_quick_exit.c',
-	#'crt/atexit.c',
-	#'crt/exit.c',
-	'crt/quick_exit.c'
+	'crt/crt.c',
+	'crt/cxa_atexit.c',
+	'crt/exit.c',
+	'crt/quick_exit.c',
+]
+
+nondarwin_crt_files = [
+	'crt/crtbegin.c',
+	'crt/crtend.c',
 ]
 
 ctype_files = [
@@ -228,6 +232,10 @@ libc_standalone_files = [
 	crt_files,
 ]
 
+if target_machine.system() != 'darwin'
+	libc_standalone_files += nondarwin_crt_files
+endif
+
 libc_lint_files = files(
 	assert_files,
 	crt_files,
@@ -255,17 +263,19 @@ libc = static_library(
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
 	include_directories: [libc_includes, libc_system_includes],
 	dependencies: target_arch_deps,
+	pic: true,
 )
 
 # We don't build the stdio files for the native variant, as we rely on the
 # System library to do the heavy lifting for missing symbols
 libc_native = static_library(
-		'c_native',
-		libc_common_files + libc_native_files,
-		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
-		include_directories: [libc_includes, libc_system_includes],
-		dependencies: host_arch_deps,
-		native: true
+	'c_native',
+	libc_common_files + libc_native_files,
+	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+	include_directories: [libc_includes, libc_system_includes],
+	dependencies: host_arch_deps,
+	pic: true,
+	native: true,
 )
 
 # We don't build the stdio files for the native variant, as we rely on the

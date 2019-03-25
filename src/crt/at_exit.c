@@ -1,9 +1,8 @@
 #include <stdlib.h>
 
-__attribute__((weak)) int at_quick_exit(void (*func)(void))
+__attribute__((weak)) int atexit(void (*function)(void))
 {
-	(void)func;
-
+	(void)function;
 	// EA libc does not exit on bare metal systems
 	return 0;
 }
