@@ -9,9 +9,21 @@ project('libc',
 # Identify compilers & get flags
 subdir('build/compiler')
 
-# compiler_args is defined in build/compiler/<target>/meson.build
-# We are the standard library, don't complain about __ prefixes
-add_project_arguments([compiler_args, '-Wno-reserved-id-macro'], language: ['c', 'cpp'])
+native_compiler = meson.get_compiler('c', native: true)
+host_compiler = meson.get_compiler('c')
+
+libc_native_compile_args = []
+libc_host_compile_args = []
+
+if native_compiler.has_argument('-Wno-reserved-id-macro')
+	# We are the standard library, don't complain about __ prefixes
+	libc_native_compile_args += '-Wno-reserved-id-macro'
+endif
+
+if host_compiler.has_argument('-Wno-reserved-id-macro')
+	# We are the standard library, don't complain about __ prefixes
+	libc_host_compile_args += '-Wno-reserved-id-macro'
+endif
 
 subdir('build/ea-stdlib')
 

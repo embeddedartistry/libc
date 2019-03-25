@@ -260,7 +260,7 @@ libc_lint_files = files(
 libc = static_library(
 	'c',
 	libc_standalone_files + libc_common_files,
-	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_host_compile_args, '-nostdinc'],
 	include_directories: [libc_includes, libc_system_includes],
 	dependencies: target_arch_deps,
 	pic: true,
@@ -271,7 +271,7 @@ libc = static_library(
 libc_native = static_library(
 	'c_native',
 	libc_common_files + libc_native_files,
-	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_native_compile_args, '-nostdinc'],
 	include_directories: [libc_includes, libc_system_includes],
 	dependencies: host_arch_deps,
 	pic: true,
@@ -283,9 +283,10 @@ libc_native = static_library(
 libc_hosted = static_library(
 		'c_hosted',
 		libc_common_files + libc_native_files,
-		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, '-nostdinc'],
+		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_host_compile_args, '-nostdinc'],
 		include_directories: [libc_includes, libc_system_includes],
 		dependencies: host_arch_deps,
+		pic: true
 )
 
 libc_dep = declare_dependency(
