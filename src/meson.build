@@ -299,16 +299,16 @@ libc_dep = declare_dependency(
 libc_native_dep = declare_dependency(
 	link_with: libc_native,
 	include_directories: [libc_system_includes],
-	compile_args: stdlib_compiler_flags + host_stdlib_compiler_flags,
-	link_args: host_stdlib_link_flags,
+	compile_args: stdlib_compiler_flags + native_stdlib_compiler_flags,
+	link_args: native_stdlib_link_flags,
 	dependencies: host_arch_deps,
 )
 
 libc_hosted_dep = declare_dependency(
 	link_with: libc_hosted,
 	include_directories: [libc_system_includes],
-	compile_args: stdlib_compiler_flags + host_stdlib_compiler_flags,
-	link_args: host_stdlib_link_flags,
+	compile_args: stdlib_compiler_flags + native_stdlib_compiler_flags,
+	link_args: native_stdlib_link_flags,
 	dependencies: host_arch_deps,
 )
 
