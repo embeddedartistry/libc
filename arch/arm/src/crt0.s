@@ -36,11 +36,6 @@
 #define FUNCTION( name ) CONCAT (_, name)
 #endif
 
-#ifdef __USES_INITFINI__
-#define _init	__libc_init_array
-#define _fini	__libc_fini_array
-#endif
-
 #if defined(__ARM_EABI__) && defined(__thumb__) && !defined(__thumb2__)
 /* For Thumb1 we need to force the architecture to be sure that we get the
    correct attributes on the object file; otherwise the assembler will get

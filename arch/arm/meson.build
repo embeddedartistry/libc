@@ -2,8 +2,6 @@
 
 libruntime_arm = static_library('runtime_arm',
     sources: files(
-		'src/crti.s',
-		'src/crtn.s',
 		'src/crt0.S',
 		'src/__aeabi_atexit.c',
 	),
