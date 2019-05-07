@@ -77,7 +77,7 @@ pipeline
       {
         success
         {
-          dir 'buildresults/'
+          dir('buildresults')
           {
             sh 'tar cf documentation.tgz doc/'
           }
@@ -132,7 +132,7 @@ pipeline
       steps
       {
         echo 'Archiving artifacts'
-        dir 'buildresults/'
+        dir('buildresults')
         {
           archiveArtifacts 'documentation.tgz'
         }
