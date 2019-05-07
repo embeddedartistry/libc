@@ -78,7 +78,9 @@ pipeline
         success
         {
           dir 'buildresults/'
-          sh 'tar cf documentation.tgz doc/'
+          {
+            sh 'tar cf documentation.tgz doc/'
+          }
         }
       }
     }
@@ -131,7 +133,9 @@ pipeline
       {
         echo 'Archiving artifacts'
         dir 'buildresults/'
-        archiveArtifacts 'documentation.tgz'
+        {
+          archiveArtifacts 'documentation.tgz'
+        }
       }
       post
       {
