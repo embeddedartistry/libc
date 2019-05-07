@@ -73,6 +73,13 @@ pipeline
       {
         sh 'make docs'
       }
+      post
+      {
+        success
+        {
+          sh 'tar cf buildresults/documentation.tgz buildresults/doc/'
+        }
+      }
     }
     stage('CppCheck')
     {
@@ -122,7 +129,7 @@ pipeline
       steps
       {
         echo 'Archiving artifacts'
-        archiveArtifacts 'buildresults/**/*'
+        archiveArtifacts 'buildresults/documentation.tgz'
       }
       post
       {
