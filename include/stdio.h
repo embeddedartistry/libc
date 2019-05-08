@@ -67,7 +67,14 @@ typedef struct __sFILE_fake FILE;
 int putchar(int c);
 int puts(const char*);
 
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+int asprintf(char**, const char*, ...);
+int vasprintf(char**, const char*, __isoc_va_list);
+#endif
+
 #pragma mark - Unsupported Functions -
+
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 
 int fseek(FILE*, long, int);
 long ftell(FILE*);
@@ -153,10 +160,6 @@ int swprintf(wchar_t* __restrict, size_t, const wchar_t* __restrict, ...);
 int vwprintf(const wchar_t* __restrict, __isoc_va_list);
 int vfwprintf(FILE* __restrict, const wchar_t* __restrict, __isoc_va_list);
 int vswprintf(wchar_t* __restrict, size_t, const wchar_t* __restrict, __isoc_va_list);
-
-#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
-int asprintf(char**, const char*, ...);
-int vasprintf(char**, const char*, __isoc_va_list);
 #endif
 
 #ifdef __cplusplus

@@ -15,14 +15,19 @@ typedef struct __jmp_buf_tag
 } jmp_buf[1];
 
 typedef jmp_buf sigjmp_buf;
+
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 int sigsetjmp(sigjmp_buf, int);
 void siglongjmp(sigjmp_buf, int) __attribute__((noreturn));
+#endif
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 int _setjmp(jmp_buf);
 int setjmp(jmp_buf);
 
 void _longjmp(jmp_buf, int) __attribute__((noreturn));
 void longjmp(jmp_buf, int) __attribute__((noreturn));
+#endif
 
 #ifdef __cplusplus
 }

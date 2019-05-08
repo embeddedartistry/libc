@@ -20,9 +20,11 @@ typedef struct
 
 int wcwidth(wchar_t);
 int wcswidth(const wchar_t*, size_t);
+wchar_t* wcschr(const wchar_t*, wchar_t);
 
 #pragma mark - Unspported API -
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 wint_t btowc(int);
 int wctob(wint_t);
 
@@ -38,7 +40,6 @@ int wcsncmp(const wchar_t*, const wchar_t*, size_t);
 int wcscoll(const wchar_t*, const wchar_t*);
 size_t wcsxfrm(wchar_t* __restrict, const wchar_t* __restrict, size_t);
 
-wchar_t* wcschr(const wchar_t*, wchar_t);
 wchar_t* wcsrchr(const wchar_t*, wchar_t);
 
 size_t wcscspn(const wchar_t*, const wchar_t*);
@@ -92,6 +93,7 @@ int wcsncasecmp(const wchar_t*, const wchar_t*, size_t);
 struct tm;
 size_t wcsftime(wchar_t* __restrict, size_t, const wchar_t* __restrict,
 				const struct tm* __restrict);
+#endif
 
 #ifdef __cplusplus
 }

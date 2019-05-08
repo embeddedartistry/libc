@@ -1,2 +1,3 @@
 option('enable-werror', type: 'boolean', value: false, yield: true)
 option('enable-pedantic-error', type: 'boolean', value: false, yield: true)
+option('hide-unimplemented-libc-apis', type: 'boolean', value: false, yield: true)

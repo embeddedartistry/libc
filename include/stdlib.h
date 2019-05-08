@@ -72,19 +72,25 @@ int at_quick_exit(void (*)(void));
 void quick_exit(int) __attribute__((noreturn));
 int cxa_atexit(void (*)(void*), void*, void*);
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 // Unsupported in bare metal environments:
 char* getenv(const char*);
+#endif
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 // Unsupported in bare metal environments:
 int system(const char*);
+#endif
 
 #pragma mark - Multibyte APIs -
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 int mblen(const char*, size_t);
 int mbtowc(wchar_t* __restrict, const char* __restrict, size_t);
 int wctomb(char*, wchar_t);
 size_t mbstowcs(wchar_t* __restrict, const char* __restrict, size_t);
 size_t wcstombs(char* __restrict, const wchar_t* __restrict, size_t);
+#endif
 
 #pragma mark - ascii-to-x -
 

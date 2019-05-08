@@ -69,6 +69,10 @@ if get_option('enable-pedantic-error') == true
 	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
 endif
 
+if get_option('hide-unimplemented-libc-apis') == true
+	add_project_arguments('-DDISABLE_UNIMPLEMENTED_LIBC_APIS', language: ['c', 'cpp'])
+endif
+
 ############################
 # Process external modules #
 ############################

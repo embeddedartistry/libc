@@ -44,8 +44,10 @@ struct lconv
 	char int_n_sign_posn;
 };
 
+#ifndef DISABLE_UNIMPLEMENTED_LIBC_APIS
 char* setlocale(int, const char*);
 struct lconv* localeconv(void);
+#endif
 
 #ifdef __cplusplus
 }
