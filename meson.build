@@ -85,7 +85,7 @@ libc_printf_dep = declare_dependency(
 )
 
 printf_tests = executable('printf_test',
-	['printf/test/test_suite.cpp'],
+	sources: ['printf/test/test_suite.cpp'],
 	cpp_args: ['-Wno-format', '-Wno-format-invalid-specifier', '-Wno-old-style-cast', '-Wno-missing-prototypes'],
 	include_directories: [include_directories('printf/test')],
 	native: true
