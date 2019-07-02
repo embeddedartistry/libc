@@ -116,11 +116,10 @@ If you are working on your first open source project or pull request, here are s
 Install these dependencies:
 
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/) must be installed to generate documentation
-* [Premake](https://github.com/premake/premake-core/wiki) is used as the buildsystem
-	* Binaries are included for Windows, Linux, and OSX
-	* If yours is not natively supported please download a binary from the website or file a GitHub issue so I can help
+* [Meson](#meson-build-system) is the build system
 * [`git-lfs`](https://git-lfs.github.com) is used to store binary files
-* `make` and `gcc` should be installed in order to compile the files (XCode covers these)
+* `make` is required to use Makefile shims
+* A compiler should be installed in order to build the project (gcc + clang have been tested)
 
 You will need to fork the main repository to work on your changes. Simply navigate to our GitHub page and click the "Fork" button at the top. Once you've forked the repository, you can clone your new repository and start making edits.
 
@@ -140,6 +139,52 @@ git checkout newfeature
 ```
 
 For more information on the GitHub fork and pull-request processes, [please see this helpful guide][5].
+
+#### git-lfs
+
+This project stores some files using [`git-lfs`](https://git-lfs.github.com).
+
+To install `git-lfs` on Linux:
+
+```
+sudo apt install git-lfs
+```
+
+To install `git-lfs` on OS X:
+
+```
+brew install git-lfs
+```
+
+Additional installation instructions can be found on the [`git-lfs` website](https://git-lfs.github.com).
+
+#### Meson Build System
+
+The [Meson][meson] build system depends on `python3` and `ninja-build`.
+
+To install on Linux:
+
+```
+sudo apt-get install python3 python3-pip ninja-build
+```
+
+To install on OSX:
+
+```
+brew install python3 ninja
+```
+
+Meson can be installed through `pip3`:
+
+```
+pip3 install meson
+```
+
+If you want to install Meson globally on Linux, use:
+
+```
+sudo -H pip3 install meson
+```
 
 ### `adr-tools`
 
@@ -163,21 +208,61 @@ The list of outstanding feature requests and bugs can be found on our on our [Gi
 
 ### Development Process
 
-This project is still a work-in-progress and does not have a strict development model. `master` contains the latest code, and new versions are tagged nightly.
+`master` contains the latest code, and new versions are tagged nightly.
 
-Please branch from `master` for any new changes.
+Please branch from `master` for any new changes. Once you are ready to merge changes, open a pull request. The build server will test and analyze the branch to ensure it can be safely merged.
 
 ### Building the Project
 
-To run the build, simply call:
+The library can be built by issuing the following command:
 
 ```
-$ make
+make
 ```
 
-This will build the library and tests. You can build individual projects by navigating to `build/gen`. You will need to run `make build_gen` before this directory is populated.
+This will build all targets for your current architecture.
 
-New files in the `src/` and `test/` directory trees will be automatically added and compiled. No additional work is necessary.
+You can clean builds using:
+
+```
+make clean
+```
+
+You can eliminate the generated `buildresults` folder using:
+
+```
+make purify
+```
+
+You can also use the `meson` method for compiling.
+
+Create a build output folder:
+
+```
+meson buildresults
+```
+
+Then change into that folder and build targets by running:
+
+```
+ninja
+```
+
+At this point, `make` would still work.
+
+#### Cross-compiling
+
+Cross-compilation is handled using `meson` cross files. Example files are included in the [`build/cross`](build/cross/) folder. You can write your own cross files for your specific platform (or open an issue and we can help you).
+
+Cross-compilation must be configured using the meson command when creating the build output folder. For example:
+
+```
+meson buildresults --cross-file build/cross/gcc/arm/gcc_arm_cortex-m4.txt
+```
+
+Following that, you can run `make` (at the project root) or `ninja` (within the build output directory) to build the project.
+
+Tests will not be cross-compiled. They will be built for the native platform.
 
 ### Testing
 
