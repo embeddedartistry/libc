@@ -1,6 +1,13 @@
-project('libc',
+project('Embedded Artistry libc',
 	['c', 'cpp'],
-	default_options : ['c_std=c11','cpp_std=c++17'])
+	default_options : [
+		# build.* options affect native: true targets when cross-compiling
+		'c_std=c11', 'build.c_std=c11',
+		'cpp_std=c++17', 'build.cpp_std=c++17',
+	],
+	license: 'MIT',
+	meson_version: '>=0.50.1',
+	version: '1.0')
 
 ########################
 # Identify Compiler(s) #
