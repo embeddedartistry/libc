@@ -310,13 +310,7 @@ The tests for this library are written with [CMocka][3]. You can run the tests b
 make test
 ```
 
-By default, test results are generated for use by the CI server and are formatted in JUnit XML. The test results XML files can be found in `buildresults/testresults/`.
-
-If you would prefer to see the test result summary printed to `stdout` instead, simply use the following command:
-
-```
-CMOCKA_MESSAGE_OUTPUT=stdout make test
-```
+By default, test results are generated for use by the CI server and are formatted in JUnit XML. The test results XML files can be found in `buildresults/test/`.
 
 ## Configuration Options
 
