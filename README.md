@@ -352,7 +352,7 @@ Formatting is enforced by the Jenkins build server which runs continuous integra
 Documentation can be built locally by running the following command:
 
 ```
-make doc
+make docs
 ```
 
 Documentation can be found in `buildresults/doc`, and the root page is `index.html`.
