@@ -1,6 +1,6 @@
 # Contributor Code of Conduct
 
-**Version**: 1.0.0
+**Version**: 1.0.1
 
 * [Summary](#summary)
 * [Our Standards](#our-standards)
@@ -15,9 +15,9 @@ As contributors and maintainers of Embedded Artistry projects, we pledge to resp
 
 Communication regarding this project through any channel must be constructive and never resort to personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct. Courtesy and respect shall be extended to everyone involved in this project. Our experiences as individuals differs widely, and as such contributors are expected to be respectful of differing viewpoints and experiences.
 
-We expect all contributors to uphold our standards of conduct. If any member of the community violates this code of conduct, the Embedded Artistry team and project mainteners will take action. We reserve the right to remove issues, comments, and PRs that do not comply with our conduct standards. Repeated or significant offenses will result in blocked accounts and disassociation with this project.
+We expect all contributors to uphold our standards of conduct. If any member of the community violates this code of conduct, the Embedded Artistry team and project maintainers will take action. We reserve the right to remove issues, comments, and PRs that do not comply with our conduct standards. Repeated or significant offenses will result in blocked accounts and disassociation with this project.
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please email us at phillip@embeddedartistry.com.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please email us at contact@embeddedartistry.com.
 
 ## Our Standards
 
