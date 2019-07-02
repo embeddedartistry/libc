@@ -24,6 +24,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 	5. [Usage](#usage)
 		1. [Aligned Malloc](#aligned-malloc)
 	6. [Testing](#testing)
+4. [Configuration Options](#configuration-options)
 4. [Formatting](#formatting)
 5. [Documentation](#documentation)
 6. [Need Help?](#need-help)
@@ -315,6 +316,27 @@ If you would prefer to see the test result summary printed to `stdout` instead, 
 
 ```
 CMOCKA_MESSAGE_OUTPUT=stdout make test
+```
+
+## Configuration Options
+
+The following meson project options can be set for this library when creating the build results directory with `meson`, or by using `meson configure`:
+
+* `enable-werror`: Cause the build to fail if warnings are present
+* `enable-pedantic-error`: Turn on `pedantic` warnings and errors
+* `hide-unimplemented-libc-apis`: Hides the header definitions for functions which are not actually implemented
+
+Options can be specified using `-D` and the option name:
+
+```
+meson buildresults -Denable-werror=true
+```
+
+The same style works with `meson configure`:
+
+```
+cd buildresults
+meson configure -Denable-werror=true
 ```
 
 ## Formatting
