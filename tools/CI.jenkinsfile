@@ -149,9 +149,9 @@ pipeline
           // 5 new issues: failed build
           [threshold: 5, type: 'DELTA', unstable: false],
           // 10 total issues: unstable
-          [threshold: 10, type: 'TOTAL', unstable: true],
+          [threshold: 55, type: 'TOTAL', unstable: true],
           // 20 total issues: fail
-          [threshold: 20, type: 'TOTAL', unstable: false]
+          [threshold: 75, type: 'TOTAL', unstable: false]
         ],
         tools: [
           clang(),
