@@ -36,13 +36,6 @@ pipeline
       {
         sh 'make'
       }
-      post
-      {
-        always
-        {
-          warnings categoriesPattern: '', consoleParsers: [[parserName: 'Clang (LLVM based)']], defaultEncoding: '', excludePattern: '**/buildresults/**, **/printf/**, **/openlibm/**', failedNewAll: '15', failedTotalAll: '20', healthy: '', includePattern: '', messagesPattern: '', unHealthy: '', unstableNewAll: '15', unstableTotalAll: '15', useStableBuildAsReference: true
-        }
-      }
     }
     stage('Cross compile for ARM')
     {
@@ -90,13 +83,6 @@ pipeline
       {
         sh 'make cppcheck-xml'
       }
-      post
-      {
-        always
-        {
-          publishCppcheck healthy: '5', newFailureThreshold: '5', newThreshold: '50', pattern: '**/cppcheck.xml', threshold: '25', unHealthy: '100'
-        }
-      }
     }
     stage('Clang Tidy')
     {
@@ -117,14 +103,6 @@ pipeline
         {
           cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: 'buildresults-coverage/meson-logs/coverage.xml', onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false
         }
-      }
-    }
-    stage('ScanWorkspace')
-    {
-      steps
-      {
-        // Scan workspace to check open tasks
-        openTasks(defaultEncoding: '', excludePattern: 'buildresults/**, printf/**, openlibm/**', healthy: '', high: 'FIXME, FIX', ignoreCase: true, low: '', normal: 'TODO', pattern: '**/*.c, **/*.h, **/*.cpp, **/*.hpp, *.lua **/*.sh', unHealthy: '')
       }
     }
     stage('Archive')
@@ -150,6 +128,36 @@ pipeline
   {
     always
     {
+      // Scan for open tasks, warnings, issues, etc.
+      recordIssues(
+        enabledForFailure: true,
+        healthy: 5,
+        unhealthy: 10,
+        qualityGates: [
+          // 3 new issue: unstable
+          [threshold: 3, type: 'DELTA', unstable: true],
+          // 5 new issues: failed build
+          [threshold: 5, type: 'DELTA', unstable: false],
+          // 10 total issues: unstable
+          [threshold: 10, type: 'TOTAL', unstable: true],
+          // 20 total issues: fail
+          [threshold: 20, type: 'TOTAL', unstable: false]
+        ],
+        tools: [
+          clang(),
+          taskScanner(
+            excludePattern: 'buildresults/**, printf/**, openlibm/**',
+            includePattern: '**/*.c, **/*.cpp, **/*.h, **/*.hpp, **/*.lua, **/*.sh, **/*.build',
+            normalTags: 'TODO, to do, WIP',
+            highTags: 'FIXME, FIX',
+            ignoreCase: true,
+          ),
+          cppCheck(
+            pattern: 'buildresults/**/cppcheck.xml'
+          ),
+        ]
+      )
+
       // Report Status
       slackNotify(currentBuild.currentResult)
       gitTagCleanup "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
