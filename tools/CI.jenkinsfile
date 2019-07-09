@@ -138,32 +138,32 @@ pipeline
     }
     always
     {
-      // Scan for open tasks, warnings, issues, etc.
+     // Scan for open tasks, warnings, issues, etc.
       recordIssues(
         enabledForFailure: true,
         healthy: 5,
         unhealthy: 10,
         qualityGates: [
           // 3 new issue: unstable
-          [threshold: 3, type: 'DELTA', unstable: true],
+          //[threshold: 3, type: 'DELTA', unstable: true],
           // 5 new issues: failed build
-          [threshold: 5, type: 'DELTA', unstable: false],
+          //[threshold: 5, type: 'DELTA', unstable: false],
           // 10 total issues: unstable
-          [threshold: 55, type: 'TOTAL', unstable: true],
+          //[threshold: 55, type: 'TOTAL', unstable: true],
           // 20 total issues: fail
-          [threshold: 75, type: 'TOTAL', unstable: false]
+          //[threshold: 75, type: 'TOTAL', unstable: false]
         ],
         tools: [
           clang(),
           taskScanner(
-            excludePattern: 'buildresults/**, printf/**, openlibm/**',
+            excludePattern: 'buildresults/**, printf/**, openlibm/**, gdtoa/**',
             includePattern: '**/*.c, **/*.cpp, **/*.h, **/*.hpp, **/*.lua, **/*.sh, **/*.build',
             normalTags: 'TODO, to do, WIP',
             highTags: 'FIXME, FIX',
             ignoreCase: true,
           ),
           cppCheck(
-            pattern: 'buildresults/**/cppcheck.xml'
+            pattern: 'buildresults/**/cppcheck.xml',
           ),
         ]
       )
