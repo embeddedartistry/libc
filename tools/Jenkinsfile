@@ -91,6 +91,13 @@ pipeline
         sh 'make tidy'
       }
     }
+    stage('Clang Analyzer')
+    {
+      steps
+      {
+        sh 'make analyze'
+      }
+    }
     stage('Coverage')
     {
       steps
