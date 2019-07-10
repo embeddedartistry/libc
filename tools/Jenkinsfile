@@ -180,7 +180,7 @@ pipeline
       * This job does not have a GitHub configuration,
       * so we need to create a dummy config
       */
-      githubSetConfig('4c01f168-ca25-483e-bc6d-8d105fc5fb70')
+      githubSetConfig('69e4682e-2951-492f-b828-da06364c322d')
       githubFileIssue()
       emailNotify(currentBuild.currentResult)
     }
