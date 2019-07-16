@@ -852,6 +852,21 @@ void* reallocf(void* ptr, size_t size);
 int posix_memalign(void** memptr, size_t alignment, size_t size);
 #endif
 
+#if(defined(__ISO_C_VISIBLE) && __ISO_C_VISIBLE >= 2011) || (__STDC_VERSION >= 20112L) || \
+	__cplusplus >= 201103L
+/** C11 Aligned Memory Allocation
+ *
+ * @param align Specifies the alignment. Must be a valid alignment supported by the
+ *	implementation (e.g., here - a power of 2).
+ * @param size Specifies the number of bytes to allocate.
+ *
+ * This implementation requires you to call aligned_free() to free memory, not free().
+ *
+ * @return pointer to new memory allocation; NULL on failure.
+ */
+void* aligned_alloc(size_t align, size_t size);
+#endif
+
 #ifdef __cplusplus
 }
 #endif //__cplusplus
