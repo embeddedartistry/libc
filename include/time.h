@@ -25,6 +25,7 @@ typedef unsigned long clock_t;
 typedef unsigned useconds_t;
 
 #define _STRUCT_TIMESPEC
+#define __timespec_defined 1
 struct timespec
 {
 	time_t tv_sec;
