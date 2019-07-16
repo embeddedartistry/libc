@@ -75,8 +75,7 @@ libcmocka = meson.get_compiler('c', native: true).find_library('cmocka', require
 # Tests will only be compiled if libcmocka is found
 libc_tests = executable('libc_test',
 	libc_test_files,
-	c_args: [stdlib_compiler_flags, '-Wno-vla', '-Wno-unused-parameter'],
-	link_args: [stdlib_link_flags, native_stdlib_link_flags],
+	c_args: ['-Wno-vla', '-Wno-unused-parameter'],
 	include_directories: [
 		include_directories('/usr/local/include/', is_system: true)
 	],
