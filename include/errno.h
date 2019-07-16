@@ -9,7 +9,12 @@ extern "C" {
 // int *__errno_location(void);
 //#define errno (*__errno_location())
 
+// For GLIBC on host, we need to use their definition of errno for linking purposes
+#ifdef __GLIBC__
+#include_next "errno.h"
+#else
 extern int errno;
+#endif
 
 #define EPERM 1 /* Operation not permitted */
 #define ENOENT 2 /* No such file or directory */
