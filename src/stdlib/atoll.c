@@ -15,15 +15,20 @@ long long atoll(const char* str)
 	switch(*str)
 	{
 		case '-':
+
 			neg = true;
 		// Intentional fallthrough
 		case '+':
 			str++;
+		default:
+			// Intentional fallthrough
+			;
 	}
 
 	while(isdigit(*str))
 	{
 		val = (10 * val) + (*str++ - '0');
 	}
+
 	return neg ? -val : val;
 }
