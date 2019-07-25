@@ -14,13 +14,13 @@ extern void (*__fini_array_end[])(void) __attribute__((weak));
 
 void __libc_init_array(void)
 {
-	size_t count = __preinit_array_end - __preinit_array_start;
+	size_t count = (size_t)(__preinit_array_end - __preinit_array_start);
 	for(size_t i = 0; i < count; i++)
 	{
 		__preinit_array_start[i]();
 	}
 
-	count = __init_array_end - __init_array_start;
+	count = (size_t)(__init_array_end - __init_array_start);
 	for(size_t i = 0; i < count; i++)
 	{
 		__init_array_start[i]();
@@ -29,7 +29,7 @@ void __libc_init_array(void)
 
 void __libc_fini_array(void)
 {
-	size_t count = __fini_array_end - __fini_array_start;
+	size_t count = (size_t)(__fini_array_end - __fini_array_start);
 	for(size_t i = count - 1; i > 0; i--)
 	{
 		__fini_array_start[i]();
