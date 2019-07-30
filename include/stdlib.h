@@ -472,17 +472,6 @@ long labs(long n);
 long long llabs(long long n);
 
 /**
- * @brief Computes the absolute value of an intmax_t number.
- *
- * Computes the absolute value of an intmax_t number.
- * The behavior is undefined if the result cannot be represented by the return type.
- *
- * @param j value
- * @return The absolute value of n (i.e. |n|), if it is representable.
- * */
-intmax_t imaxabs(intmax_t j);
-
-/**
  * @brief Computes both the quotient and the remainder of the division of the numerator x by the
  * denominator y.
  *
@@ -548,30 +537,6 @@ ldiv_t ldiv(long x, long y);
  * If either the remainder or the quotient cannot be represented, the behavior is undefined.
  * */
 lldiv_t lldiv(long long x, long long y);
-
-/**
- * @brief Computes both the quotient and the remainder of the division of the numerator x by the
- * denominator y.
- *
- * Computes both the quotient and the remainder of the division of the numerator x by the
- * denominator y. Computes quotient and remainder simultaneously. The quotient is the algebraic
- * quotient with any fractional part discarded (truncated towards zero). The remainder is such that
- * quot * y + rem == x.
- *
- * Computes the quotient (the result of the expression x/y) and remainder (the result of the
- * expression x%y) simultaneously.
- *
- * @param numer intmax_t values (numerator)
- * @param denom intmax_t values (denominator)
- *
- * @return If both the remainder and the quotient can be represented
- * as objects of the corresponding type (int, long, long long, imaxdiv_t,
- * respectively), returns both as an object of type @see div_t, @see ldiv_t, @see lldiv_t, @see
- * imaxdiv_t.
- *
- * If either the remainder or the quotient cannot be represented, the behavior is undefined.
- * */
-imaxdiv_t imaxdiv(intmax_t numer, intmax_t denom);
 
 #pragma mark - random number generation -
 
