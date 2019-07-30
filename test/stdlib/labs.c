@@ -18,15 +18,15 @@
 
 static void labs_test(void** state)
 {
-	assert_int_equal(imaxabs(0), 0);
-	assert_int_equal(imaxabs(1), 1);
-	assert_int_equal(imaxabs(-1), 1);
-	assert_int_equal(imaxabs(LONG_MAX), LONG_MAX);
-	assert_int_equal(imaxabs(-LONG_MAX), LONG_MAX);
-	assert_int_equal(imaxabs(LONG_MIN), LONG_MIN);
+	assert_int_equal(labs(0), 0);
+	assert_int_equal(labs(1), 1);
+	assert_int_equal(labs(-1), 1);
+	assert_int_equal(labs(LONG_MAX), LONG_MAX);
+	assert_int_equal(labs(-LONG_MAX), LONG_MAX);
+	assert_int_equal(labs(LONG_MIN), LONG_MIN);
 
 	// We add one to prevent an overflow with -LONG_MIN. We expect it to be LONG_MAX.
-	assert_int_equal(imaxabs(-(LONG_MIN + 1)), (LONG_MAX));
+	assert_int_equal(labs(-(LONG_MIN + 1)), (LONG_MAX));
 }
 
 #pragma mark - Public Functions -
