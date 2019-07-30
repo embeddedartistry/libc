@@ -233,7 +233,7 @@ libc_standalone_files = [
 ]
 
 if target_machine.system() != 'darwin'
-	libc_standalone_files += nondarwin_crt_files
+	#libc_standalone_files += nondarwin_crt_files
 endif
 
 libc_lint_files = files(
