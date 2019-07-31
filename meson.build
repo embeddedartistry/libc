@@ -81,6 +81,11 @@ if get_option('hide-unimplemented-libc-apis') == true
 	add_project_arguments('-DDISABLE_UNIMPLEMENTED_LIBC_APIS', language: ['c', 'cpp'])
 endif
 
+add_project_arguments(native_compiler_warnings, language: 'c', native: true)
+add_project_arguments(target_compiler_warnings, language: 'c', native: false)
+add_project_arguments(native_cpp_compiler_warnings, language: 'cpp', native: true)
+add_project_arguments(target_cpp_compiler_warnings, language: 'cpp', native: false)
+
 ############################
 # Process external modules #
 ############################
