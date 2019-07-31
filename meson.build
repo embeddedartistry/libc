@@ -23,6 +23,11 @@ host_compiler = meson.get_compiler('c')
 libc_native_compile_args = []
 libc_host_compile_args = []
 
+add_project_arguments(native_compiler_warnings, language: 'c', native: true)
+add_project_arguments(target_compiler_warnings, language: 'c', native: false)
+add_project_arguments(native_cpp_compiler_warnings, language: 'cpp', native: true)
+add_project_arguments(target_cpp_compiler_warnings, language: 'cpp', native: false)
+
 if native_compiler.has_argument('-Wno-reserved-id-macro')
 	# We are the standard library, don't complain about __ prefixes
 	libc_native_compile_args += '-Wno-reserved-id-macro'
@@ -34,6 +39,22 @@ if host_compiler.has_argument('-Wno-reserved-id-macro')
 endif
 
 subdir('build/ea-stdlib')
+
+#########################
+# Process Build Options #
+#########################
+
+if get_option('enable-werror') == true
+	add_project_arguments('-Werror', language : ['c', 'cpp'])
+endif
+
+if get_option('enable-pedantic-error') == true
+	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
+endif
+
+if get_option('hide-unimplemented-libc-apis') == true
+	add_project_arguments('-DDISABLE_UNIMPLEMENTED_LIBC_APIS', language: ['c', 'cpp'])
+endif
 
 #######################
 # Include Directories #
@@ -64,27 +85,6 @@ subdir('arch/' + target_architecture)
 if target_architecture != native_architecture
 	subdir('arch/' + native_architecture)
 endif
-
-#########################
-# Process Build Options #
-#########################
-
-if get_option('enable-werror') == true
-	add_project_arguments('-Werror', language : ['c', 'cpp'])
-endif
-
-if get_option('enable-pedantic-error') == true
-	add_project_arguments('-pedantic-error', language : ['c', 'cpp'])
-endif
-
-if get_option('hide-unimplemented-libc-apis') == true
-	add_project_arguments('-DDISABLE_UNIMPLEMENTED_LIBC_APIS', language: ['c', 'cpp'])
-endif
-
-add_project_arguments(native_compiler_warnings, language: 'c', native: true)
-add_project_arguments(target_compiler_warnings, language: 'c', native: false)
-add_project_arguments(native_cpp_compiler_warnings, language: 'cpp', native: true)
-add_project_arguments(target_cpp_compiler_warnings, language: 'cpp', native: false)
 
 ############################
 # Process external modules #
