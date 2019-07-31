@@ -219,7 +219,6 @@ libc_common_files = [
 	gdtoa_files,
 	locale_files,
 	math_files,
-	printf_files,
 	stdio_files,
 	stdlib_files,
 	string_files,
@@ -257,6 +256,39 @@ libc_lint_files = files(
 # For dependencies, we use libc_system_includes to add -isystem
 ##
 
+libprintf = static_library(
+	'printf',
+    printf_files,
+    c_args: [
+    	stdlib_compiler_flags,
+    	gdtoa_compiler_flags,
+    	libc_host_compile_args,
+    	'-nostdinc',
+    	'-Wno-sign-conversion',
+    	'-Wno-float-equal',
+    ],
+    include_directories: [libc_includes, libc_system_includes],
+    dependencies: target_arch_deps,
+    pic: true
+)
+
+libprintf_native = static_library(
+	'printf_native',
+    printf_files,
+    c_args: [
+    	stdlib_compiler_flags,
+    	gdtoa_compiler_flags,
+    	libc_native_compile_args,
+    	'-nostdinc',
+    	'-Wno-sign-conversion',
+    	'-Wno-float-equal',
+    ],
+    include_directories: [libc_includes, libc_system_includes],
+    dependencies: native_arch_deps,
+    pic: true,
+    native: true,
+)
+
 libc = static_library(
 	'c',
 	libc_standalone_files + libc_common_files,
@@ -290,14 +322,20 @@ libc_hosted = static_library(
 )
 
 libc_dep = declare_dependency(
-	link_with: libc,
+	link_with: [
+		libc,
+		libprintf
+	],
 	include_directories: [libc_system_includes, target_arch_include],
 	compile_args: stdlib_compiler_flags,
 	dependencies: target_arch_deps,
 )
 
 libc_native_dep = declare_dependency(
-	link_with: libc_native,
+	link_with: [
+		libc_native,
+		libprintf_native,
+	],
 	include_directories: [libc_system_includes, native_arch_include],
 	compile_args: stdlib_compiler_flags + native_stdlib_compiler_flags,
 	link_args: native_stdlib_link_flags,
@@ -305,7 +343,10 @@ libc_native_dep = declare_dependency(
 )
 
 libc_hosted_dep = declare_dependency(
-	link_with: libc_hosted,
+	link_with: [
+		libc_hosted,
+		libprintf_native
+	],
 	include_directories: [libc_system_includes, target_arch_include],
 	compile_args: stdlib_compiler_flags + native_stdlib_compiler_flags,
 	link_args: native_stdlib_link_flags,
