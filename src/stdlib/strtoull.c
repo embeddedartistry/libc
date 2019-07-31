@@ -84,7 +84,10 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 			base = c == '0' ? 8 : 10;
 		}
 	}
-	acc = any = 0;
+
+	acc = 0ULL;
+	any = 0;
+
 	if(base < 2 || base > 36)
 	{
 		{
@@ -135,8 +138,8 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 		else
 		{
 			any = 1;
-			acc *= (unsigned long)base;
-			acc += (unsigned long)c;
+			acc *= (unsigned long long)base;
+			acc += (unsigned long long)c;
 		}
 	}
 	if(any < 0)

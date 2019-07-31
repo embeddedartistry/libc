@@ -11,9 +11,11 @@ int atoi(const char* str)
 	{
 		case '-':
 			neg = true;
-		// intentional fallthrough to advance str
+			/* fall through */ // intentional fallthrough to advance str
 		case '+':
 			str++;
+		default:
+			break; // proceed without action
 	}
 
 	while(isdigit(*str))

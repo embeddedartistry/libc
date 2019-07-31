@@ -29,6 +29,7 @@ int iswctype(wint_t wc, wctype_t type)
 			return iswupper(wc);
 		case WCTYPE_XDIGIT:
 			return iswxdigit(wc);
+		default:
+			return 0;
 	}
-	return 0;
 }

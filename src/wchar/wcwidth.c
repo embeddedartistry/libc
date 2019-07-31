@@ -35,12 +35,13 @@ int wcwidth(wchar_t wc)
 		return -1;
 	}
 
-	if(wc - (wchar_t)0x20000U < 0x20000)
+	if((wc - (wchar_t)0x20000U) < (wchar_t)0x20000)
 	{
 		return 2;
 	}
 
-	if(wc == 0xe0001 || wc - (wchar_t)0xe0020U < 0x5f || wc - 0xe0100 < 0xef)
+	if((wc == (wchar_t)0xe0001) || ((wc - (wchar_t)0xe0020U) < (wchar_t)0x5f) ||
+	   ((wc - (wchar_t)0xe0100) < (wchar_t)0xef))
 	{
 		return 0;
 	}

@@ -55,10 +55,10 @@ static int do_rand(unsigned long* ctx)
 	/* Can't be initialized with 0, so use another value. */
 	if(*ctx == 0)
 	{
-		*ctx = 123459876;
+		*ctx = 123459876UL;
 	}
-	hi = *ctx / 127773;
-	lo = *ctx % 127773;
+	hi = (long)(*ctx / 127773L);
+	lo = (long)(*ctx % 127773L);
 	x = 16807 * lo - 2836 * hi;
 	if(x < 0)
 	{

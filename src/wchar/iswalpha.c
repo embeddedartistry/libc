@@ -8,7 +8,7 @@ int iswalpha(wint_t wc)
 {
 	if(wc < 0x20000U)
 	{
-		return (table[table[wc >> 8] * 32 + ((wc & 255) >> 3)] >> (wc & 7)) & 1;
+		return (table[(wint_t)(table[wc >> 8] * 32) + ((wc & 255) >> 3)] >> (wc & 7)) & 1;
 	}
 	if(wc < 0x2fffeU)
 	{

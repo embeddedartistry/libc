@@ -16,9 +16,11 @@ long atol(const char* str)
 	{
 		case '-':
 			neg = true;
-		// intentional fallthrough
+			/* fall through */
 		case '+':
 			str++;
+		default:
+			break;
 	}
 
 	while(isdigit(*str))
