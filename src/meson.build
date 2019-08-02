@@ -317,7 +317,7 @@ libc_hosted = static_library(
 		libc_common_files + libc_native_files,
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_host_compile_args, '-nostdinc'],
 		include_directories: [libc_includes, libc_system_includes],
-		dependencies: native_arch_deps,
+		dependencies: target_arch_deps,
 		pic: true
 )
 
@@ -345,12 +345,12 @@ libc_native_dep = declare_dependency(
 libc_hosted_dep = declare_dependency(
 	link_with: [
 		libc_hosted,
-		libprintf_native
+		libprintf,
 	],
 	include_directories: [libc_system_includes, target_arch_include],
-	compile_args: stdlib_compiler_flags + native_stdlib_compiler_flags,
-	link_args: native_stdlib_link_flags,
-	dependencies: native_arch_deps,
+	compile_args: stdlib_compiler_flags,
+	link_args: stdlib_link_flags,
+	dependencies: target_arch_deps,
 )
 
 libc_header_include = [libc_system_includes, target_arch_include]
