@@ -276,7 +276,9 @@ typedef uint64_t uint_fast64_t;
 #define UINTMAX_MAX UINT64_MAX
 
 /*! Maximum value of object of size_t type */
+#ifndef SIZE_MAX
 #define SIZE_MAX UINT32_MAX
+#endif
 
 #if defined(__STDC_WANT_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__ >= 1
 
