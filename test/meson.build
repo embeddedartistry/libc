@@ -67,7 +67,8 @@ libc_test_files = [
 	'string/strrchr.c',
 	'string/strstr.c',
 	'string/strtok.c',
-	'test/rand.c'
+	'test/rand.c',
+	'includes.c'
 ]
 
 libcmocka = meson.get_compiler('c', native: true).find_library('cmocka', required: false, disabler: true)
