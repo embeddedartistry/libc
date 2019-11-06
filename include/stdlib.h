@@ -32,13 +32,6 @@ typedef struct
 	long long rem; /**< The remainder */
 } lldiv_t;
 
-/// Division type for maximal integer storage
-typedef struct
-{
-	intmax_t quot; /**< The quotient */
-	intmax_t rem; /**< The remainder */
-} imaxdiv_t;
-
 /*! Expands to 1. Indicates program execution execution status. */
 #define EXIT_FAILURE 1
 
