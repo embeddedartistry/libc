@@ -128,6 +128,10 @@ subdir('test/')
 # Supporting Build Targets #
 ############################
 
+run_target('clear-test-results',
+	command: meson.source_root() + '/tools/clear_test_xml.sh'
+)
+
 run_target('docs',
 	command: ['doxygen', 'docs/Doxyfile'])
 
