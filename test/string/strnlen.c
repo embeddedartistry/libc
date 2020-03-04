@@ -5,6 +5,7 @@
 
 #include "string_tests.h"
 #include <string.h>
+#include <stdint.h>
 
 // Cmocka needs these
 // clang-format off
