@@ -1,5 +1,5 @@
 cscope*out
-
+*.sublime-workspace
 .DS_Store
 
 # Generated folders
