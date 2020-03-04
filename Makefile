@@ -76,9 +76,7 @@ cppcheck-xml: groundwork
 
 .PHONY: test
 test: groundwork
-ifneq ("$(wildcard $(BUILDRESULTS)/test/)","")
-	$(Q)rm -f $(BUILDRESULTS)/test/*.xml
-endif
+	$(Q) cd $(BUILDRESULTS); ninja clear-test-results
 	$(Q) cd $(BUILDRESULTS); meson test
 
 .PHONY: coverage
