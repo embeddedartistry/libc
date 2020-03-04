@@ -1,50 +1,14 @@
 # libc src/ meson build
 
-# Flags required by gdtoa
+#############################
+# GDTOA Library Definitions #
+#############################
+
 gdtoa_compiler_flags = [
 	'-DNO_ERRNO',
 	'-DIFNAN_CHECK',
 	'-DGDTOA_NO_ASSERT',
 	'-DNO_FENV_H'
-]
-
-assert_files = [
-	'assert/assert.c',
-]
-
-crt_files = [
-	'crt/_Exit.c',
-	'crt/abort.c',
-	'crt/at_exit.c',
-	'crt/at_quick_exit.c',
-	'crt/crt.c',
-	'crt/cxa_atexit.c',
-	'crt/exit.c',
-	'crt/quick_exit.c',
-]
-
-nondarwin_crt_files = [
-	'crt/crtbegin.c',
-	'crt/crtend.c',
-]
-
-ctype_files = [
-	'ctype/isalnum.c',
-	'ctype/isalpha.c',
-	'ctype/isascii.c',
-	'ctype/isblank.c',
-	'ctype/iscntrl.c',
-	'ctype/isdigit.c',
-	'ctype/isgraph.c',
-	'ctype/islower.c',
-	'ctype/isprint.c',
-	'ctype/ispunct.c',
-	'ctype/isspace.c',
-	'ctype/isupper.c',
-	'ctype/isxdigit.c',
-	'ctype/toascii.c',
-	'ctype/tolower.c',
-	'ctype/toupper.c'
 ]
 
 gdtoa_files = [
@@ -67,7 +31,7 @@ gdtoa_files = [
 	'gdtoa/src/strtod.c',
 	'gdtoa/src/strtodg.c',
 	'gdtoa/src/strtodI.c',
-	# Below is an alternative, we are not using it
+	# strtodnrp is an alternative of our strtod; we are not using it at this time
 	#'gdtoa/src/strtodnrp.c',
 	'gdtoa/src/strtof.c',
 	'gdtoa/src/strtoId.c',
@@ -93,16 +57,55 @@ gdtoa_files = [
 	'gdtoa/src/ulp.c'
 ]
 
-locale_files = [
-	'locale/langinfo.c',
-]
+############################
+# libc Library Definitions #
+############################
 
-math_files = [
+assert_files = files('assert/assert.c')
+
+crt_files = files(
+	'crt/_Exit.c',
+	'crt/abort.c',
+	'crt/at_exit.c',
+	'crt/at_quick_exit.c',
+	'crt/crt.c',
+	'crt/cxa_atexit.c',
+	'crt/exit.c',
+	'crt/quick_exit.c',
+)
+
+nondarwin_crt_files = files(
+	'crt/crtbegin.c',
+	'crt/crtend.c',
+)
+
+ctype_files = files(
+	'ctype/isalnum.c',
+	'ctype/isalpha.c',
+	'ctype/isascii.c',
+	'ctype/isblank.c',
+	'ctype/iscntrl.c',
+	'ctype/isdigit.c',
+	'ctype/isgraph.c',
+	'ctype/islower.c',
+	'ctype/isprint.c',
+	'ctype/ispunct.c',
+	'ctype/isspace.c',
+	'ctype/isupper.c',
+	'ctype/isxdigit.c',
+	'ctype/toascii.c',
+	'ctype/tolower.c',
+	'ctype/toupper.c'
+)
+
+locale_files = files('locale/langinfo.c')
+
+math_files = files(
 	'math/fabs.c',
 	'math/fabsf.c',
-]
+)
 
-stdlib_files = [
+stdlib_files = files(
 	'stdlib/abs.c',
 	'stdlib/atof.c',
 	'stdlib/atoi.c',
@@ -128,16 +131,16 @@ stdlib_files = [
 	'stdlib/strtoul.c',
 	'stdlib/strtoll.c',
 	'stdlib/strtoull.c',
-]
+)
 
-stdio_files = [
+stdio_files = files(
 	'stdio/asprintf.c',
 	'stdio/putchar.c',
 	'stdio/puts.c',
 	'stdio/vasprintf.c',
-]
+)
 
-string_files = [
+string_files = files(
 	'string/memcmp.c',
 	'string/memcpy.c',
 	'string/memmem.c',
@@ -168,20 +171,20 @@ string_files = [
 	'string/strstr.c',
 	'string/strtok.c',
 	'string/strxfrm.c'
-]
+)
 
-support_files = [
+support_files = files(
 	'support/fls.c',
 	'support/flsl.c',
 	'support/flsll.c'
-]
+)
 
-time_files = [
+time_files = files(
 	'time/asctime.c',
 	'time/asctime_r.c',
-]
+)
 
-wchar_files = [
+wchar_files = files(
 	'wchar/iswalnum.c',
 	'wchar/iswalpha.c',
 	'wchar/iswblank.c',
@@ -207,12 +210,9 @@ wchar_files = [
 	'wchar/wctrans.c',
 	'wchar/wctype.c',
 	'wchar/wcwidth.c',
-]
+)
 
-libc_native_files = [
-	'stdio/putchar_native.c',
-]
-
+# These files are used by all libc targets
 libc_common_files = [
 	assert_files,
 	ctype_files,
@@ -227,6 +227,12 @@ libc_common_files = [
 	wchar_files,
 ]
 
+# These files are used to compile libc for a build machine / your personal computer
+libc_native_files = [
+	'stdio/putchar_native.c',
+]
+
+# These files are used when cross-compiling libc for another platform
 libc_standalone_files = [
 	crt_files,
 ]
@@ -251,10 +257,13 @@ libc_lint_files = files(
 	wchar_files,
 )
 
-##
+###################
+# Library Targets #
+###################
+
+## NOTE:
 # For local builds, we use libc_includes to generate our own warnings
 # For dependencies, we use libc_system_includes to add -isystem
-##
 
 libprintf = static_library(
 	'printf',
@@ -320,6 +329,10 @@ libc_hosted = static_library(
 		dependencies: target_arch_deps,
 		pic: true
 )
+
+##########################
+# Dependency Definitions #
+##########################
 
 libc_dep = declare_dependency(
 	link_with: [
