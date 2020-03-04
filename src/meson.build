@@ -241,7 +241,7 @@ if target_machine.system() != 'darwin'
 	#libc_standalone_files += nondarwin_crt_files
 endif
 
-libc_lint_files = files(
+libc_lint_files = [
 	assert_files,
 	crt_files,
 	ctype_files,
@@ -255,7 +255,7 @@ libc_lint_files = files(
 	support_files,
 	time_files,
 	wchar_files,
-)
+]
 
 ###################
 # Library Targets #
