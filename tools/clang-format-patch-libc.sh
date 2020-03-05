@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -f clang_format.patch
+
 find . -type d \( -path ./test/cmocka -o -path ./src/gdtoa \
 	-o -path ./printf -o -path ./openlibm \) -prune \
 	-o -iname *.h -o -iname *.c -o -iname *.cpp -o -iname *.hpp \
