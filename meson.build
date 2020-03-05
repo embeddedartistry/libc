@@ -169,8 +169,8 @@ if clangtidy.found()
             # Checks
             '-*,cppcoreguidelines-*,modernize-*,performance-*,portability-*,readability-*,' +
             '-readability-inconsistent-declaration-parameter-name,' +
+            '-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,' +
             # Header Filter
-            '.*',
-            #Finish with files
-        ] + libc_lint_files)
+            '.*', libc_lint_files]
+    )
 endif
