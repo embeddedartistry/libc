@@ -37,7 +37,8 @@
 
 char* strstr(const char* string, const char* substring)
 {
-	const char *a, *b;
+	const char* a;
+	const char* b;
 
 	/* First scan quickly through the two strings looking for a
 	 * single-character match.  When it's found, then compare the

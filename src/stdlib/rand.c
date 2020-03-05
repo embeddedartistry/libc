@@ -50,20 +50,25 @@ static int do_rand(unsigned long* ctx)
 	 * Park and Miller, Communications of the ACM, vol. 31, no. 10,
 	 * October 1988, p. 1195.
 	 */
-	long hi, lo, x;
+	long hi;
+	long lo;
+	long x;
 
 	/* Can't be initialized with 0, so use another value. */
 	if(*ctx == 0)
 	{
 		*ctx = 123459876UL;
 	}
+
 	hi = (long)(*ctx / 127773L);
 	lo = (long)(*ctx % 127773L);
 	x = 16807 * lo - 2836 * hi;
+
 	if(x < 0)
 	{
 		x += 0x7fffffff;
 	}
+
 	return (int)((*ctx = (unsigned long)x) % ((unsigned long)RAND_MAX + 1));
 #endif /* !USE_WEAK_SEEDING */
 }

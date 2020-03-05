@@ -19,21 +19,21 @@
 #pragma mark - Declarations -
 
 /* 26 items -- even */
-static const char* s[] = {"Bob",	"Alice", "John",   "Ceres",   "Helga",   "Drepper", "Emeralda",
-						  "Zoran",  "Momo",  "Frank",  "Pema",	"Xavier",  "Yeva",	"Gedun",
-						  "Irina",  "Nono",  "Wiener", "Vincent", "Tsering", "Karnica", "Lulu",
+static const char* s[] = {"Bob",	"Alice", "John",   "Ceres",	  "Helga",	 "Drepper", "Emeralda",
+						  "Zoran",	"Momo",	 "Frank",  "Pema",	  "Xavier",	 "Yeva",	"Gedun",
+						  "Irina",	"Nono",	 "Wiener", "Vincent", "Tsering", "Karnica", "Lulu",
 						  "Quincy", "Osama", "Riley",  "Ursula",  "Sam"};
 static const char* s_sorted[] = {
 	"Alice", "Bob",		"Ceres",  "Drepper", "Emeralda", "Frank",  "Gedun", "Helga",  "Irina",
-	"John",  "Karnica", "Lulu",   "Momo",	"Nono",	 "Osama",  "Pema",  "Quincy", "Riley",
-	"Sam",   "Tsering", "Ursula", "Vincent", "Wiener",   "Xavier", "Yeva",  "Zoran"};
+	"John",	 "Karnica", "Lulu",	  "Momo",	 "Nono",	 "Osama",  "Pema",	"Quincy", "Riley",
+	"Sam",	 "Tsering", "Ursula", "Vincent", "Wiener",	 "Xavier", "Yeva",	"Zoran"};
 
 /* 23 items -- odd, prime */
-static int n[] = {879045, 394,  99405644, 33434, 232323, 4334,	5454,  343,
-				  45545,  454,  324,	  22,	34344,  233,	 45345, 343,
-				  848405, 3434, 3434344,  3535,  93994,  2230404, 4334};
-static int n_sorted[] = {22,	233,	324,	343,	343,	 394,	 454,	 3434,
-						 3535,  4334,   4334,   5454,   33434,   34344,   45345,   45545,
+static int n[] = {879045, 394,	99405644, 33434, 232323, 4334,	  5454,	 343,
+				  45545,  454,	324,	  22,	 34344,	 233,	  45345, 343,
+				  848405, 3434, 3434344,  3535,	 93994,	 2230404, 4334};
+static int n_sorted[] = {22,	233,	324,	343,	343,	 394,	  454,	   3434,
+						 3535,	4334,	4334,	5454,	33434,	 34344,	  45345,   45545,
 						 93994, 232323, 848405, 879045, 2230404, 3434344, 99405644};
 
 #pragma mark - Private Sorting Functions -

@@ -4,8 +4,8 @@
  */
 
 #include "string_tests.h"
-#include <string.h>
 #include <limits.h>
+#include <string.h>
 
 // Cmocka needs these
 // clang-format off

@@ -53,7 +53,7 @@ int stdlib_tests(void)
 	overall_result |= bsearch_tests();
 	overall_result |= calloc_tests();
 	overall_result |= div_tests();
-	//overall_result |= heapsort_r_tests();
+	// overall_result |= heapsort_r_tests();
 	overall_result |= heapsort_tests();
 	overall_result |= imaxabs_tests();
 	overall_result |= imaxdiv_tests();

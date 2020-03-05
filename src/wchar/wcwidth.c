@@ -1,5 +1,5 @@
-#include <wchar.h>
 #include <limits.h>
+#include <wchar.h>
 
 static const unsigned char table[] = {
 #include "nonspacing.h"

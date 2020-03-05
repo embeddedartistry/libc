@@ -120,8 +120,16 @@ static void _qsort(void* a, size_t n, size_t es,
 #endif
 				   cmp_t* cmp, int depth_limit)
 {
-	char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
-	size_t d, r, swap_cnt;
+	char* pa;
+	char* pb;
+	char* pc;
+	char* pd;
+	char* pl;
+	char* pm;
+	char* pn;
+	size_t d;
+	size_t r;
+	size_t swap_cnt;
 	int cmp_result;
 	int swaptype;
 

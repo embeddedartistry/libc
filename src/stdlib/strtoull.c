@@ -47,7 +47,9 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	unsigned long long acc;
 	char c;
 	unsigned long long cutoff;
-	int neg, any, cutlim;
+	int neg;
+	int any;
+	int cutlim;
 
 	/*
 	 * See strtoq for comments as to the logic used.
@@ -57,6 +59,7 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	{
 		c = *s++;
 	} while(isspace((unsigned char)c));
+
 	if(c == '-')
 	{
 		neg = 1;
@@ -67,22 +70,20 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 		neg = 0;
 		if(c == '+')
 		{
-			{
-				c = *s++;
-			}
+			c = *s++;
 		}
 	}
+
 	if((base == 0 || base == 16) && c == '0' && (*s == 'x' || *s == 'X'))
 	{
 		c = s[1];
 		s += 2;
 		base = 16;
 	}
+
 	if(base == 0)
 	{
-		{
-			base = c == '0' ? 8 : 10;
-		}
+		base = c == '0' ? 8 : 10;
 	}
 
 	acc = 0ULL;
@@ -90,50 +91,39 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 
 	if(base < 2 || base > 36)
 	{
-		{
-			goto noconv;
-		}
+		goto noconv;
 	}
 
 	cutoff = ULLONG_MAX / (unsigned long long)base;
 	cutlim = (int)(ULLONG_MAX % (unsigned long long)base);
+
 	for(;; c = *s++)
 	{
 		if(c >= '0' && c <= '9')
 		{
-			{
-				c -= '0';
-			}
+			c -= '0';
 		}
 		else if(c >= 'A' && c <= 'Z')
 		{
-			{
-				c -= 'A' - 10;
-			}
+			c -= 'A' - 10;
 		}
 		else if(c >= 'a' && c <= 'z')
 		{
-			{
-				c -= 'a' - 10;
-			}
+			c -= 'a' - 10;
 		}
 		else
 		{
-			{
-				break;
-			}
+			break;
 		}
+
 		if(c >= base)
 		{
-			{
-				break;
-			}
+			break;
 		}
+
 		if(any < 0 || acc > cutoff || (acc == cutoff && c > cutlim))
 		{
-			{
-				any = -1;
-			}
+			any = -1;
 		}
 		else
 		{
@@ -142,6 +132,7 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 			acc += (unsigned long long)c;
 		}
 	}
+
 	if(any < 0)
 	{
 		acc = ULLONG_MAX;
@@ -158,9 +149,11 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	{
 		acc = -acc;
 	}
+
 	if(endptr != NULL)
 	{
 		*endptr = (char*)(uintptr_t)(any ? s - 1 : nptr);
 	}
+
 	return (acc);
 }
