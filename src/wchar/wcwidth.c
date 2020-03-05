@@ -1,4 +1,5 @@
 #include <wchar.h>
+#include <limits.h>
 
 static const unsigned char table[] = {
 #include "nonspacing.h"
@@ -8,14 +9,16 @@ static const unsigned char wtable[] = {
 #include "wide.h"
 };
 
+#define UNICODE_IDENTIFIER 0xfffe
+
 int wcwidth(wchar_t wc)
 {
-	if(wc < (wchar_t)0xffU)
+	if(wc < (wchar_t)CHAR_MAX)
 	{
 		return ((wc + 1) & 0x7f) >= 0x21 ? 1 : wc ? -1 : 0;
 	}
 
-	if((wc & (wchar_t)0xfffeffffU) < 0xfffe)
+	if((wc & (wchar_t)0xfffeffffU) < UNICODE_IDENTIFIER)
 	{
 		if((table[table[wc >> 8] * 32 + ((wc & 255) >> 3)] >> (wc & 7)) & 1)
 		{
@@ -30,7 +33,7 @@ int wcwidth(wchar_t wc)
 		return 1;
 	}
 
-	if((wc & 0xfffe) == 0xfffe)
+	if((wc & UNICODE_IDENTIFIER) == UNICODE_IDENTIFIER)
 	{
 		return -1;
 	}
