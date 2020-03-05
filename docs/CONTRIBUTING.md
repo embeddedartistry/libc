@@ -38,9 +38,7 @@ This project is managed on GitHub:
 * [GitHub Project Page][8]
 * [GitHub Issue Tracker][6]
 
-Embedded Artistry has a Slack team that you can join to ask questions. [Please use this invite link to join.](https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)
-
-Questions can also be submitted [on the Embedded Artistry website](https://embeddedartistry.com/contact)
+Questions can also be submitted [on the Embedded Artistry website](https://embeddedartistry.com/contact) and in the [Embedded Artistry Forum](https://embeddedartistry.com/community/embedded-artistry-oss/).
 
 Useful Documentation:
 
@@ -65,8 +63,8 @@ Embedded Artistry blog posts related to this project:
 Please submit your questions in the following ways:
 
 * Filing a new [GitHub Issue][6]
-* [Joining the Embedded Artistry Slack team](https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)
 * [Submitting a question on the Embedded Artistry website](https://embeddedartistry.com/contact)
+* [Submitting a question on the Embedded Artistry forum](https://embeddedartistry.com/community/embedded-artistry-oss/)
 * Asking a question [on Twitter: (mbeddedartistry)](https://twitter.com/mbeddedartistry/).
 
 ## Feature Requests
@@ -144,7 +142,7 @@ For more information on the GitHub fork and pull-request processes, [please see 
 
 This project stores some files using [`git-lfs`](https://git-lfs.github.com).
 
-To install `git-lfs` on Linux:
+To install `git-lfs` on Linux or WSL:
 
 ```
 sudo apt install git-lfs
@@ -168,7 +166,7 @@ To install on Linux:
 sudo apt-get install python3 python3-pip ninja-build
 ```
 
-To install on OSX:
+To install on OS X:
 
 ```
 brew install python3 ninja
@@ -190,7 +188,7 @@ sudo -H pip3 install meson
 
 This repository uses [Architecture Decision Records](https://embeddedartistry.com/blog/2018/4/5/documenting-architectural-decisions-within-our-repositories). Please install [`adr-tools`](https://github.com/npryce/adr-tools) to contribute to architecture decisions.
 
-If you are using OSX, you can install `adr-tools` through Homebrew:
+If you are using OS X, you can install `adr-tools` through Homebrew:
 
 ```
 brew install adr-tools
@@ -379,7 +377,7 @@ Note that this will overwrite the old branch on the server, so make sure you are
 
 ## Community
 
-Anyone interested in active conversation regarding this project should [join the Embedded Artistry Slack team]https://join.slack.com/t/embeddedartistry/shared_invite/enQtMjgyNzI2MDY4NjkyLTcyZTk2OGZjZTk2MGY3NzMyNGM4NDg0ZjYyNzEyNDI1MzA1ZjYzNTc2Y2EzMzM5N2IyZmViYWFhMGRjZDM3Zjk)).
+Anyone interested in active conversation regarding this project should [join the Embedded Artistry community]https://embeddedartistry.com/community/embedded-artistry-oss/).
 
 You can also [reach out on Twitter: mbeddedartistry](https://twitter.com/mbeddedartistry/).
 
