@@ -11,7 +11,7 @@ gdtoa_compiler_flags = [
 	'-DNO_FENV_H'
 ]
 
-gdtoa_files = [
+gdtoa_files = files(
 	'gdtoa/src/dmisc.c',
 	'gdtoa/src/dtoa.c',
 	'gdtoa/src/g__fmt.c',
@@ -55,7 +55,7 @@ gdtoa_files = [
 	'gdtoa/src/strtorxL.c',
 	'gdtoa/src/sum.c',
 	'gdtoa/src/ulp.c'
-]
+)
 
 ############################
 # libc Library Definitions #
