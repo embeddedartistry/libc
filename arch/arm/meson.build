@@ -5,7 +5,7 @@ libruntime_arm = static_library('runtime_arm',
 		'src/crt0.S',
 		'src/__aeabi_atexit.c',
 	),
-	include_directories: [libc_includes, include_directories('include')]
+	include_directories: [include_directories('include')]
 )
 
 arm_arch_dep = declare_dependency(
