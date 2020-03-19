@@ -5,10 +5,14 @@ project('Embedded Artistry libc',
 		# plain options affect `native: false` targets.
 		'c_std=c11', 'build.c_std=c11',
 		'cpp_std=c++17', 'build.cpp_std=c++17',
+		# We enable a release build by default
+		'debug=false',
+		'optimization=2',
 	],
 	license: 'MIT',
 	meson_version: '>0.51.0',
-	version: '1.0')
+	version: '1.0'
+)
 
 ########################
 # Identify Compiler(s) #
