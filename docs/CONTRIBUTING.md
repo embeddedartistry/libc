@@ -342,7 +342,7 @@ Please follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md) for this pro
 
 Changes must build correctly on the Jenkins CI server, be free of formatting errors, and pass tests.
 
-One the changes pass the CI process, I will reveiw the source code and provide feedback. I work on a variety of projects, so please expect some delay in getting back to you with a code review. I will notify you as soon as I have seen the PR and provide insight into the expected review timeline.
+Once the changes pass the CI process, I will review the source code and provide feedback. I work on a variety of projects, so please expect some delay in getting back to you with a code review. I will notify you as soon as I have seen the PR and provide insight into the expected review timeline.
 
 ### Addressing Feedback
 
