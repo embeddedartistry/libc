@@ -67,6 +67,7 @@ char* strstr(const char* string, const char* substring)
 			{
 				return (char*)(uintptr_t)string;
 			}
+
 			if(*a++ != *b++)
 			{
 				break;

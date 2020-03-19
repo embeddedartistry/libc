@@ -54,9 +54,8 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 
 	if(length == 0 || dst == src)
 	{
-		{ /* nothing to do */
-			goto done;
-		}
+		/* nothing to do */
+		goto done;
 	}
 
 /*
@@ -81,15 +80,11 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 			 */
 			if((t ^ (uintptr_t)dst) & wmask || length < wsize)
 			{
-				{
-					t = length;
-				}
+				t = length;
 			}
 			else
 			{
-				{
-					t = wsize - (t & wmask);
-				}
+				t = wsize - (t & wmask);
 			}
 			length -= t;
 			TLOOP1(*dst++ = *src++);
@@ -113,23 +108,22 @@ void* memcpy(void* dst0, const void* src0, size_t length)
 		src += length;
 		dst += length;
 		t = (uintptr_t)src;
+
 		if((t | (uintptr_t)dst) & wmask)
 		{
 			if((t ^ (uintptr_t)dst) & wmask || length <= wsize)
 			{
-				{
-					t = length;
-				}
+				t = length;
 			}
 			else
 			{
-				{
-					t &= wmask;
-				}
+				t &= wmask;
 			}
+
 			length -= t;
 			TLOOP1(*--dst = *--src);
 		}
+
 		t = length / wsize;
 		// Silence warning for alignment change by casting to void*
 		TLOOP(src -= wsize; dst -= wsize; *(word*)(void*)dst = *(const word*)(const void*)src);

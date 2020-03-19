@@ -40,6 +40,7 @@ char* strncpy(char* __restrict dst, const char* __restrict src, size_t maxlen)
 		//  Otherwise, dst is not terminated.
 		memcpy(dst, src, maxlen);
 	}
+
 	//  The strcpy() and strncpy() functions return dst.
 	return dst;
 }

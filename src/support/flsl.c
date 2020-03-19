@@ -40,9 +40,7 @@ int flsl(long mask)
 #elif __has_builtin(__builtin_clzl)
 	if(mask == 0)
 	{
-		{
-			return (0);
-		}
+		return (0);
 	}
 
 	return ((int)sizeof(mask) << 3) - __builtin_clzl((unsigned long)mask);
@@ -50,9 +48,15 @@ int flsl(long mask)
 	int bit;
 
 	if(mask == 0)
+	{
 		return (0);
+	}
+
 	for(bit = 1; mask != 1; bit++)
+	{
 		mask = (unsigned long)mask >> 1;
+	}
+
 	return (bit);
 #endif
 }
@@ -63,9 +67,7 @@ int flsl(long mask)
 {
 	if(mask == 0)
 	{
-		{
-			return (0);
-		}
+		return (0);
 	}
 
 	return ((int)sizeof(mask) << 3) - __builtin_clzl((unsigned long)mask);

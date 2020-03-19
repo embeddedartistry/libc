@@ -92,9 +92,7 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 		neg = 0;
 		if(c == '+')
 		{
-			{
-				c = *s++;
-			}
+			c = *s++;
 		}
 	}
 	if((base == 0 || base == 16) && c == '0' && (*s == 'x' || *s == 'X'))
@@ -105,9 +103,7 @@ long long int strtoll(const char* nptr, char** endptr, int base)
 	}
 	if(base == 0)
 	{
-		{
-			base = c == '0' ? 8 : 10;
-		}
+		base = c == '0' ? 8 : 10;
 	}
 
 	/*

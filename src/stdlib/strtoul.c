@@ -120,9 +120,7 @@ int base;
 
 	if(base == 0)
 	{
-		{
-			base = c == '0' ? 8 : 10;
-		}
+		base = c == '0' ? 8 : 10;
 	}
 
 	cutoff = (unsigned long)ULONG_MAX / (unsigned long)base;

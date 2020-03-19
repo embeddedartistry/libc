@@ -59,16 +59,12 @@ char* strnstr(const char* s, const char* find, size_t slen)
 			{
 				if(slen-- < 1 || (sc = *s++) == '\0')
 				{
-					{
-						return (NULL);
-					}
+					return (NULL);
 				}
 			} while(sc != c);
 			if(len > slen)
 			{
-				{
-					return (NULL);
-				}
+				return (NULL);
 			}
 		} while(strncmp(s, find, len) != 0);
 		s--;

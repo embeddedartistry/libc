@@ -17,18 +17,24 @@ void* __attribute__((weak)) memset(void* dest, int c, size_t n)
 	{
 		return dest;
 	}
+
 	s[0] = s[n - 1] = (unsigned char)c;
+
 	if(n <= 2)
 	{
 		return dest;
 	}
+
 	s[1] = s[n - 2] = (unsigned char)c;
 	s[2] = s[n - 3] = (unsigned char)c;
+
 	if(n <= 6)
 	{
 		return dest;
 	}
+
 	s[3] = s[n - 4] = (unsigned char)c;
+
 	if(n <= 8)
 	{
 		return dest;
@@ -53,9 +59,7 @@ void* __attribute__((weak)) memset(void* dest, int c, size_t n)
 	/* Pure C fallback with no aliasing violations. */
 	for(; n; n--, ws++)
 	{
-		{
-			*ws = wc;
-		}
+		*ws = wc;
 	}
 
 	return dest;
