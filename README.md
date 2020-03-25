@@ -20,6 +20,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 	2. [Getting the Source](#getting-the-source)
 	3. [Building](#building)
 		1. [Cross-compiling](#cross-compiling)
+		2. [Enabling Link-time Optimization](#enabling-link-time-optimization)
 	4. [Installation](#installation)
 	5. [Usage](#usage)
 		1. [Aligned Malloc](#aligned-malloc)
@@ -252,6 +253,16 @@ meson buildresults --cross-file build/cross/gcc/arm/gcc_arm_cortex-m4.txt
 Following that, you can run `make` (at the project root) or `ninja` (within the build output directory) to build the project.
 
 Tests will not be cross-compiled. They will be built for the native platform.
+
+### Enabling Link-time Optimization
+
+Link-time Optimization (LTO) can be enabled during the meson configuration stage by setting the built-in option `b_lto` to `true`:
+
+```
+meson buildresults -Db_lto=true
+```
+
+This can be combined with other build options.
 
 ### Installation
 
