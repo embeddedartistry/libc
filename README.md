@@ -21,6 +21,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 	3. [Building](#building)
 		1. [Cross-compiling](#cross-compiling)
 		2. [Disabling Position Independent Code](#disabling-position-independent-code)
+		2. [Enabling Link-time Optimization](#enabling-link-time-optimization)
 	4. [Installation](#installation)
 	5. [Usage](#usage)
 		1. [Aligned Malloc](#aligned-malloc)
@@ -261,6 +262,16 @@ Position Independent Code (PIC) is enabled by default, but can be disabled durin
 ```
 meson buildresults -Db_staticpic=false
 ```
+
+### Enabling Link-time Optimization
+
+Link-time Optimization (LTO) can be enabled during the meson configuration stage by setting the built-in option `b_lto` to `true`:
+
+```
+meson buildresults -Db_lto=true
+```
+
+This can be combined with other build options.
 
 ### Installation
 
