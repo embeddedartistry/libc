@@ -20,6 +20,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 	2. [Getting the Source](#getting-the-source)
 	3. [Building](#building)
 		1. [Cross-compiling](#cross-compiling)
+		2. [Disabling Position Independent Code](#disabling-position-independent-code)
 	4. [Installation](#installation)
 	5. [Usage](#usage)
 		1. [Aligned Malloc](#aligned-malloc)
@@ -252,6 +253,14 @@ meson buildresults --cross-file build/cross/gcc/arm/gcc_arm_cortex-m4.txt
 Following that, you can run `make` (at the project root) or `ninja` (within the build output directory) to build the project.
 
 Tests will not be cross-compiled. They will be built for the native platform.
+
+#### Disabling Position Independent Code
+
+Position Independent Code (PIC) is enabled by default, but can be disabled during the Meson configuration stage by setting the built-in option `b_staticpic` to `false`:
+
+```
+meson buildresults -Db_staticpic=false
+```
 
 ### Installation
 
