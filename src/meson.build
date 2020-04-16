@@ -278,7 +278,6 @@ libprintf = static_library(
     ],
     include_directories: [libc_includes, libc_system_includes],
     dependencies: target_arch_deps,
-    pic: true
 )
 
 libprintf_native = static_library(
@@ -294,7 +293,6 @@ libprintf_native = static_library(
     ],
     include_directories: [libc_includes, libc_system_includes],
     dependencies: native_arch_deps,
-    pic: true,
     native: true,
 )
 
@@ -304,7 +302,6 @@ libc = static_library(
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_host_compile_args, '-nostdinc'],
 	include_directories: [libc_includes, libc_system_includes],
 	dependencies: target_arch_deps,
-	pic: true,
 )
 
 # We don't build the stdio files for the native variant, as we rely on the
@@ -315,7 +312,6 @@ libc_native = static_library(
 	c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_native_compile_args, '-nostdinc'],
 	include_directories: [libc_includes, libc_system_includes],
 	dependencies: native_arch_deps,
-	pic: true,
 	native: true,
 )
 
@@ -327,7 +323,6 @@ libc_hosted = static_library(
 		c_args: [stdlib_compiler_flags, gdtoa_compiler_flags, libc_host_compile_args, '-nostdinc'],
 		include_directories: [libc_includes, libc_system_includes],
 		dependencies: target_arch_deps,
-		pic: true
 )
 
 ##########################
