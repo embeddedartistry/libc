@@ -28,15 +28,15 @@ docs: groundwork
 
 .PHONY: format
 format:
-	$(Q)tools/clang-format-libc.sh
+	$(Q)cd $(BUILDRESULTS); ninja format
 
 .PHONY : format-diff
 format-diff :
-	$(Q)tools/format/clang-format-git-diff.sh
+	$(Q)cd $(BUILDRESULTS); ninja format-diff
 
 .PHONY : format-check
 format-check :
-	$(Q)tools/clang-format-patch-libc.sh
+	$(Q)cd $(BUILDRESULTS); ninja format-check
 
 .PHONY: list-targets
 list-targets: groundwork
