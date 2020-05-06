@@ -7,7 +7,7 @@ pipeline
   environment
   {
     GIT_CHANGE_LOG = gitChangeLog(currentBuild.changeSets)
-    REPORT_CI_TOKEN = credentials('Report-ci-token')
+    //REPORT_CI_TOKEN = credentials('Report-ci-token')
   }
   stages
   {
@@ -16,7 +16,7 @@ pipeline
       steps
       {
         setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Started', 'PENDING')
-        reportciNotify("libc CI Build")
+        //reportciNotify("libc CI Build")
       }
     }
     stage('Clean')
@@ -67,7 +67,7 @@ pipeline
           // Report Tests
           junit 'buildresults/test/*.xml'
           // Report Tests to Report CI
-          reportciUpload('buildresults/test/*.xml','cmocka')
+          //reportciUpload('buildresults/test/*.xml','cmocka')
         }
       }
     }
@@ -141,7 +141,7 @@ pipeline
       echo "Build manually aborted on Jenkins"
       slackNotify('ABORTED')
       setGithubStatus('continuous-integration/jenkins/libc', 'Libc CI Build Aborted', 'ERROR')
-      reportciCancel()
+      //reportciCancel()
     }
     always
     {
