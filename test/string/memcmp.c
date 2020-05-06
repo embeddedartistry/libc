@@ -21,8 +21,13 @@ static void memcmp_test(void** state)
 	assert_int_equal(memcmp("abc", "abc", 4), 0);
 	assert_int_equal(memcmp(s, "abc", 3), 0);
 	assert_int_equal(memcmp("abc", s, 3), 0);
+
+	// The following tests intentionally use a length > 3
+	// To test what memcmp does in such a situation
 	assert_int_equal(!!(memcmp(s, "abc", 6) > 0), 1);
 	assert_int_equal(!!(memcmp("abc", s, 6) < 0), 1);
+
+	// Check NULL input handling
 	assert_int_not_equal(memcmp("abc", NULL, 3), 0);
 	assert_int_not_equal(memcmp(NULL, "abc", 3), 0);
 

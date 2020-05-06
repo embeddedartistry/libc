@@ -18,6 +18,9 @@ static void strncat_test(void** state)
 {
 	char b[32];
 	strcpy(b, "abc");
+
+	// The following tests intentionally use a length < strlen("123456")
+	// To test what strncat does in such a situation
 	assert_ptr_equal(strncat(b, "123456", 3), b);
 
 	// Check if strncat failed to null-terminate
