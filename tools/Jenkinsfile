@@ -27,7 +27,7 @@ pipeline
         gitTagPreBuild "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
 
         echo 'Removing existing build results'
-        sh 'make purify'
+        sh 'make distclean'
       }
     }
     stage('Build')
@@ -41,7 +41,7 @@ pipeline
     {
       steps
       {
-        sh 'meson buildresults/arm/ --cross-file build/cross/gcc/arm/nrf52840.txt'
+        sh 'make CROSS=arm:cortex-m4_hardfloat'
         sh 'ninja -C buildresults/arm/'
       }
     }

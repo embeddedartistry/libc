@@ -36,7 +36,7 @@ pipeline
       steps
       {
         echo('Previous build failed: Running a clean build.')
-        sh 'make purify'
+        sh 'make distclean'
       }
     }
     stage('Build')
