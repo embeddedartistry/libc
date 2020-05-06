@@ -1,7 +1,11 @@
 # aarch64 architecture meson build
 
 arm64_arch_dep = declare_dependency(
-	include_directories: include_directories('include')
+	include_directories: include_directories('include'),
+	sources: files(
+		'src/__aeabi_atexit.c',
+		'src/crt0.S'
+	)
 )
 
 if target_architecture == 'aarch64'
