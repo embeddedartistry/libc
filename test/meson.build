@@ -1,6 +1,6 @@
-# libc test build definition
+# Test Build Definition
 
-libc_test_files = [
+libc_test_files = files(
 	'main.c',
 	'ctype/ctype_tests.c',
 	'ctype/isalnum.c',
@@ -27,7 +27,6 @@ libc_test_files = [
 	'stdlib/bsearch.c',
 	'stdlib/calloc.c',
 	'stdlib/div.c',
-	'stdlib/heapsort_r.c',
 	'stdlib/heapsort.c',
 	'stdlib/imaxabs.c',
 	'stdlib/imaxdiv.c',
@@ -67,22 +66,75 @@ libc_test_files = [
 	'string/strrchr.c',
 	'string/strstr.c',
 	'string/strtok.c',
-	'test/rand.c',
-	'includes.c'
-]
+	'test/rand.c'
+)
 
-libcmocka = meson.get_compiler('c', native: true).find_library('cmocka', required: false, disabler: true)
+files_to_lint += libc_test_files
 
-# Tests will only be compiled if libcmocka is found
+#######################
+# Test Compiler Flags #
+#######################
+
+libc_test_flags = native_c_compiler.get_supported_arguments(
+	'-Wno-unused-parameter',
+)
+
+if disable_builtins == false
+	libc_test_flags += '-DBUILTINS_ARE_ENABLED'
+endif
+
+###############
+# Test Target #
+###############
+
+## Subproject Example
 libc_tests = executable('libc_test',
 	libc_test_files,
-	c_args: ['-Wno-vla', '-Wno-unused-parameter'],
-	include_directories: [
-		include_directories('/usr/local/include/', is_system: true)
-	],
-	dependencies: [libcmocka, libc_native_dep],
+	dependencies: [cmocka_native_dep, libc_hosted_native_dep],
+	link_args: native_map_file.format(meson.current_build_dir() + '/libc_test'),
+	c_args: libc_test_flags,
 	native: true
 )
+
+################################
+# Cross Compilation "Test" App #
+################################
+# This application is used to confirm linking behavior, primarily for cross builds
+
+if meson.is_cross_build()
+
+	host_objcopy = find_program(meson.get_cross_property('objcopy'),
+		required: false, disabler: true)
+
+	if host_objcopy.found() == false
+		message('Specified objcopy not found, .hex and .bin conversion is disabled.')
+	endif
+
+	sample_app = executable('sample_app',
+		'app/main.c',
+		dependencies: libc_dep,
+		link_args: [
+			linker_script_flags,
+			map_file.format(meson.current_build_dir()+'/sample_app'),
+		],
+		link_depends: linker_script_deps,
+		native: false
+	)
+
+	sample_app_hex = custom_target('sample_app.hex',
+		input: sample_app,
+		output: 'sample_app.hex',
+		command: [host_objcopy, '-O', 'ihex', '@INPUT@', '@OUTPUT@'],
+		build_by_default: true
+	)
+
+	sample_app_bin = custom_target('sample_app.bin',
+		input: sample_app,
+		output: 'sample_app.bin',
+		command: [host_objcopy, '-O', 'binary', '@INPUT@', '@OUTPUT@'],
+		build_by_default: true
+	)
+endif
 
 #############################
 # Register Tests with Meson #
@@ -100,8 +152,8 @@ run_target('libc-tests',
 
 run_target('libc-tests-xml',
 	command: [
-		meson.source_root() + '/build/scripts/exec_program_with_env.sh',
+		meson.source_root() + '/tools/exec_program_with_env.sh',
 		libc_tests,
 		test_output_dir
-	]
+	],
 )

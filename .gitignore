@@ -6,6 +6,10 @@ cscope*out
 buildresults*
 build/gen/**
 
+# Meson subprojects
+**/subprojects/**
+!**/subprojects/*.wrap
+
 # Patch file
 clang_format.patch
 

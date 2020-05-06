@@ -1,3 +1,11 @@
-option('enable-werror', type: 'boolean', value: false, yield: true)
-option('enable-pedantic-error', type: 'boolean', value: false, yield: true)
-option('hide-unimplemented-libc-apis', type: 'boolean', value: false, yield: true)
+option('hide-unimplemented-libc-apis', type: 'boolean', value: false, 
+    description: 'Make unimplemented libc functions invisible to the compiler.', 
+    yield: true)
+option('enable-gnu-extensions', type: 'boolean', value: false, 
+    description: 'Enable GNU libc extensions.', 
+    yield: true)
+option('disable-builtins', type: 'boolean', value: false,
+    description: 'Tell the compiler not to generate builtin functions.',
+    yield: true)
+option('disable-stack-protection', type: 'boolean', value: true,
+    description: 'Tell the compiler not to insert stack protection calls.', yield: true)

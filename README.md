@@ -222,7 +222,7 @@ make clean
 You can eliminate the generated `buildresults` folder using:
 
 ```
-make purify
+make distclean
 ```
 
 You can also use the `meson` method for compiling.
@@ -248,7 +248,7 @@ Cross-compilation is handled using `meson` cross files. Example files are includ
 Cross-compilation must be configured using the meson command when creating the build output folder. For example:
 
 ```
-meson buildresults --cross-file build/cross/gcc/arm/gcc_arm_cortex-m4.txt
+meson buildresults --cross-file build/cross/gcc_arm_cortex-m4.txt
 ```
 
 Following that, you can run `make` (at the project root) or `ninja` (within the build output directory) to build the project.

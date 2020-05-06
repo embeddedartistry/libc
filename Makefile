@@ -1,5 +1,5 @@
 # you can set this to 1 to see all commands that are being run
-export VERBOSE := 0
+VERBOSE ?= 0
 
 ifeq ($(VERBOSE),1)
 export Q :=
@@ -9,111 +9,162 @@ export Q := @
 export VERBOSE := 0
 endif
 
-BUILDRESULTS?=buildresults
+BUILDRESULTS ?= buildresults
+CONFIGURED_BUILD_DEP = $(BUILDRESULTS)/build.ninja
 
-all: libc
+# Override to provide your own settings to the shim
+OPTIONS ?=
+LTO ?= 0
+CROSS ?=
+NATIVE ?=
+DEBUG ?= 0
+SANITIZER ?= none
+INTERNAL_OPTIONS =
 
-.PHONY: groundwork
-groundwork:
-	$(Q)if [ -d "$(BUILDRESULTS)" ]; then mkdir -p $(BUILDRESULTS); fi
-	$(Q)if [ ! -e "$(BUILDRESULTS)/build.ninja" ]; then meson --buildtype plain $(BUILDRESULTS); fi
+ifeq ($(LTO),1)
+	INTERNAL_OPTIONS += -Db_lto=true -Ddisable-builtins=true
+endif
 
-.PHONY: libc
-libc: groundwork
-	$(Q)cd $(BUILDRESULTS); ninja
+ifneq ($(CROSS),)
+	# Split into two strings, first is arch, second is chip
+	CROSS_2 := $(subst :, ,$(CROSS))
+	INTERNAL_OPTIONS += $(foreach FILE,$(CROSS_2),--cross-file=build/cross/$(FILE).txt)
+endif
 
-.PHONY: docs
-docs: groundwork
-	$(Q)cd $(BUILDRESULTS); ninja docs
+ifneq ($(NATIVE),)
+	# Split into words delimited by :
+	NATIVE_2 := $(subst :, ,$(NATIVE))
+	INTERNAL_OPTIONS += $(foreach FILE,$(NATIVE_2),--native-file=build/native/$(FILE).txt)
+endif
 
-.PHONY: format
-format:
-	$(Q)cd $(BUILDRESULTS); ninja format
+ifeq ($(DEBUG),1)
+	INTERNAL_OPTIONS += '-Ddebug=true -Doptimization=g'
+endif
 
-.PHONY : format-diff
-format-diff :
-	$(Q)cd $(BUILDRESULTS); ninja format-diff
+ifneq ($(SANITIZER),none)
+	INTERNAL_OPTIONS += -Db_sanitize=$(SANITIZER) -Db_lundef=false
+endif
 
-.PHONY : format-check
-format-check :
-	$(Q)cd $(BUILDRESULTS); ninja format-check
+all: default
 
-.PHONY: list-targets
-list-targets: groundwork
-	$(Q) cd $(BUILDRESULTS); ninja -t targets
-
-.PHONY: list-targets-all
-list-targets-all: groundwork
-	$(Q) cd $(BUILDRESULTS); ninja -t targets all
-
-.PHONY: analyze
-analyze: groundwork
-	$(Q) cd $(BUILDRESULTS); ninja scan-build
-
-.PHONY: clean
-clean:
-	$(Q)echo Cleaning build artifacts
-	$(Q)if [ -d "$(BUILDRESULTS)" ]; then cd $(BUILDRESULTS); ninja -t clean; fi
-	$(Q)if [ -d "buildresults-coverage" ]; then cd buildresults-coverage; ninja -t clean; fi
-
-.PHONY: purify
-purify:
-	$(Q)echo Removing Build Output
-	$(Q)rm -rf $(BUILDRESULTS)/
-	$(Q)rm -rf buildresults-coverage
-
-.PHONY: ccc
-ccc: groundwork
-	$(Q)cd $(BUILDRESULTS); ninja complexity
-
-.PHONY: cppcheck
-cppcheck: groundwork
-	$(Q)cd $(BUILDRESULTS); ninja cppcheck
-
-.PHONY: cppcheck-xml
-cppcheck-xml: groundwork
-	$(Q)cd $(BUILDRESULTS); ninja cppcheck-xml
+.PHONY: default
+default: | $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS)
 
 .PHONY: test
-test: groundwork
-	$(Q) cd $(BUILDRESULTS); ninja clear-test-results
-	$(Q) cd $(BUILDRESULTS); meson test
+test: | $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS) test
+
+.PHONY: docs
+docs: | $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS) docs
+
+.PHONY: package
+package: default docs
+	$(Q)ninja -C $(BUILDRESULTS) package
+	$(Q)ninja -C $(BUILDRESULTS) package-native
+
+# Manually Reconfigure a target, esp. with new options
+.PHONY: reconfig
+reconfig:
+	$(Q) meson $(BUILDRESULTS) --reconfigure $(INTERNAL_OPTIONS) $(OPTIONS)
+
+# Runs whenever the build has not been configured successfully
+$(CONFIGURED_BUILD_DEP):
+	$(Q) meson $(BUILDRESULTS) $(INTERNAL_OPTIONS) $(OPTIONS)
+
+.PHONY: cppcheck
+cppcheck: | $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) cppcheck
+
+.PHONY: cppcheck-xml
+cppcheck-xml: | $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) cppcheck-xml
+
+.PHONY: complexity
+complexity: | $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) complexity
+
+.PHONY: complexity-xml
+complexity-xml: | $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) complexity-xml
+
+.PHONY: complexity-full
+complexity-full: | $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) complexity-full
+
+.PHONY: scan-build
+scan-build: $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) scan-build
+
+.PHONY: tidy
+tidy: $(CONFIGURED_BUILD_DEP)
+	$(Q) ninja -C $(BUILDRESULTS) clang-tidy
 
 .PHONY: coverage
 coverage:
-	$(Q)if [ -d "buildresults-coverage" ]; then mkdir -p buildresults-coverage; fi
-	$(Q)if [ ! -e "buildresults-coverage/build.ninja" ]; then meson --buildtype plain buildresults-coverage -Db_coverage=true; fi
-	$(Q)cd buildresults-coverage; ninja; ninja test; ninja coverage-html; ninja coverage-xml
+	$(Q)if [ ! -e "$(BUILDRESULTS)/coverage/build.ninja" ]; then meson $(BUILDRESULTS)/coverage $(INTERNAL_OPTIONS) $(OPTIONS) -Db_coverage=true; fi
+	$(Q) ninja -C $(BUILDRESULTS)/coverage test
+	$(Q) ninja -C $(BUILDRESULTS)/coverage coverage
 
-.PHONY: tidy
-tidy: groundwork
-	$(Q) cd $(BUILDRESULTS); ninja tidy
+.PHONY: format
+format: $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS) format
 
-### Help Rule ###
+.PHONY : format-patch
+format-patch: $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS) format-patch
+
+.PHONY: clean
+clean:
+	$(Q) if [ -d "$(BUILDRESULTS)" ]; then ninja -C buildresults clean; fi
+
+.PHONY: distclean
+distclean:
+	$(Q) rm -rf $(BUILDRESULTS)
+
+### Help Output ###
 .PHONY : help
 help :
 	@echo "usage: make [OPTIONS] <target>"
 	@echo "  Options:"
-	@echo "    > VERBOSE     Boolean. Default Off."
+	@echo "    > VERBOSE Show verbose output for Make rules. Default 0. Enable with 1."
 	@echo "    > BUILDRESULTS Directory for build results. Default buildresults."
+	@echo "    > OPTIONS Configuration options to pass to a build. Default empty."
+	@echo "    > LTO Enable LTO builds. Default 0. Enable with 1."
+	@echo "    > DEBUG Enable a debug build. Default 0 (release). Enable with 1."
+	@echo "    > CROSS Enable a Cross-compilation build. Default format is arch:chip."
+	@echo "         - Example: make CROSS=arm:cortex-m3"
+	@echo "         - For supported chips, see build/cross/"
+	@echo "         - Additional files can be layered by adding additional"
+	@echo "           args separated by ':'"
+	@echo "    > NATIVE Supply an alternative native toolchain by name."
+	@echo "         - Example: make NATIVE=gcc-9"
+	@echo "         - Additional files can be layered by adding additional"
+	@echo "           args separated by ':'"
+	@echo "         - Example: make NATIVE=gcc-9:gcc-gold"
+	@echo "    > SANITIZER Compile with support for a Clang/GCC Sanitizer."
+	@echo "         Options are: none (default), address, thread, undefined, memory,"
+	@echo "         and address,undefined' as a combined option"
 	@echo "Targets:"
-	@echo "  To list targets that ninja can compile:"
-	@echo "    list-targets: list build targets for project"
-	@echo "    list-targets-all: list all targets ninja knows about"
-	@echo "  groundwork: runs meson and repares the BUILDRESULTS directory"
-	@echo "  buildall: builds all targets that ninja knows about"
-	@echo "  clean: cleans build artifacts"
-	@echo "  purify: removes the BUILDRESULTS directory"
-	@echo "  docs: Builds documentation"
-	@echo "  test: Run unit tests"
+	@echo "  default: Builds all default targets ninja knows about"
+	@echo "  tests: Build and run unit test programs"
+	@echo "  docs: Generate documentation"
+	@echo "  package: Build the project, generates docs, and create a release package"
+	@echo "  clean: cleans build artifacts, keeping build files in place"
+	@echo "  distclean: removes the configured build output directory"
+	@echo "  reconfig: Reconfigure an existing build output folder with new settings"
 	@echo "  Code Formating:"
 	@echo "    format: runs clang-format on codebase"
-	@echo "    format-diff: generates a diff file with formatting changes"
-	@echo "    format-check: checks whether formatting needs to be applied"
+	@echo "    format-patch: generates a patch file with formatting changes"
 	@echo "  Static Analysis:"
-	@echo "    analyze: runs clang static analysis"
-	@echo "	   ccc: runs complexity analysis with lizard"
 	@echo "    cppcheck: runs cppcheck"
 	@echo "    cppcheck-xml: runs cppcheck and generates an XML report (for build servers)"
-	@echo "    coverage: runs code coverage analysis and generates an HTML report and XML report"
+	@echo "    scan-build: runs clang static analysis"
+	@echo "    complexity: runs complexity analysis with lizard, only prints violations"
+	@echo "    complexity-full: runs complexity analysis with lizard, prints full report"
+	@echo "    complexity-xml: runs complexity analysis with lizard, generates XML report"
+	@echo "        (for build servers)"
+	@echo "    coverage: runs code coverage analysis and generates an HTML & XML reports"
 	@echo "    tidy: runs clang-tidy linter"
+
