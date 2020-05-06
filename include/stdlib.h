@@ -810,8 +810,9 @@ void* reallocf(void* ptr, size_t size);
 int posix_memalign(void** memptr, size_t alignment, size_t size);
 #endif
 
-#if(defined(__ISO_C_VISIBLE) && __ISO_C_VISIBLE >= 2011) || (__STDC_VERSION >= 20112L) || \
-	__cplusplus >= 201103L
+#if(defined(__ISO_C_VISIBLE) && __ISO_C_VISIBLE >= 2011) || \
+	(defined(__STDC_VERSION) && __STDC_VERSION >= 20112L) || \
+	(defined(__cplusplus) && __cplusplus >= 201103L)
 /** C11 Aligned Memory Allocation
  *
  * @param align Specifies the alignment. Must be a valid alignment supported by the

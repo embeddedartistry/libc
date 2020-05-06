@@ -18,7 +18,8 @@
 
 static void strtoull_test(void** state)
 {
-	char *s, *c;
+	const char *s;
+	char *c;
 
 	if(sizeof(long long) == 8)
 	{

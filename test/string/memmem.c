@@ -18,14 +18,14 @@
 
 #define N(s, tail, sub)                                   \
 	{                                                     \
-		char* p = s tail;                                 \
+		const char* p = s tail;                                 \
 		char* q = memmem(p, strlen(s), sub, strlen(sub)); \
 		assert_ptr_equal(q, NULL);                        \
 	}
 
 #define T(s, sub, n)                                      \
 	{                                                     \
-		char* p = s;                                      \
+		const char* p = s;                                      \
 		char* q = memmem(p, strlen(p), sub, strlen(sub)); \
 		assert_ptr_not_equal(q, NULL);                    \
 		assert_ptr_equal(q - p, n);                       \
@@ -33,7 +33,7 @@
 
 #define T_NULL(s, sub, n)                                 \
 	{                                                     \
-		char* p = s;                                      \
+		const char* p = s;                                      \
 		char* q = memmem(p, strlen(p), sub, strlen(sub)); \
 		assert_ptr_equal(q, NULL);                        \
 	}

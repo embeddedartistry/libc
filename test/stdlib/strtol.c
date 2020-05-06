@@ -24,7 +24,8 @@
 
 static void strtol_test(void** state)
 {
-	char *s, *c;
+	const char *s;
+	char *c;
 
 	assert_int_equal(strtol("2147483647", 0, 0), 2147483647L); // max 32-bit signed
 

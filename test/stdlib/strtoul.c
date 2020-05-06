@@ -18,7 +18,9 @@
 
 static void strtoul_test(void** state)
 {
-	char *s, *c;
+	const char *s;
+	char *c;
+
 	assert_int_equal(strtoul("4294967295", 0, 0), 4294967295UL); // max 32bit unsigned
 
 	if(sizeof(long) == 4)

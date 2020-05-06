@@ -24,7 +24,7 @@
 
 static struct
 {
-	char* s;
+	const char* s;
 	double f;
 } t[] = {
 	{"0", 0.0},
