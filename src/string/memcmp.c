@@ -12,12 +12,12 @@ int __attribute__((weak)) memcmp(const void* p1, const void* p2, size_t n)
 		return 0;
 	}
 
-	if(!p1)
+	if(p1 == NULL)
 	{
 		return 1;
 	}
 
-	if(!p2)
+	if(p2 == NULL)
 	{
 		return -1;
 	}
