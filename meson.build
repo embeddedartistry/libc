@@ -158,8 +158,8 @@ cppcheck_args = [
 	meson.source_root() / 'test',
 ]
 clangformat_args = [
-	# Optional exclude directories (separated by commas)
-	# '-e', 'src/external',
+	# Exclude directories (separated by commas)
+	'-e', meson.source_root() / 'src/gdtoa',
 	# Directories to format files in
 	meson.source_root() / 'src,' + meson.source_root() / 'test,' +
 	meson.source_root() / 'include,' + meson.source_root() / 'arch',
