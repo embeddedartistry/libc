@@ -8,7 +8,7 @@
 
 #include <limits.h>
 
-#if __LP64__
+#ifdef __LP64__
 #define __WORDSIZE 64
 #else
 #define __WORDSIZE 32
