@@ -231,7 +231,7 @@ libc_standalone_files = [
 	crt_files,
 ]
 
-files_to_lint += [libc_common_files, libc_standalone_files]
+clangtidy_files += [libc_common_files, libc_standalone_files]
 
 libc_include = include_directories('../include')
 libc_sys_include = include_directories('../include', is_system: true)

@@ -69,7 +69,7 @@ libc_test_files = files(
 	'test/rand.c'
 )
 
-files_to_lint += libc_test_files
+clangtidy_files += libc_test_files
 
 #######################
 # Test Compiler Flags #
