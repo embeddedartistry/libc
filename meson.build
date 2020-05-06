@@ -10,7 +10,7 @@ project('Embedded Artistry libc',
 		'optimization=2',
 	],
 	license: 'MIT',
-	meson_version: '>0.51.0',
+	meson_version: '>0.54.0',
 	version: '1.0'
 )
 
@@ -132,49 +132,63 @@ subdir('test/')
 # Supporting Build Targets #
 ############################
 
+doxygen = find_program('doxygen', required: false, disabler: true)
+cppcheck = find_program('cppcheck', required: false, disabler: true)
+clangtidy = find_program('clang-tidy', required: false, disabler: true)
+clangformat = find_program('clang-format', required: false, disabler: true)
+lizard = find_program('lizard', required: false, disabler: true)
+
 run_target('clear-test-results',
 	command: meson.source_root() + '/tools/clear_test_xml.sh'
 )
 
 run_target('docs',
-	command: ['doxygen', 'docs/Doxyfile'])
+	command: [doxygen, 'docs/Doxyfile'])
 
-run_target('complexity',
-	command: ['tools/complexity_check.sh', '-w'])
+if clangformat.found()
+	run_target('format',
+		command: 'tools/clang-format-libc.sh')
 
-run_target('complexity-list',
-	command: ['tools/complexity_check.sh'])
+	run_target('format-diff',
+		command: 'tools/format/clang-format-git-diff.sh')
 
-cppcheck = find_program('cppcheck', required: false)
+	run_target('format-check',
+		command: 'tools/clang-format-patch-libc.sh')
+endif
 
-if cppcheck.found()
-	run_target('cppcheck',
-		command: ['cppcheck',
+if lizard.found()
+	run_target('complexity',
+		command: ['tools/complexity_check.sh', '-w'])
+
+	run_target('complexity-list',
+		command: ['tools/complexity_check.sh'])
+endif
+
+run_target('cppcheck',
+	command: [
+		cppcheck,
 		# Options
 		'--quiet', '--enable=style', '--force',
 		# Include Directories
 		'-I', meson.current_source_dir() + '/include',
 		# Source Directories
-		'src']
+		'src', 'test'
+	]
+)
+
+run_target('cppcheck-xml',
+		command: ['tools/cppcheck_xml.sh'],
+		#depends: cppcheck
 	)
 
-	run_target('cppcheck-xml',
-		command: ['tools/cppcheck_xml.sh']
-	)
-endif
-
-clangtidy = find_program('clang-tidy', required: false)
-
-if clangtidy.found()
-    run_target(
-        'tidy',
-        command: [
-            'build/tooling/clang-tidy/clang-tidy.sh',
-            # Checks
-            '-*,cppcoreguidelines-*,modernize-*,performance-*,portability-*,readability-*,' +
-            '-readability-inconsistent-declaration-parameter-name,' +
-            '-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,' +
-            # Header Filter
-            '.*', libc_lint_files]
-    )
-endif
+run_target(
+    'tidy',
+    command: [
+        'build/tooling/clang-tidy/clang-tidy.sh',
+        # Checks
+        '-*,cppcoreguidelines-*,modernize-*,performance-*,portability-*,readability-*,' +
+        '-readability-inconsistent-declaration-parameter-name,' +
+        '-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,' +
+        # Header Filter
+        '.*', libc_lint_files]
+)
