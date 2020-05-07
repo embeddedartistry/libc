@@ -143,13 +143,20 @@ subdir('test')
 # Tooling Modules #
 ###################
 
-# Customization options
+# Module Customization options #
 doxygen_description = 'C Standard Library Support for Bare-metal Systems'
+
+doxygen_input_additional = [
+	meson.source_root() / 'arch',
+	meson.source_root() / 'include',
+]
+
 lizard_paths = [
 	meson.source_root() / 'arch',
 	meson.source_root() / 'src',
 	meson.source_root() / 'test'
 ]
+
 cppcheck_args = [
 	'-i', meson.source_root() / 'include',
 	# Folders to analyze
@@ -157,17 +164,16 @@ cppcheck_args = [
 	meson.source_root() / 'src',
 	meson.source_root() / 'test',
 ]
-clangformat_args = [
-	# Exclude directories (separated by commas)
-	'-e', meson.source_root() / 'src/gdtoa',
-	# Directories to format files in
-	meson.source_root() / 'src,' + meson.source_root() / 'test,' +
-	meson.source_root() / 'include,' + meson.source_root() / 'arch',
-	# File types to include in formatting (separated by commas)
-	'*.c,*.h,*.cpp,*.hpp',
+
+clangformat_excludes = [
+	meson.source_root() / 'src/gdtoa'
 ]
 
-# Include modules
+clangformat_additional_targets = [
+	meson.source_root() / 'include',
+	meson.source_root() / 'arch',
+]
+
 subdir('build/analysis/clang-tidy')
 subdir('build/analysis/complexity')
 subdir('build/analysis/cppcheck')
