@@ -6,9 +6,9 @@ extern "C" {
 #endif
 
 #include <_types/_wchar_t.h>
+#include <_types/_wint_t.h>
 
 typedef const int* wctrans_t;
-typedef unsigned wint_t;
 typedef unsigned long wctype_t;
 
 #undef WEOF
