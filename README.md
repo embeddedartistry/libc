@@ -27,7 +27,6 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 		1. [Aligned Malloc](#aligned-malloc)
 	6. [Testing](#testing)
 4. [Configuration Options](#configuration-options)
-4. [Formatting](#formatting)
 5. [Documentation](#documentation)
 6. [Need Help?](#need-help)
 7. [Contributing](#contributing)
@@ -111,23 +110,18 @@ We are currently not planning full support for:
 
 ### Requirements
 
-* [CMocka][3] must be installed on your system to compile and run unit tests
-* [Doxygen][0] must be installed to generate documentation
+This project uses [Embedded Artistry's standard Meson build system](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/), and dependencies are described in detail [on our website](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/).
+
+At a minimum you will need:
+
+* [`git-lfs`][7], which is used to store binary files in this repository
 * [Meson](#meson-build-system) is the build system
-* [`git-lfs`][7] is used to store binary files in this repository
-* `make` is needed if you want to use the Makefile shims
-* You'll need some kind of compiler for your target system.
+* Some kind of compiler for your target system.
 	- This repository has been tested with:
-		- gcc
+		- gcc-7, gcc-8, gcc-9
 		- arm-none-eabi-gcc
 		- Apple clang
 		- Mainline clang
-
-
-Contributors will also need:
-
-* [`adr-tools`](https://github.com/npryce/adr-tools) for documenting major project decisions
-* [`clang-format`][2] for code formatting
 
 #### git-lfs
 
@@ -149,7 +143,7 @@ Additional installation instructions can be found on the [`git-lfs` website](htt
 
 #### Meson Build System
 
-The [Meson][meson] build system depends on `python3` and `ninja-build`.
+The [Meson](https://mesonbuild.com) build system depends on `python3` and `ninja-build`.
 
 To install on Linux:
 
@@ -175,23 +169,11 @@ If you want to install Meson globally on Linux, use:
 sudo -H pip3 install meson
 ```
 
-#### `adr-tools`
-
-This repository uses [Architecture Decision Records](https://embeddedartistry.com/blog/2018/4/5/documenting-architectural-decisions-within-our-repositories). Please install [`adr-tools`](https://github.com/npryce/adr-tools) to contribute to architecture decisions.
-
-If you are using OSX, you can install `adr-tools` through Homebrew:
-
-```
-brew install adr-tools
-```
-
-If you are using Windows or Linux, please install `adr-tools` via [GitHub](https://github.com/npryce/adr-tools).
-
 ### Getting the Source
 
 This project uses [`git-lfs`](https://git-lfs.github.com), so please install it before cloning. If you cloned prior to installing `git-lfs`, simply run `git lfs pull` after installation.
 
-This project is [hosted on GitHub][8]. You can clone the project directly using this command:
+This project is [hosted on GitHub](https://github.com/embeddedartistry/libc). You can clone the project directly using this command:
 
 ```
 git clone --recursive git@github.com:embeddedartistry/libc.git
@@ -205,7 +187,7 @@ git submodule update --init
 
 ### Building
 
-The library can be built by issuing the following command:
+If Make is installed, the library can be built by issuing the following command:
 
 ```
 make
@@ -225,7 +207,7 @@ You can eliminate the generated `buildresults` folder using:
 make distclean
 ```
 
-You can also use the `meson` method for compiling.
+You can also use  `meson` directly for compiling.
 
 Create a build output folder:
 
@@ -233,17 +215,13 @@ Create a build output folder:
 meson buildresults
 ```
 
-Then change into that folder and build targets by running:
+And build all targets by running
 
 ```
-ninja
+ninja -C buildresults
 ```
 
-At this point, `make` would still work.
-
-#### Cross-compiling
-
-Cross-compilation is handled using `meson` cross files. Example files are included in the [`build/cross`](build/cross/) folder. You can write your own cross files for your specific platform (or open an issue and we can help you).
+Cross-compilation is handled using `meson` cross files. Example files are included in the [`build/cross`](build/cross/) folder. You can write your own cross files for your specific processor by defining the toolchain, compilation flags, and linker flags. These settings will be used to compile `libc`. (or open an issue and we can help you).
 
 Cross-compilation must be configured using the meson command when creating the build output folder. For example:
 
@@ -251,9 +229,11 @@ Cross-compilation must be configured using the meson command when creating the b
 meson buildresults --cross-file build/cross/gcc_arm_cortex-m4.txt
 ```
 
-Following that, you can run `make` (at the project root) or `ninja` (within the build output directory) to build the project.
+Following that, you can run `make` (at the project root) or `ninja` to build the project.
 
-Tests will not be cross-compiled. They will be built for the native platform.
+Tests will not be cross-compiled. They will only be built for the native platform.
+
+**Full instructions for building the project, using alternate toolchains, and running supporting tooling are documented in [Embedded Artistry's Standardized Meson Build System](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/) on our website.**
 
 #### Disabling Position Independent Code
 
@@ -293,15 +273,10 @@ If you're using `meson`, you can use `libc` as a subproject. Place it into your 
 libc = subproject('libc')
 ```
 
-You will need to promote the subproject dependencies to your project:
+You will need to promote the desired subproject dependency variable to your project:
 
 ```
 libc_dep = libc.get_variable('libc_dep')
-libc_native_dep = libc.get_variable('libc_native_dep')
-libc_hosted_dep = libc.get_variable('libc_hosted_dep')
-libc_printf_dep = libc.get_variable('libc_printf_dep')
-libc_header_include = libc.get_variable('libc_header_include')
-libc_native_header_include = libc.get_variable('libc_native_header_include')
 ```
 
 You can use the dependency for your target library configuration in your `executable` declarations(s) or other dependencies. For example:
@@ -313,7 +288,7 @@ fwdemo_sim_platform_dep = declare_dependency(
 		fwdemo_simulator_hw_platform_dep,
 		posix_os_dep,
 		libmemory_native_dep,
-		libc_native_dep, # <----- libc added here
+		libc_dep, # <----- libc added here
 		libcxxabi_native_dep,
 		libcxx_full_native_dep,
 		logging_subsystem_dep
@@ -324,7 +299,7 @@ fwdemo_sim_platform_dep = declare_dependency(
 
 ### Testing
 
-The tests for this library are written with [CMocka][3]. You can run the tests by issuing the following command:
+The tests for this library are written with CMocka, which is included as a subproject and does not need to be installed on your system. You can run the tests by issuing the following command:
 
 ```
 make test
@@ -336,38 +311,29 @@ By default, test results are generated for use by the CI server and are formatte
 
 The following meson project options can be set for this library when creating the build results directory with `meson`, or by using `meson configure`:
 
-* `enable-werror`: Cause the build to fail if warnings are present
+* `enable-pedantic`: Turn on `pedantic` warnings
 * `enable-pedantic-error`: Turn on `pedantic` warnings and errors
 * `hide-unimplemented-libc-apis`: Hides the header definitions for functions which are not actually implemented
+* `enable-gnu-extensions` will enable GNU libc extensions that are implemented in this library
+* `disable-builtins` will tell the compiler not to generate built-in functions, forcing it to use the library functions
+* `disable-stack-protection` will tell the compiler not to insert stack protection calls
 
 Options can be specified using `-D` and the option name:
 
 ```
-meson buildresults -Denable-werror=true
+meson buildresults -Ddisable-builtins=false
 ```
 
 The same style works with `meson configure`:
 
 ```
 cd buildresults
-meson configure -Denable-werror=true
+meson configure -Ddisable-builtins=false
 ```
-
-## Formatting
-
-This repository enforces formatting using [`clang-format`][2].
-
-You can auto-format your code to match the style guidelines by issuing the following command:
-
-```
-make format
-```
-
-Formatting is enforced by the Jenkins build server which runs continuous integration for this project. Your pull request will not be accepted if the formatting check fails.
 
 ## Documentation
 
-[Documentation for the latest release can always be found here][9].
+[Documentation for the latest release can always be found here]https://embeddedartistry.github.io/libc/index.html.
 
 Documentation can be built locally by running the following command:
 
@@ -375,22 +341,17 @@ Documentation can be built locally by running the following command:
 make docs
 ```
 
-Documentation can be found in `buildresults/doc`, and the root page is `index.html`.
+Documentation can be found in `buildresults/docs`, and the root page is `index.html`.
 
 ## Need help?
 
-If you need further assistance or have any questions, please [file a GitHub Issue][6] or send us an email using the [Embedded Artistry Contact Form][5].
+If you need further assistance or have any questions, please [file a GitHub Issue][6] or send us an email using the [Embedded Artistry Contact Form](http://embeddedartistry.com/contact).
 
 You can also [reach out on Twitter: mbeddedartistry](https://twitter.com/mbeddedartistry/).
 
 ## Contributing
 
 If you are interested in contributing to this project, please read our [contributing guidelines](docs/CONTRIBUTING.md).
-
-## Further Reading
-
-* [`libc` Documentation][9]
-* [`CONTRIBUTING` Guide][10]
 
 ## Authors
 
@@ -433,9 +394,9 @@ The initial groundwork of testing was implemented by referencing the [libc-test]
 [2]: https://clang.llvm.org/docs/ClangFormat.html
 [3]: https://cmocka.org
 [meson]: http://mesonbuild.com/index.html
-[5]: http://embeddedartistry.com/contact
+(http://embeddedartistry.com/contact): http://embeddedartistry.com/contact
 [6]: https://github.com/embeddedartistry/libc/issues/new
 [7]: https://git-lfs.github.com
-[8]: https://github.com/embeddedartistry/libc
-[9]: https://embeddedartistry.github.io/libc/index.html
+(https://github.com/embeddedartistry/libc): https://github.com/embeddedartistry/libc
+https://embeddedartistry.github.io/libc/index.html: https://embeddedartistry.github.io/libc/index.html
 [10]: docs/CONTRIBUTING.md
