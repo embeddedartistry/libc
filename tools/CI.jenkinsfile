@@ -50,7 +50,7 @@ pipeline
     {
       steps
       {
-        sh 'meson buildresults/arm/ --cross-file build/cross/gcc/arm/nrf52840.txt'
+        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
         sh 'ninja -C buildresults/arm/'
       }
     }

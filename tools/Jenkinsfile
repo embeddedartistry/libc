@@ -41,7 +41,7 @@ pipeline
     {
       steps
       {
-        sh 'make CROSS=arm:cortex-m4_hardfloat'
+        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
         sh 'ninja -C buildresults/arm/'
       }
     }
