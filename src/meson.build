@@ -299,7 +299,7 @@ libc_native_compile_flags = native_c_compiler.get_supported_arguments(libc_nativ
 libc_host_compile_flags = host_c_compiler.get_supported_arguments(libc_native_compile_flags)
 # We don't use the linker API due to false detections of "NO" values b/c of valid linker errors
 libc_native_link_flags = native_c_compiler.get_supported_arguments(libc_native_link_flags)
-libc_hosted_native_link_flags = host_c_compiler.get_supported_arguments(libc_hosted_native_link_flags)
+libc_hosted_native_link_flags = native_c_compiler.get_supported_arguments(libc_hosted_native_link_flags)
 
 ### The following flags are not filtered ###
 
