@@ -48,7 +48,7 @@ static void test_align(unsigned dalign, unsigned salign, size_t len)
 
 	for(i = 0; i < len; i++)
 	{
-		src[salign + i] = want[dalign + i] = '0' + (char)i;
+		src[salign + i] = want[dalign + i] = (char)('0' + i);
 	}
 
 	p = memcpy(dst + dalign, src + salign, len);

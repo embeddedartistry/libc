@@ -5,7 +5,7 @@ static uint64_t seed = UINT64_MAX;
 static uint32_t rand32(void)
 {
 	seed = 6364136223846793005ULL * seed + 1;
-	return seed >> 32;
+	return (uint32_t)(seed >> 32);
 }
 
 static uint64_t rand64(void)
