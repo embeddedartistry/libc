@@ -95,7 +95,7 @@ pipeline
     {
       steps
       {
-        sh 'make analyze'
+        sh 'make scan-build'
       }
     }
     stage('Coverage')
