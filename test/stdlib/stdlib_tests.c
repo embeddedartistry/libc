@@ -14,33 +14,6 @@
 #include <cmocka.h>
 // clang-format on
 
-extern int abs_tests(void);
-extern int atof_tests(void);
-extern int atoi_tests(void);
-extern int atol_tests(void);
-extern int atoll_tests(void);
-extern int bsearch_tests(void);
-extern int calloc_tests(void);
-extern int div_tests(void);
-extern int heapsort_r_tests(void);
-extern int heapsort_tests(void);
-extern int imaxabs_tests(void);
-extern int imaxdiv_tests(void);
-extern int labs_tests(void);
-extern int ldiv_tests(void);
-extern int llabs_tests(void);
-extern int lldiv_tests(void);
-extern int qsort_r_tests(void);
-extern int qsort_tests(void);
-extern int rand_tests(void);
-extern int realloc_tests(void);
-extern int strtod_tests(void);
-extern int strtof_tests(void);
-extern int strtol_tests(void);
-extern int strtoll_tests(void);
-extern int strtoul_tests(void);
-extern int strtoull_tests(void);
-
 int stdlib_tests(void)
 {
 	int overall_result = 0;
