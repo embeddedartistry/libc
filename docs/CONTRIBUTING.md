@@ -36,8 +36,6 @@ Useful Documentation:
 * [Library Documentation](https://embeddedartistry.github.io/libc/index.html)
 * [cppreference (API notes)](http://en.cppreference.com)
 * [C Standard Library Header Files](http://en.cppreference.com/w/c/header)
-* [Issue Template/Checklist](ISSUE_TEMPLATE.md)
-* [Pull Request template/Checklist](PULL_REQUEST_TEMPLATE.md)
 
 Embedded Artistry blog posts related to this project:
 
