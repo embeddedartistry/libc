@@ -77,6 +77,9 @@ clangtidy_files += libc_test_files
 
 libc_test_flags = native_c_compiler.get_supported_arguments(
 	'-Wno-unused-parameter',
+	# We intentionally run the following scenarios in our tests
+	'-Wno-stringop-truncation',
+	'-Wno-stringop-overflow',
 )
 
 if disable_builtins == false
