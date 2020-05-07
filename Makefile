@@ -53,6 +53,7 @@ default: | $(CONFIGURED_BUILD_DEP)
 
 .PHONY: test
 test: | $(CONFIGURED_BUILD_DEP)
+	$(Q)ninja -C $(BUILDRESULTS) clear-test-results
 	$(Q)ninja -C $(BUILDRESULTS) test
 
 .PHONY: docs
