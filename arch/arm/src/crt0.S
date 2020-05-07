@@ -5,7 +5,8 @@
 #endif
 
 /* Identify processors only capable of executing Thumb-1 instructions.  */
-#if __ARM_ARCH_ISA_THUMB == 1 && !__ARM_ARCH_ISA_ARM
+#if __ARM_ARCH_ISA_THUMB == 1 && (!defined(__ARM_ARCH_ISA_ARM) || \
+	(defined(__ARM_ARCH_ISA_ARM) && !__ARM_ARCH_ISA_ARM))
 # define THUMB1_ONLY
 #endif
 
@@ -13,7 +14,8 @@
    those not having ARM ISA because it does not contain ARMv7.  This macro is
    necessary to test which architectures use bkpt as semihosting interface from
    architectures using svc.  */
-#if !__ARM_ARCH_ISA_ARM && !__ARM_ARCH_7__
+#if (!defined(__ARM_ARCH_ISA_ARM) || (defined(__ARM_ARCH_ISA_ARM) && !__ARM_ARCH_ISA_ARM)) \
+	&& (!defined(__ARM_ARCH_7__) || (defined(__ARM_ARCH_7__) && !__ARM_ARCH_7__))
 # define THUMB_VXM
 #endif
 

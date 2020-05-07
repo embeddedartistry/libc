@@ -27,9 +27,9 @@ typedef float float_t;
 typedef double double_t;
 #endif // ifdef FLT_EVAL_METHOD
 
-double fabs(double);
-float fabsf(float);
-// long double fabsl(long double);
+/*
+ * NOTE: Math functions are defined in openlibm_math.h
+ */
 
 #ifdef __cplusplus
 }

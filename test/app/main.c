@@ -1,6 +1,7 @@
 #include <crt.h>
 
 int main();
+int entry();
 
 __attribute__((weak)) int entry()
 {

@@ -146,13 +146,17 @@ int vwscanf(const wchar_t* __restrict, __isoc_va_list);
 int vfwscanf(FILE* __restrict, const wchar_t* __restrict, __isoc_va_list);
 int vswscanf(const wchar_t* __restrict, const wchar_t* __restrict, __isoc_va_list);
 
+#ifndef vprintf
+// vprintf is defined in printf.h
+int vprintf(const char* __restrict, __isoc_va_list);
+#endif
+
 /// Unsupported printf variants
 
 void perror(const char*);
 
 int wprintf(const wchar_t* __restrict, ...);
 int fprintf(FILE* __restrict, const char* __restrict, ...);
-int vprintf(const char* __restrict, __isoc_va_list);
 int vfprintf(FILE* __restrict, const char* __restrict, __isoc_va_list);
 int vsprintf(char* __restrict, const char* __restrict, __isoc_va_list);
 int fwprintf(FILE* __restrict, const wchar_t* __restrict, ...);
