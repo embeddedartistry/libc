@@ -6,9 +6,9 @@ In order to conserve precious memory resources, this library does not supply the
 
 Unlike many other C libraries that I've come across, this library implements unit tests and has addressed long-standing flaws in open-source implementations of the C standard library functions. We're continually adding tests and making additional improvements over the baseline implementations.
 
-`malloc` and `free` are not included in this library. If you need dynamic memory allocation support, you will need to couple this library with something like [Embedded Artistry's `libmemory`][1], which contains implementations of `malloc` and `free`.
+`malloc` and `free` are not included in this library. If you need dynamic memory allocation support, you will need to couple this library with something like [Embedded Artistry's `libmemory`](https://github.com/embeddedartistry/libmemory), which contains implementations of `malloc` and `free`.
 
-If you are interested in contributing to this project, please read the [`CONTRIBUTING` guide][10].
+If you are interested in contributing to this project, please read the [`CONTRIBUTING` guide](docs/CONTRIBUTING.md).
 
 ## Table of Contents
 
@@ -30,10 +30,10 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 5. [Documentation](#documentation)
 6. [Need Help?](#need-help)
 7. [Contributing](#contributing)
-8. [Futher Reading](#further-reading)
+8. [Further Reading](#further-reading)
 9. [Authors](#authors)
 10. [License](#license)
-11. [Acknowledgements](#acknowledgements)
+11. [Acknowledgments](#acknowledgements)
 
 ## About the Project
 
@@ -45,7 +45,7 @@ In order to conserve memory, this library does not supply the complete C standar
 
 The functional implementations in this library have been selected for portability and quick bring-up of new systems. There may be more efficient implementations for these functions, but often they are architecture specific implementations. If you have suggestions for improving performance, we are always happy to hear them.
 
-`malloc` and `free` are not included in this library. Because memory allocation schemes vary greatly with embedded systems (some not even allowing dynamic memory), you will need to supply your own implementations based on your system's needs. You can couple this library with the [Embedded Artistry `libmemory`][1], which contains implementations of `malloc` and `free`.
+`malloc` and `free` are not included in this library. Because memory allocation schemes vary greatly with embedded systems (some not even allowing dynamic memory), you will need to supply your own implementations based on your system's needs. You can couple this library with the [Embedded Artistry `libmemory`](https://github.com/embeddedartistry/libmemory), which contains implementations of `malloc` and `free`.
 
 ## Project Status
 
@@ -114,7 +114,7 @@ This project uses [Embedded Artistry's standard Meson build system](https://embe
 
 At a minimum you will need:
 
-* [`git-lfs`][7], which is used to store binary files in this repository
+* [`git-lfs`](https://git-lfs.github.com), which is used to store binary files in this repository
 * [Meson](#meson-build-system) is the build system
 * Some kind of compiler for your target system.
 	- This repository has been tested with:
@@ -345,7 +345,7 @@ Documentation can be found in `buildresults/docs`, and the root page is `index.h
 
 ## Need help?
 
-If you need further assistance or have any questions, please [file a GitHub Issue][6] or send us an email using the [Embedded Artistry Contact Form](http://embeddedartistry.com/contact).
+If you need further assistance or have any questions, please [file a GitHub Issue](https://github.com/embeddedartistry/libc/issues) or send us an email using the [Embedded Artistry Contact Form](http://embeddedartistry.com/contact).
 
 You can also [reach out on Twitter: mbeddedartistry](https://twitter.com/mbeddedartistry/).
 
@@ -388,15 +388,3 @@ I have also used and improved the open-source `gdtoa` library.
 The initial groundwork of testing was implemented by referencing the [libc-test](http://nsz.repo.hu/git/?p=libc-test) project.
 
 **[Back to top](#table-of-contents)**
-
-[0]: http://www.stack.nl/~dimitri/doxygen/
-[1]: https://github.com/embeddedartistry/libmemory
-[2]: https://clang.llvm.org/docs/ClangFormat.html
-[3]: https://cmocka.org
-[meson]: http://mesonbuild.com/index.html
-(http://embeddedartistry.com/contact): http://embeddedartistry.com/contact
-[6]: https://github.com/embeddedartistry/libc/issues/new
-[7]: https://git-lfs.github.com
-(https://github.com/embeddedartistry/libc): https://github.com/embeddedartistry/libc
-https://embeddedartistry.github.io/libc/index.html: https://embeddedartistry.github.io/libc/index.html
-[10]: docs/CONTRIBUTING.md
