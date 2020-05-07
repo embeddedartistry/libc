@@ -72,7 +72,7 @@ pipeline
         {
           dir('buildresults')
           {
-            sh 'tar cf documentation.tgz doc/'
+            sh 'tar cf documentation.tgz docs/'
           }
         }
       }
