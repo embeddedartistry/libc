@@ -262,13 +262,13 @@ wchar_t __towcase(wchar_t wc, int lower)
 	for(i = 0; casemaps[i].len; i++)
 	{
 		int base = casemaps[i].upper + (lmask & casemaps[i].lower);
-		if(wc - base < casemaps[i].len)
+		if(wc - (wchar_t)base < casemaps[i].len)
 		{
 			if(casemaps[i].lower == 1)
 			{
-				return wc + lower - ((wc - casemaps[i].upper) & 1);
+				return wc + (wchar_t)lower - ((wc - casemaps[i].upper) & 1);
 			}
-			return wc + lmul * casemaps[i].lower;
+			return wc + (wchar_t)(lmul * casemaps[i].lower);
 		}
 	}
 
@@ -280,29 +280,29 @@ wchar_t __towcase(wchar_t wc, int lower)
 		}
 	}
 
-	if(wc - (0x10428 - 0x28 * lower) < 0x28)
+	if(wc - (wchar_t)(0x10428 - 0x28 * lower) < 0x28)
 	{
-		return wc - 0x28 + 0x50 * lower;
+		return wc - (wchar_t)(0x28 + 0x50 * lower);
 	}
 
-	if(wc - (0x104d8 - 0x28 * lower) < 0x24)
+	if(wc - (wchar_t)(0x104d8 - 0x28 * lower) < 0x24)
 	{
-		return wc - 0x28 + 0x50 * lower;
+		return wc - (wchar_t)(0x28 + 0x50 * lower);
 	}
 
-	if(wc - (0x10cc0 - 0x40 * lower) < 0x33)
+	if(wc - (wchar_t)(0x10cc0 - 0x40 * lower) < 0x33)
 	{
-		return wc - 0x40 + 0x80 * lower;
+		return wc - (wchar_t)(0x40 + 0x80 * lower);
 	}
 
-	if(wc - (0x118c0 - 0x20 * lower) < 0x20)
+	if(wc - (wchar_t)(0x118c0 - 0x20 * lower) < 0x20)
 	{
-		return wc - 0x20 + 0x40 * lower;
+		return wc - (wchar_t)(0x20 + 0x40 * lower);
 	}
 
-	if(wc - (0x1e922 - 0x22 * lower) < 0x22)
+	if(wc - (wchar_t)(0x1e922 - 0x22 * lower) < 0x22)
 	{
-		return wc - 0x22 + 0x44 * lower;
+		return wc - (wchar_t)(0x22 + 0x44 * lower);
 	}
 
 	return wc;

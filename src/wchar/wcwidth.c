@@ -20,12 +20,13 @@ int wcwidth(wchar_t wc)
 
 	if((wc & (wchar_t)0xfffeffffU) < UNICODE_IDENTIFIER)
 	{
-		if((table[table[wc >> 8] * 32 + ((wc & 255) >> 3)] >> (wc & 7)) & 1)
+		wchar_t entry = (wchar_t)table[wc >> 8] * 32 + (wchar_t)((wc & 255) >> 3);
+		if((table[entry] >> (wc & 7)) & 1)
 		{
 			return 0;
 		}
 
-		if((wtable[wtable[wc >> 8] * 32 + ((wc & 255) >> 3)] >> (wc & 7)) & 1)
+		if((wtable[entry] >> (wc & 7)) & 1)
 		{
 			return 2;
 		}

@@ -101,15 +101,15 @@ unsigned long long strtoull(const char* __restrict nptr, char** __restrict endpt
 	{
 		if(c >= '0' && c <= '9')
 		{
-			c -= '0';
+			c = (char)(c - '0');
 		}
 		else if(c >= 'A' && c <= 'Z')
 		{
-			c -= 'A' - 10;
+			c = (char)(c - 'A' - 10);
 		}
 		else if(c >= 'a' && c <= 'z')
 		{
-			c -= 'a' - 10;
+			c = (char)(c - 'a' - 10);
 		}
 		else
 		{
