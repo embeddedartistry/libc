@@ -96,7 +96,8 @@ libc_tests = executable('libc_test',
 	dependencies: [cmocka_native_dep, libc_hosted_native_dep],
 	link_args: native_map_file.format(meson.current_build_dir() + '/libc_test'),
 	c_args: libc_test_flags,
-	native: true
+	native: true,
+	build_by_default: meson.is_subproject() == false,
 )
 
 ################################
@@ -104,7 +105,7 @@ libc_tests = executable('libc_test',
 ################################
 # This application is used to confirm linking behavior, primarily for cross builds
 
-if meson.is_cross_build()
+if meson.is_cross_build() and meson.is_subproject() == false
 
 	host_objcopy = find_program(meson.get_cross_property('objcopy'),
 		required: false, disabler: true)
@@ -145,18 +146,20 @@ endif
 
 test_output_dir = 'CMOCKA_XML_FILE=' + meson.build_root() + '/test/%g.xml'
 
-test('libc_tests',
-	libc_tests,
-	env: [test_output_dir])
-
-run_target('libc-tests',
-	command: [libc_tests]
-)
-
-run_target('libc-tests-xml',
-	command: [
-		meson.source_root() + '/tools/exec_program_with_env.sh',
+if meson.is_subproject() == false
+	test('libc_tests',
 		libc_tests,
-		test_output_dir
-	],
-)
+		env: [test_output_dir])
+
+	run_target('libc-tests',
+		command: [libc_tests]
+	)
+
+	run_target('libc-tests-xml',
+		command: [
+			meson.source_root() + '/tools/exec_program_with_env.sh',
+			libc_tests,
+			test_output_dir
+		],
+	)
+endif

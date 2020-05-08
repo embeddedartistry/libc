@@ -339,6 +339,7 @@ libc = static_library(
 		openlibm_dep,
 		host_machine_dep,
 	],
+	build_by_default: meson.is_subproject() == false,
 )
 
 # We don't build the stdio files for the native variant, as we rely on the
@@ -356,7 +357,8 @@ libc_native = static_library(
 		openlibm_dep,
 		build_machine_dep,
 	],
-	native: true
+	native: true,
+	build_by_default: meson.is_subproject() == false,
 )
 
 ################
