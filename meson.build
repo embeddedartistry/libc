@@ -184,18 +184,21 @@ subdir('build/docs/doxygen')
 # Packaging #
 #############
 
+host_pkg_name = 'embeddedartistry_libc'
+native_pkg_name = host_pkg_name + '_native'
+
 # These macros allow you to simplify the declaration of includes for common
 # include paths.
 build_root_include = meson.build_root() + ':@0@'
 src_include = meson.build_root() / 'src/:@0@'
 
 host_pkg_files = [
-	build_root_include.format('doc'),
+	build_root_include.format('docs'),
 	src_include.format('libc.a')
 ]
 
 native_pkg_files = [
-	build_root_include.format('doc'),
+	build_root_include.format('docs'),
 	src_include.format('libc_native.a')
 ]
 
