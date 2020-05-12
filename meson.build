@@ -99,13 +99,16 @@ printf_dep = declare_dependency(
 printf_tests = executable('printf_tests',
 	sources: files('printf/test/test_suite.cpp'),
 	include_directories: include_directories('printf/test'),
-	native: true
+	native: true,
+	build_by_default: meson.is_subproject() == false,
 )
 
-test('printf_tests',
-	printf_tests,
-	args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
-)
+if meson.is_subproject() == false
+	test('printf_tests',
+		printf_tests,
+		args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
+	)
+endif
 
 run_target('printf-tests',
 	command: printf_tests
