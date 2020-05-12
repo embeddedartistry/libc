@@ -207,7 +207,9 @@ __change_mode:
 	movs	r1, #0		/* No argv either.  */
 
 	// Our framework jumps to entry, which boots the system.
-	// Jumping to main would skip CRT startup and system initialization
+	// Jumping to main would skip CRT startup and system initialization.
+	// A default weak implementation is supplied by libc which handles these
+	// two actions.
 	bl	FUNCTION (entry)
 
 	bl	FUNCTION (exit)		/* Should not return.  */

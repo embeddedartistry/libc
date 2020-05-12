@@ -1,14 +1,3 @@
-#include <crt.h>
-
-int main();
-int entry();
-
-__attribute__((weak)) int entry()
-{
-	CRTStartup();
-	return main();
-}
-
 int main(void)
 {
 	while(1)

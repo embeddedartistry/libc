@@ -205,6 +205,8 @@ __change_mode:
 
 	// Our framework jumps to entry, which boots the system.
 	// Jumping to main would skip CRT startup and system initialization
+	// A default weak implementation is supplied by libc which handles these
+	// two actions.
 	bl	FUNCTION (entry)
 
 	// We allow exit to be weakly defined, since we might be compiling without exit support
