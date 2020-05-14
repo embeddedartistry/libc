@@ -71,7 +71,10 @@ crt_files = files(
 	'crt/cxa_atexit.c',
 	'crt/exit.c',
 	'crt/quick_exit.c',
+	'crt/stack_protection.c'
 )
+
+stack_protection_file = files('crt/stack_protection.c')
 
 ctype_files = files(
 	'ctype/isalnum.c',

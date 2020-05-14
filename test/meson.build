@@ -100,6 +100,15 @@ libc_tests = executable('libc_test',
 	build_by_default: meson.is_subproject() == false,
 )
 
+stackprotect_test = executable('stackprotect_test',
+	['app/stackcheck_main.c', stack_protection_file],
+	c_args: '-fstack-protector-all',
+	link_args: native_map_file.format(meson.current_build_dir() + '/stackprotect_test'),
+	dependencies: libc_hosted_native_dep,
+	native: true,
+	build_by_default: meson.is_subproject() == false
+)
+
 ################################
 # Cross Compilation "Test" App #
 ################################
@@ -117,6 +126,7 @@ if meson.is_cross_build() and meson.is_subproject() == false
 	sample_app = executable('sample_app',
 		'app/main.c',
 		dependencies: libc_dep,
+		c_args: '-fstack-protector-all',
 		link_args: [
 			linker_script_flags,
 			map_file.format(meson.current_build_dir()+'/sample_app'),
@@ -150,6 +160,11 @@ if meson.is_subproject() == false
 	test('libc_tests',
 		libc_tests,
 		env: [test_output_dir])
+
+	test('stackprotect_test',
+		stackprotect_test,
+		should_fail: true
+	)
 
 	run_target('libc-tests',
 		command: [libc_tests]
