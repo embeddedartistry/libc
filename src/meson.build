@@ -325,6 +325,10 @@ else
 	warning('Operating system not handled for hosted native linker flags.')
 endif
 
+if stack_canary != ''
+	libc_compile_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
+endif
+
 ###################
 # Library Targets #
 ###################

@@ -7,6 +7,9 @@ option('enable-gnu-extensions', type: 'boolean', value: false,
 option('disable-builtins', type: 'boolean', value: false,
     description: 'Tell the compiler not to generate builtin functions.',
     yield: true)
+option('stack-canary-value', type: 'string', value: '',
+    description: 'Override the default canary value. Supply a hexadecimal value, such as 0xdeadbeef. The canary length should match the word size of your processor.',
+    yield: true)
 option('disable-stack-protection', type: 'boolean', value: false,
     description: 'Tell the compiler not to insert stack protection calls.', yield: true)
 option('enable-pedantic', type: 'boolean', value: false, yield: true)
