@@ -25,6 +25,7 @@ If you are interested in contributing to this project, please read the [`CONTRIB
 	4. [Installation](#installation)
 	5. [Usage](#usage)
 4. [Configuration Options](#configuration-options)
+5. [Stack Overflow Protection](#stack-overflow-protection)
 5. [Documentation](#documentation)
 6. [Need Help?](#need-help)
 7. [Contributing](#contributing)
@@ -74,6 +75,8 @@ The following portions of the C library have been implemented:
 	- `puts`
 * `time` types and `asctime()`
 * `wchar` type definitions and `wctype` functions
+
+In addition, this library provides implementations for `__stack_chk_guard` and `__stack_chk_fail`.
 
 The following architectures are currently supported:
 
@@ -315,6 +318,7 @@ The following meson project options can be set for this library when creating th
 * `enable-gnu-extensions` will enable GNU libc extensions that are implemented in this library
 * `disable-builtins` will tell the compiler not to generate built-in functions, forcing it to use the library functions
 * `disable-stack-protection` will tell the compiler not to insert stack protection calls
+* `stack-canary-value` enables you to customize the canary value for your application. Supply a hexadecimal string (e.g., `'0xdeadbeef'`) with the same length as your processor's word size.
 
 Options can be specified using `-D` and the option name:
 
@@ -328,6 +332,14 @@ The same style works with `meson configure`:
 cd buildresults
 meson configure -Ddisable-builtins=false
 ```
+
+## Stack Overflow Protection
+
+This library provides an implementation of `__stack_chk_guard` and `__stack_chk_fail`, which enables it to be used with GCC and Clang's stack protection code.
+
+The default value for `__stack_chk_guard` can be overridden with the `stack-canary-value` build option.
+
+Note that gnu-arm-none-eabi doesn't enable stack protection by default; you will need to add the desired stack protector flags (e.g., `-fstack-protector-strong`) to your build.
 
 ## Documentation
 
