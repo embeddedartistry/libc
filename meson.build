@@ -26,6 +26,7 @@ disable_builtins = get_option('disable-builtins')
 disable_stack_protection = get_option('disable-stack-protection')
 enable_gnu_src = get_option('enable-gnu-extensions')
 stack_canary = get_option('stack-canary-value')
+disable_stk_guard_runtime_config = get_option('disable-stk-guard-runtime-config')
 
 # Pick up our common compiler variables + desired_*_flags variables
 subdir('build/compiler')

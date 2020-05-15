@@ -12,5 +12,7 @@ option('stack-canary-value', type: 'string', value: '',
     yield: true)
 option('disable-stack-protection', type: 'boolean', value: false,
     description: 'Tell the compiler not to insert stack protection calls.', yield: true)
+option('disable-stk-guard-runtime-config', type: 'boolean', value: false,
+    description: 'Disables runtime configuration option for __stack_chk_guard. The program will use a fixed value.', yield: true)
 option('enable-pedantic', type: 'boolean', value: false, yield: true)
 option('enable-pedantic-error', type: 'boolean', value: false, yield: true)

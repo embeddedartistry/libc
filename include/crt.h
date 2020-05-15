@@ -1,6 +1,12 @@
 #ifndef __CRT_H_
 #define __CRT_H_
 
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define CRT_HAS_INITFINI_ARRAY
 
 void CRTStartup(void);
@@ -28,5 +34,28 @@ int entry(void);
 * @post The program is terminated.
 */
 __attribute__((noreturn)) void __stack_chk_fail(void);
+
+#ifndef DISABLE_STACK_CHK_GUARD_RUNTIME_CONFIG
+/** Initialize __stack_chk_guard during boot
+*
+* This function is called during the startup process as a ((constructor)),
+* ensuring it will run before the system is configured.
+*
+* * This function is weakly linked. You can define your own implementation in your program
+* and it will be used instead of the library default.
+*
+* By default, this function sets __stack_chk_guard to the pre-defined canary value.
+* Our recommendation is to override this function on your own system to randomly generate
+* the value used for __stack_chk_guard during boot or to use a unique value tied to
+* the each hardware entity.
+*
+* @returns The value to be used for __stack_chk_guard.
+*/
+uintptr_t __stack_chk_guard_init(void);
+#endif
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // __CRT_H_

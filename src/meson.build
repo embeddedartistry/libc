@@ -334,6 +334,11 @@ if stack_canary != ''
 	libc_host_stack_protect_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
 endif
 
+if disable_stk_guard_runtime_config
+	libc_native_stack_protect_flags += '-DDISABLE_STACK_CHK_GUARD_RUNTIME_CONFIG'
+	libc_host_stack_protect_flags += '-DDISABLE_STACK_CHK_GUARD_RUNTIME_CONFIG'
+endif
+
 ###################
 # Library Targets #
 ###################
