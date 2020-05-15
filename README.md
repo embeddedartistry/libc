@@ -339,8 +339,6 @@ This library provides an implementation of `__stack_chk_guard` and `__stack_chk_
 
 The default value for `__stack_chk_guard` can be overridden with the `stack-canary-value` build option.
 
-Note that gnu-arm-none-eabi doesn't enable stack protection by default; you will need to add the desired stack protector flags (e.g., `-fstack-protector-strong`) to your build.
-
 ## Documentation
 
 [Documentation for the latest release can always be found here]https://embeddedartistry.github.io/libc/index.html.
