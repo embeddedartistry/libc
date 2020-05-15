@@ -10,13 +10,15 @@ void stack_overflows_here()
 	char buffer_short[20];
 
 	strcpy(buffer_short, buffer_long);
+
+	printf("Overflow case run.\n");
 }
 
 int main(void)
 {
-	stack_overflows_here();
+	printf("Running stack overflow test program.\n");
 
-	printf("This statement should not be seen\n");
+	stack_overflows_here();
 
 	return 0;
 }
