@@ -19,7 +19,8 @@ __attribute__((weak)) int entry(void)
 	return main();
 }
 
-void __libc_init_array(void)
+// This function may call another function which changes __stack_chk_guard
+__attribute__((no_stack_protector)) void __libc_init_array(void)
 {
 	size_t count = (size_t)((uintptr_t)__preinit_array_end - (uintptr_t)__preinit_array_start);
 	for(size_t i = 0; i < count; i++)
@@ -43,7 +44,8 @@ void __libc_fini_array(void)
 	}
 }
 
-void CRTStartup(void)
+// This function may call another function which changes __stack_chk_guard
+__attribute__((no_stack_protector)) void CRTStartup(void)
 {
 	memset(&__bss_start__, 0, (uintptr_t)&__bss_end__ - (uintptr_t)&__bss_start__);
 
