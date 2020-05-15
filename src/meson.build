@@ -292,14 +292,18 @@ if disable_builtins
 	libc_host_compile_flags += '-fno-builtin'
 endif
 
+libc_native_stack_protect_flags = []
+libc_host_stack_protect_flags = []
 if disable_stack_protection
-	libc_native_compile_flags += '-fno-stack-protector'
-	libc_host_compile_flags += '-fno-stack-protector'
+	libc_native_stack_protect_flags += '-fno-stack-protector'
+	libc_host_stack_protect_flags += '-fno-stack-protector'
 endif
 
 # Filter flags and only use the ones that are actually supported
 libc_native_compile_flags = native_c_compiler.get_supported_arguments(libc_native_compile_flags)
 libc_host_compile_flags = host_c_compiler.get_supported_arguments(libc_native_compile_flags)
+libc_native_stack_protect_flags = native_c_compiler.get_supported_arguments(libc_native_stack_protect_flags)
+libc_host_stack_protect_flags = host_c_compiler.get_supported_arguments(libc_host_stack_protect_flags)
 # We don't use the linker API due to false detections of "NO" values b/c of valid linker errors
 libc_native_link_flags = native_c_compiler.get_supported_arguments(libc_native_link_flags)
 libc_hosted_native_link_flags = native_c_compiler.get_supported_arguments(libc_hosted_native_link_flags)
@@ -325,9 +329,9 @@ else
 	warning('Operating system not handled for hosted native linker flags.')
 endif
 
-libc_canary_compile_flag = []
 if stack_canary != ''
-	libc_canary_compile_flag += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
+	libc_native_stack_protect_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
+	libc_host_stack_protect_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
 endif
 
 ###################
@@ -340,7 +344,7 @@ libc = static_library(
 	c_args: [
 		libc_compile_flags,
 		libc_host_compile_flags,
-		libc_canary_compile_flag,
+		libc_host_stack_protect_flags,
 	],
 	include_directories: [
 		libc_include,
@@ -362,7 +366,7 @@ libc_native = static_library(
 	c_args: [
 		libc_compile_flags,
 		libc_native_compile_flags,
-		libc_canary_compile_flag,
+		libc_native_stack_protect_flags,
 	],
 	include_directories: [
 		libc_include,
