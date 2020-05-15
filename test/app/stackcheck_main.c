@@ -6,6 +6,11 @@ void stack_overflows_here();
 
 const char* buffer_long = "This is a long long string";
 
+uintptr_t __stack_chk_guard_init()
+{
+	return 0xbeeffeeda5a5a5a5;
+}
+
 void stack_overflows_here()
 {
 	char buffer_short[20];
