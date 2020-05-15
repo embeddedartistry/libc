@@ -102,7 +102,7 @@ libc_tests = executable('libc_test',
 
 stackprotect_test = executable('stackprotect_test',
 	['app/stackcheck_main.c', stack_protection_file],
-	c_args: '-fstack-protector-all',
+	c_args: ['-fstack-protector-all', libc_native_stack_protect_flags],
 	link_args: native_map_file.format(meson.current_build_dir() + '/stackprotect_test'),
 	dependencies: libc_hosted_native_dep,
 	native: true,
