@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 void stack_overflows_here();
 
@@ -16,7 +17,8 @@ void stack_overflows_here()
 
 int main(void)
 {
-	printf("Running stack overflow test program.\n");
+	extern uintptr_t __stack_chk_guard;
+	printf("Running stack overflow test program. Canary value: 0x%p\n", __stack_chk_guard);
 
 	stack_overflows_here();
 
