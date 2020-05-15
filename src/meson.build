@@ -325,8 +325,9 @@ else
 	warning('Operating system not handled for hosted native linker flags.')
 endif
 
+libc_canary_compile_flag = []
 if stack_canary != ''
-	libc_compile_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
+	libc_canary_compile_flag += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
 endif
 
 ###################
@@ -336,7 +337,11 @@ endif
 libc = static_library(
 	'c',
 	libc_common_files + libc_standalone_files,
-	c_args: libc_compile_flags + libc_host_compile_flags,
+	c_args: [
+		libc_compile_flags,
+		libc_host_compile_flags,
+		libc_canary_compile_flag,
+	],
 	include_directories: [
 		libc_include,
 		gdtoa_include,
@@ -354,7 +359,11 @@ libc = static_library(
 libc_native = static_library(
 	'c_native',
 	libc_common_files + libc_native_files,
-	c_args: libc_compile_flags + libc_native_compile_flags,
+	c_args: [
+		libc_compile_flags,
+		libc_native_compile_flags,
+		libc_canary_compile_flag,
+	],
 	include_directories: [
 		libc_include,
 		gdtoa_include,
