@@ -13,4 +13,17 @@ void __libc_fini_array(void);
 // You can override it with a strong definition.
 int entry(void);
 
+/** Stack Check Failure Callback
+*
+* This function shall abort the function that called it with a message that a stack overflow
+* has been deteted, and then halt the program via `exit`, `abort`, or a custom panic handler.
+*
+* This function must not return!
+*
+* The libc function
+*
+* @post The program is terminated.
+*/
+__attribute__((noreturn)) void __stack_chk_fail(void);
+
 #endif // __CRT_H_

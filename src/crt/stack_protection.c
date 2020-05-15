@@ -2,10 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#pragma mark - Prototypes -
-
-void __stack_chk_fail(void);
-
 #pragma mark - Declarations -
 
 #ifndef STACK_CHK_GUARD_VALUE
@@ -16,11 +12,16 @@ void __stack_chk_fail(void);
 #endif
 #endif
 
+/** Stack check guard variable
+*
+* The value of this variable is used as a stack canary to detect
+* whether an overflow has occurred.
+*/
 uintptr_t __stack_chk_guard = STACK_CHK_GUARD_VALUE;
 
 #pragma mark - Implementations -
 
-__attribute__((weak)) void __stack_chk_fail(void)
+__attribute__((weak,noreturn)) void __stack_chk_fail(void)
 {
 	printf("Stack overflow detected! Aborting program.\n");
 	abort();
