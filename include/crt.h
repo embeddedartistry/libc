@@ -20,7 +20,10 @@ int entry(void);
 *
 * This function must not return!
 *
-* The libc function
+* This function is weakly linked. You can define your own implementation in your program
+* and it will be used instead of the library default.
+*
+* By default, this function prints an error message via `printf` and calls abort().
 *
 * @post The program is terminated.
 */
