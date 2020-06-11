@@ -276,6 +276,16 @@ libc_host_link_flags = [
 	'-nostartfiles',
 ]
 
+# We don't need nostartfiles here because we want to rely on the standard start files
+# in the hosted configuration
+libc_hosted_link_flags = [
+	# Do not use the C library or system libraries tightly coupled with it when linking.
+	# Still link with the startup files, libgcc or toolchain provided language support
+	# libraries such as libstdc++. This may also remove system libraries that normally go
+	# with libc, for example -lpthread or -lm
+	'-nolibc'
+]
+
 # Clang does nothing with -nolibc. We are forced to upgrade to -nostdlib.
 if native_c_compiler_id == 'clang'
 	libc_native_link_flags += '-nostdlib'
@@ -286,6 +296,14 @@ if native_c_compiler_id == 'clang'
 	endif
 endif
 
+if host_c_compiler_id == 'clang'
+	libc_host_link_flags += '-nostdlib'
+
+	# We can't do this for Linux, because we need the GCC startup files (for now)
+	if host_machine.system() != 'linux' and get_option('b_sanitize') == 'none'
+		libc_hosted_link_flags += '-nostdlib'
+	endif
+endif
 
 if disable_builtins
 	libc_native_compile_flags += '-fno-builtin'
@@ -307,6 +325,8 @@ libc_host_stack_protect_flags = host_c_compiler.get_supported_arguments(libc_hos
 # We don't use the linker API due to false detections of "NO" values b/c of valid linker errors
 libc_native_link_flags = native_c_compiler.get_supported_arguments(libc_native_link_flags)
 libc_hosted_native_link_flags = native_c_compiler.get_supported_arguments(libc_hosted_native_link_flags)
+libc_host_link_flags = native_c_compiler.get_supported_arguments(libc_host_link_flags)
+libc_hosted_link_flags = native_c_compiler.get_supported_arguments(libc_hosted_link_flags)
 
 ### The following flags are not filtered ###
 
@@ -329,6 +349,14 @@ else
 	warning('Operating system not handled for hosted native linker flags.')
 endif
 
+if(host_machine.system() == 'darwin')
+	# The following flags are required to link and run an app on OSX
+	libc_hosted_link_flags += ['-lSystem']
+elif(host_machine.system() == 'linux')
+	# The following flags are required to link and run an app on Linux (with native hosted libc)
+	libc_hosted_link_flags += ['-lc']
+endif
+
 if stack_canary != ''
 	libc_native_stack_protect_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
 	libc_host_stack_protect_flags += '-DSTACK_CHK_GUARD_VALUE=' + stack_canary
@@ -346,6 +374,28 @@ endif
 libc = static_library(
 	'c',
 	libc_common_files + libc_standalone_files,
+	c_args: [
+		libc_compile_flags,
+		libc_host_compile_flags,
+		libc_host_stack_protect_flags,
+	],
+	include_directories: [
+		libc_include,
+		gdtoa_include,
+	],
+	dependencies: [
+		printf_dep,
+		openlibm_dep,
+		host_machine_dep,
+	],
+	build_by_default: meson.is_subproject() == false,
+)
+
+# We don't build the stdio files for the hosted variant, as we rely on the
+# System library to do the heavy lifting for missing symbols
+libc_hosted = static_library(
+	'c_hosted',
+	libc_common_files + libc_native_files,
 	c_args: [
 		libc_compile_flags,
 		libc_host_compile_flags,
@@ -416,6 +466,19 @@ libc_native_dep = declare_dependency(
 	link_with: libc_native,
 )
 
+libc_hosted_dep = declare_dependency(
+	include_directories: [
+		libc_sys_include,
+		gdtoa_sys_include,
+		host_machine_arch_sys_include,
+		openlibm_includes,
+		libprintf_includes
+	],
+	compile_args: libc_compile_flags + libc_host_compile_flags,
+	link_args: libc_hosted_link_flags,
+	link_with: libc_hosted,
+)
+
 libc_hosted_native_dep = declare_dependency(
 	include_directories: [
 		libc_sys_include,
@@ -424,7 +487,7 @@ libc_hosted_native_dep = declare_dependency(
 		openlibm_includes,
 		libprintf_includes
 	],
-	compile_args: libc_compile_flags + libc_host_compile_flags,
+	compile_args: libc_compile_flags + libc_native_compile_flags,
 	link_args: libc_hosted_native_link_flags,
 	link_with: libc_native,
 )
