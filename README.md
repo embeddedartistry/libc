@@ -319,6 +319,7 @@ The following meson project options can be set for this library when creating th
 * `disable-builtins` will tell the compiler not to generate built-in functions, forcing it to use the library functions
 * `disable-stack-protection` will tell the compiler not to insert stack protection calls
 * `stack-canary-value` enables you to customize the canary value for your application. Supply a hexadecimal string (e.g., `'0xdeadbeef'`) with the same length as your processor's word size.
+* `disable-stk-guard-runtime-config` disables the code that is used to configure `__stk_chk_guard` during program initialization. When this option is `true`, the program will revert to using a hard-coded definition for the guard value.
 
 Options can be specified using `-D` and the option name:
 
