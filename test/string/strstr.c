@@ -4,6 +4,7 @@
  */
 
 #include "string_tests.h"
+#include <stdint.h>
 #include <string.h>
 
 // Cmocka needs these
