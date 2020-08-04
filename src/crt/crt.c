@@ -40,7 +40,7 @@ void __libc_fini_array(void)
 	size_t count = (size_t)((uintptr_t)__fini_array_end - (uintptr_t)__fini_array_start);
 	for(size_t i = count; i > 0; i--)
 	{
-		__fini_array_start[i-1]();
+		__fini_array_start[i - 1]();
 	}
 }
 
