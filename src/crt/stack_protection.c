@@ -12,14 +12,14 @@
 #endif
 
 #ifdef DISABLE_STACK_CHK_GUARD_RUNTIME_CONFIG
-uintptr_t __stack_chk_guard = STACK_CHK_GUARD_VALUE;
+__attribute__((weak)) uintptr_t __stack_chk_guard = STACK_CHK_GUARD_VALUE;
 #else
 /** Stack check guard variable
  *
  * The value of this variable is used as a stack canary to detect
  * whether an overflow has occurred.
  */
-uintptr_t __stack_chk_guard = 0;
+__attribute__((weak)) uintptr_t __stack_chk_guard = 0;
 
 /*
  * Stack protection *must* be disabled for this function. In the case of

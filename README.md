@@ -236,7 +236,7 @@ Tests will not be cross-compiled. They will only be built for the native platfor
 
 **Full instructions for building the project, using alternate toolchains, and running supporting tooling are documented in [Embedded Artistry's Standardized Meson Build System](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/) on our website.**
 
-#### Disabling Position Independent Code
+### Disabling Position Independent Code
 
 Position Independent Code (PIC) is enabled by default, but can be disabled during the Meson configuration stage by setting the built-in option `b_staticpic` to `false`:
 
