@@ -21,6 +21,10 @@ DEBUG ?= 0
 SANITIZER ?= none
 INTERNAL_OPTIONS =
 
+ifeq ($(DISABLE_BUILTINS),1)
+	INTERNAL_OPTIONS += -Ddisable-builtins=true
+endif
+
 ifeq ($(LTO),1)
 	INTERNAL_OPTIONS += -Db_lto=true -Ddisable-builtins=true
 endif
@@ -38,7 +42,7 @@ ifneq ($(NATIVE),)
 endif
 
 ifeq ($(DEBUG),1)
-	INTERNAL_OPTIONS += '-Ddebug=true -Doptimization=g'
+	INTERNAL_OPTIONS += -Ddebug=true -Doptimization=g
 endif
 
 ifneq ($(SANITIZER),none)
