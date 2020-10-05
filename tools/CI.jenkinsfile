@@ -71,6 +71,28 @@ pipeline
         }
       }
     }
+    stage('Test+AddressSanitizer')
+    {
+      steps
+      {
+        sh 'BUILDRESULTS=buildresults/address-sanitizer SANITIZER="address" make test'
+      }
+    }
+    stage('Test+UndefinedBehaviorSanitizer')
+    {
+      steps
+      {
+        sh 'BUILDRESULTS=buildresults/undefinedbehavior-sanitizer SANITIZER="undefined" make test'
+      }
+    }
+    // TODO: get new compilers that support this!
+    // stage('Test+LeakSanitizer')
+    // {
+    //   steps
+    //   {
+    //     sh 'BUILDRESULTS=buildresults/leak-sanitizer SANITIZER="leak" make test'
+    //   }
+    // }
     stage('CppCheck')
     {
       steps
