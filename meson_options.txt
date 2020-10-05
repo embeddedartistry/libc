@@ -1,10 +1,10 @@
-option('hide-unimplemented-libc-apis', type: 'boolean', value: false, 
-    description: 'Make unimplemented libc functions invisible to the compiler.', 
+option('hide-unimplemented-libc-apis', type: 'boolean', value: false,
+    description: 'Make unimplemented libc functions invisible to the compiler.',
     yield: true)
-option('enable-gnu-extensions', type: 'boolean', value: false, 
-    description: 'Enable GNU libc extensions.', 
+option('enable-gnu-extensions', type: 'boolean', value: false,
+    description: 'Enable GNU libc extensions.',
     yield: true)
-option('disable-builtins', type: 'boolean', value: false,
+option('disable-builtins', type: 'boolean', value: true,
     description: 'Tell the compiler not to generate builtin functions.',
     yield: true)
 option('stack-canary-value', type: 'string', value: '',
