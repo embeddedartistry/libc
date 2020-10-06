@@ -21,11 +21,14 @@ static void strcmp_test(void** state)
 	assert_int_equal(strcmp("abc", "abc"), 0);
 	assert_int_not_equal(strcmp(s, "abc"), 0);
 	assert_int_not_equal(strcmp("abc", s), 0);
+
+#ifndef ADDRESS_SANITIZER_ENABLED
 	assert_int_not_equal(strcmp("abc", NULL), 0);
 	assert_int_not_equal(strcmp(NULL, "abc"), 0);
 
 	// Check that two NULL strings will match
 	assert_int_equal(strcmp(NULL, NULL), 0);
+#endif
 
 	// Check directionality of return
 	assert_int_equal(!!(strcmp(s, "abc") > 0), 1);

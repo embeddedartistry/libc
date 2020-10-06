@@ -26,8 +26,10 @@ static void strdup_test(void** state)
 	assert_int_equal(strncmp(dup, base, strlen(dup)), 0);
 	free(dup);
 
+#ifndef ADDRESS_SANITIZER_ENABLED
 	dup = strdup(NULL);
 	assert_ptr_equal(dup, NULL);
+#endif
 }
 
 #pragma mark - Public Functions -

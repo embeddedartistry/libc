@@ -88,6 +88,10 @@ if disable_builtins == false
 	libc_test_flags += '-DBUILTINS_ARE_ENABLED'
 endif
 
+if get_option('b_sanitize') == 'address'
+	libc_test_flags += '-DADDRESS_SANITIZER_ENABLED'
+endif
+
 #################################
 # Enable CRT Testing if on OS X #
 #################################

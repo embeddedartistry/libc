@@ -23,6 +23,7 @@ project('Embedded Artistry libc',
 # Options that are processed elsewhere
 disable_unimplemented_apis = get_option('hide-unimplemented-libc-apis')
 disable_builtins = get_option('disable-builtins')
+sanitizer_enabled = get_option('b_sanitize')
 disable_stack_protection = get_option('disable-stack-protection')
 enable_gnu_src = get_option('enable-gnu-extensions')
 stack_canary = get_option('stack-canary-value')

@@ -38,8 +38,10 @@ static void strndup_test(void** state)
 	assert_int_equal(strncmp(dup, base, strlen(base)), 0);
 	free(dup);
 
+#ifndef ADDRESS_SANITIZER_ENABLED
 	dup = strndup(NULL, 10);
 	assert_ptr_equal(dup, NULL);
+#endif
 
 	dup = strndup(base, SIZE_MAX);
 	assert_ptr_not_equal(dup, NULL);
