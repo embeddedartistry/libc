@@ -23,6 +23,9 @@ int main(void)
 	overall_result |= ctype_tests();
 	overall_result |= string_tests();
 	overall_result |= stdlib_tests();
+#ifdef ENABLE_CRT_TESTING
+	overall_result |= crt_tests();
+#endif
 
 	return overall_result;
 }

@@ -74,6 +74,10 @@ crt_files = files(
 	'crt/stack_protection.c'
 )
 
+crt_files_for_test = files(
+	'crt/crt.c',
+)
+
 stack_protection_file = files('crt/stack_protection.c')
 
 ctype_files = files(

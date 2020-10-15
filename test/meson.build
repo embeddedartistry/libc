@@ -2,6 +2,8 @@
 
 libc_test_files = files(
 	'main.c',
+	'crt/crt_init_array.c',
+	'crt/crt_tests.c',
 	'ctype/ctype_tests.c',
 	'ctype/isalnum.c',
 	'ctype/isalpha.c',
@@ -86,6 +88,19 @@ if disable_builtins == false
 	libc_test_flags += '-DBUILTINS_ARE_ENABLED'
 endif
 
+#################################
+# Enable CRT Testing if on OS X #
+#################################
+
+if build_machine.system() == 'darwin'
+	crt_test_dep = declare_dependency(
+		sources: crt_files_for_test,
+		compile_args: '-DENABLE_CRT_TESTING'
+	)
+else
+	crt_test_dep = []
+endif
+
 ###############
 # Test Target #
 ###############
@@ -93,8 +108,14 @@ endif
 ## Subproject Example
 libc_tests = executable('libc_test',
 	libc_test_files,
-	dependencies: [cmocka_native_dep, libc_hosted_native_dep],
-	link_args: native_map_file.format(meson.current_build_dir() + '/libc_test'),
+	dependencies: [
+		cmocka_native_dep,
+		libc_hosted_native_dep,
+		crt_test_dep,
+	],
+	link_args: [
+		native_map_file.format(meson.current_build_dir() + '/libc_test'),
+	],
 	c_args: libc_test_flags,
 	native: true,
 	build_by_default: meson.is_subproject() == false,
