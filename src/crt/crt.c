@@ -5,12 +5,23 @@
 
 extern int __bss_start__;
 extern int __bss_end__;
+#ifdef ENABLE_CRT_TESTING
+// Note that this might actually be #if __APPLE__, but we only
+// Use this file on OS X for testing purposes.
 extern void (**__preinit_array_start)(void) __attribute__((weak));
 extern void (**__preinit_array_end)(void) __attribute__((weak));
 extern void (**__init_array_start)(void) __attribute__((weak));
 extern void (**__init_array_end)(void) __attribute__((weak));
 extern void (**__fini_array_start)(void) __attribute__((weak));
 extern void (**__fini_array_end)(void) __attribute__((weak));
+#else
+extern void (*__preinit_array_start[])(void) __attribute__((weak));
+extern void (*__preinit_array_end[])(void) __attribute__((weak));
+extern void (*__init_array_start[])(void) __attribute__((weak));
+extern void (*__init_array_end[])(void) __attribute__((weak));
+extern void (*__fini_array_start[])(void) __attribute__((weak));
+extern void (*__fini_array_end[])(void) __attribute__((weak));
+#endif
 extern int main();
 
 __attribute__((weak)) int entry(void)
