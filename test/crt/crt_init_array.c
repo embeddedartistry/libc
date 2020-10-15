@@ -54,12 +54,11 @@ static void fini_should_not_be_called(void)
 	fini_was_not_called = false;
 }
 
-static void (*preinit_call_list[2])(void) = {preinit_should_be_called,
-											 preinit_should_not_be_called};
-void (*init_call_list[])(void) = {init_should_be_called, init_should_be_called,
-								  init_should_not_be_called};
-void (*fini_call_list[])(void) = {fini_should_be_called, fini_should_be_called,
-								  fini_should_be_called, fini_should_not_be_called};
+static void (*preinit_call_list[])(void) = {preinit_should_be_called, preinit_should_not_be_called};
+static void (*init_call_list[])(void) = {init_should_be_called, init_should_be_called,
+										 init_should_not_be_called};
+static void (*fini_call_list[])(void) = {fini_should_be_called, fini_should_be_called,
+										 fini_should_be_called, fini_should_not_be_called};
 
 // Currently these tests only run on OS X
 __attribute__((section("__DATA,.preinit_array"))) void (**__preinit_array_start)(void) =
