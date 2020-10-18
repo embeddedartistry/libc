@@ -1,12 +1,12 @@
 #include <stdlib.h>
 
-__attribute__((weak)) int __cxa_atexit(void (*function)(void*), void* arg, void* d)
+/// Embedded Artistry libc does not exit on baremetal systems, so this function does nothing.
+__attribute__((weak)) int __cxa_atexit(void (*function)(void*), void* arg, void* dso)
 {
 	(void)function;
 	(void)arg;
-	(void)d;
+	(void)dso;
 
-	// EA libc does not exit on baremetal systems
 	return 0;
 }
 
