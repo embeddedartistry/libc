@@ -317,6 +317,7 @@ endif
 libc_native_stack_protect_flags = []
 libc_host_stack_protect_flags = []
 if disable_stack_protection
+	message('Disabling stack protection')
 	libc_native_stack_protect_flags += '-fno-stack-protector'
 	libc_host_stack_protect_flags += '-fno-stack-protector'
 endif
