@@ -82,12 +82,12 @@ libc_test_flags = native_c_compiler.get_supported_arguments(
 	# We intentionally run the following scenarios in our tests
 	'-Wno-stringop-truncation',
 	'-Wno-stringop-overflow',
-	# libc tests will hang in calloc() when builtins are disabled
-	'-fno-builtin'
 )
 
 if disable_builtins == false
 	libc_test_flags += '-DBUILTINS_ARE_ENABLED'
+else
+	warning('libc tests will not pass with builtins disabled - calloc() will hang infinitely.')
 endif
 
 #################################
