@@ -3,6 +3,7 @@
 #include <string.h>
 
 void stack_overflows_here();
+uintptr_t __stack_chk_guard_init();
 
 const char* buffer_long = "This is a long long string";
 
