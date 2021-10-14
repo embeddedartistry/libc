@@ -194,9 +194,9 @@ if meson.is_subproject() == false
 
 	run_target('libc-tests-xml',
 		command: [
-			meson.source_root() + '/tools/exec_program_with_env.sh',
+			cmocka_with_env_script,
 			libc_tests,
-			test_output_dir
+			cmocka_test_output_dir
 		],
 	)
 endif
