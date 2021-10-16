@@ -15,8 +15,8 @@ extern "C" {
 #define static_assert _Static_assert
 #endif
 
-__attribute__((noreturn)) void __assert_fail(const char* expr, const char* file,
-                                             unsigned int line, const char* function);
+__attribute__((noreturn)) void __assert_fail(const char* expr, const char* file, unsigned int line,
+											 const char* function);
 
 #ifdef __cplusplus
 }
