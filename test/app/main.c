@@ -8,4 +8,4 @@ int main(void)
 	return 0;
 }
 
-void _putchar(char character) {}
+void putchar_(char character) {}

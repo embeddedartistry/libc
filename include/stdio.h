@@ -1,7 +1,7 @@
 #ifndef STDIO_H__
 #define STDIO_H__
 
-#include <printf.h>
+#include <printf/printf.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <wctype.h> //TODO: eliminate need for this header here (refactor types?)
@@ -61,9 +61,15 @@ typedef struct __sFILE_fake FILE;
 #define __FILE_defined
 #endif
 
+/// Moving from mpaland/printf to eyalroz/printf required
+/// a shift from _putchar() to putchar_() for the printf output
+/// implementation. This definition supplies a shim so existing code
+/// will not be broken.
+#define _putchar(c) putchar_(c)
+
 #pragma mark - Supported Functions -
 
-/// Requires a definition of _putchar() for your platform
+/// Requires a definition of putchar_() for your platform
 int putchar(int c);
 int puts(const char*);
 

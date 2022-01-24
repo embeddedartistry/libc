@@ -90,17 +90,28 @@ subdir('arch')
 # Printf Dependency Targets #
 #############################
 
-libprintf_files = files('printf/printf.c')
-libprintf_includes = include_directories('printf', is_system: true)
+libprintf_includes = [
+	include_directories('printf/src/printf', is_system: true),
+	include_directories('printf/src/', is_system: true)
+]
 
 printf_dep = declare_dependency(
 	include_directories: libprintf_includes,
-	sources: libprintf_files,
+	sources: files('printf/src/printf/printf.c'),
+	compile_args: ['-DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1']
+)
+
+printf_include_dep = declare_dependency(
+	include_directories: libprintf_includes,
+	compile_args: ['-DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1']
 )
 
 printf_tests = executable('printf_tests',
 	sources: files('printf/test/test_suite.cpp'),
-	include_directories: include_directories('printf/test'),
+	include_directories: [
+		include_directories('printf/test'),
+		include_directories('printf/src', is_system: true)
+	],
 	native: true,
 	build_by_default: meson.is_subproject() == false,
 )

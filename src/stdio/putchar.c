@@ -3,6 +3,6 @@
 
 int putchar(int c)
 {
-	_putchar((char)c);
+	putchar_((char)c);
 	return c;
 }
