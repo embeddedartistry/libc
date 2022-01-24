@@ -24,7 +24,7 @@ void stack_overflows_here()
 int main(void)
 {
 	extern uintptr_t __stack_chk_guard;
-	printf("Running stack overflow test program. Canary value: 0x%p\n", __stack_chk_guard);
+	printf("Running stack overflow test program. Canary value: 0x%p\n", (void*)__stack_chk_guard);
 
 	stack_overflows_here();
 
