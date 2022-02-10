@@ -1,12 +1,12 @@
 [submodule "src/gdtoa"]
 	path = src/gdtoa
-	url = git@github.com:embeddedartistry/gdtoa.git
+	url = https://github.com/embeddedartistry/gdtoa
 [submodule "meson-buildsystem"]
 	path = build
-	url = git@github.com:embeddedartistry/meson-buildsystem.git
+	url = https://github.com/embeddedartistry/meson-buildsystem
 [submodule "printf"]
 	path = printf
-	url = git@github.com:embeddedartistry/printf.git
+	url = https://github.com/embeddedartistry/printf
 [submodule "openlibm"]
 	path = openlibm
-	url = git@github.com:embeddedartistry/openlibm.git
+	url = https://github.com/embeddedartistry/openlibm
