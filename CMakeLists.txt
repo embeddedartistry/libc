@@ -12,8 +12,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR LIBC_BUILD_TESTING)
     include(CTest)
 endif()
 
-include(cmake/AddExecutableWithLinkerScriptDep.cmake)
-include(cmake/CheckAndApplyFlags.cmake)
+include(cmake/linker/AddExecutableWithLinkerScriptDep.cmake)
+include(cmake/compiler/CheckAndApplyFlags.cmake)
 include(cmake/Conversions.cmake)
 
 include(BuildOptions.cmake)
@@ -61,19 +61,21 @@ endif()
 
 CPMAddPackage(
   NAME printf
-  GITHUB_REPOSITORY mpaland/printf
-  VERSION 4.0.0
-  DOWNLOAD_ONLY
+  GITHUB_REPOSITORY embeddedartistry/printf
+  GIT_TAG 37ed5828ff614f4b59cc7b86a602ac6cff5c6f70
+  DOWNLOAD_ONLY YES
 )
 
-add_library(printf INTERFACE)
-target_sources(printf INTERFACE ${printf_SOURCE_DIR}/printf.c)
-target_include_directories(printf SYSTEM INTERFACE ${printf_SOURCE_DIR})
+add_library(printf_libc INTERFACE)
+target_sources(printf_libc INTERFACE ${printf_SOURCE_DIR}/src/printf/printf.c)
+target_include_directories(printf_libc SYSTEM INTERFACE ${printf_SOURCE_DIR}/src/ ${printf_SOURCE_DIR}/src/printf)
+target_compile_definitions(printf_libc INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1 -DPRINTF_INCLUDE_CONFIG_H=0)
 
 if(LIBC_TESTING_IS_ENABLED)
   add_executable(printf_tests)
   target_sources(printf_tests PRIVATE ${printf_SOURCE_DIR}/test/test_suite.cpp)
-  target_include_directories(printf_tests PRIVATE ${printf_SOURCE_DIR})
+  target_include_directories(printf_tests PRIVATE ${printf_SOURCE_DIR}/src)
+  target_compile_definitions(printf_tests INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1 -DPRINTF_INCLUDE_CONFIG_H=0)
   install(FILES ${printf_SOURCE_DIR}/printf.h DESTINATION include)
   target_linker_map(printf_tests)
   set_target_properties(printf_tests PROPERTIES CXX_STANDARD 11)

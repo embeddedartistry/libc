@@ -62,7 +62,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
 
 # libc_core contains shared files and definitions that are used by libc and libc_hosted
 add_library(c_core INTERFACE)
-target_link_libraries(c_core INTERFACE printf openlibm gdtoa architecture_specific)
+target_link_libraries(c_core INTERFACE printf_libc openlibm gdtoa architecture_specific)
 target_include_directories(c_core
 	INTERFACE
 		${PROJECT_SOURCE_DIR}/include
