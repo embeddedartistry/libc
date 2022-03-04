@@ -98,7 +98,10 @@ libprintf_includes = [
 printf_dep = declare_dependency(
 	include_directories: libprintf_includes,
 	sources: files('printf/src/printf/printf.c'),
-	compile_args: ['-DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1']
+	compile_args: [
+		'-DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES=1',
+		'-DPRINTF_INCLUDE_CONFIG_H=0'
+	]
 )
 
 printf_include_dep = declare_dependency(
