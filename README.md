@@ -70,7 +70,7 @@ The following portions of the C library have been implemented:
 	* `realloc`
 	* `strtoX` functions (many via [`gdtoa`](https://github.com/embeddedartistry/gdtoa))
 * Basic stdio
-	- `printf` family (most via [`mpaland/printf`](https://github.com/mpaland/printf))
+	- `printf` family (most via [`embeddedartistry/printf`](https://github.com/embeddedartistry/printf), based on [`eyalroz/printf`](https://github.com/eyalroz/printf) and originally [`mpaland/printf`](https://github.com/mpaland/printf))
 	- `putchar`
 	- `puts`
 * `time` types and `asctime()`
@@ -368,7 +368,7 @@ If you are interested in contributing to this project, please read our [contribu
 
 ## License
 
-Copyright © 2017 Embedded Artistry LLC
+Copyright © 2022 Embedded Artistry LLC
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
@@ -379,6 +379,8 @@ For other open-source licenses, please see the [Software Inventory](docs/softwar
 I'd like to thank the following individuals for their direct contributions on this project:
 
 * [\@seekaddo](https://github.com/seekaddo) (Documentation)
+* [\@mpaland](https://github.com/mpaland) (Original author of the `printf` library)
+* [\@eyalroz](https://github.com/eyalroz) (Picked up mpaland's `printf` library and continued development)
 
 Many of the open-source function implementations used in this library have been pulled from two primary sources:
 
