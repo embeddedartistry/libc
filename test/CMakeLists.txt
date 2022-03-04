@@ -20,6 +20,10 @@ if(LIBC_TESTING_IS_ENABLED)
 	)
 	apply_supported_compiler_flags(C libc_tests PRIVATE desired_libc_tests_flags)
 
+	if(NOT DISABLE_BUILTINS OR NOT (CMAKE_BUILD_TYPE STREQUAL "Debug"))
+		target_compile_definitions(libc_tests PRIVATE BUILTINS_ARE_ENABLED)
+	endif()
+
 	target_sources(libc_tests PRIVATE
 		main.c
 		ctype/ctype_tests.c
