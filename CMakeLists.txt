@@ -59,12 +59,16 @@ endif()
 # Printf Dependency #
 #####################
 
-CPMAddPackage(
-  NAME printf
-  GITHUB_REPOSITORY embeddedartistry/printf
-  GIT_TAG 37ed5828ff614f4b59cc7b86a602ac6cff5c6f70
-  DOWNLOAD_ONLY YES
-)
+# This is used in our CMake course, but here we have a submodule.
+#CPMAddPackage(
+#  NAME printf
+#  GITHUB_REPOSITORY embeddedartistry/printf
+#  GIT_TAG 37ed5828ff614f4b59cc7b86a602ac6cff5c6f70
+#  DOWNLOAD_ONLY YES
+#)
+
+# Maintain compatibility with non-CPM version
+set(printf_SOURCE_DIR printf)
 
 add_library(printf_libc INTERFACE)
 target_sources(printf_libc INTERFACE ${printf_SOURCE_DIR}/src/printf/printf.c)
