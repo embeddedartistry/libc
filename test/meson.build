@@ -179,7 +179,10 @@ test_output_dir = 'CMOCKA_XML_FILE=' + meson.build_root() + '/test/%g.xml'
 if meson.is_subproject() == false
 	test('libc_tests',
 		libc_tests,
-		env: [test_output_dir])
+		env: [
+			'CMOCKA_MESSAGE_OUTPUT=XML',
+			test_output_dir
+		])
 
 	test('stackprotect_test',
 		stackprotect_test,
