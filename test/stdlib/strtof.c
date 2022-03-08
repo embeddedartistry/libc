@@ -4,6 +4,7 @@
  */
 
 #include "stdlib_tests.h"
+#include "test/ulpsDistance.h"
 #include <float.h>
 #include <math.h>
 #include <stdlib.h>
@@ -55,14 +56,12 @@ static struct
 
 static void strtof_test(void** state)
 {
-	float x;
 	char* p;
 
-	for(unsigned long i = 0; i < length(t); i++)
+	for(size_t i = 0; i < length(t); i++)
 	{
-		x = strtof(t[i].s, &p);
-		// printf("%d: %1.30f == %1.30f\n", i, x, t[i].f);
-		assert_true(fabsf(x - t[i].f) < FLT_EPSILON);
+		int32_t distance = ulpsDistanceFloat(strtof(t[i].s, &p), t[i].f);
+		assert_true(distance < 2);
 	}
 }
 

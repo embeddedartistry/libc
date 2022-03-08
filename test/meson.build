@@ -68,7 +68,8 @@ libc_test_files = files(
 	'string/strrchr.c',
 	'string/strstr.c',
 	'string/strtok.c',
-	'test/rand.c'
+	'test/rand.c',
+	'test/ulpsDistance.c'
 )
 
 clangtidy_files += libc_test_files
