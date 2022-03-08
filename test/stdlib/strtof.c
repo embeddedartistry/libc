@@ -17,8 +17,6 @@
 #include <cmocka.h>
 // clang-format on
 
-// TODO "strtof INFINITY tests are not enabled"
-
 #pragma mark - Definitions -
 
 #define length(x) (sizeof(x) / sizeof *(x))
@@ -49,7 +47,7 @@ static struct
 	// 2^128 - 2^103 - eps
 	{"340282356779733661637539395458142568447.9999999999999999999", 0x1.fffffep127},
 	// 2^128 - 2^103
-	/*TODO: Enable {"340282356779733661637539395458142568448", INFINITY},*/
+	{"340282356779733661637539395458142568448", INFINITY},
 };
 
 #pragma mark - Private Functions -
