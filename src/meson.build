@@ -53,7 +53,8 @@ gdtoa_compiler_flags = [
 	'-DNO_ERRNO',
 	'-DIFNAN_CHECK',
 	'-DGDTOA_NO_ASSERT',
-	'-DNO_FENV_H'
+	'-DNO_FENV_H',
+	'-DNO_IEEE_Scale'
 ]
 
 ################
