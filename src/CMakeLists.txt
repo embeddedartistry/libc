@@ -52,6 +52,7 @@ target_compile_definitions(gdtoa INTERFACE
 	IFNAN_CHECK
 	GDTOA_NO_ASSERT
 	NO_FENV_H
+	NO_IEEE_Scale
 )
 
 ########

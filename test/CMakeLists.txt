@@ -91,6 +91,7 @@ if(LIBC_TESTING_IS_ENABLED)
 		string/strstr.c
 		string/strtok.c
 		test/rand.c
+		test/ulpsDistance.c
 	)
 
 	##################
