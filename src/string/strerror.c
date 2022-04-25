@@ -14,6 +14,8 @@ static const char errmsg[] =
 #include "__strerror.h"
 	;
 
+static const char* invalid_err = "No error information available.";
+
 char* strerror(int err_no)
 {
 	const char* s = NULL;
@@ -23,11 +25,19 @@ char* strerror(int err_no)
 	{
 	}
 
-	for(s = errmsg; i; s++, i--)
+	if(errid[i] != err_no)
 	{
-		for(; *s; s++)
+		s = invalid_err;
+	}
+	else
+	{
+		for(s = errmsg; i; s++, i--)
 		{
+			for(; *s; s++)
+			{
+			}
 		}
 	}
+
 	return (char*)(uintptr_t)s;
 }

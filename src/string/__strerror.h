@@ -102,4 +102,4 @@ E(ESTALE, "Stale file handle")
 E(EDQUOT, "Quota exceeded")
 E(EMULTIHOP, "Multihop attempted")
 
-E(0, "No error")
+E(0, "Success")
