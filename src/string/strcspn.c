@@ -12,7 +12,7 @@ size_t strcspn(const char* s, const char* c)
 
 	if(!c[0] || !c[1])
 	{
-		return (uintptr_t)(__strchrnul(s, *c) - (uintptr_t)a);
+		return (uintptr_t)(__strchrnul(s, *c) - a);
 	}
 
 	memset(byteset, 0, sizeof byteset);
