@@ -92,7 +92,6 @@ The following unit tests need to be added:
 * `div`, `ldiv`
 * `realloc`
 * `rand` family
-* `strnstr`
 * `memmove`
 
 These are not implemented by may be added in the future:
