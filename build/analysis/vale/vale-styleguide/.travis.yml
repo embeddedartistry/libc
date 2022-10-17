@@ -1,0 +1,12 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.4
+install:
+  - eval "$(gimme 1.8)"
+  - go get github.com/ValeLint/vale
+  - bundle install --jobs=3 --retry=3
+  - pip install --user yamllint
+script:
+  - yamllint src
+  - cucumber

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[if \( \w+ != \w+ \) ({[^{}]*(?1)*[^{}]*}) else { (?!if)]]></pattern>
+    <message>
+        <id>InvertedLogic</id>
+        <severity>style</severity>
+        <summary>It is cleaner to invert the logic.</summary>
+    </message>
+</rule>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[if \( ! \w+ \) ({[^{}]*(?1)*[^{}]*}) else { (?!if)]]></pattern>
+    <message>
+        <id>InvertedLogic</id>
+        <severity>style</severity>
+        <summary>It is cleaner to invert the logic.</summary>
+    </message>
+</rule>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[\w+ != \w+ \?]]></pattern>
+    <message>
+        <id>InvertedLogic</id>
+        <severity>style</severity>
+        <summary>It is cleaner to invert the logic.</summary>
+    </message>
+</rule>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[! \w+ \?]]></pattern>
+    <message>
+        <id>InvertedLogic</id>
+        <severity>style</severity>
+        <summary>It is cleaner to invert the logic.</summary>
+    </message>
+</rule>

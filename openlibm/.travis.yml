@@ -1,0 +1,106 @@
+# We require a full (virtual) machine to load the kernel module for
+# binfmt support, which is needed to test other architectures besides
+# x86 using qemu user emulation. (This will not work in a container.)
+sudo: required
+dist: trusty
+language: c
+
+script:
+    - make $FLAGS
+    - make check $FLAGS $TEST_FLAGS
+    - make clean && git status --ignored --porcelain && test -z "$(git status --ignored --porcelain)"
+
+matrix:
+    include:
+        - compiler: clang
+          os: linux
+          addons:
+              apt:
+                  sources:
+                      - ubuntu-toolchain-r-test
+                      - llvm-toolchain-precise-3.7
+                  packages:
+                      - clang-3.7
+          env: FLAGS="CC=clang-3.7 CXX=clang++-3.7"
+
+        - os: osx
+          env: FLAGS="CC=clang"
+
+        - os: linux
+          env: FLAGS="CC=gcc"
+
+        - os: linux
+          env: FLAGS="CC=gcc ARCH=i686"  # implies -m32 -march=i686
+          addons:
+              apt:
+                  packages:
+                      - gcc-multilib
+
+        - os: linux
+          env: FLAGS="CC=aarch64-linux-gnu-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  packages:
+                      - gcc-aarch64-linux-gnu
+                      - libc6-dev-arm64-cross
+                      - qemu-user-static
+                      - binfmt-support
+
+        - os: linux
+          env: FLAGS="CC=arm-linux-gnueabihf-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  packages:
+                      - gcc-arm-linux-gnueabihf
+                      - libc6-dev-armhf-cross
+                      - qemu-user-static
+                      - binfmt-support
+
+        # This works, but only if qemu-user-static is >= v2.4.  This is not the
+        # case on the default trusty images, so we add a PPA that has qemu 2.5
+        - os: linux
+          env: FLAGS="CC=powerpc64le-linux-gnu-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  sources:
+                      - sourceline: "ppa:gns3/qemu"
+                  packages:
+                      - gcc-powerpc64le-linux-gnu
+                      - libc6-dev-ppc64el-cross
+                      - qemu-user-static
+                      - binfmt-support
+
+        - os: linux
+          env: FLAGS="CC=mips-linux-gnu-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  sources:
+                      - sourceline: "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
+                  packages:
+                      - gcc-mips-linux-gnu
+                      - libc6-dev-mips-cross
+                      - qemu-user-binfmt
+
+        - os: linux
+          env: FLAGS="CC=mipsel-linux-gnu-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  sources:
+                      - sourceline: "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
+                  packages:
+                      - gcc-mipsel-linux-gnu
+                      - libc6-dev-mipsel-cross
+                      - qemu-user-binfmt
+
+        - os: linux
+          env: FLAGS="CC=mips64el-linux-gnuabi64-gcc" TEST_FLAGS="LDFLAGS=-static"
+          addons:
+              apt:
+                  sources:
+                      - sourceline: "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
+                  packages:
+                      - gcc-mips64el-linux-gnuabi64
+                      - libc6-dev-mips64el-cross
+                      - qemu-user-binfmt
+notifications:
+    email: false

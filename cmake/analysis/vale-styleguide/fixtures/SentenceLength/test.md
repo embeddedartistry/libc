@@ -1,0 +1,3 @@
+> Craft sentences at 25 words or fewer, whenever possible. If a sentence has fewer than 14 words, readers understand 90 percent of content. At 25 words, sentences are markedly more difficult to comprehend.
+
+This sentence is okay but the next one is too long. If your docs are aimed at helping people code, then probably that "previous developer experience" is a good way to go, preferably with details on the specific languages/environments they’ll be writing about.

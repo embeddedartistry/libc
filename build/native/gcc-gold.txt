@@ -1,0 +1,5 @@
+# Enables the `gold` linker with GCC toolchains
+
+[binaries]
+c_ld = 'gold'
+cpp_ld = 'gold'

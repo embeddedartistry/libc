@@ -1,0 +1,13 @@
+# Native Build File for using GCC-9
+# Binaries are expected to be found in the PATH
+
+[binaries]
+c = 'gcc-9'
+cpp = 'g++-9'
+# You could also use 'ar' from binutils
+ar = 'gcc-ar-9'
+strip = 'strip'
+
+# Why don't the other programs use -9? They come from binutils, which is separate from GCC (technically):
+# https://stackoverflow.com/questions/21213949/whats-the-relationship-between-binutils-and-gcc
+# https://www.gnu.org/software/binutils/

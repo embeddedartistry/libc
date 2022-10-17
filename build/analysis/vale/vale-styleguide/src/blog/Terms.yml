@@ -1,0 +1,22 @@
+---
+extends: substitution
+message: "Prefer %s over '%s'."
+level: warning
+ignorecase: true
+swap:
+  'e(?:-| )mail': email
+  (?:illegals|illegal aliens): "'undocumented immigrants'"
+  back-end: "'back end'"
+  citizen: "'people' or 'The public'"
+  combating: "'working against' or 'fighting'"
+  countering: "'answering' or 'responding'"
+  devops: "'DevOps'"
+  dialogue: "'speaking(ing)'"
+  dropdown: "'drop-down' or 'drop down'"
+  execute: "'run' or 'do'"
+  github: "'GitHub'"
+  javascript: "'JavaScript'"
+  open-source: "'open source'"
+  readme: "'README'"
+  simple: "'straightforward', 'uncomplicated', or 'clear'"
+  user testing: "'usability testing'"

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[do { } while \(]]></pattern>
+    <message>
+        <id>EmptyDoWhileStatement</id>
+        <severity>style</severity>
+        <summary>Empty do-while.</summary>
+    </message>
+</rule>

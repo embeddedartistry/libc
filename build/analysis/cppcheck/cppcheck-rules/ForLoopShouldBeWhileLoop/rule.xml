@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[ for \( ; [^;]+ ; \)]]></pattern>
+    <message>
+        <id>ForLoopShouldBeWhileLoop</id>
+        <severity>style</severity>
+        <summary>For loop should be written as a while loop.</summary>
+    </message>
+</rule>

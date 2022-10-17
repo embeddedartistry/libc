@@ -1,0 +1,17 @@
+# Meson Cross-compilation File for STM32F103VBIx Cortex-M3 processors
+# Note that Cortex-M3 does not provide an FPU
+# This file should be layered after arm.txt
+# Requires that arm-none-eabi-* is found in your PATH
+# For more information: http://mesonbuild.com/Cross-compilation.html
+
+[properties]
+c_args = [ '-mcpu=cortex-m3', '-mfloat-abi=soft', '-mabi=aapcs', '-mthumb',]
+c_link_args = [ '-mcpu=cortex-m3', '-mfloat-abi=soft', '-mabi=aapcs', '-mthumb',]
+cpp_args = [ '-mcpu=cortex-m3', '-mfloat-abi=soft', '-mabi=aapcs', '-mthumb',]
+cpp_link_args = [ '-mcpu=cortex-m3', '-mfloat-abi=soft', '-mabi=aapcs', '-mthumb']
+linker_paths = ['build/linker-scripts/stm/']
+linker_scripts = ['STM32F103VBIx_FLASH.ld']
+link_depends = ['build/linker-scripts/stm/STM32F103VBIx_FLASH.ld']
+
+[host_machine]
+cpu = 'STM32F103VBIx'

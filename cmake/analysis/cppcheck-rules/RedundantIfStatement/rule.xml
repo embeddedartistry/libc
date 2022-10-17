@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[if \( [^()]+ \) { return (true|false) ; } else { return (true|false) ; }]]></pattern>
+    <message>
+        <id>RedundantIfStatement</id>
+        <severity>style</severity>
+        <summary>The if statement is redundant.</summary>
+    </message>
+</rule>

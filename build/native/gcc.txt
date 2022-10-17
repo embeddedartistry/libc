@@ -1,0 +1,9 @@
+# Native Build File for using GCC-9
+# Binaries are expected to be found in the PATH
+
+[binaries]
+c = 'gcc'
+cpp = 'g++'
+# You could also use 'ar' from binutils
+ar = 'gcc-ar'
+strip = 'strip'

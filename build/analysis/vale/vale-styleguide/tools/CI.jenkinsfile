@@ -1,0 +1,29 @@
+#!groovy
+@Library('jenkins-pipeline-lib') _
+
+pipeline
+{
+  agent any
+  environment
+  {
+    GIT_CHANGE_LOG = gitChangeLog(currentBuild.changeSets)
+  }
+  stages
+  {
+    stage('Test')
+    {
+      steps
+      {
+        sh 'yamllint src'
+        sh 'cucumber'
+      }
+    }
+  }
+  post
+  {
+    always
+    {
+      slackNotify(currentBuild.currentResult)
+    }
+  }
+}

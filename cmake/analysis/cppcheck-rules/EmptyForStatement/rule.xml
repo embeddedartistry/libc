@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[for \( [^()]+ \) { }]]></pattern>
+    <message>
+        <id>EmptyForStatement</id>
+        <severity>style</severity>
+        <summary>Empty for statement.</summary>
+    </message>
+</rule>

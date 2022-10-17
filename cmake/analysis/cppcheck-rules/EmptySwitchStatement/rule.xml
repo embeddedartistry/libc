@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[switch \( [^()]+ \) { }]]></pattern>
+    <message>
+        <id>EmptySwitchStatement</id>
+        <severity>style</severity>
+        <summary>Empty switch statement.</summary>
+    </message>
+</rule>

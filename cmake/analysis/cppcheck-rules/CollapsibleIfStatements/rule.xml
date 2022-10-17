@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[if \( [^)]+ \) { if \( [^)]+ \) ({[^{}]*(?1)*[^{}]*}) }]]></pattern>
+    <message>
+        <id>CollapsibleIfStatements</id>
+        <severity>style</severity>
+        <summary>These two if statements can be collapsed into one.</summary>
+    </message>
+</rule>

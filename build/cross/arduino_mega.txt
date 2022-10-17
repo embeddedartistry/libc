@@ -1,0 +1,10 @@
+[properties]
+c_args = [ '-ffunction-sections', '-fdata-sections', '-mmcu=atmega2560',  '-DF_CPU=16000000L', '-DARDUINO=105', '-D__PROG_TYPES_COMPAT__', ]
+cpp_args = [ '-fno-exceptions', '-ffunction-sections', '-fdata-sections', '-mmcu=atmega2560', '-DF_CPU=16000000L', '-DARDUINO=105', '-D__PROG_TYPES_COMPAT__', ]
+c_link_args = ['-Wl,--gc-sections', '-mmcu=atmega2560']
+cpp_link_args = ['-Wl,--gc-sections', '-mmcu=atmega2560']
+# For use with ArduinoCore-avr subproject
+variant = 'standard'
+
+[host_machine]
+cpu = 'atmega2560'

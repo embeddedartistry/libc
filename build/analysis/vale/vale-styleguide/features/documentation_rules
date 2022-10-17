@@ -1,0 +1,95 @@
+Feature: Rules
+
+  Scenario: Craft sentences at 25 words or fewer, whenever possible.
+    When Doc test "SentenceLength"
+    Then the output should contain exactly:
+      """
+      test.md:3:53:documentation.SentenceLength:Craft sentences at 25 words or fewer, whenever possible.
+      """
+
+  Scenario: Heading capitalization
+    When Doc test "Headings"
+    Then the output should contain exactly:
+      """
+      test.md:5:4:documentation.Headings:'This Is Not In Sentence Case' should be in sentence case.
+      """
+
+  Scenario: Use of contractions
+    When Doc test "Contractions"
+    Then the output should contain exactly:
+      """
+      test.md:3:1:documentation.Contractions:Use "that's" instead of "That is".
+      """
+
+  Scenario: Acronym defintions
+    When Doc test "UnexpandedAcronyms"
+    Then the output should contain exactly:
+      """
+      test.md:5:38:documentation.UnexpandedAcronyms:'DOJJ' should be parenthetically defined.
+      """
+
+  Scenario: Punctuation and quotations
+    When Doc test "Quotes"
+    Then the output should contain exactly:
+      """
+      test.md:6:25:documentation.Quotes:Punctuation should be inside the quotes.
+      """
+
+  Scenario: Sentence spacing
+    When Doc test "Spacing"
+    Then the output should contain exactly:
+      """
+      test.md:1:43:documentation.Spacing:'. T' should have one space.
+      test.md:3:18:documentation.Spacing:'.W' should have one space.
+      """
+
+  Scenario: Use of trademarks
+    When Doc test "Brands"
+    Then the output should contain exactly:
+      """
+      test.md:1:17:documentation.Brands:Use 'tissue' instead of 'Kleenex'.
+      """
+
+  Scenario: Hyphenated ages
+    When Doc test "Ages"
+    Then the output should contain exactly:
+      """
+      test.md:1:28:documentation.Ages:Avoid hyphens in ages unless it clarifies the text.
+      """
+
+  Scenario: Words to avoid
+    When Doc test "Clarity"
+    Then the output should contain exactly:
+      """
+      test.md:1:16:documentation.Clarity:Avoid using 'deploy', unless you’re talking about the military or software.
+      """
+
+  Scenario: Punctuation in abbreviations
+    When Doc test "Abbreviations"
+    Then the output should contain exactly:
+      """
+      test.md:1:18:documentation.Abbreviations:Use 'U.S.' instead of 'USA'.
+      """
+
+  Scenario: Specific words and phrases
+    When Doc test "Terms"
+    Then the output should contain exactly:
+      """
+      test.md:1:7:documentation.Terms:Prefer 'back end' over 'back-end'.
+      """
+
+  Scenario: 'to-do' vs. 'to do'
+    When Doc test "ToDo"
+    Then the output should contain exactly:
+      """
+      test.md:1:12:documentation.ToDo:Use 'to-do' instead of 'to do'.
+      """
+
+  Scenario: 'drop down' vs. 'drop-down'.
+    When Doc test "DropDown"
+    Then the output should contain exactly:
+      """
+      test.md:1:27:documentation.DropDown:Use 'drop-down' instead of 'drop down'.
+      test.md:3:27:documentation.DropDown:Use 'drop down' instead of 'drop-down'.
+      test.md:5:9:documentation.DropDown:Use 'drop-down' or 'drop down' instead of 'dropdown'.
+      """

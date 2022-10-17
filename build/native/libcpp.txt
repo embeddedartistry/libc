@@ -1,0 +1,4 @@
+# Use libcpp subproject for compiling this project and its subprojects
+
+[properties]
+cpp_stdlib = ['libcpp', 'libcxx_full_native_dep']

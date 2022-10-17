@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[[+-~!] \( [+-~!] \(]]></pattern>
+    <message>
+        <id>MultipleUnaryOperator</id>
+        <severity>style</severity>
+        <summary>Muliple unary operators used together.</summary>
+    </message>
+</rule>

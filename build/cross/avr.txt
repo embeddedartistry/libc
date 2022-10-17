@@ -1,0 +1,16 @@
+# Base file for AVR chips using the AVR GCC toolchain
+
+[binaries]
+c = 'avr-gcc'
+cpp = 'avr-g++'
+ar = 'avr-gcc-ar'
+strip = 'avr-strip'
+
+[properties]
+objcopy = 'avr-objcopy'
+
+[host_machine]
+system = 'none'
+cpu_family = 'avr'
+# Note that 32-bit AVR chips are big endian
+endian = 'little'

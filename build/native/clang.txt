@@ -1,0 +1,9 @@
+# Native Build File for using Clang
+# Binaries are expected to be found in the PATH
+
+[binaries]
+c = 'clang'
+cpp = 'clang++'
+ar = 'llvm-ar'
+strip = 'llvm-strip'
+

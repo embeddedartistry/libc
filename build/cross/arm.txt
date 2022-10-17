@@ -1,0 +1,28 @@
+# Meson Cross-compilation File Base using GCC ARM
+# Requires that arm-none-eabi-* is found in your PATH
+# For more information: http://mesonbuild.com/Cross-compilation.html
+
+[binaries]
+c = 'arm-none-eabi-gcc'
+cpp = 'arm-none-eabi-c++'
+# *-gcc-ar is used over *-ar to support LTO flags. 
+# Without -gcc-ar, LTO will generate a linker warning:
+# arm-none-eabi-ar: file.o: plugin needed to handle lto object
+ar = 'arm-none-eabi-gcc-ar'
+strip = 'arm-none-eabi-strip'
+
+[properties]
+objcopy = 'arm-none-eabi-objcopy'
+# Flags used when checking for supported linker arguments
+# Use this property when flag checks fail due to linker errors with ARM GCC
+get_supported_link_arg_flags = ['--specs=nosys.specs']
+# Keep this set, or the sanity check won't pass
+needs_exe_wrapper = true
+
+[host_machine]
+system = 'none'
+cpu_family = 'arm'
+# CPU should be redefined in child cross files - this is a placeholder
+# that will be used in case a child file does not override this setting
+cpu = 'arm-generic'
+endian = 'little'

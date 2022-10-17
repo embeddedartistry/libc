@@ -1,0 +1,8 @@
+# Native Build File for using Mainline Clang on OS X
+# This is expected to be installed by Homebrew
+
+[binaries]
+c = '/usr/local/opt/llvm/bin/clang'
+cpp = '/usr/local/opt/llvm/bin/clang++'
+ar = '/usr/local/opt/llvm/bin/llvm-ar'
+strip = '/usr/local/opt/llvm/bin/llvm-strip'

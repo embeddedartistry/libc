@@ -1,0 +1,6 @@
+[submodule "analysis/cppcheck-rules"]
+	path = analysis/cppcheck-rules
+	url = https://github.com/embeddedartistry/cppcheck-rules
+[submodule "analysis/vale-styleguide"]
+	path = analysis/vale-styleguide
+	url = https://github.com/embeddedartistry/vale-styleguide

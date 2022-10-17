@@ -1,0 +1,14 @@
+# Meson Cross-compilation File for Cortex-A53 processors using Hardware FP
+# This file should be layered after arm.txt
+# Requires that arm-none-eabi-* is found in your PATH
+# For more information: http://mesonbuild.com/Cross-compilation.html
+
+[properties]
+c_args = [ '-mcpu=cortex-a53', '-mfloat-abi=hard', '-mabi=aapcs']
+c_link_args = [ '-mcpu=cortex-a53', '-mfloat-abi=hard', '-mabi=aapcs']
+cpp_args = [ '-mcpu=cortex-a53', '-mfloat-abi=hard', '-mabi=aapcs']
+cpp_link_args = [ '-mcpu=cortex-a53', '-mfloat-abi=hard', '-mabi=aapcs']
+
+[host_machine]
+cpu_family = 'aarch64'
+cpu = 'cortex-a53'

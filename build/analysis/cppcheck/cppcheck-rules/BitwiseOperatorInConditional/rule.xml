@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[if \( \w+ (\||&) \w+ \)]]></pattern>
+    <message>
+        <id>BitwiseOperatorInConditional</id>
+        <severity>style</severity>
+        <summary>Bitwise operator found in if statement.</summary>
+    </message>
+</rule>

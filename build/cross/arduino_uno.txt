@@ -1,0 +1,10 @@
+[properties]
+c_args = [ '-ffunction-sections', '-fdata-sections', '-mmcu=atmega328p',  '-DF_CPU=16000000L', '-DARDUINO=105', '-D__PROG_TYPES_COMPAT__', ]
+cpp_args = [ '-fno-exceptions', '-ffunction-sections', '-fdata-sections', '-mmcu=atmega328p', '-DF_CPU=16000000L', '-DARDUINO=105', '-D__PROG_TYPES_COMPAT__', ]
+c_link_args = ['-Wl,--gc-sections', '-mmcu=atmega328p']
+cpp_link_args = ['-Wl,--gc-sections', '-mmcu=atmega328p']
+# For use with ArduinoCore-avr subproject
+variant = 'standard'
+
+[host_machine]
+cpu = 'atmega328P'

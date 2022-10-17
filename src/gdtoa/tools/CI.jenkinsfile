@@ -1,0 +1,56 @@
+#!groovy
+@Library('jenkins-pipeline-lib') _
+
+pipeline
+{
+  agent any
+  environment
+  {
+    GIT_CHANGE_LOG = gitChangeLog(currentBuild.changeSets)
+  }
+  stages
+  {
+    stage('Build')
+    {
+      steps
+      {
+        sh 'make'
+      }
+    }
+  }
+  post
+  {
+    always
+    {
+      // Scan for open tasks, warnings, issues, etc.
+      recordIssues(
+        enabledForFailure: true,
+        healthy: 5,
+        unhealthy: 10,
+        referenceJobName: 'ea-nightly/gdtoa/master',
+        qualityGates: [
+          // 3 new issue: unstable
+          //[threshold: 3, type: 'DELTA', unstable: true],
+          // 5 new issues: failed build
+          //[threshold: 5, type: 'DELTA', unstable: false],
+          // 10 total issues: unstable
+          //[threshold: 55, type: 'TOTAL', unstable: true],
+          // 20 total issues: fail
+          //[threshold: 75, type: 'TOTAL', unstable: false]
+        ],
+        tools: [
+          clang(),
+          taskScanner(
+            excludePattern: 'buildresults/**, build/**, automake/**',
+            includePattern: '**/*.c, **/*.cpp, **/*.h, **/*.hpp, **/*.lua, **/*.sh, **/*.build',
+            normalTags: 'TODO, to do, WIP',
+            highTags: 'FIXME, FIX',
+            ignoreCase: true,
+          ),
+        ]
+      )
+
+      slackNotify(currentBuild.currentResult)
+    }
+  }
+}

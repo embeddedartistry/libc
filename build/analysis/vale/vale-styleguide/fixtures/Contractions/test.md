@@ -1,0 +1,3 @@
+In all of the communication we produce, we want to create a strong connection with our users. We want to get them the information they need in a straightforward way and show that we know what’s important to them. As a government organization, we need to sound somewhat official; we also recognize that official doesn’t need to translate to stuffy, archaic, or aloof.
+
+That is why we should use contractions.

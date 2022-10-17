@@ -1,0 +1,4 @@
+# Use header-only libcpp subproject for compiling this project and its subprojects
+
+[properties]
+cpp_stdlib = ['libcpp', 'libcxx_header_include_dep']

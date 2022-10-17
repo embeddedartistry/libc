@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rule>
+    <tokenlist>normal</tokenlist>
+    <pattern><![CDATA[catch \( [^())]+ \) { }]]></pattern>
+    <message>
+        <id>EmptyCatchStatement</id>
+        <severity>style</severity>
+        <summary>An empty catch statement.</summary>
+    </message>
+</rule>

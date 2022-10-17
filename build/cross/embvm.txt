@@ -1,0 +1,9 @@
+# Embedded Virtual Machine Settings
+# This file specifies that the embvm builds will use
+# the proper libc and libcpp dependencies. You can select alternative
+# dependencies by using a different wrap file, or overriding the options
+# using wrap file composition.
+
+[properties]
+c_stdlib = ['libc', 'libc_dep']
+cpp_stdlib = ['libcpp', 'libcxx_full_dep']
