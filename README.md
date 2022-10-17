@@ -92,7 +92,6 @@ The following unit tests need to be added:
 * `div`, `ldiv`
 * `realloc`
 * `rand` family
-* `memmove`
 
 These are not implemented by may be added in the future:
 
@@ -264,7 +263,7 @@ If you don't use `meson` for your project, the best method to use this project i
 Example linker flags:
 
 ```
--Lpath/to/libc.a -lc 
+-Lpath/to/libc.a -lc
 ```
 
 If you're using `meson`, you can use `libc` as a subproject. Place it into your subproject directory of choice and add a `subproject` statement:
