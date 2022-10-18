@@ -141,6 +141,7 @@ static struct
 	{0x58dd1583185ecb57ull, 0x9ull, 0x9dfad0e90ee1697ull, 0x8ull},
 	{0xaa6870c376df5c5dull, 0x3ull, 0x38cd7aebd24a741full, 0x0ull},
 	{0x4b21d01617167e39ull, 0x2ull, 0x2590e80b0b8b3f1cull, 0x1ull},
+
 };
 
 #pragma mark - Private Functions -
@@ -158,6 +159,28 @@ static void lldiv_test(void** state)
 		mod = x % y;
 		assert_true(div == t[i].div);
 		assert_true(mod == t[i].mod);
+
+		if(x > y)
+		{
+			assert_true(x >= t[i].div);
+			assert_true(x >= t[i].mod);
+		}
+
+		else if(y >= x)
+		{
+			assert_true(t[i].div <= t[i].mod);
+			assert_true(t[i].div == 0);
+			assert_int_equal(x, t[i].mod);
+		}
+		else if(y <= 0 && y >= x)
+		{
+			assert_true(t[i].div <= 0);
+			assert_int_equal(x, t[i].mod);
+		}
+		else if(y <= 0 && x >= y)
+		{
+			assert_true(t[i].div <= 0);
+		}
 	}
 }
 

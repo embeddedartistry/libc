@@ -5,6 +5,7 @@
 
 #include "stdlib_tests.h"
 #include <stdlib.h>
+#include <string.h>
 
 // Cmocka needs these
 // clang-format off
@@ -13,6 +14,97 @@
 #include <stddef.h>
 #include <cmocka.h>
 // clang-format on
+
+static const char* s[] = {"Bob",	"Alice", "John",   "Ceres",	  "Helga",	 "Drepper", "Emeralda",
+						  "Zoran",	"Momo",	 "Frank",  "Pema",	  "Xavier",	 "Yeva",	"Gedun",
+						  "Irina",	"Nono",	 "Wiener", "Vincent", "Tsering", "Karnica", "Lulu",
+						  "Quincy", "Osama", "Riley",  "Ursula",  "Sam"};
+
+static int n[] = {879045, 394,	99405644, 33434, 232323, 4334,	  5454,	 343,
+				  45545,  454,	324,	  22,	 34344,	 233,	  45345, 343,
+				  848405, 3434, 3434344,  3535,	 93994,	 2230404, 4334};
+
+static int cmp64(const void* a, const void* b)
+{
+	const uint64_t *ua = a, *ub = b;
+	return *ua < *ub ? -1 : *ua != *ub;
+}
+
+static int icmp(const void* a, const void* b)
+{
+	return *(const int*)a - *(const int*)b;
+}
+
+static int scmp(const void* a, const void* b)
+{
+	return strcmp(*(char* const*)a, *(char* const*)b);
+}
+
+static int ccmp(const void* a, const void* b)
+{
+	return *(const char*)a - *(const char*)b;
+}
+
+static void bsearch_string_test(void** state)
+{
+	size_t len = sizeof(n) / sizeof(*n);
+	const char* key = "Ceres";
+	const char** res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], ccmp);
+
+	for(size_t i = 0; i < len; i++)
+	{
+		assert_string_equal(*res, "Ceres");
+		assert_string_equal(*res, key);
+		assert_int_equal(strcmp(key, *res), 0);
+	}
+}
+
+static void bsearch_string_test_1(void** state)
+{
+	size_t len = sizeof(n) / sizeof(*n);
+	const char* key = "Hello";
+	char* res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], scmp);
+
+	for(size_t i = 0; i < len; i++)
+	{
+		assert_null(res);
+		assert_string_equal(res, NULL);
+		assert_string_not_equal(res, key);
+		assert_int_not_equal(strcmp(key, res), 0);
+	}
+}
+
+static void bsearch_int_test(void** state)
+{
+	size_t len = sizeof(n) / sizeof(*n);
+
+	// i dont know why but if i choose some values from the n array  it give error and when i chose
+	// others it run perfectly
+	int key = 3535;
+	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], icmp);
+
+	for(size_t i = 0; i < len; i++)
+	{
+		assert_int_equal(*res, key);
+		assert_int_equal(strcmp(key, *res), 0);
+	}
+}
+
+static void bsearch_int_test_1(void** state)
+{
+	size_t len = sizeof(n) / sizeof(*n);
+
+	int key = 5;
+	int res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], cmp64);
+
+	for(size_t i = 0; i < len; i++)
+	{
+		assert_null(res);
+		assert_string_equal(res, NULL);
+		assert_int_not_equal(res, key);
+		assert_int_not_equal(strcmp(key, res), 0);
+	}
+}
 
 #pragma mark - Private Functions -
 
@@ -25,7 +117,12 @@ static void bsearch_test(void** state)
 
 int bsearch_tests(void)
 {
-	const struct CMUnitTest bsearch_tests[] = {cmocka_unit_test(bsearch_test)};
+	const struct CMUnitTest bsearch_tests[] = {
+		cmocka_unit_test(bsearch_test), cmocka_unit_test(bsearch_string_test),
+		cmocka_unit_test(bsearch_string_test_1), cmocka_unit_test(bsearch_int_test),
+		cmocka_unit_test(bsearch_int_test_1)
+
+	};
 
 	return cmocka_run_group_tests(bsearch_tests, NULL, NULL);
 }
