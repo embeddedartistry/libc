@@ -15,7 +15,8 @@
 #include <cmocka.h>
 // clang-format on
 
-struct test_memmove_data {
+struct test_memmove_data
+{
 	char template[64];
 	char buf[64];
 };
@@ -23,16 +24,16 @@ struct test_memmove_data {
 static void fill_buffer(char* buf, size_t size, char start_value, char end_value)
 {
 	size_t i;
-	for (i=0; i< size; ++i)
+	for(i = 0; i < size; ++i)
 	{
 		buf[i] = (start_value + i) % (end_value - start_value + 1);
 	}
 }
 
-int setup_test(void **state)
+int setup_test(void** state)
 {
 	struct test_memmove_data* md = malloc(sizeof(struct test_memmove_data));
-	if (!md)
+	if(!md)
 	{
 		return -1;
 	}
@@ -42,9 +43,9 @@ int setup_test(void **state)
 	return 0;
 }
 
-int teardown_test(void **state)
+int teardown_test(void** state)
 {
-	struct test_memmove_data *md = *state;
+	struct test_memmove_data* md = *state;
 	free(md);
 	return 0;
 }
@@ -55,9 +56,9 @@ static void memmove_test_lower_to_higher(void** state)
 	char* p;
 	size_t offset = 20;
 	size_t len = sizeof(md->buf) - offset;
-	p = memmove(md->buf+offset, md->buf, len);
-	assert_ptr_equal(p, md->buf+offset);
-	assert_memory_equal(md->buf+offset, md->template, len);
+	p = memmove(md->buf + offset, md->buf, len);
+	assert_ptr_equal(p, md->buf + offset);
+	assert_memory_equal(md->buf + offset, md->template, len);
 	assert_memory_equal(md->buf, md->template, offset);
 	return;
 }
@@ -68,25 +69,25 @@ static void memmove_test_higher_to_lower(void** state)
 	char* p;
 	size_t offset = 20;
 	size_t len = sizeof(md->buf) - offset;
-	p = memmove(md->buf, md->buf+offset, len);
+	p = memmove(md->buf, md->buf + offset, len);
 	assert_ptr_equal(p, md->buf);
-	assert_memory_equal(md->buf, md->template+offset, len);
-	assert_memory_equal(md->buf+len, md->template+len, offset);
+	assert_memory_equal(md->buf, md->template + offset, len);
+	assert_memory_equal(md->buf + len, md->template + len, offset);
 	return;
 }
 
-static void memmove_test_zero_size(void **state)
+static void memmove_test_zero_size(void** state)
 {
 	struct test_memmove_data* md = *state;
 	char* p;
 	size_t offset = 30;
-	p = memmove(md->buf+offset, md->buf, 0);
-	assert_ptr_equal(p, md->buf+offset);
+	p = memmove(md->buf + offset, md->buf, 0);
+	assert_ptr_equal(p, md->buf + offset);
 	assert_memory_equal(md->buf, md->template, sizeof(md->template));
 	return;
 }
 
-static void memmove_test_copy_to_itself(void **state)
+static void memmove_test_copy_to_itself(void** state)
 {
 	struct test_memmove_data* md = *state;
 	char* p;
