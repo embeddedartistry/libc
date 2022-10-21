@@ -67,7 +67,7 @@ static void bsearch_int_test(void** state)
 	assert_int_equal(*res, key);
 }
 
-static void bsearch_int_test_enf(void** state) // enf : element not found
+static void bsearch_int_test_element_not_found(void** state)
 {
 	int key = 5;
 	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], cmp64);
@@ -83,7 +83,7 @@ int bsearch_tests(void)
 	const struct CMUnitTest bsearch_tests[] = {
 		cmocka_unit_test(bsearch_string_test),
 		cmocka_unit_test(bsearch_string_test_element_not_found), cmocka_unit_test(bsearch_int_test),
-		cmocka_unit_test(bsearch_int_test_enf)
+		cmocka_unit_test(bsearch_int_test_element_not_found)
 
 	};
 
