@@ -87,9 +87,6 @@ The following architectures are currently supported:
 
 The following unit tests need to be added:
 
-* `bsearch`
-* `imaxdiv`
-* `div`, `ldiv`
 * `realloc`
 * `rand` family
 
