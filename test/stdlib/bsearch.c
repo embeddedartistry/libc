@@ -47,66 +47,46 @@ static int ccmp(const void* a, const void* b)
 
 static void bsearch_string_test(void** state)
 {
-
 	const char* key = "Ceres";
 	const char** res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], ccmp);
 
-	
-		assert_string_equal(*res, "Ceres");
-		assert_string_equal(*res, key);
-
-	
+	assert_string_equal(*res, "Ceres");
+	assert_string_equal(*res, key);
 }
 
 static void bsearch_string_test_element_not_found(void** state)
 {
-
 	const char* key = "Hello";
 	char* res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], scmp);
 
-	
-		assert_null(res);
-	
-	
+	assert_null(res);
 }
 
 static void bsearch_int_test(void** state)
 {
-
-
-
 	int key = 3535;
 	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], icmp);
 
-	
-		assert_int_equal(*res, key);
-
-	
+	assert_int_equal(*res, key);
 }
 
-static void bsearch_int_test_enf(void** state) //enf : element not found
+static void bsearch_int_test_enf(void** state) // enf : element not found
 {
-
 	int key = 5;
 	int res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], cmp64);
 
-	
-		assert_null(res);
-
+	assert_null(res);
 }
 
 #pragma mark - Private Functions -
-
-
 
 #pragma mark - Public Functions -
 
 int bsearch_tests(void)
 {
 	const struct CMUnitTest bsearch_tests[] = {
-		 cmocka_unit_test(bsearch_string_test),
-		cmocka_unit_test(bsearch_string_test_element_not_found), 
-		cmocka_unit_test(bsearch_int_test),
+		cmocka_unit_test(bsearch_string_test),
+		cmocka_unit_test(bsearch_string_test_element_not_found), cmocka_unit_test(bsearch_int_test),
 		cmocka_unit_test(bsearch_int_test_enf)
 
 	};

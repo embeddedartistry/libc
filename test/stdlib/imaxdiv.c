@@ -199,9 +199,6 @@ static void imaxdiv_test(void** state)
 		mod = x % y;
 		assert_true(div == t[i].div);
 		assert_true(mod == t[i].mod);
-
-
-
 	}
 }
 
