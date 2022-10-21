@@ -143,27 +143,7 @@ static void div_test(void** __attribute__((unused)) state)
 		mod = x % y;
 		assert_true(div == t[i].div);
 		assert_true(mod == t[i].mod);
-		if(x > y)
-		{
-			assert_true(x >= t[i].div);
-			assert_true(x >= t[i].mod);
-		}
-
-		else if(y >= x)
-		{
-			assert_true(t[i].div <= t[i].mod);
-			assert_true(t[i].div == 0);
-			assert_int_equal(x, t[i].mod);
-		}
-		else if(y < 0 && y >= x)
-		{
-			assert_true(t[i].div <= 0);
-			assert_int_equal(x, t[i].mod);
-		}
-		else if(y < 0 && x >= y)
-		{
-			assert_true(t[i].div <= 0);
-		}
+		
 	}
 }
 
