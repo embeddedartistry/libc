@@ -17,7 +17,7 @@
 // clang-format on
 
 #pragma mark - Declarations -
-static void* input_thunk_int = 0xDEADBEEF;
+static void* input_thunk_int = (void*)0xDEADBEEF;
 /* 26 items -- even */
 static const char* s[] = {"Bob",	"Alice", "John",   "Ceres",	  "Helga",	 "Drepper", "Emeralda",
 						  "Zoran",	"Momo",	 "Frank",  "Pema",	  "Xavier",	 "Yeva",	"Gedun",
