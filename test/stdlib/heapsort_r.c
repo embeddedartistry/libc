@@ -65,9 +65,9 @@ static int icmp_thunk_check(void* thunk, const void* a, const void* b)
 	return *(const int*)a - *(const int*)b;
 }
 
-static void heapsort_r_int_test_1(void** state)
+static void heapsort_r_int_test_thunk_not_null(void** state)
 {
-	void* thunk = input_thunk; // unused in these examples, but we want to test API
+	void* thunk = input_thunk; 
 	size_t len = sizeof(n) / sizeof(*n);
 
 	heapsort_r(s, len, sizeof(*n), thunk, icmp_thunk_check);
@@ -190,8 +190,10 @@ static void heapsort_r_uint64_test(void** state)
 int heapsort_r_tests(void)
 {
 	const struct CMUnitTest heapsort_r_tests[] = {
-		cmocka_unit_test(heapsort_r_string_test), cmocka_unit_test(heapsort_r_int_test_1),
-		cmocka_unit_test(heapsort_r_char_test),	  cmocka_unit_test(heapsort_r_int_test),
+		cmocka_unit_test(heapsort_r_string_test), 
+		cmocka_unit_test(heapsort_r_int_test_thunk_not_null),
+		cmocka_unit_test(heapsort_r_char_test),	 
+		 cmocka_unit_test(heapsort_r_int_test),
 		cmocka_unit_test(heapsort_r_uint64_test),
 	};
 

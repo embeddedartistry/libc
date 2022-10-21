@@ -47,80 +47,67 @@ static int ccmp(const void* a, const void* b)
 
 static void bsearch_string_test(void** state)
 {
-	size_t len = sizeof(n) / sizeof(*n);
+
 	const char* key = "Ceres";
 	const char** res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], ccmp);
 
-	for(size_t i = 0; i < len; i++)
-	{
+	
 		assert_string_equal(*res, "Ceres");
 		assert_string_equal(*res, key);
-		assert_int_equal(strcmp(key, *res), 0);
-	}
+
+	
 }
 
-static void bsearch_string_test_1(void** state)
+static void bsearch_string_test_element_not_found(void** state)
 {
-	size_t len = sizeof(n) / sizeof(*n);
+
 	const char* key = "Hello";
 	char* res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], scmp);
 
-	for(size_t i = 0; i < len; i++)
-	{
+	
 		assert_null(res);
-		assert_string_equal(res, NULL);
-		assert_string_not_equal(res, key);
-		assert_int_not_equal(strcmp(key, res), 0);
-	}
+	
+	
 }
 
 static void bsearch_int_test(void** state)
 {
-	size_t len = sizeof(n) / sizeof(*n);
 
-	// i dont know why but if i choose some values from the n array  it give error and when i chose
-	// others it run perfectly
+
+
 	int key = 3535;
 	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], icmp);
 
-	for(size_t i = 0; i < len; i++)
-	{
+	
 		assert_int_equal(*res, key);
-		assert_int_equal(strcmp(key, *res), 0);
-	}
+
+	
 }
 
-static void bsearch_int_test_1(void** state)
+static void bsearch_int_test_enf(void** state) //enf : element not found
 {
-	size_t len = sizeof(n) / sizeof(*n);
 
 	int key = 5;
 	int res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], cmp64);
 
-	for(size_t i = 0; i < len; i++)
-	{
+	
 		assert_null(res);
-		assert_string_equal(res, NULL);
-		assert_int_not_equal(res, key);
-		assert_int_not_equal(strcmp(key, res), 0);
-	}
+
 }
 
 #pragma mark - Private Functions -
 
-static void bsearch_test(void** state)
-{
-	// TODO bsearch test not implemented!
-}
+
 
 #pragma mark - Public Functions -
 
 int bsearch_tests(void)
 {
 	const struct CMUnitTest bsearch_tests[] = {
-		cmocka_unit_test(bsearch_test), cmocka_unit_test(bsearch_string_test),
-		cmocka_unit_test(bsearch_string_test_1), cmocka_unit_test(bsearch_int_test),
-		cmocka_unit_test(bsearch_int_test_1)
+		 cmocka_unit_test(bsearch_string_test),
+		cmocka_unit_test(bsearch_string_test_element_not_found), 
+		cmocka_unit_test(bsearch_int_test),
+		cmocka_unit_test(bsearch_int_test_enf)
 
 	};
 
