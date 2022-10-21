@@ -23,10 +23,9 @@ struct test_memmove_data
 
 static void fill_buffer(char* buf, size_t size, char start_value, char end_value)
 {
-	size_t i;
-	for(i = 0; i < size; ++i)
+	for(size_t i = 0; i < size; ++i)
 	{
-		buf[i] = (start_value + i) % (end_value - start_value + 1);
+		buf[i] = (start_value + (char)i) % (end_value - start_value + 1);
 	}
 }
 
