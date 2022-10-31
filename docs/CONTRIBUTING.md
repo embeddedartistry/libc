@@ -114,6 +114,7 @@ Please branch from `master` for any new changes. Once you are ready to merge cha
 ### Building the Project
 
 This project uses [Embedded Artistry's standardized Meson build system](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/). Complete instructions can be found [on our website](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/).
+You can also build using CMake, eg `cd build && cmake -GNinja .. && ninja`.
 
 ### Adding New Tests
 
