@@ -15,14 +15,14 @@
 #include <cmocka.h>
 // clang-format on
 
-static const char* s[] = {"Bob",	"Alice", "John",   "Ceres",	  "Helga",	 "Drepper", "Emeralda",
-						  "Zoran",	"Momo",	 "Frank",  "Pema",	  "Xavier",	 "Yeva",	"Gedun",
-						  "Irina",	"Nono",	 "Wiener", "Vincent", "Tsering", "Karnica", "Lulu",
-						  "Quincy", "Osama", "Riley",  "Ursula",  "Sam"};
+static const char* string_set[] = {
+	"Bob",	   "Alice",	  "John",	"Ceres",  "Helga", "Drepper", "Emeralda", "Zoran",	"Momo",
+	"Frank",   "Pema",	  "Xavier", "Yeva",	  "Gedun", "Irina",	  "Nono",	  "Wiener", "Vincent",
+	"Tsering", "Karnica", "Lulu",	"Quincy", "Osama", "Riley",	  "Ursula",	  "Sam"};
 
-static int n[] = {879045, 394,	99405644, 33434, 232323, 4334,	  5454,	 343,
-				  45545,  454,	324,	  22,	 34344,	 233,	  45345, 343,
-				  848405, 3434, 3434344,  3535,	 93994,	 2230404, 4334};
+static int integer_set[] = {879045, 394,  99405644, 33434, 232323, 4334,	5454,  343,
+							45545,	454,  324,		22,	   34344,  233,		45345, 343,
+							848405, 3434, 3434344,	3535,  93994,  2230404, 4334};
 
 static int cmp64(const void* a, const void* b)
 {
@@ -48,29 +48,33 @@ static int ccmp(const void* a, const void* b)
 static void bsearch_string_test(void** state)
 {
 	const char* key = "Ceres";
-	const char** res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], ccmp);
-	assert_string_equal(*res, "Ceres");
-	assert_string_equal(*res, key);
+	const char** res = bsearch(&key, string_set, sizeof string_set / sizeof string_set[0],
+							   sizeof string_set[0], ccmp);
+	assert_non_null(res);
+	assert_string_equal(key, *res);
 }
 
 static void bsearch_string_test_element_not_found(void** state)
 {
 	const char* key = "Hello";
-	char* res = bsearch(&key, s, sizeof s / sizeof s[0], sizeof s[0], scmp);
+	char* res = bsearch(&key, string_set, sizeof string_set / sizeof string_set[0],
+						sizeof string_set[0], scmp);
 	assert_null(res);
 }
 
 static void bsearch_int_test(void** state)
 {
 	int key = 3535;
-	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], icmp);
+	int* res = bsearch(&key, integer_set, sizeof integer_set / sizeof integer_set[0],
+					   sizeof integer_set[0], icmp);
 	assert_int_equal(*res, key);
 }
 
 static void bsearch_int_test_element_not_found(void** state)
 {
 	int key = 5;
-	int* res = bsearch(&key, n, sizeof n / sizeof n[0], sizeof n[0], cmp64);
+	int* res = bsearch(&key, integer_set, sizeof integer_set / sizeof integer_set[0],
+					   sizeof integer_set[0], cmp64);
 	assert_null(res);
 }
 
