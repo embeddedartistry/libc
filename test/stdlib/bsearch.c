@@ -30,26 +30,21 @@ static int cmp64(const void* a, const void* b)
 	return *ua < *ub ? -1 : *ua != *ub;
 }
 
-static int icmp(const void* a, const void* b)
+static int int_cmp(const void* a, const void* b)
 {
 	return *(const int*)a - *(const int*)b;
 }
 
-static int scmp(const void* a, const void* b)
+static int string_cmp(const void* a, const void* b)
 {
 	return strcmp(*(char* const*)a, *(char* const*)b);
-}
-
-static int ccmp(const void* a, const void* b)
-{
-	return *(const char*)a - *(const char*)b;
 }
 
 static void bsearch_string_test(void** state)
 {
 	const char* key = "Ceres";
-	const char** res = bsearch(&key, string_set, sizeof string_set / sizeof string_set[0],
-							   sizeof string_set[0], ccmp);
+	const char** res = bsearch(&key, string_set, sizeof(string_set) / sizeof(string_set[0]),
+							   sizeof string_set[0], string_cmp);
 	assert_non_null(res);
 	assert_string_equal(key, *res);
 }
@@ -58,7 +53,7 @@ static void bsearch_string_test_element_not_found(void** state)
 {
 	const char* key = "Hello";
 	char* res = bsearch(&key, string_set, sizeof string_set / sizeof string_set[0],
-						sizeof string_set[0], scmp);
+						sizeof string_set[0], string_cmp);
 	assert_null(res);
 }
 
@@ -66,7 +61,7 @@ static void bsearch_int_test(void** state)
 {
 	int key = 3535;
 	int* res = bsearch(&key, integer_set, sizeof integer_set / sizeof integer_set[0],
-					   sizeof integer_set[0], icmp);
+					   sizeof integer_set[0], int_cmp);
 	assert_int_equal(*res, key);
 }
 
