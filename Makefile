@@ -32,13 +32,13 @@ endif
 ifneq ($(CROSS),)
 	# Split into two strings, first is arch, second is chip
 	CROSS_2 := $(subst :, ,$(CROSS))
-	INTERNAL_OPTIONS += $(foreach FILE,$(CROSS_2),--cross-file=build/cross/$(FILE).txt)
+	INTERNAL_OPTIONS += $(foreach FILE,$(CROSS_2),--cross-file=meson/cross/$(FILE).txt)
 endif
 
 ifneq ($(NATIVE),)
 	# Split into words delimited by :
 	NATIVE_2 := $(subst :, ,$(NATIVE))
-	INTERNAL_OPTIONS += $(foreach FILE,$(NATIVE_2),--native-file=build/native/$(FILE).txt)
+	INTERNAL_OPTIONS += $(foreach FILE,$(NATIVE_2),--native-file=meson/native/$(FILE).txt)
 endif
 
 ifeq ($(DEBUG),1)
@@ -140,7 +140,7 @@ help :
 	@echo "    > DEBUG Enable a debug build. Default 0 (release). Enable with 1."
 	@echo "    > CROSS Enable a Cross-compilation build. Default format is arch:chip."
 	@echo "         - Example: make CROSS=arm:cortex-m3"
-	@echo "         - For supported chips, see build/cross/"
+	@echo "         - For supported chips, see meson/cross/"
 	@echo "         - Additional files can be layered by adding additional"
 	@echo "           args separated by ':'"
 	@echo "    > NATIVE Supply an alternative native toolchain by name."
