@@ -139,9 +139,7 @@
  * a data set that will trigger the worst case is nonexistent.  Heapsort's
  * only advantage over quicksort is that it requires little additional memory.
  */
-int heapsort(vbase, nmemb, size, compar) void* vbase;
-size_t nmemb, size;
-int (*compar)(const void*, const void*);
+int heapsort(void* vbase, size_t nmemb, size_t size, int (*compar)(const void*, const void*))
 {
 	size_t cnt;
 	size_t i;
