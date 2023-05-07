@@ -464,7 +464,6 @@ libc_native_dep = declare_dependency(
 		gdtoa_sys_include,
 		build_machine_arch_sys_include,
 		openlibm_includes,
-		libprintf_includes
 	],
 	dependencies: printf_include_dep,
 	compile_args: libc_compile_flags + libc_native_compile_flags,
@@ -478,7 +477,6 @@ libc_hosted_dep = declare_dependency(
 		gdtoa_sys_include,
 		host_machine_arch_sys_include,
 		openlibm_includes,
-		libprintf_includes
 	],
 	dependencies: printf_include_dep,
 	compile_args: libc_compile_flags + libc_host_compile_flags,
@@ -492,7 +490,6 @@ libc_hosted_native_dep = declare_dependency(
 		gdtoa_sys_include,
 		build_machine_arch_sys_include,
 		openlibm_includes,
-		libprintf_includes
 	],
 	dependencies: printf_include_dep,
 	compile_args: libc_compile_flags + libc_native_compile_flags,
