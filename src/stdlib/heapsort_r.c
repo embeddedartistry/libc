@@ -140,7 +140,7 @@
  * only advantage over quicksort is that it requires little additional memory.
  */
 int heapsort_r(void* vbase, size_t nmemb, size_t size, void* thunk,
-int (*compar)(void*, const void*, const void*))
+			   int (*compar)(void*, const void*, const void*))
 {
 	size_t cnt;
 	size_t i;

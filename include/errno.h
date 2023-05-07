@@ -7,7 +7,7 @@ extern "C" {
 
 // TODO:
 // int *__errno_location(void);
-//#define errno (*__errno_location())
+// #define errno (*__errno_location())
 
 // For GLIBC on host, we need to use their definition of errno for linking purposes
 #ifdef __GLIBC__

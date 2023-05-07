@@ -46,8 +46,8 @@
  * have to make lim 3, then halve, obtaining 1, so that we will only
  * look at item 3.
  */
-void * bsearch(const void *key, const void *base0, size_t nmemb, size_t size,
-	int (*compar)(const void *, const void *))
+void* bsearch(const void* key, const void* base0, size_t nmemb, size_t size,
+			  int (*compar)(const void*, const void*))
 {
 	const char* base = base0;
 	size_t lim;
