@@ -1,6 +1,6 @@
 #include <string.h>
 
-int __attribute__((weak)) memcmp(const void* p1, const void* p2, size_t n)
+int memcmp(const void* p1, const void* p2, size_t n)
 {
 	size_t i;
 
