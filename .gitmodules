@@ -2,7 +2,7 @@
 	path = src/gdtoa
 	url = https://github.com/embeddedartistry/gdtoa
 [submodule "meson-buildsystem"]
-	path = build
+	path = meson
 	url = https://github.com/embeddedartistry/meson-buildsystem
 [submodule "printf"]
 	path = printf
