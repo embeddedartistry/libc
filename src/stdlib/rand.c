@@ -73,7 +73,7 @@ static int do_rand(unsigned long* ctx)
 #endif /* !USE_WEAK_SEEDING */
 }
 
-__attribute__((weak)) int rand_r(unsigned int* ctx)
+int __attribute__((weak)) rand_r(unsigned int* ctx)
 {
 	unsigned long val = (unsigned long)*ctx;
 	int r = do_rand(&val);
@@ -82,12 +82,12 @@ __attribute__((weak)) int rand_r(unsigned int* ctx)
 	return (r);
 }
 
-__attribute__((weak)) int rand()
+int __attribute__((weak)) rand()
 {
 	return (do_rand(&next));
 }
 
-__attribute__((weak)) void srand(unsigned seed)
+void __attribute__((weak)) srand(unsigned seed)
 {
 	next = seed;
 }
