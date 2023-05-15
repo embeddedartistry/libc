@@ -82,7 +82,7 @@ int __attribute__((weak)) rand_r(unsigned int* ctx)
 	return (r);
 }
 
-int __attribute__((weak)) rand()
+int __attribute__((weak)) rand(void)
 {
 	return (do_rand(&next));
 }
