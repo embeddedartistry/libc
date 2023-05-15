@@ -22,7 +22,7 @@ extern void (*__init_array_end[])(void) __attribute__((weak));
 extern void (*__fini_array_start[])(void) __attribute__((weak));
 extern void (*__fini_array_end[])(void) __attribute__((weak));
 #endif
-extern int main();
+extern int main(void);
 
 __attribute__((weak)) int entry(void)
 {
