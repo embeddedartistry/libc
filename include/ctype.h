@@ -123,7 +123,7 @@ int isdigit(int ch);
  *		- number (0123456789)
  *		- uppercase letter (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
  *		- letter (abcdefghijklmnopqrstuvwxyz)
- *		- punctuation character (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
+ *		- punctuation character (!"#\$%&'()*+,-./:;<=>?@[\]^_`{|}~)
  *
  * The behavior is undefined if the value of ch is not representable as unsigned char and is not
  *equal to EOF.
@@ -157,7 +157,7 @@ int islower(int ch);
  *		- number (0123456789)
  *		- uppercase letter (ABCDEFGHIJKLMNOPQRSTUVWXYZ)
  *		- letter (abcdefghijklmnopqrstuvwxyz)
- *		- punctuation character (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
+ *		- punctuation character (!"#\$%&'()*+,-./:;<=>?@[\]^_`{|}~)
  *		- space (0x20)
  *
  * The behavior is undefined if the value of ch is not representable as unsigned char and is not
@@ -173,7 +173,7 @@ int isprint(int ch);
  *
  * Checks if the given character is a punctuation character using the default local.
  * 	The following characters are classified as punctuation character:
- *		 - (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
+ *		 - (!"#\$%&'()*+,-./:;<=>?@[\]^_`{|}~)
  *
  * The behavior is undefined if the value of ch is not representable as unsigned char and is not
  *equal to EOF.
