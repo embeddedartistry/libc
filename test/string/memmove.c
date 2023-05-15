@@ -25,11 +25,11 @@ static void fill_buffer(char* buf, size_t size, char start_value, char end_value
 {
 	for(size_t i = 0; i < size; ++i)
 	{
-		buf[i] = (start_value + (char)i) % (end_value - start_value + 1);
+		buf[i] = (char)(((size_t)start_value + i) % (size_t)(end_value - start_value + 1));
 	}
 }
 
-int setup_test(void** state)
+static int setup_test(void** state)
 {
 	struct test_memmove_data* md = malloc(sizeof(struct test_memmove_data));
 	if(!md)
@@ -42,7 +42,7 @@ int setup_test(void** state)
 	return 0;
 }
 
-int teardown_test(void** state)
+static int teardown_test(void** state)
 {
 	struct test_memmove_data* md = *state;
 	free(md);
