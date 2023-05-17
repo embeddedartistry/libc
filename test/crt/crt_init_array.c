@@ -17,7 +17,7 @@
 #include <cmocka.h>
 // clang-format on
 
-// Currently these tests only run on OS X due to section/segment requirement
+// Currently these tests only run on MacOS due to section/segment requirement
 #ifdef __APPLE__
 static volatile bool preinit_was_called = false;
 static volatile bool preinit_was_not_called = true;

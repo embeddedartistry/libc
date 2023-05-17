@@ -89,7 +89,7 @@ if disable_builtins == false
 endif
 
 #################################
-# Enable CRT Testing if on OS X #
+# Enable CRT Testing if on MacOS #
 #################################
 
 if build_machine.system() == 'darwin'

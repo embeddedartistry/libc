@@ -20,7 +20,7 @@ extern void (**__init_array_end)(void) __attribute__((weak));
 extern void (**__fini_array_start)(void) __attribute__((weak));
 extern void (**__fini_array_end)(void) __attribute__((weak));
 
-// Currently these tests only run on OS X
+// Currently these tests only run on MacOS
 __attribute__((section("__DATA,.preinit_array"))) void (**__preinit_array_start)(void) = preinit_call_list;
 __attribute__((section("__DATA,.preinit_array"))) void (**__preinit_array_end)(void) = &preinit_call_list[1];
 __attribute__((section("__DATA,.init_array"))) void (**__init_array_start)(void) = init_call_list;
@@ -95,12 +95,12 @@ However, taking the address of these symbols makes the test fail again!
 
 ## Decision
 
-Not knowing whether this is a Clang or OS X specific behavior, we'll just use an `#ifdef` to select the proper form when testing. This will ensure that current devices work as-is, and our testing form is only used when building libc tests on macOS. If this changes (e.g., we find out it's actually predicated on `__APPLE__`), we can adjust as-is.
+Not knowing whether this is a Clang or MacOS specific behavior, we'll just use an `#ifdef` to select the proper form when testing. This will ensure that current devices work as-is, and our testing form is only used when building libc tests on macOS. If this changes (e.g., we find out it's actually predicated on `__APPLE__`), we can adjust as-is.
 
 ```
 #ifdef ENABLE_CRT_TESTING
 // Note that this might actually be #if __APPLE__, but we only
-// Use this file on OS X for testing purposes.
+// Use this file on MacOS for testing purposes.
 extern void (**__preinit_array_start)(void) __attribute__((weak));
 extern void (**__preinit_array_end)(void) __attribute__((weak));
 extern void (**__init_array_start)(void) __attribute__((weak));

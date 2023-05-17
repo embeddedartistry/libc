@@ -129,7 +129,7 @@ To install `git-lfs` on Linux:
 sudo apt install git-lfs
 ```
 
-To install `git-lfs` on OS X:
+To install `git-lfs` on MacOS:
 
 ```
 brew install git-lfs
