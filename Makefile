@@ -20,6 +20,7 @@ NATIVE ?=
 DEBUG ?= 0
 SANITIZER ?= none
 INTERNAL_OPTIONS =
+MESON ?= meson
 
 ifeq ($(DISABLE_BUILTINS),1)
 	INTERNAL_OPTIONS += -Ddisable-builtins=true
@@ -72,11 +73,11 @@ package: default docs
 # Manually Reconfigure a target, esp. with new options
 .PHONY: reconfig
 reconfig:
-	$(Q) meson $(BUILDRESULTS) --reconfigure $(INTERNAL_OPTIONS) $(OPTIONS)
+	$(Q) $(MESON) $(BUILDRESULTS) --reconfigure $(INTERNAL_OPTIONS) $(OPTIONS)
 
 # Runs whenever the build has not been configured successfully
 $(CONFIGURED_BUILD_DEP):
-	$(Q) meson $(BUILDRESULTS) $(INTERNAL_OPTIONS) $(OPTIONS)
+	$(Q) $(MESON) $(BUILDRESULTS) $(INTERNAL_OPTIONS) $(OPTIONS)
 
 .PHONY: cppcheck
 cppcheck: | $(CONFIGURED_BUILD_DEP)
@@ -108,7 +109,7 @@ tidy: $(CONFIGURED_BUILD_DEP)
 
 .PHONY: coverage
 coverage:
-	$(Q)if [ ! -e "$(BUILDRESULTS)/coverage/build.ninja" ]; then meson $(BUILDRESULTS)/coverage $(INTERNAL_OPTIONS) $(OPTIONS) -Db_coverage=true; fi
+	$(Q)if [ ! -e "$(BUILDRESULTS)/coverage/build.ninja" ]; then $(MESON) $(BUILDRESULTS)/coverage $(INTERNAL_OPTIONS) $(OPTIONS) -Db_coverage=true; fi
 	$(Q) ninja -C $(BUILDRESULTS)/coverage test
 	$(Q) ninja -C $(BUILDRESULTS)/coverage coverage
 
