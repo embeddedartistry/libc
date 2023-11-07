@@ -7,9 +7,9 @@ aarch64_arch_common_dep = declare_dependency(
 	)
 )
 
-# This crt0.s file is not built to support MacOS M1 builds,
-# and we leverage the existing MacOS/startup code for this.
-aarch64_non_macos_dep = declare_dependency(
+# This crt0.s file is not currently building for aarch64.
+# At this time, we are leveraging existing startup code.
+aarch64_crt0_dep = declare_dependency(
 	sources: files(
 		'src/crt0.S'
 	),
@@ -17,17 +17,16 @@ aarch64_non_macos_dep = declare_dependency(
 )
 
 if build_arch == 'aarch64'
-	if build_machine.system() == 'darwin'
-		build_machine_dep = aarch64_arch_common_dep
-	else
-		build_machine_dep = aarch64_non_macos_dep
-	endif
+	build_machine_dep = aarch64_arch_common_dep
 endif
 
 if host_arch == 'aarch64'
-	if host_machine.system() == 'darwin'
-		host_machine_dep = aarch64_arch_common_dep
-	else
-		host_machine_dep = aarch64_non_macos_dep
-	endif
+	host_machine_dep = aarch64_arch_common_dep
 endif
+
+# The previous version was:
+#if build_machine.system() == 'darwin'
+#	build_machine_dep = aarch64_arch_common_dep
+#else
+#	build_machine_dep = aarch64_non_macos_dep
+#endif
