@@ -18,7 +18,7 @@ project('Embedded Artistry libc',
 
 ################################
 # Project Options and Settings #
-################################
+################################\
 
 # Options that are processed elsewhere
 disable_unimplemented_apis = get_option('hide-unimplemented-libc-apis')
@@ -27,6 +27,7 @@ disable_stack_protection = get_option('disable-stack-protection')
 enable_gnu_src = get_option('enable-gnu-extensions')
 stack_canary = get_option('stack-canary-value')
 disable_stk_guard_runtime_config = get_option('disable-stk-guard-runtime-config')
+enable_testing = get_option('enable-testing')
 
 # Pick up our common compiler variables + desired_*_flags variables
 subdir('meson/compiler')
@@ -77,8 +78,11 @@ subdir('meson/compiler/check-and-apply-flags')
 # Include reusable build modules here via subdir() calls
 subdir('meson/linker/linker-script-as-property')
 subdir('meson/linker/linker-map')
-subdir('meson/test/cmocka')
-subdir('meson/objcopy')
+
+if enable_testing
+	subdir('meson/test/cmocka')
+	subdir('meson/objcopy')
+endif
 
 ##########################
 # Architecture Detection #
@@ -109,30 +113,32 @@ printf_include_dep = declare_dependency(
 	compile_args: ['-DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD']
 )
 
-printf_tests = executable('printf_tests',
-	sources: files('printf/test/test_suite.cpp'),
-	include_directories: [
-		include_directories('printf/test'),
-		include_directories('printf/src', is_system: true)
-	],
-	native: true,
-	build_by_default: meson.is_subproject() == false,
-)
+if enable_testing
+	printf_tests = executable('printf_tests',
+		sources: files('printf/test/test_suite.cpp'),
+		include_directories: [
+			include_directories('printf/test'),
+			include_directories('printf/src', is_system: true)
+		],
+		native: true,
+		build_by_default: meson.is_subproject() == false,
+	)
 
-if meson.is_subproject() == false
-	test('printf_tests',
-		printf_tests,
-		args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
+	if meson.is_subproject() == false
+		test('printf_tests',
+			printf_tests,
+			args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
+		)
+	endif
+
+	run_target('printf-tests',
+		command: printf_tests
+	)
+
+	run_target('printf-tests-xml',
+		command: [printf_tests, '-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
 	)
 endif
-
-run_target('printf-tests',
-	command: printf_tests
-)
-
-run_target('printf-tests-xml',
-	command: [printf_tests, '-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
-)
 
 ###############################
 # Openlibm Dependency Targets #
@@ -156,7 +162,10 @@ openlibm_dep = declare_dependency(
 clangtidy_files = []
 
 subdir('src')
-subdir('test')
+
+if enable_testing
+	subdir('test')
+endif
 
 ###################
 # Tooling Modules #
