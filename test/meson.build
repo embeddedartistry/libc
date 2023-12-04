@@ -85,10 +85,11 @@ libc_test_flags = native_c_compiler.get_supported_arguments(
 	'-Wno-stringop-overflow',
 )
 
-if disable_builtins == false and optimization == 0
+optimization = get_option('optimization')
+if disable_builtins == false and optimization == '0'
 	libc_test_flags += '-DBUILTINS_ARE_ENABLED'
 else
-	message('Some tests are disabled when builtins are enabled or optimization level is >= 2.')
+	message('Some tests are disabled when builtins and/or optimizations are enabled.')
 endif
 
 #################################
