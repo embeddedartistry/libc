@@ -140,7 +140,7 @@ stackprotect_test = executable('stackprotect_test',
 
 if meson.is_cross_build() and meson.is_subproject() == false
 
-	host_objcopy = find_program(meson.get_cross_property('objcopy'),
+	host_objcopy = find_program(meson.get_external_property('objcopy'),
 		required: false, disabler: true)
 
 	if host_objcopy.found() == false
@@ -178,7 +178,7 @@ endif
 # Register Tests with Meson #
 #############################
 
-test_output_dir = 'CMOCKA_XML_FILE=' + meson.build_root() + '/test/%g.xml'
+test_output_dir = 'CMOCKA_XML_FILE=' + meson.project_build_root() + '/test/%g.xml'
 
 if meson.is_subproject() == false
 	test('libc_tests',

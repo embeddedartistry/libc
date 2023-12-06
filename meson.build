@@ -127,7 +127,7 @@ if enable_testing
 	if meson.is_subproject() == false
 		test('printf_tests',
 			printf_tests,
-			args: ['-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
+			args: ['-s', '-r', 'junit', '-o', meson.project_build_root() + '/test/printf_tests.xml']
 		)
 	endif
 
@@ -136,7 +136,7 @@ if enable_testing
 	)
 
 	run_target('printf-tests-xml',
-		command: [printf_tests, '-s', '-r', 'junit', '-o', meson.build_root() + '/test/printf_tests.xml']
+		command: [printf_tests, '-s', '-r', 'junit', '-o', meson.project_build_root() + '/test/printf_tests.xml']
 	)
 endif
 
@@ -175,31 +175,31 @@ endif
 doxygen_description = 'C Standard Library Support for Bare-metal Systems'
 
 doxygen_input_additional = [
-	meson.source_root() / 'arch',
-	meson.source_root() / 'include',
+	meson.project_source_root() / 'arch',
+	meson.project_source_root() / 'include',
 ]
 
 lizard_paths = [
-	meson.source_root() / 'arch',
-	meson.source_root() / 'src',
-	meson.source_root() / 'test'
+	meson.project_source_root() / 'arch',
+	meson.project_source_root() / 'src',
+	meson.project_source_root() / 'test'
 ]
 
 cppcheck_args = [
-	'-i', meson.source_root() / 'include',
+	'-i', meson.project_source_root() / 'include',
 	# Folders to analyze
-	meson.source_root() / 'arch',
-	meson.source_root() / 'src',
-	meson.source_root() / 'test',
+	meson.project_source_root() / 'arch',
+	meson.project_source_root() / 'src',
+	meson.project_source_root() / 'test',
 ]
 
 clangformat_excludes = [
-	meson.source_root() / 'src/gdtoa'
+	meson.project_source_root() / 'src/gdtoa'
 ]
 
 clangformat_additional_targets = [
-	meson.source_root() / 'include',
-	meson.source_root() / 'arch',
+	meson.project_source_root() / 'include',
+	meson.project_source_root() / 'arch',
 ]
 
 subdir('meson/analysis/clang-tidy')
@@ -217,8 +217,8 @@ native_pkg_name = host_pkg_name + '_native'
 
 # These macros allow you to simplify the declaration of includes for common
 # include paths.
-build_root_include = meson.build_root() + ':@0@'
-src_include = meson.build_root() / 'src/:@0@'
+build_root_include = meson.project_build_root() + ':@0@'
+src_include = meson.project_build_root() / 'src/:@0@'
 
 host_pkg_files = [
 	build_root_include.format('docs'),
