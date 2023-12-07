@@ -12,7 +12,7 @@ project('Embedded Artistry libc',
 		'cpp_std=c++11', 'build.cpp_std=c++11',
 	],
 	license: 'MIT',
-	meson_version: '>=0.54.0',
+	meson_version: '>=0.58.0',
 	version: '1.0'
 )
 
