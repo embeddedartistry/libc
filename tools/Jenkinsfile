@@ -140,7 +140,6 @@ pipeline
         enabledForFailure: true,
         healthy: 5,
         unhealthy: 10,
-        referenceJobName: 'ea-nightly/libc/master',
         qualityGates: [
           // 3 new issue: unstable
           //[threshold: 3, type: 'DELTA', unstable: true],
