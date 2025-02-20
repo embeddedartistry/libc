@@ -166,7 +166,7 @@ pipeline
       )
 
       // Report Status
-      slackNotify(currentBuild.currentResult)
+      // slackNotify(currentBuild.currentResult)
       gitTagCleanup "${params.MAJOR_VERSION}.${params.MINOR_VERSION}.${BUILD_NUMBER}"
     }
     success

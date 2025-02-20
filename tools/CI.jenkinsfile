@@ -175,7 +175,7 @@ pipeline
         ]
       )
 
-      slackNotify(currentBuild.currentResult)
+      // slackNotify(currentBuild.currentResult)
     }
   }
 }
