@@ -2,7 +2,7 @@
 
 int puts(const char* str)
 {
-	int r = 0;
+	int r = 1;
 
 	for(const char* c = str; *c != 0; c++)
 	{
@@ -10,12 +10,12 @@ int puts(const char* str)
 		r++;
 	}
 
-	// puts adds a newline
-	if(r)
+	if(r == 1)
 	{
-		putchar('\n');
-		r++;
+		return EOF;
 	}
 
-	return r ? r : EOF;
+	// puts adds a newline
+	putchar('\n');
+	return r;
 }
