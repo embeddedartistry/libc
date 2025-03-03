@@ -115,7 +115,10 @@ printf_include_dep = declare_dependency(
 
 if enable_testing
 	printf_tests = executable('printf_tests',
-		sources: files('printf/test/test_suite.cpp'),
+		sources: files(
+				'printf/test/test_suite.cpp',
+				'printf/test/catch_amalgamated.cpp'
+		),
 		include_directories: [
 			include_directories('printf/test'),
 			include_directories('printf/src', is_system: true)

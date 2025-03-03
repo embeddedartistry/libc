@@ -77,7 +77,10 @@ target_compile_definitions(printf_libc INTERFACE -DDPRINTF_ALIAS_STANDARD_FUNCTI
 
 if(LIBC_TESTING_IS_ENABLED)
   add_executable(printf_tests)
-  target_sources(printf_tests PRIVATE ${printf_SOURCE_DIR}/test/test_suite.cpp)
+  target_sources(printf_tests PRIVATE
+      ${printf_SOURCE_DIR}/test/test_suite.cpp
+      ${printf_SOURCE_DIR}/test/catch_amalgamated.cpp
+  )
   target_include_directories(printf_tests PRIVATE ${printf_SOURCE_DIR}/src)
   target_compile_definitions(printf_tests INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
   install(FILES ${printf_SOURCE_DIR}/printf.h DESTINATION include)
