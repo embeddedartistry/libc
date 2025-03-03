@@ -73,7 +73,7 @@ set(printf_SOURCE_DIR printf)
 add_library(printf_libc INTERFACE)
 target_sources(printf_libc INTERFACE ${printf_SOURCE_DIR}/src/printf/printf.c)
 target_include_directories(printf_libc SYSTEM INTERFACE ${printf_SOURCE_DIR}/src/ ${printf_SOURCE_DIR}/src/printf)
-target_compile_definitions(printf_libc INTERFACE -DDPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
+target_compile_definitions(printf_libc INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
 
 if(LIBC_TESTING_IS_ENABLED)
   add_executable(printf_tests)
