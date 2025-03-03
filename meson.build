@@ -9,7 +9,7 @@ project('Embedded Artistry libc',
 		# `build.*` options affect `native: true targets`
 		# plain options affect `native: false` targets.
 		'c_std=c11', 'build.c_std=c11',
-		'cpp_std=c++11', 'build.cpp_std=c++11',
+		'cpp_std=c++14', 'build.cpp_std=c++14',
 	],
 	license: 'MIT',
 	meson_version: '>=0.58.0',

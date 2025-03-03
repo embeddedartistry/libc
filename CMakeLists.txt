@@ -82,7 +82,7 @@ if(LIBC_TESTING_IS_ENABLED)
   target_compile_definitions(printf_tests INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
   install(FILES ${printf_SOURCE_DIR}/printf.h DESTINATION include)
   target_linker_map(printf_tests)
-  set_target_properties(printf_tests PROPERTIES CXX_STANDARD 11)
+  set_target_properties(printf_tests PROPERTIES CXX_STANDARD 14)
 
   # Re-build + execute tests, printing test information to the console instead of the XML file
   add_custom_target(test-printf printf_tests)
