@@ -76,23 +76,18 @@ target_include_directories(printf_libc SYSTEM INTERFACE ${printf_SOURCE_DIR}/src
 target_compile_definitions(printf_libc INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
 
 if(LIBC_TESTING_IS_ENABLED)
+  include(cmake/test/catch2.cmake)
   add_executable(printf_tests)
-  target_sources(printf_tests PRIVATE
-      ${printf_SOURCE_DIR}/test/test_suite.cpp
-      ${printf_SOURCE_DIR}/test/catch_amalgamated.cpp
-  )
+  target_sources(printf_tests PRIVATE ${printf_SOURCE_DIR}/test/test_suite.cpp)
+  target_link_libraries(printf_tests PRIVATE catch2_dep)
   target_include_directories(printf_tests PRIVATE ${printf_SOURCE_DIR}/src)
   target_compile_definitions(printf_tests INTERFACE -DPRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD -DPRINTF_INCLUDE_CONFIG_H=0)
   install(FILES ${printf_SOURCE_DIR}/printf.h DESTINATION include)
   target_linker_map(printf_tests)
   set_target_properties(printf_tests PROPERTIES CXX_STANDARD 14)
 
-  # Re-build + execute tests, printing test information to the console instead of the XML file
-  add_custom_target(test-printf printf_tests)
+  register_catch2_test(Printf.Test printf_tests)
 
-  add_test(NAME Printf.Test
-    COMMAND printf_tests -s -r junit -o ${CMAKE_BINARY_DIR}/printf_tests.xml
-  )
 endif()
 
 #######################
