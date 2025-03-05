@@ -46,14 +46,6 @@ pipeline
         sh 'make'
       }
     }
-    stage('Cross compile for ARM')
-    {
-      steps
-      {
-        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
-        sh 'ninja -C buildresults/arm/'
-      }
-    }
     stage('Test')
     {
       steps
@@ -69,6 +61,13 @@ pipeline
           // Report Tests to Report CI
           //reportciUpload('buildresults/test/*.xml','cmocka')
         }
+      }
+    }
+    stage('Cross compile for ARM')
+    {
+      steps
+      {
+        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
       }
     }
     stage('CppCheck')
