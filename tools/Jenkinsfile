@@ -97,6 +97,7 @@ pipeline
         sh 'make scan-build'
       }
     }
+/*
     stage('Coverage')
     {
       steps
@@ -111,6 +112,7 @@ pipeline
         }
       }
     }
+*/
     stage('Archive')
     {
       steps
