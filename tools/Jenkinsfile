@@ -37,14 +37,6 @@ pipeline
         sh 'make'
       }
     }
-    stage('Cross compile for ARM')
-    {
-      steps
-      {
-        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
-        sh 'ninja -C buildresults/arm/'
-      }
-    }
     stage('Test')
     {
       steps
@@ -58,6 +50,13 @@ pipeline
           // Report Tests
           junit 'buildresults/test/*.xml'
         }
+      }
+    }
+    stage('Cross compile for ARM')
+    {
+      steps
+      {
+        sh 'make CROSS=arm:cortex-m4_hardfloat BUILDRESULTS=buildresults/arm'
       }
     }
     stage('Documentation')
@@ -98,6 +97,7 @@ pipeline
         sh 'make scan-build'
       }
     }
+/*
     stage('Coverage')
     {
       steps
@@ -112,6 +112,7 @@ pipeline
         }
       }
     }
+*/
     stage('Archive')
     {
       steps

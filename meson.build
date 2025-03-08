@@ -114,33 +114,18 @@ printf_include_dep = declare_dependency(
 )
 
 if enable_testing
-	printf_tests = executable('printf_tests',
-		sources: files(
-				'printf/test/test_suite.cpp',
-				'printf/test/catch_amalgamated.cpp'
-		),
+	printf_test_dep = declare_dependency(
+		sources: files('printf/test/test_suite.cpp'),
 		include_directories: [
 			include_directories('printf/test'),
 			include_directories('printf/src', is_system: true)
 		],
-		native: true,
-		build_by_default: meson.is_subproject() == false,
 	)
 
-	if meson.is_subproject() == false
-		test('printf_tests',
-			printf_tests,
-			args: ['-s', '-r', 'junit', '-o', meson.project_build_root() + '/test/printf_tests.xml']
-		)
-	endif
-
-	run_target('printf-tests',
-		command: printf_tests
-	)
-
-	run_target('printf-tests-xml',
-		command: [printf_tests, '-s', '-r', 'junit', '-o', meson.project_build_root() + '/test/printf_tests.xml']
-	)
+	# Setup dependencies for catch module
+	catch2_test_program_name = 'printf_test'
+	catch2_tests_dep = printf_test_dep
+	subdir('meson/test/catch2')
 endif
 
 ###############################
